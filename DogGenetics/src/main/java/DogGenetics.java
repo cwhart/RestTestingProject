@@ -6,11 +6,12 @@ public class DogGenetics {
 
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        String dogsName;
+        String dogsName = "";
 
         String[] dogBreeds = new String[]{"Chihuahua", "Schnauzer", "Coonhound", "Poodle", "Daschund"};
         int[] percentages = new int[5];
-        int runningTally = 100;
+        int runningTally = 95;
+        int sum = 0;
         Random rand = new Random();
 
         System.out.println("What is your dog's name? ");
@@ -20,15 +21,16 @@ public class DogGenetics {
 
         for(int i=0; i<4; i++) {
 
-                int thisPercentage = (rand.nextInt(runningTally) + 1);
-                runningTally = runningTally - thisPercentage;
-                percentages[i] = thisPercentage;
+            int thisPercentage = rand.nextInt(runningTally) + 1;
+            runningTally = runningTally + 1 - thisPercentage;
+            sum = sum + thisPercentage;
+            percentages[i] = thisPercentage;
 
             System.out.println(dogsName + " is " + percentages[i] + " percent " + dogBreeds[i]);
         }
 
         //In order to total to 100, the final percentage cannot be random, it must equal the remainder.
-        percentages[4] = runningTally;
+        percentages[4] = 100 - sum;
         System.out.println(dogsName + " is " + percentages[4] + " percent " + dogBreeds[4]);
 
 
