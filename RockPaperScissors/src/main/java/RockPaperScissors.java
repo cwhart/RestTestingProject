@@ -6,45 +6,55 @@ public class RockPaperScissors {
     public static void main(String[] args) {
 
         Scanner userInput = new Scanner(System.in);
-        int numRounds, intUserSelection, intComputerSelection;
-        String userSelection, stringNumRounds;
+        int numRounds;
+        String userSelection, stringNumRounds, computerSelection;
         String playAgain = "no";
 
+        //Loop through do-while loop to repeat the game as long as the user wants to play again.
         do {
+
+            //Initialize counters each time the game is played.
             int tiedRounds = 0;
             int userWins = 0;
             int computerWins = 0;
+
+            //Prompt the user for # of rounds. Read in as a string and then convert to an int.
             System.out.println("Let's play Rock, Paper, Scissors!");
             System.out.println("How many rounds would you like to play? Enter a number between 1 and 10.");
             stringNumRounds = userInput.nextLine();
             numRounds = Integer.parseInt(stringNumRounds);
-            String winner;
 
+            //Generate an error if the user doesn't input a number between 1 and 10
             if (!(numRounds >= 1 && numRounds <= 10)) {
                 System.out.println("Error! That is not a number between 1 and 10.");
                 return;
             }
 
+            //Loop for each round
             for (int i = numRounds; i > 0; i--) {
 
+                String winner;
+
+                //If user does not enter one of the 3 valid values, continue to prompt them.
                 do {
                     System.out.println("Enter your move (rock/paper/scissors): ");
-                    userSelection = userInput.nextLine();
+                    userSelection = userInput.nextLine().toLowerCase();
                 }
 
-                while (!(userSelection.toLowerCase().equals("rock") || userSelection.toLowerCase().equals("paper")
-                        || userSelection.toLowerCase().equals("scissors")));
+                while (!(userSelection.equals("rock") || userSelection.equals("paper")
+                        || userSelection.equals("scissors")));
 
-                intUserSelection = convertSelectionToInt(userSelection);
+                //Generate the computer's random guess
+                computerSelection = computerGenerateGuess();
 
-                intComputerSelection = computerGenerateGuess();
-
-                winner = compareGuesses(intUserSelection, intComputerSelection);
+                //Now compare the computer's guess with the user's and increment the appropriate counter
+                winner = compareGuesses(userSelection, computerSelection);
                 if(winner.equals("tie")) tiedRounds++;
                 else if(winner.equals("user")) userWins++;
                 else computerWins++;
             }
 
+            //End of the round - print out the results and ask the user if they want to play again
             System.out.println("Number of ties: " + tiedRounds);
             System.out.println("Number of user wins: " + userWins);
             System.out.println("Number of computer wins: " + computerWins);
@@ -52,51 +62,41 @@ public class RockPaperScissors {
             playAgain = userInput.nextLine();
 
         }
+        //if user wants to play again, loop back to the beginning
         while (playAgain.toLowerCase().equals("yes"));
 
 
     }
 
-    public static int convertSelectionToInt (String input) {
-        int returnValue;
-
-        if(input.toLowerCase().equals("rock")) returnValue = 0;
-        else if (input.toLowerCase().equals("paper")) returnValue = 1;
-        else if (input.toLowerCase().equals("scissors")) returnValue = 2;
-        else returnValue = 3;
-
-        return returnValue;
-    }
-
-    public static int computerGenerateGuess() {
+    //Generate a random number from 0 to 2, convert to rock, paper, scissors string and return
+    public static String computerGenerateGuess() {
         Random rand = new Random();
-        return rand.nextInt(3);
+        int guess = rand.nextInt(3);
+        if(guess == 0) return "rock";
+        else if(guess ==1) return "paper";
+        else return "scissors";
     }
 
-    public static String compareGuesses(int userGuess, int computerGuess) {
+    //Compare computer's guess with user's and return results - tie, user, or computer wins.
+    public static String compareGuesses(String userGuess, String computerGuess) {
         String winner;
 
-        if(userGuess == computerGuess) {
+        if(userGuess.equals(computerGuess)) {
 
-            System.out.println("Computer guesses: " + convertIntToSelection(computerGuess) + ". Tie!");
+            System.out.println("Computer guesses: " + computerGuess + ". Tie!");
             winner = "tie";
         }
-        else if((userGuess==0 && computerGuess==2) || (userGuess==1 && computerGuess==0) || (userGuess==2 && computerGuess==1))
+        else if((userGuess.equals("rock") && computerGuess.equals("scissors")) || (userGuess.equals("paper")
+                && computerGuess.equals("rock")) || (userGuess.equals("scissors") && computerGuess.equals("rock")))
         {
-            System.out.println("Computer guesses: " + convertIntToSelection(computerGuess) + ". User wins!");
+            System.out.println("Computer guesses: " + computerGuess + ". User wins!");
             winner = "user";
         }
         else {
-            System.out.println("Computer guesses: " + convertIntToSelection(computerGuess) + ". Computer wins!");
+            System.out.println("Computer guesses: " + computerGuess + ". Computer wins!");
             winner = "computer";
         }
         return winner;
     }
 
-    public static String convertIntToSelection (int num) {
-        if(num==0) return "Rock";
-        if(num==1) return "Paper";
-        if(num==2) return "Scissors";
-        else return "Error!";
-    }
 }
