@@ -69,6 +69,7 @@ public class RockPaperScissors {
     }
 
     //Generate a random number from 0 to 2, convert to rock, paper, scissors string and return
+
     public static String computerGenerateGuess() {
         Random rand = new Random();
         int guess = rand.nextInt(3);

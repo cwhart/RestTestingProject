@@ -13,6 +13,7 @@ public class HealthyHearts {
         System.out.println("What is your age? ");
 
         //Read in user input and then convert to an int.
+
         strAge = userInput.nextLine();
         age = Integer.parseInt(strAge);
 

@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class SummativeSums {
 
     public static void main(String[] args) {
+
         //Declare the arrays
         int[] array1 = new int[]{ 1, 90, -33, -55, 67, -16, 28, -55, 15 };
         int[] array2 = new int[]{ 999, -60, -77, 14, 160, 301 };
