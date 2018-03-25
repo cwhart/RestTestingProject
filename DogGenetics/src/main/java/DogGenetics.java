@@ -51,12 +51,12 @@ public class DogGenetics {
             sum = sum + thisPercentage;
             percentages[i] = thisPercentage;
 
-            System.out.println(dogsName + " is " + percentages[i] + " percent " + dogBreeds[i]);
+            System.out.println(dogsName + " is " + percentages[i] + " percent " + dogBreeds[i] + ".");
         }
 
         //The final percentage must be 100 minus the sum of the 4 previous, to ensure it all adds up to 100.
         percentages[4] = 100 - sum;
-        System.out.println(dogsName + " is " + percentages[4] + " percent " + dogBreeds[4]);
+        System.out.println(dogsName + " is " + percentages[4] + " percent " + dogBreeds[4] + ".");
 
 
     }
