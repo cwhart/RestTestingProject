@@ -13,7 +13,6 @@ public class DogGenetics {
         "Labrador Retriever", "Rottweiler", "Golden Retriever", "Beagle", "Bulldog", "Husky", "Boxer", "Pug", "Border Collie",
         "Shih Tzu", "Pit Bull", "Sheepdog", "Basset Hound", "Corgi"};
 
-        //Select 5 at random and populate here
         String[] dogBreeds = new String[5];
         int[] percentages = new int[5];
         int runningTally = 95;
