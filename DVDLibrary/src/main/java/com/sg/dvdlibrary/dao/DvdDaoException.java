@@ -11,4 +11,6 @@ public class DvdDaoException extends Exception {
     public DvdDaoException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    //Comment
 }
