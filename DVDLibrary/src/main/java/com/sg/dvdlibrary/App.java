@@ -18,7 +18,7 @@ public class App {
 
         DvdController controller = new DvdController(myDao, myView);
         controller.run();
-
+  
     }
 
 }
