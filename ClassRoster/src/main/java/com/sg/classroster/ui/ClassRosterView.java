@@ -36,7 +36,7 @@ public class ClassRosterView {
     }
 
     public void displayCreateStudentBanner() {
-        io.print("=== Create Student +++");
+        io.print("=== Create Student ===");
     }
 
     public void displayCreateSuccessBanner() {
@@ -76,7 +76,7 @@ public class ClassRosterView {
     }
 
     public void displayRemoveStudentBanner() {
-        io.print("=== Remove Student");
+        io.print("=== Remove Student ===");
     }
 
     public void displayRemoveSuccessBanner() {
