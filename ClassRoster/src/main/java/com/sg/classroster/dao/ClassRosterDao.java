@@ -16,11 +16,11 @@ public interface ClassRosterDao {
      * @param student student to be added to the roster
      * @return the Student object previously associated with the given
      * student id if it exists, null otherwise.
-     * @throws com.sg.classroster.dao.ClassRosterDaoException
+     * @throws ClassRosterPersistenceException
      */
 
     Student addStudent(String studentId, Student student)
-    throws ClassRosterDaoException;
+    throws ClassRosterPersistenceException;
 
     /**
      * Returns a String array containing the student ids of all
@@ -28,10 +28,10 @@ public interface ClassRosterDao {
      *
      * @return String array containing the ids of all the students
      * in the roster.
-     * @throws com.sg.classroster.dao.ClassRosterDaoException
+     * @throws ClassRosterPersistenceException
      */
 
-    List<Student> getAllStudents() throws ClassRosterDaoException;
+    List<Student> getAllStudents() throws ClassRosterPersistenceException;
 
     /**
      * Returns the student object associated with the given student id.
@@ -40,10 +40,10 @@ public interface ClassRosterDao {
      * @param studentId ID of the student to retrieve
      * @return the Student object associated with the given student id,
      * null if no such student exists
-     * @throws com.sg.classroster.dao.ClassRosterDaoException
+     * @throws ClassRosterPersistenceException
      */
 
-    Student getStudent(String studentId) throws ClassRosterDaoException;
+    Student getStudent(String studentId) throws ClassRosterPersistenceException;
 
     /**
      * Removes from the roster the student associated with the given id.
@@ -53,8 +53,8 @@ public interface ClassRosterDao {
      * @param studentId id of student to be removed
      * @return Student object that was removed or null if no student
      * was associated with the given student id
-     * @throws com.sg.classroster.dao.ClassRosterDaoException
+     * @throws ClassRosterPersistenceException
      */
 
-    Student removeStudent(String studentId) throws ClassRosterDaoException;
+    Student removeStudent(String studentId) throws ClassRosterPersistenceException;
 }
