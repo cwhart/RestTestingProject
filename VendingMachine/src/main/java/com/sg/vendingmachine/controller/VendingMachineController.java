@@ -1,6 +1,7 @@
 package com.sg.vendingmachine.controller;
 
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
+import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 import com.sg.vendingmachine.service.InsufficientFundsException;
 import com.sg.vendingmachine.service.InsufficientItemQuantityException;
@@ -23,12 +24,13 @@ public class VendingMachineController {
         vendingMachineView.printWelcomeMessage();
 
         try {
-            listAllItems();
-
 
         boolean keepGoing = true;
 
             do {
+                listAllItems();
+                BigDecimal balance = vendingMachineService.getRunningTotal();
+                vendingMachineView.displayCurrentBalance(balance);
 
                 int selection = vendingMachineView.printMenuAndGetSelection();
 
@@ -41,7 +43,7 @@ public class VendingMachineController {
                         purchaseItem();
                         break;
                     case 3:
-                        System.out.println("Get change");
+                        returnChange();
                         break;
                     case 4:
                         keepGoing = false;
@@ -101,12 +103,12 @@ public class VendingMachineController {
         vendingMachineView.printAddMoneyBanner();
         BigDecimal amountToAdd = vendingMachineView.promptAddMoney();
         vendingMachineService.addMoney(amountToAdd);
-        BigDecimal balance = vendingMachineService.getRunningTotal();
-        vendingMachineView.displayCurrentBalance(balance);
 
     }
 
     private void returnChange() {
+        Change changeToReturn = vendingMachineService.calculateChange();
+        vendingMachineView.displayChange(changeToReturn);
 
     }
 

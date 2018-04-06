@@ -63,6 +63,11 @@ public class VendingMachineView {
     }
 
     public void displayChange(Change change) {
+        io.print("Your change: ");
+        io.print(change.getQuarters() + " Quarters");
+        io.print(change.getDimes() + " Dimes");
+        io.print(change.getNickels() + " Nickels");
+        io.print(change.getPennies() + " Pennies");
 
     }
 

@@ -6,6 +6,7 @@ import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
@@ -48,7 +49,40 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     @Override
     public Change calculateChange() {
-        return null;
+        //First determine how many quarters to return
+        Change yourChange = new Change();
+        BigDecimal numQuarters = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.25));
+        int quarters = numQuarters.intValue();
+        yourChange.setQuarters(quarters);
+
+        //Subtract quarters returned from running total
+        runningTotal = runningTotal.subtract(numQuarters.multiply(BigDecimal.valueOf(.25)));
+
+        //Determine how many dimes
+        BigDecimal numDimes = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.1));
+        int dimes = numDimes.intValue();
+        yourChange.setDimes(dimes);
+
+        //Subtract quarters returned from running total
+        runningTotal = runningTotal.subtract(numDimes.multiply(BigDecimal.valueOf(.1)));
+
+        //Determine how many nickels
+        BigDecimal numNickels = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.05));
+        int nickels = numNickels.intValue();
+        yourChange.setNickels(nickels);
+
+        //Subtract quarters returned from running total
+        runningTotal = runningTotal.subtract(numNickels.multiply(BigDecimal.valueOf(.05)));
+
+        //Now pennies
+        BigDecimal numPennies = runningTotal.multiply(BigDecimal.valueOf(100));
+        int pennies = numPennies.intValue();
+        yourChange.setPennies(pennies);
+
+        //reset runningTotal to 0 in case the user is going to continue
+        runningTotal.equals(0);
+
+        return yourChange;
     }
 
     @Override
