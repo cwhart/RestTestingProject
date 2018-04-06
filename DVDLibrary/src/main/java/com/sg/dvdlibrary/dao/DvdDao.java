@@ -8,15 +8,15 @@ public interface DvdDao {
 
     //DVD DAO interface
 
-    public Dvd addDvd(String title, Dvd newDvd) throws DvdDaoException;
+    public Dvd addDvd(String title, Dvd newDvd) throws DvdLibraryPersistenceException;
 
-    public Dvd removeDvd(String title) throws DvdDaoException;
+    public Dvd removeDvd(String title) throws DvdLibraryPersistenceException;
 
-    public Dvd editDvd(Dvd dvdToEdit) throws DvdDaoException;
+    public Dvd editDvd(Dvd dvdToEdit) throws DvdLibraryPersistenceException;
 
-    public List<Dvd> displayAll() throws DvdDaoException;
+    public List<Dvd> displayAll() throws DvdLibraryPersistenceException;
 
-    public Dvd displayDvd(String title) throws DvdDaoException;
+    public Dvd displayDvd(String title) throws DvdLibraryPersistenceException;
 
     //Comment
 }

@@ -1,9 +1,11 @@
 package com.sg.dvdlibrary.controller;
 
 import com.sg.dvdlibrary.dao.DvdDao;
-import com.sg.dvdlibrary.dao.DvdDaoException;
-import com.sg.dvdlibrary.dao.DvdDaoFileImpl;
+import com.sg.dvdlibrary.dao.DvdLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.Dvd;
+import com.sg.dvdlibrary.service.DvdLibraryDataValidationException;
+import com.sg.dvdlibrary.service.DvdLibraryDuplicateTitleException;
+import com.sg.dvdlibrary.service.DvdLibraryServiceLayer;
 import com.sg.dvdlibrary.ui.DvdView;
 import com.sg.dvdlibrary.ui.UserIO;
 import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
@@ -12,9 +14,9 @@ import java.util.List;
 
 public class DvdController {
 
-    DvdDao dao;
+    DvdLibraryServiceLayer service;
     DvdView view;
-    UserIO io = new UserIOConsoleImpl();
+    //UserIO io = new UserIOConsoleImpl();
 
 
     public void run() {
@@ -54,13 +56,13 @@ public class DvdController {
                 }
             }
             exitMessage();
-        } catch (DvdDaoException e) {
+        } catch (DvdLibraryPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
     }
 
-    public DvdController (DvdDao dao, DvdView view) {
-        this.dao = dao;
+    public DvdController (DvdLibraryServiceLayer service, DvdView view) {
+        this.service = service;
         this.view = view;
     }
 
@@ -70,8 +72,9 @@ public class DvdController {
     }
 
     //Add a new DVD to the library
-    private void createDvd() throws DvdDaoException {
+    private void createDvd() throws DvdLibraryPersistenceException {
         boolean addAnother = true;
+        boolean hasErrors = false;
 
         do {
 
@@ -79,39 +82,48 @@ public class DvdController {
 
             Dvd newDvd = view.getNewDvdInfo();
 
-            dao.addDvd(newDvd.getTitle(), newDvd);
-            view.displayCreateSuccessBanner();
-            addAnother = view.anotherOne();
+            try {
+
+                service.addDvd(newDvd);
+                view.displayCreateSuccessBanner();
+                addAnother = view.anotherOne();
+                hasErrors = false;
+            } catch (DvdLibraryDuplicateTitleException | DvdLibraryDataValidationException e) {
+                hasErrors = true;
+                view.displayErrorMessage(e.getMessage());
+            } while (hasErrors);
 
         } while (addAnother);
+
     }
 
+
     //Call the DAO to get the full library, then display.
-    private void displayAll() throws DvdDaoException {
+    private void displayAll() throws DvdLibraryPersistenceException {
         view.displayDisplayAllBanner();
-        List<Dvd> dvdList = dao.displayAll();
+        List<Dvd> dvdList = service.displayAll();
         view.displayDvdList(dvdList);
 
     }
 
-    private void removeDvd() throws DvdDaoException {
+    private void removeDvd() throws DvdLibraryPersistenceException {
 
         boolean removeAnother = true;
 
         do {
             view.removeDvdBanner();
             String dvdToRemove = view.getDvdChoice();
-            dao.removeDvd(dvdToRemove);
+            service.removeDvd(dvdToRemove);
             removeAnother = view.anotherOne();
 
         } while (removeAnother);
 
     }
 
-    private void displayDvd() throws DvdDaoException {
+    private void displayDvd() throws DvdLibraryPersistenceException {
         view.displayDvdBanner();
         String dvdToDisplay = view.getDvdChoice();
-        Dvd currentDvd = dao.displayDvd(dvdToDisplay);
+        Dvd currentDvd = service.displayDvd(dvdToDisplay);
         view.displayDvd(currentDvd);
 
     }
@@ -124,7 +136,7 @@ public class DvdController {
         view.displayUnknownCommandBanner();
     }
 
-    private void editDvd() throws DvdDaoException {
+    private void editDvd() throws DvdLibraryPersistenceException {
         boolean editAnother = true;
 
         do {
@@ -136,13 +148,13 @@ public class DvdController {
             String dvdNameToEdit = view.getDvdChoice();
 
             //Pass the String key to the DAO to get the Dvd object
-            Dvd dvdToEdit = dao.displayDvd(dvdNameToEdit);
+            Dvd dvdToEdit = service.displayDvd(dvdNameToEdit);
 
             //Now call the edit method
             view.editDvd(dvdToEdit);
 
             //Store the updated Dvd in the DAO
-            dao.editDvd(dvdToEdit);
+            service.editDvd(dvdToEdit);
 
             //Prompt if user wants to edit another
             editAnother = view.anotherOne();

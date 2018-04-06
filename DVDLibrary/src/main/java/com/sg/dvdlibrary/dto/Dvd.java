@@ -60,5 +60,30 @@ public class Dvd {
         this.userComment = userComment;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dvd dvd = (Dvd) o;
+
+        if (!title.equals(dvd.title)) return false;
+        if (!releaseDate.equals(dvd.releaseDate)) return false;
+        if (!mpaaRating.equals(dvd.mpaaRating)) return false;
+        if (!directorName.equals(dvd.directorName)) return false;
+        if (!studio.equals(dvd.studio)) return false;
+        return userComment.equals(dvd.userComment);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + releaseDate.hashCode();
+        result = 31 * result + mpaaRating.hashCode();
+        result = 31 * result + directorName.hashCode();
+        result = 31 * result + studio.hashCode();
+        result = 31 * result + userComment.hashCode();
+        return result;
+    }
     //Comment
 }

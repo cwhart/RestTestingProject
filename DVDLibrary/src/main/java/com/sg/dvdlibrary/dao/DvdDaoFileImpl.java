@@ -15,7 +15,7 @@ public class DvdDaoFileImpl implements DvdDao {
     Map<String, Dvd> dvds = new HashMap<>();
 
     //Load DVDs from file first, then add the newly created one, and write back to the file.
-    public Dvd addDvd(String dvdName, Dvd dvd) throws DvdDaoException {
+    public Dvd addDvd(String dvdName, Dvd dvd) throws DvdLibraryPersistenceException {
         loadDvds();
         Dvd newDvd = dvds.put(dvdName, dvd);
         writeDvds();
@@ -23,7 +23,7 @@ public class DvdDaoFileImpl implements DvdDao {
     }
 
     //Load DVDs from the file first, then display all.
-    public List<Dvd> displayAll() throws DvdDaoException {
+    public List<Dvd> displayAll() throws DvdLibraryPersistenceException {
         loadDvds();
         List<Dvd> listOfDvds = new ArrayList<>();
         for (Dvd currentDvd : dvds.values()) {
@@ -34,7 +34,7 @@ public class DvdDaoFileImpl implements DvdDao {
     }
 
     @Override
-    public Dvd removeDvd(String title) throws DvdDaoException {
+    public Dvd removeDvd(String title) throws DvdLibraryPersistenceException {
 
         //Load DVDs from file, remove one, then write back to the file.
         loadDvds();
@@ -47,17 +47,17 @@ public class DvdDaoFileImpl implements DvdDao {
 
 
     @Override
-    public Dvd editDvd(Dvd dvdToEdit) throws DvdDaoException {
+    public Dvd editDvd(Dvd dvdToEdit) throws DvdLibraryPersistenceException {
 
         //Load DVDs from file, edit, then write back to the file.
         loadDvds();
         Dvd updatedDvd = dvds.put(dvdToEdit.getTitle(), dvdToEdit);
         writeDvds();
-        return updatedDvd;
+        return dvds.get(dvdToEdit.getTitle());
     }
 
     @Override
-    public Dvd displayDvd(String title) throws DvdDaoException {
+    public Dvd displayDvd(String title) throws DvdLibraryPersistenceException {
 
         //Load DVDs from file and display.
         loadDvds();
@@ -67,7 +67,7 @@ public class DvdDaoFileImpl implements DvdDao {
 
 
     //Method to read the DVD list from file.
-    private void loadDvds() throws DvdDaoException {
+    private void loadDvds() throws DvdLibraryPersistenceException {
 
         Scanner scanner;
 
@@ -77,7 +77,7 @@ public class DvdDaoFileImpl implements DvdDao {
                     new BufferedReader(
                             new FileReader(DVD_FILE)));
         } catch (FileNotFoundException e) {
-            throw new DvdDaoException("-_- Could not load DVD data into memory", e);
+            throw new DvdLibraryPersistenceException("-_- Could not load DVD data into memory", e);
         }
 
         String currentLine;
@@ -103,7 +103,7 @@ public class DvdDaoFileImpl implements DvdDao {
     }
 
     //Method to delimit the DVDs in the HashMap and store to file.
-    private void writeDvds() throws DvdDaoException {
+    private void writeDvds() throws DvdLibraryPersistenceException {
 
         PrintWriter out;
 
@@ -111,7 +111,7 @@ public class DvdDaoFileImpl implements DvdDao {
             out = new PrintWriter(new FileWriter(DVD_FILE));
 
             } catch (IOException e) {
-            throw new DvdDaoException("Could not save DVD data." , e);
+            throw new DvdLibraryPersistenceException("Could not save DVD data." , e);
         }
 
         List<Dvd> dvdList = this.displayAll();
