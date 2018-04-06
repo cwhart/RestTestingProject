@@ -11,7 +11,8 @@ public interface VendingMachineServiceLayer {
 
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
 
-    public Item purchaseItem(int itemNum);
+    public Item purchaseItem(int itemNum) throws InsufficientFundsException, InsufficientItemQuantityException,
+            VendingMachinePersistenceException;
 
     public Change calculateChange();
 

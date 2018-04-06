@@ -43,7 +43,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public Item retrieveSingleItem(int itemNo) {
-        return null;
+        return itemMap.get(itemNo);
     }
 
 

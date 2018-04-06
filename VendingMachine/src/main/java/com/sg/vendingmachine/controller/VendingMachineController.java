@@ -2,6 +2,8 @@ package com.sg.vendingmachine.controller;
 
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Item;
+import com.sg.vendingmachine.service.InsufficientFundsException;
+import com.sg.vendingmachine.service.InsufficientItemQuantityException;
 import com.sg.vendingmachine.service.VendingMachineServiceLayer;
 import com.sg.vendingmachine.ui.VendingMachineView;
 
@@ -22,9 +24,7 @@ public class VendingMachineController {
 
         try {
             listAllItems();
-        } catch (VendingMachinePersistenceException e) {
-            vendingMachineView.displayErrorMessage(e.getMessage());
-        }
+
 
         boolean keepGoing = true;
 
@@ -38,7 +38,7 @@ public class VendingMachineController {
                         addMoney();
                         break;
                     case 2:
-                        System.out.println("Make a purchase");
+                        purchaseItem();
                         break;
                     case 3:
                         System.out.println("Get change");
@@ -51,6 +51,10 @@ public class VendingMachineController {
                 }
 
             } while (keepGoing);
+
+        } catch (VendingMachinePersistenceException e) {
+            vendingMachineView.displayErrorMessage(e.getMessage());
+        }
 
 
     }
@@ -70,7 +74,22 @@ public class VendingMachineController {
 
     }
 
-    private void purchaseItem() {
+    private void purchaseItem() throws VendingMachinePersistenceException{
+        vendingMachineView.purchaseItemBanner();
+        //retrieve item by ID
+        int selectionId = vendingMachineView.promptItemSelection();
+
+        try {
+            vendingMachineService.purchaseItem(selectionId);
+            vendingMachineView.itemPurchasedBanner();
+        } catch (InsufficientFundsException e) {
+            vendingMachineView.displayErrorMessage(e.getMessage());
+        } catch (InsufficientItemQuantityException e) {
+            vendingMachineView.displayErrorMessage(e.getMessage());
+        }
+
+
+
 
     }
 

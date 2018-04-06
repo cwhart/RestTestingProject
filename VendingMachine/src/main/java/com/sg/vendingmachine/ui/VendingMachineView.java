@@ -43,7 +43,16 @@ public class VendingMachineView {
     }
 
     public int promptItemSelection() {
-        return 0;
+        return io.readInt("Please enter the item number of your selection: ");
+
+    }
+
+    public void purchaseItemBanner() {
+        io.print("===Purchase an Item===");
+    }
+
+    public void itemPurchasedBanner() {
+        io.print("Enjoy!");
     }
 
     public void displayAllItems(List<Item> itemList) {
@@ -58,5 +67,6 @@ public class VendingMachineView {
     }
 
     public void displayErrorMessage(String message) {
+        io.print(message);
     }
 }

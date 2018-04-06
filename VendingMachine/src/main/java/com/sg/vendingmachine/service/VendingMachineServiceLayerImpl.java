@@ -24,8 +24,26 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     }
 
     @Override
-    public Item purchaseItem(int itemNum) {
-        return null;
+    public Item purchaseItem(int itemNum) throws InsufficientFundsException,InsufficientItemQuantityException,
+    VendingMachinePersistenceException{
+        Item currentItem = dao.retrieveSingleItem(itemNum);
+
+        //validate quantity
+        checkItemQuantity(currentItem);
+
+        //validate funds
+        checkSufficientFunds(currentItem);
+
+        //subtract price from total running
+        runningTotal = runningTotal.subtract(currentItem.getItemPrice());
+
+        //decrement quantity
+        currentItem.setItemQuantity(currentItem.getItemQuantity() - 1);
+
+        //update item
+
+        //return item
+        return currentItem;
     }
 
     @Override
@@ -44,11 +62,21 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         return runningTotal;
     }
 
-    private void checkSufficientFunds(Item item) {
+    private void checkSufficientFunds(Item item) throws InsufficientFundsException {
+        if (runningTotal.compareTo(item.getItemPrice()) < 0) {
+            throw new InsufficientFundsException("You do not have enough money to purchase that item. " +
+                    "Please add more money or choose a different item.");
 
+
+        }
     }
 
-    private void checkItemQuantity(Item item) {
+    private void checkItemQuantity(Item item) throws InsufficientItemQuantityException {
+        if(item.getItemQuantity() < 1) {
+            throw new InsufficientItemQuantityException("ERROR: there are no " + item.getItemName()
+            + "s in stock");
+        }
 
     }
 }
+
