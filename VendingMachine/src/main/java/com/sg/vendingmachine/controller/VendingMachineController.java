@@ -26,13 +26,11 @@ public class VendingMachineController {
         try {
 
         boolean keepGoing = true;
+        listAllItems();
 
-            do {
-                listAllItems();
-                BigDecimal balance = vendingMachineService.getRunningTotal();
-                vendingMachineView.displayCurrentBalance(balance);
 
-                int selection = vendingMachineView.printMenuAndGetSelection();
+            while (keepGoing) {
+                int selection = getMenuSelection();
 
                 switch (selection) {
 
@@ -52,7 +50,7 @@ public class VendingMachineController {
                         unknownCommand();
                 }
 
-            } while (keepGoing);
+            }
 
         } catch (VendingMachinePersistenceException e) {
             vendingMachineView.displayErrorMessage(e.getMessage());
@@ -67,7 +65,9 @@ public class VendingMachineController {
     }
 
     private int getMenuSelection() {
-        return 0;
+        BigDecimal balance = vendingMachineService.getRunningTotal();
+        vendingMachineView.displayCurrentBalance(balance);
+        return vendingMachineView.printMenuAndGetSelection();
     }
 
     private void listAllItems() throws VendingMachinePersistenceException{
@@ -78,6 +78,12 @@ public class VendingMachineController {
 
     private void purchaseItem() throws VendingMachinePersistenceException{
         vendingMachineView.purchaseItemBanner();
+
+        boolean tryAgain = false;
+
+        do {
+
+        listAllItems();
         //retrieve item by ID
         int selectionId = vendingMachineView.promptItemSelection();
 
@@ -86,17 +92,23 @@ public class VendingMachineController {
             vendingMachineView.itemPurchasedBanner();
         } catch (InsufficientFundsException e) {
             vendingMachineView.displayErrorMessage(e.getMessage());
+
+            //Need to set tryAgain back to false here, otherwise if user has insufficient funds, it will
+            //keep looping on the item menu instead of going back to the main menu.
+
+            tryAgain = false;
         } catch (InsufficientItemQuantityException e) {
             vendingMachineView.displayErrorMessage(e.getMessage());
-        }
-
-
-
-
+            tryAgain = true;
+            }
+        } while (tryAgain == true);
     }
 
-    private void unknownCommand() {
 
+
+
+    private void unknownCommand() {
+        vendingMachineView.displayUnknownCommandBanner();
     }
 
     private void addMoney() {

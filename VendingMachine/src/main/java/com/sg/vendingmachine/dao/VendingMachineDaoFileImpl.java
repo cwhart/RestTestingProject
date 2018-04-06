@@ -27,22 +27,33 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     }
 
     @Override
-    public Item createItem(int itemNum, Item item) {
-        return null;
+    public Item createItem(int itemNum, Item item) throws VendingMachinePersistenceException {
+        loadItemFile();
+        Item newItem = itemMap.put(itemNum, item);
+        writeItemFile();
+        return newItem;
     }
 
     @Override
-    public Item removeItem(int itemNum) {
-        return null;
+    public Item removeItem(int itemNum) throws  VendingMachinePersistenceException {
+        loadItemFile();
+        Item itemToRemove = itemMap.remove(itemNum);
+        writeItemFile();
+
+        return itemToRemove;
     }
 
     @Override
-    public Item updateItem(Item item) {
-        return null;
+    public Item updateItem(Item item) throws VendingMachinePersistenceException {
+        loadItemFile();
+        Item updatedItem = itemMap.put(item.getItemID(), item);
+        writeItemFile();
+        return itemMap.get(updatedItem.getItemID());
     }
 
     @Override
-    public Item retrieveSingleItem(int itemNo) {
+    public Item retrieveSingleItem(int itemNo) throws VendingMachinePersistenceException {
+        loadItemFile();
         return itemMap.get(itemNo);
     }
 
@@ -57,7 +68,8 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                     new BufferedReader(
                             new FileReader(INVENTORY_FILE)));
         } catch (FileNotFoundException e) {
-            throw new VendingMachinePersistenceException("-_- Could not load DVD data into memory", e);
+            throw new VendingMachinePersistenceException("-_- Could not load Vending Machine inventory" +
+                    " data into memory", e);
         }
 
         String currentLine;
@@ -91,7 +103,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
             out = new PrintWriter(new FileWriter(INVENTORY_FILE));
 
         } catch (IOException e) {
-            throw new VendingMachinePersistenceException("Could not save DVD data." , e);
+            throw new VendingMachinePersistenceException("Could not save inventory data." , e);
         }
 
         List<Item> itemList = this.retrieveAllItems();

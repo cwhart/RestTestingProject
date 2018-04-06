@@ -15,12 +15,14 @@ public class VendingMachineView {
     }
 
     public void printWelcomeMessage() {
-        io.print("Welcome to Snack Dispenser 23!");
-        io.print("Menu of selections: ");
+        io.print("\n===WELCOME TO SNACK DISPENSER 23!===\n");
+        io.print("======Menu of selections=======");
     }
 
     public int printMenuAndGetSelection() {
-        io.print("Main Menu");
+        io.print("=========================");
+        io.print("========Main Menu========");
+        io.print("=========================");
         io.print("1. Add Money");
         io.print("2. Make a purchase");
         io.print("3. Get change");
@@ -30,7 +32,7 @@ public class VendingMachineView {
     }
 
     public void printAddMoneyBanner() {
-        io.print("===Add Money===");
+        io.print("===ADD MONEY===");
     }
 
     public BigDecimal promptAddMoney() {
@@ -39,39 +41,44 @@ public class VendingMachineView {
     }
 
     public void displayCurrentBalance(BigDecimal balance) {
-        io.print("Your current balance is: " + balance.toString());
+        io.print("\nYour current balance is: $" + balance.setScale(2) + "\n");
     }
 
     public int promptItemSelection() {
+        //TODO: add logic to calculate the upper bound of item numbers.
         return io.readInt("Please enter the item number of your selection: ");
 
     }
 
     public void purchaseItemBanner() {
-        io.print("===Purchase an Item===");
+        io.print("\n===PURCHASE AN ITEM===");
     }
 
     public void itemPurchasedBanner() {
-        io.print("Enjoy!");
+        io.print("\nEnjoy!\n");
     }
 
     public void displayAllItems(List<Item> itemList) {
         for (Item currentItem : itemList) {
-            io.print(currentItem.getItemID() + " " + currentItem.getItemName() + " " +
-            currentItem.getItemPrice());
+            io.print(currentItem.getItemID() + ". " + currentItem.getItemName() + " - $" +
+            currentItem.getItemPrice().setScale(2));
         }
     }
 
     public void displayChange(Change change) {
-        io.print("Your change: ");
+        io.print("\nYour change: ");
         io.print(change.getQuarters() + " Quarters");
         io.print(change.getDimes() + " Dimes");
         io.print(change.getNickels() + " Nickels");
-        io.print(change.getPennies() + " Pennies");
+        io.print(change.getPennies() + " Pennies\n");
 
     }
 
     public void displayErrorMessage(String message) {
         io.print(message);
+    }
+
+    public void displayUnknownCommandBanner() {
+        io.print("===ERROR: UNKNOWN COMMAND===");
     }
 }
