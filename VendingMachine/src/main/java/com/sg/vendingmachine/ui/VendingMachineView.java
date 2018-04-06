@@ -14,6 +14,11 @@ public class VendingMachineView {
         this.io = io;
     }
 
+    public void printWelcomeMessage() {
+        io.print("Welcome to Snack Dispenser 23!");
+        io.print("Menu of selections: ");
+    }
+
     public int printMenuAndGetSelection() {
         io.print("Main Menu");
         io.print("1. Add Money");
@@ -24,8 +29,17 @@ public class VendingMachineView {
         return (io.readInt("Enter your selection: "));
     }
 
+    public void printAddMoneyBanner() {
+        io.print("===Add Money===");
+    }
+
     public BigDecimal promptAddMoney() {
-        return new BigDecimal("0");
+        return io.readBigDecimal("Please enter the amount: ");
+
+    }
+
+    public void displayCurrentBalance(BigDecimal balance) {
+        io.print("Your current balance is: " + balance.toString());
     }
 
     public int promptItemSelection() {
@@ -33,10 +47,16 @@ public class VendingMachineView {
     }
 
     public void displayAllItems(List<Item> itemList) {
+        for (Item currentItem : itemList) {
+            io.print(currentItem.getItemID() + " " + currentItem.getItemName() + " " +
+            currentItem.getItemPrice());
+        }
     }
 
     public void displayChange(Change change) {
 
     }
 
+    public void displayErrorMessage(String message) {
+    }
 }

@@ -1,5 +1,6 @@
 package com.sg.vendingmachine.service;
 
+import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface VendingMachineServiceLayer {
 
-    public List<Item> retrieveListAll();
+    public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
 
     public Item purchaseItem(int itemNum);
 

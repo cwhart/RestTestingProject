@@ -1,6 +1,7 @@
 package com.sg.vendingmachine.service;
 
 import com.sg.vendingmachine.dao.VendingMachineDao;
+import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
@@ -10,14 +11,16 @@ import java.util.List;
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
 
     VendingMachineDao dao;
+    BigDecimal runningTotal = new BigDecimal("0");
+
 
 
     public VendingMachineServiceLayerImpl(VendingMachineDao dao) {
         this.dao = dao;
     }
     @Override
-    public List<Item> retrieveListAll() {
-        return null;
+    public List<Item> retrieveListAll() throws VendingMachinePersistenceException {
+        return dao.retrieveAllItems();
     }
 
     @Override
@@ -32,12 +35,13 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     @Override
     public BigDecimal addMoney(BigDecimal amountToAdd) {
-        return null;
+        runningTotal = runningTotal.add(amountToAdd);
+        return runningTotal;
     }
 
     @Override
     public BigDecimal getRunningTotal() {
-        return null;
+        return runningTotal;
     }
 
     private void checkSufficientFunds(Item item) {

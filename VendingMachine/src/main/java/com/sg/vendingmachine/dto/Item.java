@@ -9,6 +9,10 @@ public class Item {
     private int itemQuantity;
     private int itemID;
 
+    public Item(int itemId) {
+        this.itemID = itemId;
+    }
+
     public BigDecimal getItemPrice() {
         return itemPrice;
     }
@@ -36,4 +40,5 @@ public class Item {
     public int getItemID() {
         return itemID;
     }
+
 }
