@@ -6,7 +6,6 @@ import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         Item currentItem = dao.retrieveSingleItem(itemNum);
 
         //validate quantity
-        checkItemQuantity(currentItem);
+        checkItemQuantityAndSelection(currentItem);
 
         //validate funds
         checkSufficientFunds(currentItem);
@@ -116,12 +115,13 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         }
     }
 
-    private void checkItemQuantity(Item item) throws InsufficientItemQuantityException {
-        if(item.getItemQuantity() < 1) {
+    private void checkItemQuantityAndSelection(Item item) throws VendingMachinePersistenceException,
+            InsufficientItemQuantityException {
+        if (item.getItemQuantity() < 1) {
             throw new InsufficientItemQuantityException("ERROR: there are no " + item.getItemName()
-            + "s in stock. Please make another selection.");
+                    + "s in stock. Please make another selection.");
         }
-
     }
+
 }
 

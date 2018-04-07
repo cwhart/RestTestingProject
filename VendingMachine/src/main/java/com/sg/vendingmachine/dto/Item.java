@@ -41,4 +41,25 @@ public class Item {
         return itemID;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (itemQuantity != item.itemQuantity) return false;
+        if (itemID != item.itemID) return false;
+        if (itemPrice != null ? !itemPrice.equals(item.itemPrice) : item.itemPrice != null) return false;
+        return itemName != null ? itemName.equals(item.itemName) : item.itemName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = itemPrice != null ? itemPrice.hashCode() : 0;
+        result = 31 * result + (itemName != null ? itemName.hashCode() : 0);
+        result = 31 * result + itemQuantity;
+        result = 31 * result + itemID;
+        return result;
+    }
 }

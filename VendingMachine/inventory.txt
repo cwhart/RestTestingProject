@@ -1,4 +1,1 @@
-1::Snickers::3::0.95::
-2::M&Ms::3::1.00::
-3::Oreos::0::1.00::
-4::Pop-Tarts::1::1.00::
+1::Ice Cream Sandwich::2::0.85::
