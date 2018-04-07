@@ -9,22 +9,23 @@ import java.util.List;
 public class VendingMachineDaoStubImpl implements VendingMachineDao{
 
     List<Item> itemsInList = new ArrayList<>();
-    Item item;
+    Item item1;
+    Item item2;
 
     public VendingMachineDaoStubImpl() {
-        Item currentItem = new Item(1);
-        currentItem.setItemQuantity(4);
-        currentItem.setItemPrice(BigDecimal.valueOf(.85));
-        currentItem.setItemName("Reese's Peanut Butter Cups");
+        item1 = new Item(1);
+        item1.setItemQuantity(4);
+        item1.setItemPrice(BigDecimal.valueOf(1.50));
+        item1.setItemName("Reese's Peanut Butter Cups");
 
-        itemsInList.add(currentItem);
+        itemsInList.add(item1);
 
-        currentItem = new Item(2);
-        currentItem.setItemQuantity(2);
-        currentItem.setItemPrice(BigDecimal.valueOf(.98));
-        currentItem.setItemName("Hershey's Chocolate Bar");
+        item2 = new Item(2);
+        item2.setItemQuantity(1);
+        item2.setItemPrice(BigDecimal.valueOf(.98));
+        item2.setItemName("Hershey's Chocolate Bar");
 
-        itemsInList.add(currentItem);
+        itemsInList.add(item2);
     }
 
     @Override
@@ -49,9 +50,13 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao{
 
     @Override
     public Item retrieveSingleItem(int itemNo) throws VendingMachinePersistenceException {
-        if(itemNo == item.getItemID()) {
-            return item;
-        } else {
+        if(itemNo == item2.getItemID() ) {
+            return item2;
+        } else if (itemNo == item1.getItemID()) {
+            return item1;
+        }
+
+        else {
             return null;
         }
     }
