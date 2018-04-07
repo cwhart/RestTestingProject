@@ -45,7 +45,7 @@ public class VendingMachineView {
     }
 
     public int promptItemSelection() {
-        //TODO: add logic to calculate the upper bound of item numbers.
+
         return io.readInt("Please enter the item number of your selection: ");
 
     }
