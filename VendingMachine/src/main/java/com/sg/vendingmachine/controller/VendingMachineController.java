@@ -88,6 +88,7 @@ public class VendingMachineController {
         int selectionId = vendingMachineView.promptItemSelection();
 
         try {
+            tryAgain = false;
             vendingMachineService.purchaseItem(selectionId);
             vendingMachineView.itemPurchasedBanner();
         } catch (InsufficientFundsException e) {
@@ -96,7 +97,6 @@ public class VendingMachineController {
             //Need to set tryAgain back to false here, otherwise if user has insufficient funds, it will
             //keep looping on the item menu instead of going back to the main menu.
 
-            tryAgain = false;
         } catch (InsufficientItemQuantityException e) {
             vendingMachineView.displayErrorMessage(e.getMessage());
             tryAgain = true;

@@ -17,10 +17,9 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     public List<Item> retrieveAllItems() throws VendingMachinePersistenceException {
         loadItemFile();
         List<Item> itemList = new ArrayList<>();
+
         for (Item currentItem: itemMap.values()) {
-            if(currentItem.getItemQuantity()>0) {
-                itemList.add(currentItem);
-            }
+            itemList.add(currentItem);
         }
 
         return itemList;

@@ -7,6 +7,7 @@ import com.sg.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
@@ -19,7 +20,18 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     }
     @Override
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException {
-        return dao.retrieveAllItems();
+        List<Item> items = dao.retrieveAllItems();
+        List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
+
+        //Originally had logic to check for quantity>0 in the dao, but had to move it here
+        //because it was messing up the writeItemFile method.
+
+        for (Item currentItem : items) {
+            if (currentItem.getItemQuantity() >0) {
+                itemsWithQuantityMoreThanZero.add(currentItem);
+            }
+        }
+        return itemsWithQuantityMoreThanZero;
     }
 
     @Override
