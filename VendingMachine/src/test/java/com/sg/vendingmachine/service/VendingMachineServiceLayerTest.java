@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
 
 public class VendingMachineServiceLayerTest {
 
+    //..
+
     private VendingMachineServiceLayer service;
 
     public VendingMachineServiceLayerTest() {

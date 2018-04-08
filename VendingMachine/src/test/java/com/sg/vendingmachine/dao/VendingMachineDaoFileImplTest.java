@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 public class VendingMachineDaoFileImplTest {
 
+    //..
+
     VendingMachineDao dao = new VendingMachineDaoFileImpl();
 
     public VendingMachineDaoFileImplTest() {
