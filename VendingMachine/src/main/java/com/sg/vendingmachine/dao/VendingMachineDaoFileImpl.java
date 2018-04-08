@@ -15,9 +15,10 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public List<Item> retrieveAllItems() throws VendingMachinePersistenceException {
+
+        //Load the items in file to the Map, populate into an ArrayList & return the list.
         loadItemFile();
         List<Item> itemList = new ArrayList<>();
-
         for (Item currentItem: itemMap.values()) {
             itemList.add(currentItem);
         }
@@ -27,6 +28,9 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public Item createItem(int itemNum, Item item) throws VendingMachinePersistenceException {
+
+        //This method is not called by the controller; it is used for testing.
+        //Load the file into a Map, add the new item to the Map, write back to the file.
         loadItemFile();
         Item newItem = itemMap.put(itemNum, item);
         writeItemFile();
@@ -35,6 +39,8 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public Item removeItem(int itemNum) throws  VendingMachinePersistenceException {
+
+        //Load the file into a Map, remove the item from the Map, write back to the file.
         loadItemFile();
         Item itemToRemove = itemMap.remove(itemNum);
         writeItemFile();
@@ -44,6 +50,9 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public Item updateItem(Item item) throws VendingMachinePersistenceException {
+
+        //Load the file into a Map, update the item ('put' will overwrite what's there based on the key),
+        //write back to the file.
         loadItemFile();
         Item updatedItem = itemMap.put(item.getItemID(), item);
         writeItemFile();
@@ -52,6 +61,8 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public Item retrieveSingleItem(int itemNo) throws VendingMachinePersistenceException {
+
+        //Load the file into a Map, get the item by the key.
         loadItemFile();
         return itemMap.get(itemNo);
     }

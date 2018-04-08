@@ -26,8 +26,13 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test
-    public void TestRetrieveListAll() throws VendingMachinePersistenceException{
+    public void TestRetrieveListAll() throws VendingMachinePersistenceException,
+            InsufficientItemQuantityException, InsufficientFundsException{
         assertEquals(2, service.retrieveListAll().size());
+
+        TestPurchaseItemHappyPath();
+
+        assertEquals(1, service.retrieveListAll().size());
     }
 
     @Test

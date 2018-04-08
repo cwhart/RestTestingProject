@@ -1,1 +1,4 @@
 1::Ice Cream Sandwich::2::0.85::
+2::M&Ms::3::1.00::
+3::Snickers::10::0.95::
+4::Pop-Tarts::0::1.50::

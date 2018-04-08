@@ -59,6 +59,8 @@ public class VendingMachineView {
     }
 
     public void displayAllItems(List<Item> itemList) {
+
+        //Display item ID, name and price.
         for (Item currentItem : itemList) {
             io.print(currentItem.getItemID() + ". " + currentItem.getItemName() + " - $" +
             currentItem.getItemPrice().setScale(2));

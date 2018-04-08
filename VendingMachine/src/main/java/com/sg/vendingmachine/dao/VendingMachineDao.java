@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface VendingMachineDao {
 
+    //..
+
     public List<Item> retrieveAllItems() throws VendingMachinePersistenceException ;
 
     public Item createItem(int itemNum, Item item) throws VendingMachinePersistenceException ;

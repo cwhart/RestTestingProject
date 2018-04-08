@@ -25,8 +25,9 @@ public class VendingMachineController {
 
         try {
 
-        boolean keepGoing = true;
-        listAllItems();
+        //List all available items every time the menu is displayed.
+            boolean keepGoing = true;
+            listAllItems();
 
 
             while (keepGoing) {
@@ -44,6 +45,8 @@ public class VendingMachineController {
                         returnChange();
                         break;
                     case 4:
+                        //Before exiting, return any extra change the user may have.
+                        returnChange();
                         keepGoing = false;
                         break;
                     default:
@@ -65,47 +68,53 @@ public class VendingMachineController {
     }
 
     private int getMenuSelection() {
+        //Call the service to get the current balance.
+        //Display balance to the user
+        //Then get the user's selection.
         BigDecimal balance = vendingMachineService.getRunningTotal();
         vendingMachineView.displayCurrentBalance(balance);
         return vendingMachineView.printMenuAndGetSelection();
     }
 
     private void listAllItems() throws VendingMachinePersistenceException{
+        //List all available items.
         List<Item> itemList = vendingMachineService.retrieveListAll();
         vendingMachineView.displayAllItems(itemList);
 
     }
 
     private void purchaseItem() throws VendingMachinePersistenceException{
+
         vendingMachineView.purchaseItemBanner();
 
         boolean tryAgain = false;
 
         do {
 
-        listAllItems();
-        //retrieve item by ID
-        int selectionId = vendingMachineView.promptItemSelection();
+            //List available items
+            listAllItems();
+            //Get user's selection
+            int selectionId = vendingMachineView.promptItemSelection();
 
-        try {
-            tryAgain = false;
-            vendingMachineService.purchaseItem(selectionId);
-            vendingMachineView.itemPurchasedBanner();
-        } catch (InsufficientFundsException e) {
-            vendingMachineView.displayErrorMessage(e.getMessage());
+            try {
+                //Need to set tryAgain back to false here, otherwise if user has insufficient funds, it will
+                //keep looping on the item menu instead of going back to the main menu.
+                tryAgain = false;
+                //Purchase the item, then display the success banner.
+                //handle exceptions thrown due to insufficient funds or quantity.
+                vendingMachineService.purchaseItem(selectionId);
+                vendingMachineView.itemPurchasedBanner();
+            } catch (InsufficientFundsException e) {
+                vendingMachineView.displayErrorMessage(e.getMessage());
 
-            //Need to set tryAgain back to false here, otherwise if user has insufficient funds, it will
-            //keep looping on the item menu instead of going back to the main menu.
-
-        } catch (InsufficientItemQuantityException e) {
-            vendingMachineView.displayErrorMessage(e.getMessage());
-            tryAgain = true;
+            } catch (InsufficientItemQuantityException e) {
+                vendingMachineView.displayErrorMessage(e.getMessage());
+                //If there is insufficient quantity for a selected item, prompt the user to select
+                //another item.
+                tryAgain = true;
             }
         } while (tryAgain == true);
     }
-
-
-
 
     private void unknownCommand() {
         vendingMachineView.displayUnknownCommandBanner();
@@ -113,12 +122,16 @@ public class VendingMachineController {
 
     private void addMoney() {
         vendingMachineView.printAddMoneyBanner();
+
+        //Call the view to prompt user for the amount.
         BigDecimal amountToAdd = vendingMachineView.promptAddMoney();
+        //Pass the amount to the service to add to the current balance.
         vendingMachineService.addMoney(amountToAdd);
 
     }
 
     private void returnChange() {
+        //Call the service to calculate change, then pass to the view to display.
         Change changeToReturn = vendingMachineService.calculateChange();
         vendingMachineView.displayChange(changeToReturn);
 

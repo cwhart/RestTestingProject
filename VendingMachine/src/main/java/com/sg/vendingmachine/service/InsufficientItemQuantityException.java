@@ -4,6 +4,8 @@ public class InsufficientItemQuantityException extends Exception {
 
     public InsufficientItemQuantityException(String message) {
 
+        //..
+
         super(message);
 
     }

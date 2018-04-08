@@ -22,8 +22,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         List<Item> items = dao.retrieveAllItems();
         List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
 
-        //Originally had logic to check for quantity>0 in the dao, but had to move it here
-        //because it was messing up the writeItemFile method.
+        //Create a new ArrayList, check the quantity and populate into the new list only
+        //items that have a quantity>0. Return the new list.
 
         for (Item currentItem : items) {
             if (currentItem.getItemQuantity() >0) {
@@ -38,10 +38,10 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     VendingMachinePersistenceException{
         Item currentItem = dao.retrieveSingleItem(itemNum);
 
-        //validate quantity
+        //validate quantity - will throw exception if insufficient, otherwise keeps going.
         checkItemQuantityAndSelection(currentItem);
 
-        //validate funds
+        //validate funds - will throw exception if insufficient, otherwise keeps going.
         checkSufficientFunds(currentItem);
 
         //subtract price from total running
@@ -59,8 +59,11 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     @Override
     public Change calculateChange() {
-        //First determine how many quarters to return
         Change yourChange = new Change();
+
+        //First determine how many quarters to return. Divide runningTotal by .25, convert
+        //that result to an int, and set equal to the number of quarters.
+
         BigDecimal numQuarters = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.25));
         int quarters = numQuarters.intValue();
         yourChange.setQuarters(quarters);
@@ -68,13 +71,14 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         //Subtract quarters returned from running total
         runningTotal = runningTotal.subtract(numQuarters.multiply(BigDecimal.valueOf(.25)));
 
-        //Determine how many dimes
-        BigDecimal numDimes = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.1));
+        //Determine how many dimes. Divide runningTotal by .10, convert
+        //that result to an int, and set equal to the number of dimes.
+        BigDecimal numDimes = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.10));
         int dimes = numDimes.intValue();
         yourChange.setDimes(dimes);
 
         //Subtract dimes returned from running total
-        runningTotal = runningTotal.subtract(numDimes.multiply(BigDecimal.valueOf(.1)));
+        runningTotal = runningTotal.subtract(numDimes.multiply(BigDecimal.valueOf(.10)));
 
         //Determine how many nickels
         BigDecimal numNickels = runningTotal.divideToIntegralValue(BigDecimal.valueOf(.05));
@@ -97,6 +101,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     @Override
     public BigDecimal addMoney(BigDecimal amountToAdd) {
+
+        //Add amount passed in to the runningTotal.
         runningTotal = runningTotal.add(amountToAdd);
         return runningTotal;
     }
@@ -107,6 +113,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     }
 
     private void checkSufficientFunds(Item item) throws InsufficientFundsException {
+
+        //Check for sufficient funds for the purchase, display error message if insufficient.
         if (runningTotal.compareTo(item.getItemPrice()) < 0) {
             throw new InsufficientFundsException("You do not have enough money to purchase that item. " +
                     "Please add more money or choose a different item.");
@@ -117,6 +125,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     private void checkItemQuantityAndSelection(Item item) throws VendingMachinePersistenceException,
             InsufficientItemQuantityException {
+
+        //Check for sufficient quantity, display error message if insufficient.
         if (item.getItemQuantity() < 1) {
             throw new InsufficientItemQuantityException("ERROR: there are no " + item.getItemName()
                     + "s in stock. Please make another selection.");

@@ -9,6 +9,8 @@ public class Item {
     private int itemQuantity;
     private int itemID;
 
+    //..
+
     public Item(int itemId) {
         this.itemID = itemId;
     }

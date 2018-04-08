@@ -90,6 +90,7 @@ public class UserIoConsoleImpl implements  UserIo {
 
     }
 
+    //Add readBigDecimal method for VendingMachine project.
     @Override
     public BigDecimal readBigDecimal(String prompt) {
         print(prompt);

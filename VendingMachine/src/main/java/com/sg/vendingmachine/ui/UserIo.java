@@ -24,5 +24,6 @@ public interface UserIo {
 
     String readString(String prompt);
 
+    //Added readBigDecimal method for VendingMachine project.
     BigDecimal readBigDecimal(String prompt);
 }

@@ -11,6 +11,8 @@ public class App {
 
     public static void main(String[] args) {
 
+        //..
+
         UserIo myIO = new UserIoConsoleImpl();
         VendingMachineDao myDao = new VendingMachineDaoFileImpl();
         VendingMachineView myView = new VendingMachineView(myIO);

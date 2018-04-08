@@ -35,11 +35,16 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao{
 
     @Override
     public Item createItem(int itemNum, Item item) throws VendingMachinePersistenceException {
+
+        //The create method simply returns the item that was just added.
         return item;
     }
 
     @Override
     public Item removeItem(int itemNum) throws VendingMachinePersistenceException {
+
+        //Since the removeItem method just returns the Item that's been removed, all we need to
+        //do here is return the item for the ID that was passed in.
         return itemsInList.get(itemNum);
     }
 
@@ -50,6 +55,10 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao{
 
     @Override
     public Item retrieveSingleItem(int itemNo) throws VendingMachinePersistenceException {
+
+        //Since we have two items and both are being used for different test cases, the retrieveSingleItem
+        //method needs to be able to distinguish between them so it returns the correct one.
+
         if(itemNo == item2.getItemID() ) {
             return item2;
         } else if (itemNo == item1.getItemID()) {
