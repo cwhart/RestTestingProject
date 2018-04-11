@@ -7,3 +7,7 @@
 2018-04-02T17:35:10.238 : Student 0003 CREATED.
 2018-04-02T17:36:20.582 : Student 0001 REMOVED.
 2018-04-10T15:23:33.206 : Student 0001 CREATED.
+2018-04-10T21:24:37.012 : createStudent: ID: 0002 |Name: Joe Schmoe |Cohort: Front End Web
+2018-04-10T21:25:13.886 : createStudent: ID: 0003 |Name: Melanie DuFour |Cohort: Coffee AK
+2018-04-10T21:25:47.515 : createStudent: ID: 0001 |Name: Nyssa Hartnett |Cohort: Spa May 2015
+2018-04-10T21:26:02.250 : removeStudent: 0002

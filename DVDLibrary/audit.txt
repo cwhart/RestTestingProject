@@ -5,3 +5,18 @@
 2018-04-10T17:18:58.730 : DVD Shrek CREATED.
 2018-04-10T17:18:58.787 : DVD: The Quiet Man REMOVED.
 2018-04-10T17:18:58.787 : DVD: Monty Python and the Holy Grail REMOVED.
+2018-04-11T10:35:26.793 : addDvd: Title: Notting Hill|Release Date: 1990-01-01 |Rating: PG13 | Director's Name: Unknown |Studio: Unknown |User comment: gruaigfudaihguria
+2018-04-11T10:36:25.232 : addDvd: Title: Guardians of the Galaxy|Release Date: 2014-01-01 |Rating: PG13 | Director's Name: Smith |Studio: Marvel |User comment: ghaighruiaeghfuidanvj
+2018-04-11T10:37:16.201 : addDvd: Title: Test1|Release Date: 2001-01-01 |Rating: ghgiosg | Director's Name: bfjsbhuri |Studio: griejbifso |User comment: rgiaeohgfuianvfajgierogj
+2018-04-11T10:37:28.562 : removeDvd: Test1
+2018-04-11T10:40:08.699 : addDvd: Title: Test1|Release Date: 2000-01-01 |Rating: iosjgs | Director's Name: htjiosbjgfs |Studio: hjirosgjf |User comment: siobfgdklsbmfks
+2018-04-11T10:42:02.756 : removeDvd: Test1
+2018-04-11T10:42:42.099 : addDvd: Title: Test1|Release Date: 2000-01-01 |Rating: gnaengf | Director's Name: nfjeagrea |Studio: grieagfdjka |User comment: beajgiorjea
+2018-04-11T10:44:06.710 : removeDvd: Test1
+2018-04-11T10:45:39.072 : addDvd: Title: Test2|Release Date: 2000-01-01 |Rating: gfdsbfs | Director's Name: htrsbfds |Studio: jyrshfgbs |User comment: dsfsgres
+2018-04-11T10:48:30.726 : addDvd: com.sg.dvdlibrary.dto.Dvd@345c8097
+2018-04-11T10:48:41.164 : removeDvd: Test1
+2018-04-11T10:52:09.825 : addDvd: Title: Test1| Release Date: 2000-01-01 | Rating: gfiosbjf | Director's Name: hjsbovs | Studio: waergjfiobj | User comment: opbmkvldjihos
+2018-04-11T10:52:19.762 : removeDvd: Test1
+2018-04-11T10:55:14.495 : addDvd: Title: Test1| Release Date: 2000-01-01 | Rating: hsbv | Director's Name: jyrhdbg | Studio: vfesgrs | User comment: jyndgfgfshtgs
+2018-04-11T10:55:40.382 : editDvd: Title: Test1| Release Date: 2010-01-01 | Rating: habf gravc | Director's Name: hgsbf gewavdahta | Studio: hsrnbg ndngsffe | User comment: hts afsthst

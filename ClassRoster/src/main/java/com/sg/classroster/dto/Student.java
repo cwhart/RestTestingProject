@@ -56,4 +56,10 @@ public class Student {
 
         return Objects.hash(firstName, lastName, studentID, cohort);
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + studentID + " |Name: " + firstName + " "
+                + lastName + " |Cohort: " + cohort;
+    }
 }

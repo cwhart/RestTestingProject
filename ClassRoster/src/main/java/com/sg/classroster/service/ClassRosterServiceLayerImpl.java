@@ -5,6 +5,7 @@ import com.sg.classroster.dao.ClassRosterDao;
 import com.sg.classroster.dao.ClassRosterPersistenceException;
 import com.sg.classroster.dto.Student;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
@@ -18,7 +19,8 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
     }
 
     @Override
-    public void createStudent(Student student) throws ClassRosterDuplicateIdException, ClassRosterDataValidationException, ClassRosterPersistenceException {
+    public void createStudent(Student student) throws ClassRosterDuplicateIdException,
+            ClassRosterDataValidationException, ClassRosterPersistenceException {
 
         //First check to see if there is already a student associated with the given student's id.
         //If so, we're all done here - throw a ClassRosterDuplicateIdException.
@@ -36,7 +38,7 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
         dao.addStudent(student.getStudentID(), student);
 
         //The student was successfully created, now write to the audit log
-        auditDao.writeAuditEntry("Student " + student.getStudentID() + " CREATED.");
+        //auditDao.writeAuditEntry("Student " + student.getStudentID() + " CREATED.");
     }
 
     @Override
@@ -46,6 +48,7 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
 
     @Override
     public Student getStudent(String studentId) throws ClassRosterPersistenceException {
+        
         return dao.getStudent(studentId);
     }
 
@@ -54,8 +57,8 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer {
         Student removedStudent = dao.removeStudent(studentId);
 
         //Write to audit log
-        auditDao.writeAuditEntry("Student " + studentId + " REMOVED.");
-        return dao.removeStudent(studentId);
+        //auditDao.writeAuditEntry("Student " + studentId + " REMOVED.");
+        return removedStudent;
     }
 
     private void validateStudentData (Student student) throws ClassRosterDataValidationException {

@@ -36,6 +36,19 @@
         <constructor-arg ref="view"/>
         <constructor-arg ref="serviceLayer"/>
     </bean>
+    <bean id="loggingAdvice" class="com.sg.dvdlibrary.advice.LoggingAdvice">
+        <constructor-arg ref="auditDao"/>
+    </bean>
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning method="createAuditEntry"
+                                 pointcut="execution(* com.sg.dvdlibrary.service.DvdLibraryServiceLayer.addDvd(..))"/>
+            <aop:after-returning method="createAuditEntry"
+                                 pointcut="execution(* com.sg.dvdlibrary.service.DvdLibraryServiceLayer.removeDvd(..))"/>
+            <aop:after-returning method="createAuditEntry"
+                                 pointcut="execution(* com.sg.dvdlibrary.service.DvdLibraryServiceLayer.editDvd(..))"/>
+        </aop:aspect>
+    </aop:config>
 
 
 </beans>

@@ -1,6 +1,8 @@
 package com.sg.dvdlibrary.dto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Dvd {
 
@@ -87,5 +89,11 @@ public class Dvd {
         result = 31 * result + userComment.hashCode();
         return result;
     }
-    //Comment
+
+    @Override
+    public String toString() {
+        return "Title: " + title + "| Release Date: " + releaseDate.format(DateTimeFormatter.ISO_DATE) +
+                " | Rating: " + mpaaRating + " | Director's Name: " + directorName + " | Studio: " +
+                studio + " | User comment: " + userComment;
+    }
 }
