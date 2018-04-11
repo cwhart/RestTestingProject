@@ -8,6 +8,7 @@ import com.sg.vendingmachine.dto.Item;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
 
@@ -20,17 +21,21 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     @Override
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException {
         List<Item> items = dao.retrieveAllItems();
-        List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
+        //List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
+
+
 
         //Create a new ArrayList, check the quantity and populate into the new list only
         //items that have a quantity>0. Return the new list.
 
-        for (Item currentItem : items) {
+        /*for (Item currentItem : items) {
             if (currentItem.getItemQuantity() >0) {
                 itemsWithQuantityMoreThanZero.add(currentItem);
             }
-        }
-        return itemsWithQuantityMoreThanZero;
+        }*/
+        return items.stream()
+                .filter(s -> s.getItemQuantity() > 0)
+                .collect(Collectors.toList());
     }
 
     @Override

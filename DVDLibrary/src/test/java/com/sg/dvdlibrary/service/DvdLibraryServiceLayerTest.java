@@ -7,6 +7,10 @@ import com.sg.dvdlibrary.dao.DvdLibraryDaoStubImpl;
 import com.sg.dvdlibrary.dto.Dvd;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
@@ -15,9 +19,12 @@ public class DvdLibraryServiceLayerTest {
     private DvdLibraryServiceLayer service;
 
     public DvdLibraryServiceLayerTest() {
-        DvdDao dao = new DvdLibraryDaoStubImpl();
+        /*DvdDao dao = new DvdLibraryDaoStubImpl();
         DvdLibraryAuditDao auditDao = new DvdLibraryAuditDaoStubImpl();
-        service = new DvdLibraryServiceLayerImpl(dao, auditDao);
+        service = new DvdLibraryServiceLayerImpl(dao, auditDao);*/
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", DvdLibraryServiceLayer.class);
     }
 
     @Before
@@ -27,7 +34,7 @@ public class DvdLibraryServiceLayerTest {
     @Test
     public void testAddDvd() throws Exception{
         Dvd dvd = new Dvd("Shrek");
-        dvd.setReleaseDate("2001");
+        dvd.setReleaseDate(LocalDate.parse("2001-01-01"));
         dvd.setMpaaRating("PG");
         dvd.setDirectorName("Unknown");
         dvd.setStudio("Disney");
@@ -43,7 +50,7 @@ public class DvdLibraryServiceLayerTest {
         dvd.setStudio("hgshfgs");
         dvd.setDirectorName("Ford");
         dvd.setMpaaRating("PG");
-        dvd.setReleaseDate("5738");
+        dvd.setReleaseDate(LocalDate.parse("5738-01-01"));
 
         try {
             service.addDvd((dvd));
@@ -59,7 +66,7 @@ public class DvdLibraryServiceLayerTest {
         dvd.setStudio("hgshfgs");
         dvd.setDirectorName("Ford");
         dvd.setMpaaRating("PG");
-        dvd.setReleaseDate("5738");
+        dvd.setReleaseDate(LocalDate.parse("5738-01-01"));
 
         try {
             service.addDvd(dvd);
@@ -98,7 +105,7 @@ public class DvdLibraryServiceLayerTest {
         dvd2.setStudio("hgshfgs");
         dvd2.setDirectorName("Ford");
         dvd2.setMpaaRating("PG");
-        dvd2.setReleaseDate("5738");
+        dvd2.setReleaseDate(LocalDate.parse("5738-01-01"));
 
         service.editDvd(dvd2);
 

@@ -2,6 +2,7 @@ package com.sg.dvdlibrary.ui;
 
 import com.sg.dvdlibrary.dto.Dvd;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class DvdView {
@@ -20,15 +21,24 @@ public class DvdView {
         io.print("3. Update DVD information");
         io.print("4. Display all DVD titles");
         io.print("5. Search for a DVD");
-        io.print("6. Exit");
+        io.print("6. Find all movies released in the last N years");
+        io.print("7. Find all movies with a given rating");
+        io.print("8. Find all movies with a given director");
+        io.print("9. Find all movies released by a given studio");
+        io.print("10. Find the average age of movies in the collection");
+        io.print("11. Find the newest movie in the collection");
+        io.print("12. Find the oldest movie in the collection");
+        io.print("13. Find the average number of notes associated with movies in the collection");
+        io.print("0. Exit");
 
-        return (io.readInt("Enter your selection: ", 1, 6));
+
+        return (io.readInt("Enter your selection: ", 0, 13));
     }
 
     //Prompt user for DVD attribute values. Create a new Dvd object and return.
     public Dvd getNewDvdInfo() {
         Dvd newDvd = new Dvd(io.readString("Enter the name of the DVD"));
-        newDvd.setReleaseDate(io.readString("Enter the release date of the DVD: "));
+        newDvd.setReleaseDate(io.readDate("Enter the release date of the DVD: "));
         newDvd.setMpaaRating(io.readString("Enter the MPAA rating of the DVD: "));
         newDvd.setDirectorName(io.readString("Enter the director's name: "));
         newDvd.setStudio(io.readString("Enter the studio name: "));
@@ -135,7 +145,7 @@ public class DvdView {
                 "or hit <enter> to continue without editing.");
 
         if(!newReleaseDate.equals("")) {
-            dvdToEdit.setReleaseDate(newReleaseDate);
+            dvdToEdit.setReleaseDate(LocalDate.parse(newReleaseDate));
         }
 
         //MPAA Rating
@@ -182,6 +192,26 @@ public class DvdView {
 
     public void displayUnknownDvdTitleMessage() {
         io.print("Unknown DVD Title!");
+    }
+
+    public String retrieveRatingSelection() {
+        return io.readString("Please enter the rating you want to search on.");
+    }
+
+    public int retrieveNumberOfYears() {
+        return io.readInt("Please enter the number of years.");
+    }
+
+    public String retrieveDirectorSelection() {
+        return io.readString("Please enter the name of the director");
+    }
+
+    public String retrieveStudioName() {
+        return io.readString("Please enter the studio name.");
+    }
+
+    public void displayAverageAgeofMovies (double averageAge) {
+        io.print("Average age of movies is: " + averageAge + "years.");
     }
 
     //Comment

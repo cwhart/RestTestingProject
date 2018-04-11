@@ -4,6 +4,7 @@ import com.sg.dvdlibrary.dto.Dvd;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,7 +24,7 @@ public class DvdDaoTest {
     @Test
     public void testAddGetDvd() throws Exception {
         Dvd dvd = new Dvd("Cars");
-        dvd.setReleaseDate("2006");
+        dvd.setReleaseDate(LocalDate.parse("2006-01-01"));
         dvd.setMpaaRating("G");
         dvd.setDirectorName("Unknown");
         dvd.setStudio("Pixar");
@@ -40,7 +41,7 @@ public class DvdDaoTest {
     public void removeDvd() throws Exception{
 
         Dvd dvd1 = new Dvd("Dances With Wolves");
-        dvd1.setReleaseDate("1990");
+        dvd1.setReleaseDate(LocalDate.parse("1990-01-01"));
         dvd1.setMpaaRating("PG13");
         dvd1.setDirectorName("Director");
         dvd1.setStudio("Paramount");
@@ -48,7 +49,7 @@ public class DvdDaoTest {
         dao.addDvd(dvd1.getTitle(), dvd1);
 
         Dvd dvd2 = new Dvd("Spartacus");
-        dvd2.setReleaseDate("1960");
+        dvd2.setReleaseDate(LocalDate.parse("1960-01-01"));
         dvd2.setMpaaRating("R");
         dvd2.setDirectorName("Director2");
         dvd2.setStudio("Unknown");
@@ -68,7 +69,7 @@ public class DvdDaoTest {
     public void editDvd() throws Exception {
 
         Dvd dvd1 = new Dvd("Dances With Wolves");
-        dvd1.setReleaseDate("1990");
+        dvd1.setReleaseDate(LocalDate.parse("1990-01-01"));
         dvd1.setMpaaRating("PG13");
         dvd1.setDirectorName("Director");
         dvd1.setStudio("Paramount");
@@ -76,7 +77,7 @@ public class DvdDaoTest {
         dao.addDvd(dvd1.getTitle(), dvd1);
 
         Dvd dvd2 = new Dvd("Dances With Wolves");
-        dvd2.setReleaseDate("2001");
+        dvd2.setReleaseDate(LocalDate.parse("2001-01-01"));
         dvd2.setMpaaRating("R");
         dvd2.setDirectorName("Spielberg");
         dvd2.setStudio("MGM");
@@ -98,7 +99,7 @@ public class DvdDaoTest {
     public void displayAll() throws Exception{
 
         Dvd dvd1 = new Dvd("Dances With Wolves");
-        dvd1.setReleaseDate("1990");
+        dvd1.setReleaseDate(LocalDate.parse("1990-01-01"));
         dvd1.setMpaaRating("PG13");
         dvd1.setDirectorName("Director");
         dvd1.setStudio("Paramount");
@@ -107,7 +108,7 @@ public class DvdDaoTest {
         dao.addDvd(dvd1.getTitle(), dvd1);
 
         Dvd dvd2 = new Dvd("Spartacus");
-        dvd2.setReleaseDate("1960");
+        dvd2.setReleaseDate(LocalDate.parse("1960-01-01"));
         dvd2.setMpaaRating("R");
         dvd2.setDirectorName("Director2");
         dvd2.setStudio("Unknown");

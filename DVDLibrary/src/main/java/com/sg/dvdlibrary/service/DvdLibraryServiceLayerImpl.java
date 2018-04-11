@@ -6,6 +6,7 @@ import com.sg.dvdlibrary.dao.DvdLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.Dvd;
 
 import java.util.List;
+import java.util.Map;
 
 public class DvdLibraryServiceLayerImpl implements DvdLibraryServiceLayer {
 
@@ -21,10 +22,10 @@ public class DvdLibraryServiceLayerImpl implements DvdLibraryServiceLayer {
     public void addDvd(Dvd dvd) throws DvdLibraryDuplicateTitleException,
             DvdLibraryDataValidationException, DvdLibraryPersistenceException {
 
-        if(dao.displayDvd(dvd.getTitle()) != null) {
+        if (dao.displayDvd(dvd.getTitle()) != null) {
             throw new DvdLibraryDuplicateTitleException(
                     "ERROR: Could not add Dvd. Dvd title " + dvd.getTitle()
-                    + " already exists."
+                            + " already exists."
             );
         }
 
@@ -62,8 +63,36 @@ public class DvdLibraryServiceLayerImpl implements DvdLibraryServiceLayer {
     }
 
     private void validateDvdData(Dvd dvd) throws DvdLibraryDataValidationException {
-        if(dvd.getTitle() == null || dvd.getTitle().trim().length() == 0) {
+        if (dvd.getTitle() == null || dvd.getTitle().trim().length() == 0) {
             throw new DvdLibraryDataValidationException("ERROR: Title is required.");
         }
+    }
+
+    public List<Dvd> retrieveMoviesWithGivenRating(String rating) throws DvdLibraryPersistenceException {
+        return dao.findMoviesWithSpecifiedRating(rating);
+    }
+
+    public List<Dvd> retrieveMoviesReleasedInNYears(int numYears) throws DvdLibraryPersistenceException {
+        return dao.findMoviesReleasedInPastNYears(numYears);
+    }
+
+    public List<Dvd> retrieveMoviesWithGivenDirector(String director) throws DvdLibraryPersistenceException {
+        return dao.findMoviesWithSpecifiedDirector(director);
+    }
+
+    public List<Dvd> retrieveMoviesWithGivenStudio(String studio) throws DvdLibraryPersistenceException {
+        return dao.findMoviesBySpecifiedStudio(studio);
+    }
+
+    public Dvd retrieveNewestMovie() throws DvdLibraryPersistenceException {
+        return dao.findNewestMovie();
+    }
+
+    public Dvd retrieveOldestMovie() throws DvdLibraryPersistenceException {
+        return dao.findOldestMovie();
+    }
+
+    public double retrieveAverageAge() throws DvdLibraryPersistenceException {
+        return dao.findAverageAge();
     }
 }

@@ -1,5 +1,6 @@
 package com.sg.dvdlibrary.ui;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
@@ -89,6 +90,13 @@ public class UserIOConsoleImpl implements UserIO {
         print(prompt);
         return scanner.nextLine();
 
+    }
+
+    public LocalDate readDate (String prompt) {
+        print(prompt);
+        String date = scanner.nextLine();
+        LocalDate releaseDate = LocalDate.parse(date);
+        return releaseDate;
     }
     //Comment
 }

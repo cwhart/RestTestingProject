@@ -2,9 +2,11 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.Dvd;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DvdLibraryDaoStubImpl implements DvdDao {
 
@@ -17,7 +19,7 @@ public class DvdLibraryDaoStubImpl implements DvdDao {
         onlyDvd.setStudio("MGM");
         onlyDvd.setDirectorName("John Ford");
         onlyDvd.setMpaaRating("PG");
-        onlyDvd.setReleaseDate("1950");
+        onlyDvd.setReleaseDate(LocalDate.parse("1950-01-01"));
 
         dvdList.add(onlyDvd);
     }
@@ -64,5 +66,45 @@ public class DvdLibraryDaoStubImpl implements DvdDao {
         }
 
 
+    }
+
+    @Override
+    public List<Dvd> findMoviesReleasedInPastNYears(int numberOfYears) {
+        return null;
+    }
+
+    @Override
+    public List<Dvd> findMoviesWithSpecifiedRating(String rating) {
+        return null;
+    }
+
+    @Override
+    public List<Dvd> findMoviesWithSpecifiedDirector(String director) {
+        return null;
+    }
+
+    @Override
+    public List<Dvd> findMoviesBySpecifiedStudio(String studio) {
+        return null;
+    }
+
+    @Override
+    public double findAverageAge() {
+        return 0;
+    }
+
+    @Override
+    public Dvd findNewestMovie() {
+        return null;
+    }
+
+    @Override
+    public Dvd findOldestMovie() {
+        return null;
+    }
+
+    @Override
+    public int findAverageNumberOfNotes() {
+        return 0;
     }
 }

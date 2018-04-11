@@ -10,7 +10,9 @@ import com.sg.dvdlibrary.ui.DvdView;
 import com.sg.dvdlibrary.ui.UserIO;
 import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DvdController {
 
@@ -48,6 +50,30 @@ public class DvdController {
                         displayDvd();
                         break;
                     case 6:
+                        findMoviesReleasedInPastNYears();
+                        break;
+                    case 7:
+                        findMoviesWithGivenRating();
+                        break;
+                    case 8:
+                        findMoviesWithGivenDirector();
+                        break;
+                    case 9:
+                        findMoviesByParticularStudio();
+                        break;
+                    case 10:
+                        findAverageAgeOfMovies();
+                        break;
+                    case 11:
+                        findNewestMovie();
+                        break;
+                    case 12:
+                        findOldestMovie();
+                        break;
+                    case 13:
+                        findAverageNumberOfNotes();
+                        break;
+                    case 0:
                         keepGoing = false;
                         break;
                     default:
@@ -165,6 +191,58 @@ public class DvdController {
         view.displayEditSuccessBanner();
 
     }
-    //Comment
+
+    private void findMoviesReleasedInPastNYears() throws DvdLibraryPersistenceException{
+        int numYears = view.retrieveNumberOfYears();
+        List<Dvd> moviesReleasedWithinNYears = service.retrieveMoviesReleasedInNYears(numYears);
+        view.displayDvdList(moviesReleasedWithinNYears);
+
+    }
+
+    private void findMoviesWithGivenRating() throws DvdLibraryPersistenceException{
+        String rating = view.retrieveRatingSelection();
+        List<Dvd> listWithGivenRating = service.retrieveMoviesWithGivenRating(rating);
+        view.displayDvdList(listWithGivenRating);
+
+    }
+
+    private void findMoviesWithGivenDirector() throws DvdLibraryPersistenceException {
+        String director = view.retrieveDirectorSelection();
+        List<Dvd> listWithGivenDirector = service.retrieveMoviesWithGivenDirector(director);
+        //Map<String, List<Dvd>> mapWithGivenDirector = service.retrieveMoviesWithGivenDirector(director);
+        //List<Dvd> listWithGivenDirector = new ArrayList(director);
+        view.displayDvdList(listWithGivenDirector);
+
+    }
+
+    private void findMoviesByParticularStudio() throws DvdLibraryPersistenceException{
+        String studio = view.retrieveStudioName();
+        List<Dvd> moviesByStudio = service.retrieveMoviesWithGivenStudio(studio);
+        view.displayDvdList(moviesByStudio);
+
+    }
+
+    private void findAverageAgeOfMovies() throws DvdLibraryPersistenceException{
+        double averageAge = service.retrieveAverageAge();
+        view.displayAverageAgeofMovies(averageAge);
+
+    }
+
+    private void findNewestMovie() throws DvdLibraryPersistenceException{
+        Dvd newest = service.retrieveNewestMovie();
+        view.displayDvd(newest);
+
+    }
+
+    private void findOldestMovie() throws DvdLibraryPersistenceException {
+        Dvd oldest = service.retrieveOldestMovie();
+        view.displayDvd(oldest);
+    }
+
+    private void findAverageNumberOfNotes() {
+
+    }
+
+
 
 }
