@@ -36,6 +36,31 @@
         <constructor-arg ref="serviceLayer"/>
     </bean>
 
+    <bean id="loggingAdvice" class="com.sg.vendingmachine.advice.loggingAdvice">
+        <constructor-arg ref="auditDao"/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning method="auditPurchaseItem"
+            pointcut="execution(* com.sg.vendingmachine.service.VendingMachineServiceLayerImpl.purchaseItem(..))"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-throwing method="auditLogException"
+            pointcut="execution(* com.sg.vendingmachine.service.VendingMachineServiceLayerImpl.purchaseItem(..))"
+            throwing="exception"/>
+
+        </aop:aspect>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-throwing method="auditLogException"
+            pointcut="execution(* com.sg.vendingmachine.service.VendingMachineServiceLayerImpl.checkItemQuantityAndSelection(..))"
+            throwing="exception"/>
+
+        </aop:aspect>
+    </aop:config>
+
 
 
 

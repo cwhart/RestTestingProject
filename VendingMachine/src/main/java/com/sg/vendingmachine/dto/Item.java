@@ -64,4 +64,12 @@ public class Item {
         result = 31 * result + itemID;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Itemid= " + itemID +
+                "itemPrice=" + itemPrice +
+                ", itemName='" + itemName + '\'' +
+                ", itemQuantity=" + itemQuantity;
+    }
 }

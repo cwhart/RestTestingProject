@@ -1,8 +1,8 @@
-1::Ice Cream Sandwich::10::0.85::
-2::Pop-Tarts::10::1.50::
-3::M&Ms::10::0.75::
-4::Gum::10::0.82::
+1::Ice Cream Sandwich::0::0.85::
+2::Pop-Tarts::8::1.50::
+3::M&Ms::7::0.75::
+4::Gum::8::0.82::
 5::Snickers::10::1.00::
-6::Doritos::9::1.75::
+6::Doritos::8::1.75::
 7::Fritos::9::1.50::
 8::Cheez-Its::9::2.25::

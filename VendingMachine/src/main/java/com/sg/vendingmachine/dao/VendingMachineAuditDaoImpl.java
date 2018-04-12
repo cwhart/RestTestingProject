@@ -3,7 +3,9 @@ package com.sg.vendingmachine.dao;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class VendingMachineAuditDaoImpl implements VendingMachineAuditDao {
 
@@ -19,8 +21,8 @@ public class VendingMachineAuditDaoImpl implements VendingMachineAuditDao {
             throw new VendingMachinePersistenceException("Could not persist audit information.", e);
         }
 
-        LocalDateTime timestamp = LocalDateTime.now();
-        out.println(timestamp.toString() + " : " + entry);
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm"));
+        out.println(timestamp + " : " + entry);
         out.flush();
 
     }

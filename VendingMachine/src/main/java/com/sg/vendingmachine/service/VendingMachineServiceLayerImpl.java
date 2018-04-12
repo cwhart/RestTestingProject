@@ -129,8 +129,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
         //Check for sufficient funds for the purchase, display error message if insufficient.
         if (runningTotal.compareTo(item.getItemPrice()) < 0) {
-            throw new InsufficientFundsException("You do not have enough money to purchase that item. " +
-                    "Please add more money or choose a different item.");
+            throw new InsufficientFundsException(item.getItemName() + ": You do not have enough money for that item." +
+                    " Please add more money or choose a different item.");
 
 
         }

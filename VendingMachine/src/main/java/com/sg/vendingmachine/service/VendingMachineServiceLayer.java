@@ -33,4 +33,5 @@ public interface VendingMachineServiceLayer {
     public void updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException;
 
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
+
 }
