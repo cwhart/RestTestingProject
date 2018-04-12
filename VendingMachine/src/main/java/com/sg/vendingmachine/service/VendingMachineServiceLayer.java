@@ -11,7 +11,7 @@ public interface VendingMachineServiceLayer {
 
     //..
 
-    public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
+    public List<Item> retrieveListAllWithQuantityGTZero() throws VendingMachinePersistenceException;
 
     public Item purchaseItem(int itemNum) throws InsufficientFundsException, InsufficientItemQuantityException,
             VendingMachinePersistenceException;
@@ -21,4 +21,16 @@ public interface VendingMachineServiceLayer {
     public BigDecimal addMoney(BigDecimal amountToAdd);
 
     public BigDecimal getRunningTotal();
+
+    public boolean verifyPassword(String userInputPassword);
+
+    public Item restockItem(int itemNo) throws VendingMachinePersistenceException;
+
+    public void addItem(Item newItem) throws VendingMachinePersistenceException;
+
+    public String removeItem(int itemNo) throws VendingMachinePersistenceException;
+
+    public void updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException;
+
+    public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
 }

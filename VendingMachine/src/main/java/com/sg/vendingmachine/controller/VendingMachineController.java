@@ -8,9 +8,6 @@ import com.sg.vendingmachine.service.InsufficientItemQuantityException;
 import com.sg.vendingmachine.service.VendingMachineServiceLayer;
 import com.sg.vendingmachine.ui.VendingMachineView;
 
-import javax.swing.text.View;
-import javax.xml.ws.Service;
-import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class VendingMachineController {
 
         //List all available items every time the menu is displayed.
             boolean keepGoing = true;
-            listAllItems();
+            ListAllAvailableItems();
 
 
             while (keepGoing) {
@@ -45,6 +42,11 @@ public class VendingMachineController {
                         returnChange();
                         break;
                     case 4:
+                        if (verifyPassword()== true) {
+                            runAdmin();
+                        } else vendingMachineView.displayMessage("ERROR: Incorrect password.");
+                        break;
+                    case 5:
                         //Before exiting, return any extra change the user may have.
                         returnChange();
                         keepGoing = false;
@@ -72,29 +74,34 @@ public class VendingMachineController {
         //Display balance to the user
         //Then get the user's selection.
         BigDecimal balance = vendingMachineService.getRunningTotal();
-        vendingMachineView.displayCurrentBalance(balance);
+        vendingMachineView.displayMessage("Your current balance is: " + balance.setScale(2));
         return vendingMachineView.printMenuAndGetSelection();
     }
 
-    private void listAllItems() throws VendingMachinePersistenceException{
+    private void ListAllAvailableItems() throws VendingMachinePersistenceException{
         //List all available items.
-        List<Item> itemList = vendingMachineService.retrieveListAll();
+        List<Item> itemList = vendingMachineService.retrieveListAllWithQuantityGTZero();
         vendingMachineView.displayAllItems(itemList);
 
     }
 
+    private void listAllItems() throws VendingMachinePersistenceException {
+        List<Item> itemList = vendingMachineService.retrieveListAll();
+        vendingMachineView.displayAllItems(itemList);
+    }
+
     private void purchaseItem() throws VendingMachinePersistenceException{
 
-        vendingMachineView.purchaseItemBanner();
+        vendingMachineView.displayMessage("\n===PURCHASE AN ITEM===");
 
         boolean tryAgain = false;
 
         do {
 
             //List available items
-            listAllItems();
+            ListAllAvailableItems();
             //Get user's selection
-            int selectionId = vendingMachineView.promptItemSelection();
+            int selectionId = vendingMachineView.retrieveItem();
 
             try {
                 //Need to set tryAgain back to false here, otherwise if user has insufficient funds, it will
@@ -103,7 +110,7 @@ public class VendingMachineController {
                 //Purchase the item, then display the success banner.
                 //handle exceptions thrown due to insufficient funds or quantity.
                 vendingMachineService.purchaseItem(selectionId);
-                vendingMachineView.itemPurchasedBanner();
+                vendingMachineView.displayMessage("\nEnjoy!\n");
             } catch (InsufficientFundsException e) {
                 vendingMachineView.displayErrorMessage(e.getMessage());
 
@@ -117,11 +124,11 @@ public class VendingMachineController {
     }
 
     private void unknownCommand() {
-        vendingMachineView.displayUnknownCommandBanner();
+        vendingMachineView.displayMessage("ERROR: Unknown command.");
     }
 
     private void addMoney() {
-        vendingMachineView.printAddMoneyBanner();
+        vendingMachineView.displayMessage("===ADD MONEY===");
 
         //Call the view to prompt user for the amount.
         BigDecimal amountToAdd = vendingMachineView.promptAddMoney();
@@ -137,7 +144,72 @@ public class VendingMachineController {
 
     }
 
+    private boolean verifyPassword() {
+        String userInputPassword = vendingMachineView.promptForPassword();
+        return vendingMachineService.verifyPassword(userInputPassword);
+    }
+
+    private int getAdminMenuSelection() {
+        return vendingMachineView.printAdminMenuAndGetSelection();
+    }
+
+    private void runAdmin() throws VendingMachinePersistenceException {
+        boolean moreAdminFunctions = true;
+
+        while (moreAdminFunctions) {
+            int adminSelection = getAdminMenuSelection();
+            switch (adminSelection) {
+                case 1:
+                    restockItem();
+                    break;
+                case 2:
+                    addNewItem();
+                    break;
+                case 3:
+                    removeItemFromMachine();
+                    break;
+                case 4:
+                    updatePriceOfItem();
+                    break;
+                case 5:
+                    moreAdminFunctions = false;
+                    break;
+                default:
+                    unknownCommand();
+            }
+        }
+    }
+
     private void exit() {
 
+    }
+
+    private void restockItem() throws VendingMachinePersistenceException {
+        listAllItems();
+        int itemToRestock = vendingMachineView.retrieveItem();
+        vendingMachineService.restockItem(itemToRestock);
+        vendingMachineView.displayMessage("Item quantity has been updated to 10.");
+    }
+
+    private void addNewItem() throws VendingMachinePersistenceException {
+        listAllItems();
+        Item newItem = vendingMachineView.promptUserForNewItem();
+        vendingMachineService.addItem(newItem);
+        vendingMachineView.displayMessage(newItem.getItemName() + " added Successfully!");
+    }
+
+    private void removeItemFromMachine() throws VendingMachinePersistenceException{
+        listAllItems();
+        int itemNoToRemove = vendingMachineView.retrieveItem();
+        String itemName = vendingMachineService.removeItem(itemNoToRemove);
+        vendingMachineView.displayMessage(itemName + " has been removed from the machine.");
+    }
+
+    private void updatePriceOfItem() throws VendingMachinePersistenceException {
+        listAllItems();
+        Item itemToUpdatePrice = vendingMachineView.retrieveItemAndNewPrice();
+        vendingMachineService.updateItemPrice(itemToUpdatePrice);
+        vendingMachineView.displayMessage("The price of your item has been updated to: " + itemToUpdatePrice.getItemPrice()
+        .setScale(2));
     }
 }

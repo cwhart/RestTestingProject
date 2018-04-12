@@ -26,13 +26,23 @@ public class VendingMachineView {
         io.print("1. Add Money");
         io.print("2. Make a purchase");
         io.print("3. Get change");
-        io.print("4. Exit");
+        io.print("4. Admin");
+        io.print("5. Exit");
 
         return (io.readInt("Enter your selection: "));
     }
 
-    public void printAddMoneyBanner() {
-        io.print("===ADD MONEY===");
+    public int printAdminMenuAndGetSelection() {
+        io.print("=========================");
+        io.print("=======Admin Menu========");
+        io.print("=========================");
+        io.print("1. Restock an item");
+        io.print("2. Add an item");
+        io.print("3. Remove an item");
+        io.print("4. Update price for an item");
+        io.print("5. Exit to Main Menu");
+
+        return io.readInt("Enter your selection: ");
     }
 
     public BigDecimal promptAddMoney() {
@@ -40,30 +50,12 @@ public class VendingMachineView {
 
     }
 
-    public void displayCurrentBalance(BigDecimal balance) {
-        io.print("\nYour current balance is: $" + balance.setScale(2) + "\n");
-    }
-
-    public int promptItemSelection() {
-
-        return io.readInt("Please enter the item number of your selection: ");
-
-    }
-
-    public void purchaseItemBanner() {
-        io.print("\n===PURCHASE AN ITEM===");
-    }
-
-    public void itemPurchasedBanner() {
-        io.print("\nEnjoy!\n");
-    }
-
     public void displayAllItems(List<Item> itemList) {
 
         //Display item ID, name and price.
         for (Item currentItem : itemList) {
             io.print(currentItem.getItemID() + ". " + currentItem.getItemName() + " - $" +
-            currentItem.getItemPrice().setScale(2));
+            currentItem.getItemPrice().setScale(2) + " | " + currentItem.getItemQuantity() + " items in stock.");
         }
     }
 
@@ -80,7 +72,32 @@ public class VendingMachineView {
         io.print(message);
     }
 
-    public void displayUnknownCommandBanner() {
-        io.print("===ERROR: UNKNOWN COMMAND===");
+    public String  promptForPassword() {
+        return io.readString("Please enter password to access Admin functions:");
+    }
+
+    public int retrieveItem() {
+        return io.readInt("Please enter the item number:");
+    }
+
+    public Item promptUserForNewItem() {
+        Item newItem = new Item(retrieveItem());
+        newItem.setItemQuantity(10);
+        newItem.setItemName(io.readString("Enter the item name: "));
+        newItem.setItemPrice(io.readBigDecimal("Enter the price of the item: "));
+        return newItem;
+    }
+
+    //Instead of having separate methods for displaying each individual message, this is a
+    //generic method to display any message passed in.
+    public void displayMessage(String message) {
+        io.print(message);
+    }
+
+    public Item retrieveItemAndNewPrice() {
+        Item itemNo = new Item(retrieveItem());
+        itemNo.setItemPrice(io.readBigDecimal("Enter the price of the item: "));
+        return itemNo;
+
     }
 }

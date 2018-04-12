@@ -1,5 +1,6 @@
 package com.sg.vendingmachine.service;
 
+import com.sg.vendingmachine.dao.VendingMachineAuditDao;
 import com.sg.vendingmachine.dao.VendingMachineDao;
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Change;
@@ -13,13 +14,15 @@ import java.util.stream.Collectors;
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
 
     VendingMachineDao dao;
+    VendingMachineAuditDao auditDao;
     BigDecimal runningTotal = new BigDecimal("0");
 
-    public VendingMachineServiceLayerImpl(VendingMachineDao dao) {
+    public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineAuditDao auditDao) {
         this.dao = dao;
+        this.auditDao = auditDao;
     }
     @Override
-    public List<Item> retrieveListAll() throws VendingMachinePersistenceException {
+    public List<Item> retrieveListAllWithQuantityGTZero() throws VendingMachinePersistenceException {
         List<Item> items = dao.retrieveAllItems();
         //List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
 
@@ -36,6 +39,11 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         return items.stream()
                 .filter(s -> s.getItemQuantity() > 0)
                 .collect(Collectors.toList());
+    }
+
+    public List<Item> retrieveListAll() throws VendingMachinePersistenceException {
+        return dao.retrieveAllItems();
+
     }
 
     @Override
@@ -136,6 +144,38 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
             throw new InsufficientItemQuantityException("ERROR: there are no " + item.getItemName()
                     + "s in stock. Please make another selection.");
         }
+    }
+
+    public boolean verifyPassword(String userInputPassword) {
+        if(userInputPassword.equals("Shrubbery")) {
+            return true;
+        } else return false;
+    }
+
+    public Item restockItem(int itemNo) throws VendingMachinePersistenceException {
+        Item currentItem = dao.retrieveSingleItem(itemNo);
+        currentItem.setItemQuantity(10);
+        dao.updateItem(currentItem);
+        return dao.retrieveSingleItem(itemNo);
+    }
+
+    public void addItem(Item newItem) throws VendingMachinePersistenceException {
+        dao.createItem(newItem.getItemID(), newItem);
+        //return dao.retrieveSingleItem(newItem.getItemID());
+    }
+
+    public String removeItem(int itemNo) throws VendingMachinePersistenceException {
+        Item item = dao.retrieveSingleItem(itemNo);
+        String itemName = item.getItemName();
+        dao.removeItem(itemNo);
+        return itemName;
+    }
+
+    public void updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException {
+        Item itemToUpdate = dao.retrieveSingleItem(itemToUpdatePrice.getItemID());
+        itemToUpdate.setItemPrice(itemToUpdatePrice.getItemPrice());
+        dao.updateItem(itemToUpdate);
+
     }
 
 }

@@ -1,12 +1,12 @@
 package com.sg.vendingmachine.service;
 
-import com.sg.vendingmachine.dao.VendingMachineDao;
-import com.sg.vendingmachine.dao.VendingMachineDaoStubImpl;
-import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
+import com.sg.vendingmachine.dao.*;
 import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 
@@ -19,8 +19,12 @@ public class VendingMachineServiceLayerTest {
     private VendingMachineServiceLayer service;
 
     public VendingMachineServiceLayerTest() {
-        VendingMachineDao dao = new VendingMachineDaoStubImpl();
-        service = new VendingMachineServiceLayerImpl(dao);
+        /*VendingMachineDao dao = new VendingMachineDaoStubImpl();
+        VendingMachineAuditDao auditDao = new VendingMachineAuditDaoImpl();
+        service = new VendingMachineServiceLayerImpl(dao, auditDao);*/
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
     }
 
     @Before
@@ -30,11 +34,11 @@ public class VendingMachineServiceLayerTest {
     @Test
     public void TestRetrieveListAll() throws VendingMachinePersistenceException,
             InsufficientItemQuantityException, InsufficientFundsException{
-        assertEquals(2, service.retrieveListAll().size());
+        assertEquals(2, service.retrieveListAllWithQuantityGTZero().size());
 
         TestPurchaseItemHappyPath();
 
-        assertEquals(1, service.retrieveListAll().size());
+        assertEquals(1, service.retrieveListAllWithQuantityGTZero().size());
     }
 
     @Test

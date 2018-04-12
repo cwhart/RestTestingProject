@@ -11,3 +11,6 @@
 2018-04-10T21:25:13.886 : createStudent: ID: 0003 |Name: Melanie DuFour |Cohort: Coffee AK
 2018-04-10T21:25:47.515 : createStudent: ID: 0001 |Name: Nyssa Hartnett |Cohort: Spa May 2015
 2018-04-10T21:26:02.250 : removeStudent: 0002
+2018-04-11T15:05:08.470 : createStudent: ID: 0005 |Name: Jane Doe |Cohort: VisualBasic 1990
+2018-04-11T15:07:32.501 : createStudent: ID: 0006 |Name: Kerston Harding |Cohort: Cobol 1970
+2018-04-11T15:08:31.952 : removeStudent: 0006
