@@ -18,4 +18,6 @@ public interface VendingMachineDao {
 
     public Item retrieveSingleItem(int itemNo) throws VendingMachinePersistenceException ;
 
+    //Adding a comment for commit
+
 }

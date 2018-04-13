@@ -99,4 +99,6 @@ public class VendingMachineDaoFileImplTest {
         assertEquals(newItem, retrievedItem);
 
     }
+
+    //Adding a comment for commit
 }

@@ -26,4 +26,6 @@ public class VendingMachineAuditDaoImpl implements VendingMachineAuditDao {
         out.flush();
 
     }
+
+    //Adding a comment for commit
 }

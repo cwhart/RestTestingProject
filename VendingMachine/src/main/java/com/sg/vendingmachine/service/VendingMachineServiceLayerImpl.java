@@ -177,5 +177,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     }
 
+    //Adding a comment for commit
+
 }
 

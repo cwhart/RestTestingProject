@@ -222,4 +222,6 @@ public class VendingMachineController {
         vendingMachineView.displayMessage("The price of your item has been updated to: " + itemToUpdatePrice.getItemPrice()
         .setScale(2));
     }
+
+    //Adding a comment for commit
 }

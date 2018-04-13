@@ -69,4 +69,6 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao{
             return null;
         }
     }
+
+    //Adding a comment for commit
 }

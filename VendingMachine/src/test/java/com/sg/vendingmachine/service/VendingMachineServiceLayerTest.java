@@ -169,5 +169,5 @@ public class VendingMachineServiceLayerTest {
         assertTrue(updatedItem.getItemPrice().equals(new BigDecimal("5.48")));
     }
 
-
+//Adding a comment for commit
 }

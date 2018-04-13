@@ -100,4 +100,6 @@ public class VendingMachineView {
         return itemNo;
 
     }
+
+    //Adding a comment for commit
 }

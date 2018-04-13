@@ -42,4 +42,6 @@ public class Change {
     public void setPennies(int pennies) {
         this.pennies = pennies;
     }
+
+    //Adding a comment for commit
 }

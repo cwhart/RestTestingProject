@@ -97,4 +97,6 @@ public class UserIoConsoleImpl implements  UserIo {
         String input = scanner.nextLine();
         return new BigDecimal(input);
     }
+
+    //Adding a comment for commit
 }

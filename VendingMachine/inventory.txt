@@ -1,5 +1,1 @@
-1::Ice Cream Sandwich::10::1.50::
-2::M&Ms::8::0.75::
-3::Snickers::10::0.90::
-4::Doritos::10::1.11::
-5::Cheez-its::10::1.52::
+1::Ice Cream Sandwich::2::0.85::

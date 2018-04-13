@@ -26,4 +26,6 @@ public interface UserIo {
 
     //Added readBigDecimal method for VendingMachine project.
     BigDecimal readBigDecimal(String prompt);
+
+    //Adding a comment for commit
 }

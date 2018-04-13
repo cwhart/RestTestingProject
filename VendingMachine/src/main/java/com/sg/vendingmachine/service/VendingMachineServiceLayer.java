@@ -34,4 +34,6 @@ public interface VendingMachineServiceLayer {
 
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
 
+    //Adding a comment for commit
+
 }

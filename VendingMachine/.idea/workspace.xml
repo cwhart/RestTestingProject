@@ -16,8 +16,8 @@
       <file leaf-file-name="VendingMachineServiceLayerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="147" column="95" lean-forward="false" selection-start-line="147" selection-start-column="95" selection-end-line="147" selection-end-column="95" />
+            <state relative-caret-position="970">
+              <caret line="179" column="33" lean-forward="false" selection-start-line="179" selection-start-column="33" selection-end-line="179" selection-end-column="33" />
               <folding>
                 <element signature="e#4493#4494#0" expanded="true" />
                 <element signature="e#4528#4529#0" expanded="true" />
@@ -26,46 +26,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VendingMachineServiceLayer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java">
+      <file leaf-file-name="UserIo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="24" column="95" lean-forward="false" selection-start-line="24" selection-start-column="95" selection-end-line="24" selection-end-column="95" />
+            <state relative-caret-position="891">
+              <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IncorrectAdminPasswordException.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/IncorrectAdminPasswordException.java">
+      <file leaf-file-name="VendingMachineDaoFileImplTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="12" column="75" lean-forward="false" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+            <state relative-caret-position="969">
+              <caret line="102" column="33" lean-forward="false" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VendingMachineServiceLayerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="858">
+              <caret line="171" column="29" lean-forward="false" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
               <folding>
-                <element signature="e#290#291#0" expanded="true" />
-                <element signature="e#327#328#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InsufficientFundsException.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java">
+      <file leaf-file-name="UserIoConsoleImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIoConsoleImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="936">
+              <caret line="100" column="33" lean-forward="false" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VendingMachineServiceLayerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java">
+      <file leaf-file-name="VendingMachineView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="126" column="41" lean-forward="false" selection-start-line="126" selection-start-column="41" selection-end-line="126" selection-end-column="41" />
+            <state relative-caret-position="958">
+              <caret line="103" column="33" lean-forward="false" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2239#2240#0" expanded="true" />
+                <element signature="e#2327#2328#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,46 +84,39 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="726">
+              <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="applicationContext.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="797">
+              <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InsufficientItemQuantityException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientItemQuantityException.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="462">
-              <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="audit.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/audit.txt">
+      <file leaf-file-name="VendingMachineServiceLayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+            <state relative-caret-position="969">
+              <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendingMachineController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3352">
-              <caret line="185" column="13" lean-forward="false" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
-              <folding>
-                <element signature="e#4421#4422#0" expanded="true" />
-                <element signature="e#4497#4498#0" expanded="true" />
-                <element signature="e#5526#5527#0" expanded="true" />
-                <element signature="e#5599#5600#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendingMachineView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding>
-                <element signature="e#2327#2328#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,34 +153,35 @@
         <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineFileImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineInsufficientItemQuantityException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InvalidItemSelectionException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoStubImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientItemQuantityException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIoConsoleImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoStubImpl.java" />
         <option value="$PROJECT_DIR$/src/test/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/inventory.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/VendingMachine.iml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoImpl.java" />
         <option value="$PROJECT_DIR$/audit.txt" />
-        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/advice/loggingAdvice.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/incorrectAdminPasswordException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/advice/loggingAdvice.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoStubImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoStubImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/IncorrectAdminPasswordException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientItemQuantityException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIoConsoleImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/App.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java" />
       </list>
     </option>
   </component>
@@ -372,7 +376,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.VendingMachineServiceLayerTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -577,9 +581,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.App" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.VendingMachineServiceLayerTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.VendingMachineDaoFileImplTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.VendingMachineServiceLayerTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.VendingMachineDaoFileImplTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.App" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.VendingMachineServiceLayerTest.testVerifyPassword" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.VendingMachineServiceLayerTest.testRemoveItem" />
       </list>
@@ -605,8 +609,8 @@
     <history-entry file="VendingMachineDaoFileImplTest - 2018.04.13 at 09h 30m 50s.xml">
       <configuration name="VendingMachineDaoFileImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="VendingMachineServiceLayerTest - 2018.04.12 at 19h 56m 47s.xml">
-      <configuration name="VendingMachineServiceLayerTest" configurationId="JUnit" />
+    <history-entry file="VendingMachineDaoFileImplTest - 2018.04.13 at 10h 01m 27s.xml">
+      <configuration name="VendingMachineDaoFileImplTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="VendingMachineServiceLayerTest - 2018.04.13 at 09h 09m 45s.xml">
       <configuration name="VendingMachineServiceLayerTest" configurationId="JUnit" />
@@ -626,8 +630,8 @@
     <history-entry file="VendingMachineServiceLayerTest - 2018.04.13 at 09h 31m 10s.xml">
       <configuration name="VendingMachineServiceLayerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="VendingMachineServiceLayerTest_testRemoveItem - 2018.04.12 at 19h 47m 13s.xml">
-      <configuration name="VendingMachineServiceLayerTest.testRemoveItem" configurationId="JUnit" />
+    <history-entry file="VendingMachineServiceLayerTest - 2018.04.13 at 10h 01m 34s.xml">
+      <configuration name="VendingMachineServiceLayerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="VendingMachineServiceLayerTest_testVerifyPassword - 2018.04.13 at 09h 05m 40s.xml">
       <configuration name="VendingMachineServiceLayerTest.testVerifyPassword" configurationId="JUnit" />
@@ -867,58 +871,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientItemQuantityException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="26" column="61" lean-forward="false" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIoConsoleImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="92" column="59" lean-forward="false" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inventory2.txt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoStubImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inventory.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -931,22 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="87" lean-forward="false" selection-start-line="4" selection-start-column="87" selection-end-line="4" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -967,66 +904,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/advice/loggingAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="26" column="88" lean-forward="true" selection-start-line="26" selection-start-column="88" selection-end-line="26" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="62" column="24" lean-forward="true" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="90" column="33" lean-forward="true" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoStubImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/audit.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -1035,37 +912,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/advice/loggingAdvice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="297">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#401#402#0" expanded="false" />
+            <element signature="e#441#442#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="225" column="33" lean-forward="false" selection-start-line="225" selection-start-column="33" selection-end-line="225" selection-end-column="33" />
+          <folding>
+            <element signature="e#4421#4422#0" expanded="false" />
+            <element signature="e#4497#4498#0" expanded="false" />
+            <element signature="e#5526#5527#0" expanded="false" />
+            <element signature="e#5599#5600#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineAuditDaoStubImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="132" column="29" lean-forward="false" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachineDaoStubImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="72" column="33" lean-forward="false" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dao/VendingMachinePersistenceException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Change.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/dto/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="75" column="33" lean-forward="false" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/IncorrectAdminPasswordException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="12" column="75" lean-forward="false" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+        <state relative-caret-position="528">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding>
-            <element signature="e#290#291#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="false" />
+            <element signature="e#327#328#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientFundsException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/InsufficientItemQuantityException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="24" column="95" lean-forward="false" selection-start-line="24" selection-start-column="95" selection-end-line="24" selection-end-column="95" />
+        <state relative-caret-position="969">
+          <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/service/VendingMachineServiceLayerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="147" column="95" lean-forward="false" selection-start-line="147" selection-start-column="95" selection-end-line="147" selection-end-column="95" />
+        <state relative-caret-position="970">
+          <caret line="179" column="33" lean-forward="false" selection-start-line="179" selection-start-column="33" selection-end-line="179" selection-end-column="33" />
           <folding>
             <element signature="e#4493#4494#0" expanded="true" />
             <element signature="e#4528#4529#0" expanded="true" />
@@ -1073,35 +1055,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="126" column="41" lean-forward="false" selection-start-line="126" selection-start-column="41" selection-end-line="126" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="891">
+          <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/UserIoConsoleImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="100" column="33" lean-forward="false" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/ui/VendingMachineView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="958">
+          <caret line="103" column="33" lean-forward="false" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
           <folding>
+            <element signature="e#2239#2240#0" expanded="true" />
             <element signature="e#2327#2328#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/vendingmachine/controller/VendingMachineController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3352">
-          <caret line="185" column="13" lean-forward="false" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="13" />
+        <state relative-caret-position="726">
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/dao/VendingMachineDaoFileImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="102" column="33" lean-forward="false" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/vendingmachine/service/VendingMachineServiceLayerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="171" column="29" lean-forward="false" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
           <folding>
-            <element signature="e#4421#4422#0" expanded="true" />
-            <element signature="e#4497#4498#0" expanded="true" />
-            <element signature="e#5526#5527#0" expanded="true" />
-            <element signature="e#5599#5600#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -13,4 +13,6 @@ public class IncorrectAdminPasswordException extends Exception {
     public IncorrectAdminPasswordException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    //Adding a comment for commit
 }

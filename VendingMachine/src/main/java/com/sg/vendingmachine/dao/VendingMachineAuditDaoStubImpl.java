@@ -5,4 +5,6 @@ public class VendingMachineAuditDaoStubImpl implements VendingMachineAuditDao {
     public void writeAuditEntry(String entry) throws VendingMachinePersistenceException {
 
     }
+
+    //Adding a comment for commit
 }

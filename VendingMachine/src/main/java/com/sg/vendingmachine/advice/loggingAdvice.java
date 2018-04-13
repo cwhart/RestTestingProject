@@ -7,6 +7,8 @@ import org.aspectj.lang.JoinPoint;
 
 public class loggingAdvice {
 
+    //Adding a comment for commit
+
     VendingMachineAuditDao auditDao;
 
     public loggingAdvice(VendingMachineAuditDao auditDao) {
