@@ -32,19 +32,19 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test
-    public void TestRetrieveListAll() throws VendingMachinePersistenceException,
+    public void testRetrieveListAll() throws VendingMachinePersistenceException,
             InsufficientItemQuantityException, InsufficientFundsException{
         assertEquals(2, service.retrieveListAllWithQuantityGTZero().size());
 
-        TestPurchaseItemHappyPath();
+        testPurchaseItemHappyPath();
 
         assertEquals(1, service.retrieveListAllWithQuantityGTZero().size());
     }
 
     @Test
-    public void TestPurchaseItemHappyPath() throws InsufficientFundsException,InsufficientItemQuantityException,
+    public void testPurchaseItemHappyPath() throws InsufficientFundsException,InsufficientItemQuantityException,
             VendingMachinePersistenceException {
-        TestAddMoney();
+        testAddMoney();
         Item itemPurchased = service.purchaseItem(2);
         Item expectedItem = new Item(2);
         expectedItem.setItemQuantity(1);
@@ -59,9 +59,9 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test (expected = InsufficientItemQuantityException.class)
-    public void TestPurchaseItemNoStock() throws InsufficientFundsException,InsufficientItemQuantityException,
+    public void testPurchaseItemNoStock() throws InsufficientFundsException,InsufficientItemQuantityException,
         VendingMachinePersistenceException {
-        TestAddMoney();
+        testAddMoney();
         Item itemPurchased = service.purchaseItem(2);
 
         //Initial quantity was only 1, so if we buy it again, expect an exception.
@@ -70,9 +70,9 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test (expected = InsufficientFundsException.class)
-    public void TestPurchaseItemInsufficientFunds() throws InsufficientFundsException,InsufficientItemQuantityException,
+    public void testPurchaseItemInsufficientFunds() throws InsufficientFundsException,InsufficientItemQuantityException,
             VendingMachinePersistenceException {
-        TestAddMoney();
+        testAddMoney();
         Item itemPurchased = service.purchaseItem(1);
 
         //Initial balance was only $2.41, so expect an exception on the 2nd purchase.
@@ -81,8 +81,8 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test
-    public void TestCalculateChange() {
-        TestAddMoney();
+    public void testCalculateChange() {
+        testAddMoney();
         Change change = service.calculateChange();
 
         assertEquals(9, change.getQuarters());
@@ -93,7 +93,7 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test
-    public void TestAddMoney() {
+    public void testAddMoney() {
         BigDecimal firstAmountToAdd = new BigDecimal(".98");
         BigDecimal newBalance = service.addMoney(firstAmountToAdd);
         assertEquals(firstAmountToAdd, newBalance);
@@ -105,9 +105,9 @@ public class VendingMachineServiceLayerTest {
     }
 
     @Test
-    public void TestGetRunningTotal() {
+    public void testGetRunningTotal() {
 
-        TestAddMoney();
+        testAddMoney();
         BigDecimal expectedTotal = new BigDecimal("2.42");
         BigDecimal actualTotal = service.getRunningTotal();
 
@@ -115,4 +115,59 @@ public class VendingMachineServiceLayerTest {
 
 
     }
+
+    @Test (expected = Test.None.class)
+    public void testVerifyPasswordPositive() throws IncorrectAdminPasswordException {
+        service.verifyPassword("Shrubbery");
+
+    }
+
+    @Test(expected = IncorrectAdminPasswordException.class)
+    public void testVerifyPasswordNegative() throws IncorrectAdminPasswordException {
+        service.verifyPassword("43tirojer");
+
+    }
+
+    @Test(expected = IncorrectAdminPasswordException.class)
+    public void testVerifyBlankPassword() throws IncorrectAdminPasswordException {
+        service.verifyPassword("");
+    }
+
+
+
+    @Test
+    public void testRestockItem() throws VendingMachinePersistenceException{
+        Item myItem = service.restockItem(2);
+        assertEquals(myItem.getItemQuantity(), 10);
+
+    }
+
+    @Test
+    public void testAddItem() throws VendingMachinePersistenceException{
+        Item newItem = new Item(10);
+        newItem.setItemPrice(new BigDecimal("5.00"));
+        newItem.setItemName("Test Item");
+        newItem.setItemQuantity(55);
+
+        assertTrue(service.addItem(newItem).equals(newItem));
+
+    }
+
+    @Test
+    public void testRemoveItem() throws VendingMachinePersistenceException {
+        assertTrue(service.removeItem(1).equals("Reese's Peanut Butter Cups"));
+    }
+
+    @Test
+    public void testUpdateItemPrice() throws VendingMachinePersistenceException{
+        Item item1 = new Item(1);
+        item1.setItemQuantity(4);
+        item1.setItemPrice(BigDecimal.valueOf(5.48));
+        item1.setItemName("Reese's Peanut Butter Cups");
+
+        Item updatedItem = service.updateItemPrice(item1);
+        assertTrue(updatedItem.getItemPrice().equals(new BigDecimal("5.48")));
+    }
+
+
 }

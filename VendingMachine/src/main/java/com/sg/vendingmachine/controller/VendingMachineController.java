@@ -3,6 +3,7 @@ package com.sg.vendingmachine.controller;
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
+import com.sg.vendingmachine.service.IncorrectAdminPasswordException;
 import com.sg.vendingmachine.service.InsufficientFundsException;
 import com.sg.vendingmachine.service.InsufficientItemQuantityException;
 import com.sg.vendingmachine.service.VendingMachineServiceLayer;
@@ -42,9 +43,7 @@ public class VendingMachineController {
                         returnChange();
                         break;
                     case 4:
-                        if (verifyPassword()== true) {
-                            runAdmin();
-                        } else vendingMachineView.displayMessage("ERROR: Incorrect password.");
+                        runAdmin();
                         break;
                     case 5:
                         //Before exiting, return any extra change the user may have.
@@ -144,9 +143,14 @@ public class VendingMachineController {
 
     }
 
-    private boolean verifyPassword() {
+    private void verifyPassword() throws IncorrectAdminPasswordException{
         String userInputPassword = vendingMachineView.promptForPassword();
-        return vendingMachineService.verifyPassword(userInputPassword);
+
+        //try {
+            vendingMachineService.verifyPassword(userInputPassword);
+        //} catch (IncorrectAdminPasswordException e) {
+        //    vendingMachineView.displayErrorMessage(e.getMessage());
+        //}
     }
 
     private int getAdminMenuSelection() {
@@ -154,30 +158,36 @@ public class VendingMachineController {
     }
 
     private void runAdmin() throws VendingMachinePersistenceException {
-        boolean moreAdminFunctions = true;
+        try {
+            verifyPassword();
+            boolean moreAdminFunctions = true;
 
-        while (moreAdminFunctions) {
-            int adminSelection = getAdminMenuSelection();
-            switch (adminSelection) {
-                case 1:
-                    restockItem();
-                    break;
-                case 2:
-                    addNewItem();
-                    break;
-                case 3:
-                    removeItemFromMachine();
-                    break;
-                case 4:
-                    updatePriceOfItem();
-                    break;
-                case 5:
-                    moreAdminFunctions = false;
-                    break;
-                default:
-                    unknownCommand();
+            while (moreAdminFunctions) {
+                int adminSelection = getAdminMenuSelection();
+                switch (adminSelection) {
+                    case 1:
+                        restockItem();
+                        break;
+                    case 2:
+                        addNewItem();
+                        break;
+                    case 3:
+                        removeItemFromMachine();
+                        break;
+                    case 4:
+                        updatePriceOfItem();
+                        break;
+                    case 5:
+                        moreAdminFunctions = false;
+                        break;
+                    default:
+                        unknownCommand();
+                }
             }
+        } catch (IncorrectAdminPasswordException e) {
+            vendingMachineView.displayErrorMessage(e.getMessage());
         }
+
     }
 
     private void exit() {

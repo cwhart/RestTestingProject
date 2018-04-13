@@ -22,15 +22,15 @@ public interface VendingMachineServiceLayer {
 
     public BigDecimal getRunningTotal();
 
-    public boolean verifyPassword(String userInputPassword);
+    public void verifyPassword(String userInputPassword) throws IncorrectAdminPasswordException;
 
     public Item restockItem(int itemNo) throws VendingMachinePersistenceException;
 
-    public void addItem(Item newItem) throws VendingMachinePersistenceException;
+    public Item addItem(Item newItem) throws VendingMachinePersistenceException;
 
     public String removeItem(int itemNo) throws VendingMachinePersistenceException;
 
-    public void updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException;
+    public Item updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException;
 
     public List<Item> retrieveListAll() throws VendingMachinePersistenceException;
 

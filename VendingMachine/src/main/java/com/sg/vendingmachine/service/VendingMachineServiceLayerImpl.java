@@ -7,7 +7,6 @@ import com.sg.vendingmachine.dto.Change;
 import com.sg.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -146,10 +145,10 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         }
     }
 
-    public boolean verifyPassword(String userInputPassword) {
-        if(userInputPassword.equals("Shrubbery")) {
-            return true;
-        } else return false;
+    public void verifyPassword(String userInputPassword) throws IncorrectAdminPasswordException {
+        if(!userInputPassword.equals("Shrubbery")) {
+            throw new IncorrectAdminPasswordException("ERROR: incorrect password.");
+        }
     }
 
     public Item restockItem(int itemNo) throws VendingMachinePersistenceException {
@@ -159,8 +158,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         return dao.retrieveSingleItem(itemNo);
     }
 
-    public void addItem(Item newItem) throws VendingMachinePersistenceException {
-        dao.createItem(newItem.getItemID(), newItem);
+    public Item addItem(Item newItem) throws VendingMachinePersistenceException {
+        return dao.createItem(newItem.getItemID(), newItem);
         //return dao.retrieveSingleItem(newItem.getItemID());
     }
 
@@ -171,10 +170,10 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         return itemName;
     }
 
-    public void updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException {
+    public Item updateItemPrice(Item itemToUpdatePrice) throws VendingMachinePersistenceException {
         Item itemToUpdate = dao.retrieveSingleItem(itemToUpdatePrice.getItemID());
         itemToUpdate.setItemPrice(itemToUpdatePrice.getItemPrice());
-        dao.updateItem(itemToUpdate);
+        return dao.updateItem(itemToUpdate);
 
     }
 
