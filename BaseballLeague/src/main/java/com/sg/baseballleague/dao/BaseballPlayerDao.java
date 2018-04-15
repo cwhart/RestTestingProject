@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface BaseballPlayerDao {
 
-    public List<BaseballPlayer> retrieveAllPlayers();
+    public List<BaseballPlayer> retrieveAllPlayers() throws BaseballTeamPersistenceException;
 
-    public BaseballPlayer addPlayer(BaseballPlayer playerToAdd);
+    public BaseballPlayer addPlayer(BaseballPlayer playerToAdd) throws BaseballTeamPersistenceException;
 
-    public BaseballPlayer updatePlayer(BaseballPlayer playerToUpdate);
+    public BaseballPlayer updatePlayer(BaseballPlayer playerToUpdate) throws BaseballTeamPersistenceException;
 
-    public BaseballPlayer removePlayer(BaseballPlayer playerToRemove);
+    public BaseballPlayer removePlayer(Integer playerToRemove) throws BaseballTeamPersistenceException;
 
-    public BaseballPlayer retrieveSinglePlayer(int playerNum);
+    public BaseballPlayer retrieveSinglePlayer(int playerNum) throws BaseballTeamPersistenceException;
 }

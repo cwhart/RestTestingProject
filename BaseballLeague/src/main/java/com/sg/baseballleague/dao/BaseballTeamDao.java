@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface BaseballTeamDao {
 
-    public List<BaseballTeam> retrieveAllTeams();
+    public List<BaseballTeam> retrieveAllTeams() throws BaseballTeamPersistenceException;
 
-    public BaseballTeam addTeam(BaseballTeam teamToAdd);
+    public BaseballTeam addTeam(BaseballTeam teamToAdd) throws BaseballTeamPersistenceException;
 
-    public BaseballTeam updateTeam(BaseballTeam teamToUpdate);
+    public BaseballTeam updateTeam(BaseballTeam teamToUpdate) throws BaseballTeamPersistenceException;
 
-    public BaseballTeam removeTeam(BaseballTeam teamToRemove);
+    public BaseballTeam removeTeam(BaseballTeam teamToRemove) throws BaseballTeamPersistenceException;
 
-    public BaseballTeam retrieveSingleTeam(String teamName);
+    public BaseballTeam retrieveSingleTeam(String teamName) throws BaseballTeamPersistenceException;
 }

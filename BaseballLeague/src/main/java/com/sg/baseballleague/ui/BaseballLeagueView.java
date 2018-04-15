@@ -2,6 +2,7 @@ package com.sg.baseballleague.ui;
 
 import com.sg.baseballleague.dto.BaseballPlayer;
 import com.sg.baseballleague.dto.BaseballTeam;
+import com.sg.baseballleague.service.TeamDoesNotExistException;
 
 import java.util.List;
 
@@ -49,12 +50,16 @@ public class BaseballLeagueView {
         }
     }
 
-    public BaseballPlayer getPlayerToAdd() {
+    public String getTeam() {
+        return io.readString("Please enter the team this player will be on:");
+    }
+
+    public BaseballPlayer getPlayerToAdd(String teamName) {
         BaseballPlayer newPlayer = new BaseballPlayer(io.readInt("Please enter the " +
                 "player's number: "));
         newPlayer.setFirstName(io.readString("Enter the player's first name: "));
         newPlayer.setLastName(io.readString("Enter the player's last name: "));
-        newPlayer.setTeamName(io.readString("What team do they play for? "));
+        newPlayer.setTeamName(teamName);
 
         return newPlayer;
     }
@@ -65,8 +70,25 @@ public class BaseballLeagueView {
 
     public void displayPlayers (List <BaseballPlayer> listOfPlayers) {
         for (BaseballPlayer currentPlayer : listOfPlayers) {
-            io.print(currentPlayer.getFirstName() + " " + currentPlayer.getLastName());
+            io.print(currentPlayer.getPlayerNumber() + ": " + currentPlayer.getFirstName() + " " +
+                    currentPlayer.getLastName());
         }
     }
 
+    public int getPlayer() {
+        return io.readInt("Please enter the player number: ");
+    }
+
+    public BaseballPlayer getNewTeam(BaseballPlayer player) {
+        String newTeam = io.readString("Please enter the player's new team name: ");
+        player.setTeamName(newTeam);
+        return player;
+    }
+
+    public boolean confirm() {
+        String input =  io.readString("Are you sure? Y/N");
+        if (input.toUpperCase().equals("Y")) {
+            return true;
+        } return false;
+    }
 }

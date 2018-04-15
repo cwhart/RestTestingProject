@@ -20,3 +20,4 @@
 2018-04-11T10:52:19.762 : removeDvd: Test1
 2018-04-11T10:55:14.495 : addDvd: Title: Test1| Release Date: 2000-01-01 | Rating: hsbv | Director's Name: jyrhdbg | Studio: vfesgrs | User comment: jyndgfgfshtgs
 2018-04-11T10:55:40.382 : editDvd: Title: Test1| Release Date: 2010-01-01 | Rating: habf gravc | Director's Name: hgsbf gewavdahta | Studio: hsrnbg ndngsffe | User comment: hts afsthst
+2018-04-13T16:20:16.158 : addDvd: Title: Spartacus| Release Date: 1950-01-01 | Rating: PG | Director's Name: Unknown | Studio: Unknown | User comment: ruaihgfuihavdc
