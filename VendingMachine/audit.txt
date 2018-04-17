@@ -34,3 +34,8 @@
 04/13/2018 09:35 : purchaseItem | ERROR: there are no Ice Cream Sandwichs in stock. Please make another selection.
 04/13/2018 09:35 : purchaseItem | Item ID: 2
 04/13/2018 09:38 : purchaseItem | null
+04/16/2018 08:52 : purchaseItem | Ice Cream Sandwich: You do not have enough money for that item. Please add more money or choose a different item.
+04/16/2018 10:37 : purchaseItem | Ice Cream Sandwich: You do not have enough money for that item. Please add more money or choose a different item.
+04/16/2018 10:38 : purchaseItem | Item ID: 1
+04/16/2018 10:38 : purchaseItem | ERROR: there are no Ice Cream Sandwichs in stock. Please make another selection.
+04/16/2018 10:38 : purchaseItem | Item ID: 2
