@@ -11,11 +11,15 @@ public class Order {
     private String state;
     private Tax orderTax;
     private Product orderProduct;
-    private double area;
+    private BigDecimal area;
     private BigDecimal calculatedMaterialCost;
     private BigDecimal calculatedLaborCost;
     private BigDecimal calculatedTaxAmount;
     private BigDecimal totalOrderAmount;
+
+    public Order(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
     public int getOrderNumber() {
         return orderNumber;
@@ -65,11 +69,11 @@ public class Order {
         this.orderProduct = orderProduct;
     }
 
-    public double getArea() {
+    public BigDecimal getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(BigDecimal area) {
         this.area = area;
     }
 
@@ -129,13 +133,13 @@ public class Order {
         Order order = (Order) o;
 
         if (orderNumber != order.orderNumber) return false;
-        if (Double.compare(order.area, area) != 0) return false;
         if (customerLastName != null ? !customerLastName.equals(order.customerLastName) : order.customerLastName != null)
             return false;
         if (orderDate != null ? !orderDate.equals(order.orderDate) : order.orderDate != null) return false;
         if (state != null ? !state.equals(order.state) : order.state != null) return false;
         if (orderTax != null ? !orderTax.equals(order.orderTax) : order.orderTax != null) return false;
         if (orderProduct != null ? !orderProduct.equals(order.orderProduct) : order.orderProduct != null) return false;
+        if (area != null ? !area.equals(order.area) : order.area != null) return false;
         if (calculatedMaterialCost != null ? !calculatedMaterialCost.equals(order.calculatedMaterialCost) : order.calculatedMaterialCost != null)
             return false;
         if (calculatedLaborCost != null ? !calculatedLaborCost.equals(order.calculatedLaborCost) : order.calculatedLaborCost != null)
@@ -147,16 +151,13 @@ public class Order {
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = orderNumber;
+        int result = orderNumber;
         result = 31 * result + (customerLastName != null ? customerLastName.hashCode() : 0);
         result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + (orderTax != null ? orderTax.hashCode() : 0);
         result = 31 * result + (orderProduct != null ? orderProduct.hashCode() : 0);
-        temp = Double.doubleToLongBits(area);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (area != null ? area.hashCode() : 0);
         result = 31 * result + (calculatedMaterialCost != null ? calculatedMaterialCost.hashCode() : 0);
         result = 31 * result + (calculatedLaborCost != null ? calculatedLaborCost.hashCode() : 0);
         result = 31 * result + (calculatedTaxAmount != null ? calculatedTaxAmount.hashCode() : 0);
@@ -173,7 +174,7 @@ public class Order {
                 ", state='" + state + '\'' +
                 ", orderTax=" + orderTax +
                 ", orderProduct=" + orderProduct +
-                ", area=" + area +
+                ", area=" + area.setScale(2) +
                 ", calculatedMaterialCost=" + calculatedMaterialCost +
                 ", calculatedLaborCost=" + calculatedLaborCost +
                 ", calculatedTaxAmount=" + calculatedTaxAmount +

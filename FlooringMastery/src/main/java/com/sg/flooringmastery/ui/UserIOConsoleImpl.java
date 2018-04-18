@@ -1,5 +1,9 @@
 package com.sg.flooringmastery.ui;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
@@ -87,5 +91,12 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
         print(prompt);
         return scanner.nextLine();
 
+    }
+
+    @Override
+    public LocalDate readLocalDate(String prompt) {
+        /*print(prompt);
+        LocalDate inputDate = LocalDate.parse(scanner.next());*/
+        return null;
     }
 }

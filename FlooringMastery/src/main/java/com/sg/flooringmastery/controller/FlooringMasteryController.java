@@ -4,6 +4,8 @@ import com.sg.flooringmastery.service.FlooringMasteryServiceLayer;
 import com.sg.flooringmastery.service.FlooringMasteryServiceLayerImpl;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
 
+import java.time.LocalDate;
+
 public class FlooringMasteryController {
 
     FlooringMasteryServiceLayerImpl service;
@@ -15,6 +17,8 @@ public class FlooringMasteryController {
     }
 
     public void run() {
+
+        service.retrieveAllOrdersByDate(LocalDate.now());
 
     }
 }

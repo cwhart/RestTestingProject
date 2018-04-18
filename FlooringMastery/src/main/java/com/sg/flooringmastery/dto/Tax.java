@@ -1,9 +1,20 @@
 package com.sg.flooringmastery.dto;
 
+import java.math.BigDecimal;
+
 public class Tax {
 
     private String state;
-    private double taxRate;
+    private BigDecimal taxRate;
+
+    public Tax(String state) {
+        this.state = state;
+    }
+
+    public Tax(String state, BigDecimal taxRate) {
+        this.state = state;
+        this.taxRate = taxRate;
+    }
 
     public String getState() {
         return state;
@@ -13,11 +24,11 @@ public class Tax {
         this.state = state;
     }
 
-    public double getTaxRate() {
+    public BigDecimal getTaxRate() {
         return taxRate;
     }
 
-    public void setTaxRate(double taxRate) {
+    public void setTaxRate(BigDecimal taxRate) {
         this.taxRate = taxRate;
     }
 
@@ -28,17 +39,14 @@ public class Tax {
 
         Tax tax = (Tax) o;
 
-        if (Double.compare(tax.taxRate, taxRate) != 0) return false;
-        return state != null ? state.equals(tax.state) : tax.state == null;
+        if (state != null ? !state.equals(tax.state) : tax.state != null) return false;
+        return taxRate != null ? taxRate.equals(tax.taxRate) : tax.taxRate == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = state != null ? state.hashCode() : 0;
-        temp = Double.doubleToLongBits(taxRate);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = state != null ? state.hashCode() : 0;
+        result = 31 * result + (taxRate != null ? taxRate.hashCode() : 0);
         return result;
     }
 
@@ -46,7 +54,7 @@ public class Tax {
     public String toString() {
         return "Tax{" +
                 "state='" + state + '\'' +
-                ", taxRate=" + taxRate +
+                ", taxRate=" + taxRate.setScale(2) +
                 '}';
     }
 }

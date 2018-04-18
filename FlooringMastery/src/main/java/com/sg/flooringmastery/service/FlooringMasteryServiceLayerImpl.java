@@ -4,6 +4,8 @@ import com.sg.flooringmastery.dao.OrderDao;
 import com.sg.flooringmastery.dao.ProductDao;
 import com.sg.flooringmastery.dao.TaxDao;
 import com.sg.flooringmastery.dto.Order;
+import com.sg.flooringmastery.dto.Product;
+import com.sg.flooringmastery.dto.Tax;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,7 +24,7 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     }
 
     @Override
-    public List retrieveAllOrdersByDate() {
+    public List<Order> retrieveAllOrdersByDate(LocalDate date) {
         return null;
     }
 
@@ -37,11 +39,6 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     }
 
     @Override
-    public int generateOrderNumber() {
-        return 0;
-    }
-
-    @Override
     public void saveCurrentWork(Map<Integer, Order> orderMap) {
 
     }
@@ -52,12 +49,12 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     }
 
     @Override
-    public Order removeOrder(Order orderToRemove) {
-        return null;
+    public void removeOrder(Order orderToRemove) {
+
     }
 
     @Override
-    public Order retrieveOrderById(int orderId) {
+    public Order retrieveOrderByDateAndId(LocalDate date, int orderId) {
         return null;
     }
 
@@ -69,6 +66,21 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     @Override
     public Order processOrder(Order orderToProcess) {
         return null;
+    }
+
+    @Override
+    public List<Tax> retrieveTaxes() {
+        return null;
+    }
+
+    @Override
+    public List<Product> retrieveProducts() {
+        return null;
+    }
+
+    @Override
+    public void setMode(OrderDao orderDao) {
+
     }
 
     private boolean validateProductExists(Order orderToValidate) {
