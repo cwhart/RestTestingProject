@@ -47,31 +47,63 @@ public class OrderDaoFileImpl implements OrderDao {
     @Override
     public Order retrieveOrderByDateAndId(LocalDate orderDate, Integer orderId) throws OrderPersistenceException {
         loadOrdersByDate(orderDate);
-        Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
-        return mapForThisDate.get(orderId);
+        if(orderMap.containsKey(orderDate)) {
+            Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
 
+            //Since orders are stored without dates, need to set the order date when retrieved.
+            for (Order currentOrder : mapForThisDate.values()) {
+                currentOrder.setOrderDate(orderDate);
+            }
+            Order orderToReturn = mapForThisDate.get(orderId);
+            if (orderToReturn != null) {
+                return orderToReturn;
+            } else throw new OrderPersistenceException("ERROR: Order not found!");
+        } else throw new OrderPersistenceException("ERROR: Date not found!");
     }
 
     @Override
     public List<Order> retrieveOrdersByDate(LocalDate date) throws OrderPersistenceException  {
         loadOrdersByDate(date);
-        Map<Integer, Order> ordersForDate = orderMap.get(date);
-        List<Order> orderList = new ArrayList<>(ordersForDate.values());
-        return orderList;
+        if(orderMap.containsKey(date)) {
+            Map<Integer, Order> ordersForDate = orderMap.get(date);
+            List<Order> orderList = new ArrayList<>(ordersForDate.values());
+
+            for (Order currentOrder : orderList) {
+                currentOrder.setOrderDate(date);
+            }
+            return orderList;
+        } else throw new OrderPersistenceException("ERROR: Date not found!");
     }
 
     @Override
-    public Order updateOrder(Order orderToUpdate) {
-        return null;
+    public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException {
+        LocalDate thisDate = orderToUpdate.getOrderDate();
+        loadOrdersByDate(thisDate);
+        if(orderMap.containsKey(thisDate)) {
+            Map<Integer, Order> mapForThisDate = orderMap.get(thisDate);
+            mapForThisDate.replace(orderToUpdate.getOrderNumber(), orderToUpdate);
+
+            Order orderToReturn = mapForThisDate.get(orderToUpdate.getOrderNumber());
+            if (orderToReturn != null) {
+                return orderToReturn;
+            } else throw new OrderPersistenceException("ERROR: Order not found!");
+        } else throw new OrderPersistenceException("ERROR: Date not found!");
+
+
+
     }
 
     @Override
     public void removeOrder(Order orderToRemove) throws OrderPersistenceException{
         LocalDate thisDate = orderToRemove.getOrderDate();
         loadOrdersByDate(thisDate);
-        Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
-        ordersForThisDate.remove(orderToRemove.getOrderNumber());
-        orderMap.put(thisDate, ordersForThisDate);
+        if(orderMap.containsKey(thisDate)) {
+            Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
+            if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
+                throw new OrderPersistenceException("ERROR: Order not found!");
+            }
+            //orderMap.put(thisDate, ordersForThisDate);
+        } else throw new OrderPersistenceException("ERROR: Date not found!");
     }
 
     @Override

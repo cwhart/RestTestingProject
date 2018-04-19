@@ -9,10 +9,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -23,14 +20,20 @@ public class OrderDaoTest {
     @Before
     public void setUp() throws Exception {
         List<Order> orderList = new ArrayList<>();
-        for(Order currentOrder : dao.retrieveOrdersByDate(LocalDate.parse("2018-04-17"))) {
-            dao.removeOrder(currentOrder);
+        List<LocalDate> listOfTestingDates = new ArrayList<>();
+        //Copy the following line and change the date for every date used in testing.
+        listOfTestingDates.add(LocalDate.parse("2018-04-17"));
+        listOfTestingDates.add(LocalDate.parse("2017-06-14"));
+        for(LocalDate currentDate : listOfTestingDates) {
+            for (Order currentOrder : dao.retrieveOrdersByDate(currentDate)) {
+                dao.removeOrder(currentOrder);
+            }
         }
     }
 
     @Test
     public void testCreateAndRetrieveOrder() throws OrderPersistenceException, Exception {
-        Order order1 = new Order(5);
+        Order order1 = new Order(1);
         order1.setCustomerLastName("Smith1");
         order1.setOrderDate(LocalDate.parse("2018-04-17"));
         order1.setState("NJ");
@@ -42,8 +45,31 @@ public class OrderDaoTest {
         order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
         order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
         Order addedOrder = dao.createOrder(order1);
+        Order retrievedOrder = dao.retrieveOrderByDateAndId(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(order1, addedOrder);
+        assertEquals(order1, retrievedOrder);
+
+    }
+
+    @Test
+    public void testCreateWithNewDate() throws OrderPersistenceException, Exception {
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-18"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        Order addedOrder = dao.createOrder(order1);
+        Order retrievedOrder = dao.retrieveOrderByDateAndId(order1.getOrderDate(), order1.getOrderNumber());
+
+        assertEquals(order1, addedOrder);
+        assertEquals(order1, retrievedOrder);
 
     }
 
@@ -61,29 +87,297 @@ public class OrderDaoTest {
         order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
         order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
         Order addedOrder = dao.createOrder(order1);
-        dao.save();
+
         Order retrievedOrder = dao.retrieveOrderByDateAndId(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(addedOrder, retrievedOrder);
 
     }
 
+    @Test (expected = OrderPersistenceException.class)
+    public void testRetrieveOrderByDateAndIdDateDoesntExist() throws OrderPersistenceException, Exception {
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        Order addedOrder = dao.createOrder(order1);
+
+        Order retrievedOrder = dao.retrieveOrderByDateAndId(LocalDate.parse("2017-06-15"), order1.getOrderNumber());
+
+        assertNull(retrievedOrder);
+
+    }
+
+    @Test (expected = OrderPersistenceException.class)
+    public void testRetrieveOrderByDateAndIdIdDoesntExist() throws OrderPersistenceException, Exception {
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        Order addedOrder = dao.createOrder(order1);
+        int wrongOrderNum = addedOrder.getOrderNumber() + 5;
+
+        Order retrievedOrder = dao.retrieveOrderByDateAndId(order1.getOrderDate(), wrongOrderNum);
+
+        assertNull(retrievedOrder);
+
+    }
+
     @Test
-    public void retrieveOrdersByDate() throws OrderPersistenceException{
+    public void testRetrieveOrdersByDate() throws OrderPersistenceException, Exception{
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
         List<Order> orderListForGivenDate = dao.retrieveOrdersByDate(LocalDate.parse("2018-04-17"));
+        assertEquals(1, orderListForGivenDate.size());
+
+        Order order2 = new Order(6);
+        order2.setCustomerLastName("Smith2");
+        order2.setOrderDate(LocalDate.parse("2018-04-17"));
+        order2.setState("NJ");
+        order2.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order2.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order2.setArea(BigDecimal.valueOf(250));
+        order2.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order2.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order2.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order2.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order2);
+        orderListForGivenDate = dao.retrieveOrdersByDate(LocalDate.parse("2018-04-17"));
+        assertEquals(2, orderListForGivenDate.size());
+
+        Order order3 = new Order(7);
+        order3.setCustomerLastName("Smith2");
+        order3.setOrderDate(LocalDate.parse("2018-05-17"));
+        order3.setState("NJ");
+        order3.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order3.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order3.setArea(BigDecimal.valueOf(250));
+        order3.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order3.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order3.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order3.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order3);
+        orderListForGivenDate = dao.retrieveOrdersByDate(LocalDate.parse("2018-04-17"));
         assertEquals(2, orderListForGivenDate.size());
 
     }
 
     @Test
-    public void testUpdateOrder() {
+    public void testRetrieveOrdersByDateDoesNotExist() throws OrderPersistenceException, Exception{
+        List<Order> orderListForGivenDate = new ArrayList<>();
+        orderListForGivenDate = dao.retrieveOrdersByDate(LocalDate.parse("2010-01-01"));
+
+        for (Order currentOrder : orderListForGivenDate) {
+            assertNull(currentOrder);
+        }
     }
 
     @Test
-    public void testRemoveOrder() {
+    public void testUpdateOrderHappyPath() throws OrderPersistenceException, Exception {
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        Order order2 = new Order(5);
+        order2.setOrderNumber(order1.getOrderNumber());
+        order2.setCustomerLastName("Smith2");
+        order2.setOrderDate(LocalDate.parse("2018-04-17"));
+        order2.setState("WA");
+        order2.setOrderTax(new Tax("WA", BigDecimal.valueOf(5.42)));
+        order2.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order2.setArea(BigDecimal.valueOf(250));
+        order2.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order2.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order2.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order2.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.updateOrder(order2);
+
+        Order updatedOrder = dao.retrieveOrderByDateAndId(order2.getOrderDate(), order2.getOrderNumber());
+
+        assertEquals(order2, updatedOrder);
+    }
+
+    @Test (expected = OrderPersistenceException.class)
+    public void testUpdateOrderDoesNotExist() throws OrderPersistenceException, Exception{
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        Order order2 = new Order(5);
+        order2.setCustomerLastName("Smith2");
+        order2.setOrderDate(LocalDate.parse("2018-04-17"));
+        order2.setState("WA");
+        order2.setOrderTax(new Tax("WA", BigDecimal.valueOf(5.42)));
+        order2.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order2.setArea(BigDecimal.valueOf(250));
+        order2.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order2.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order2.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order2.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        order2.setOrderNumber(order1.getOrderNumber() + 5);
+        dao.updateOrder(order2);
+
+        Order updatedOrder = dao.retrieveOrderByDateAndId(order2.getOrderDate(), order2.getOrderNumber());
+
+        assertNull(updatedOrder);
+
+    }
+
+    @Test (expected = OrderPersistenceException.class)
+    public void testUpdateOrderWrongDate() throws OrderPersistenceException, Exception{
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        Order order2 = new Order(5);
+        order2.setOrderNumber(order1.getOrderNumber());
+        order2.setCustomerLastName("Smith2");
+        order2.setOrderDate(LocalDate.parse("2018-06-17"));
+        order2.setState("WA");
+        order2.setOrderTax(new Tax("WA", BigDecimal.valueOf(5.42)));
+        order2.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order2.setArea(BigDecimal.valueOf(250));
+        order2.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order2.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order2.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order2.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.updateOrder(order2);
+
+        Order updatedOrder = dao.retrieveOrderByDateAndId(order2.getOrderDate(), order2.getOrderNumber());
+
+        assertNull(updatedOrder);
+
     }
 
     @Test
+    public void testRemoveOrderHappyPath() throws OrderPersistenceException, Exception{
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+
+        int orderNum = order1.getOrderNumber();
+        dao.removeOrder(order1);
+
+        assertEquals(0, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+    }
+
+    @Test (expected = OrderPersistenceException.class)
+    public void testRemoveOrderDoesNotExist() throws OrderPersistenceException, Exception{
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+
+        order1.setOrderNumber(order1.getOrderNumber() + 5); //Set the order number to a different one so it won't be found.
+        dao.removeOrder(order1);
+
+        assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+
+    }
+
+    @Test (expected = OrderPersistenceException.class)
+    public void testRemoveOrderWrongDate() throws OrderPersistenceException, Exception{
+
+        Order order1 = new Order(5);
+        order1.setCustomerLastName("Smith1");
+        order1.setOrderDate(LocalDate.parse("2018-04-17"));
+        order1.setState("NJ");
+        order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
+        order1.setOrderProduct(new Product("Pine", BigDecimal.valueOf(5.25), BigDecimal.valueOf(3.55)));
+        order1.setArea(BigDecimal.valueOf(250));
+        order1.setCalculatedMaterialCost(BigDecimal.valueOf(1312.5));
+        order1.setCalculatedLaborCost(BigDecimal.valueOf(887.5));
+        order1.setCalculatedTaxAmount(BigDecimal.valueOf(92.4));
+        order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
+        dao.createOrder(order1);
+
+        assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+
+        order1.setOrderDate(LocalDate.parse("2018-01-01")); //Change the date so the order won't be found.
+        dao.removeOrder(order1);
+
+        assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
+
+    }
+
+    @Test //TODO still need to flesh out this test and the following one.
     public void testSave() throws OrderPersistenceException, Exception {
         Order order1 = new Order(1);
         order1.setCustomerLastName("Smith1");
@@ -98,10 +392,10 @@ public class OrderDaoTest {
         order1.setTotalOrderAmount(BigDecimal.valueOf(2292.4));
         dao.createOrder(order1);
 
+    }
 
-
-
-
+    @Test
+    public void testSaveMultipleOrdersDates() throws OrderPersistenceException, Exception {
 
     }
 }

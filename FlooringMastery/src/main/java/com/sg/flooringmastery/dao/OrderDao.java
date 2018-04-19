@@ -15,7 +15,7 @@ public interface OrderDao {
 
     public List<Order> retrieveOrdersByDate(LocalDate date) throws OrderPersistenceException;
 
-    public Order updateOrder(Order orderToUpdate);
+    public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException;
 
     public void removeOrder(Order orderToRemove) throws OrderPersistenceException;
 
