@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface TaxDao {
 
-    public Tax createTax(Tax tax);
+    public Tax createTax(Tax tax) throws TaxPersistenceException;
 
-    public Tax retrieveTax(String state);
+    public Tax retrieveTax(String state) throws TaxPersistenceException;
 
-    public List<Tax> retrieveAllTaxes();
+    public List<Tax> retrieveAllTaxes() throws TaxPersistenceException;
 
-    public Tax updateTax(Tax tax);
+    public Tax updateTax(Tax tax) throws TaxPersistenceException;
 
-    public Tax removeTax(Tax tax);
+    public Tax removeTax(Tax tax) throws TaxPersistenceException;
 
 }

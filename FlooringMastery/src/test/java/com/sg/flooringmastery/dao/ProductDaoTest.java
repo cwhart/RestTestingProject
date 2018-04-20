@@ -23,7 +23,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void createAndRetrieveProduct() {
+    public void createAndRetrieveProduct() throws ProductPersistenceException {
         Product product1 = new Product("Pine");
         product1.setLaborCostPerSquareFoot(new BigDecimal("1.50"));
         product1.setMaterialCostPerSquareFoot(new BigDecimal("3.25"));
@@ -34,7 +34,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void retrieveAllProducts() {
+    public void retrieveAllProducts() throws ProductPersistenceException {
         Product product1 = new Product("Pine");
         product1.setLaborCostPerSquareFoot(new BigDecimal("1.50"));
         product1.setMaterialCostPerSquareFoot(new BigDecimal("3.25"));
@@ -55,7 +55,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void updateProduct() {
+    public void updateProduct()  throws ProductPersistenceException{
         Product product1 = new Product("Pine");
         product1.setLaborCostPerSquareFoot(new BigDecimal("1.50"));
         product1.setMaterialCostPerSquareFoot(new BigDecimal("3.25"));
@@ -74,7 +74,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void removeProduct() {
+    public void removeProduct() throws ProductPersistenceException {
         Product product1 = new Product("Pine");
         product1.setLaborCostPerSquareFoot(new BigDecimal("1.50"));
         product1.setMaterialCostPerSquareFoot(new BigDecimal("3.25"));

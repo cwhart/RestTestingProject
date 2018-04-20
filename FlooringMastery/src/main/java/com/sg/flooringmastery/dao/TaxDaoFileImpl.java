@@ -14,17 +14,22 @@ public class TaxDaoFileImpl implements TaxDao {
     private Map<String, Tax> taxMap = new HashMap<>();
 
     @Override
-    public Tax createTax(Tax tax) {
-        return taxMap.put(tax.getState(), tax);
+    public Tax createTax(Tax tax) throws TaxPersistenceException {
+        loadTaxFile();
+        Tax taxToReturn = taxMap.put(tax.getState(), tax);
+        writeTaxFile();
+        return taxToReturn;
     }
 
     @Override
-    public Tax retrieveTax(String state) {
+    public Tax retrieveTax(String state) throws TaxPersistenceException {
+        loadTaxFile();
         return taxMap.get(state);
     }
 
     @Override
-    public List<Tax> retrieveAllTaxes() {
+    public List<Tax> retrieveAllTaxes() throws TaxPersistenceException {
+        loadTaxFile();
         List<Tax> listOfTaxes = new ArrayList<>();
         for (Tax currentTax : taxMap.values()) {
             listOfTaxes.add(currentTax);
@@ -33,13 +38,19 @@ public class TaxDaoFileImpl implements TaxDao {
     }
 
     @Override
-    public Tax updateTax(Tax tax) {
-        return taxMap.put(tax.getState(), tax);
+    public Tax updateTax(Tax tax) throws TaxPersistenceException {
+        loadTaxFile();
+        Tax taxToReturn = taxMap.replace(tax.getState(), tax);
+        writeTaxFile();
+        return taxToReturn;
     }
 
     @Override
-    public Tax removeTax(Tax tax) {
-        return taxMap.remove(tax.getState());
+    public Tax removeTax(Tax tax) throws TaxPersistenceException {
+        loadTaxFile();
+        Tax taxToReturn = taxMap.remove(tax.getState());
+        writeTaxFile();
+        return taxToReturn;
     }
 
     private void loadTaxFile() throws TaxPersistenceException {
@@ -87,7 +98,7 @@ public class TaxDaoFileImpl implements TaxDao {
 
         List<Tax> taxList = this.retrieveAllTaxes();
         for (Tax currentTax : taxList) {
-            out.println(currentTax.getState() + DELIMITER + currentTax.getTaxRate().setScale(2));
+            out.println(currentTax.getState() + DELIMITER + currentTax.getTaxRate().setScale(2) + DELIMITER);
 
             out.flush();
         }

@@ -78,7 +78,8 @@ public class Order {
     }
 
     public BigDecimal getCalculatedMaterialCost() {
-        return calculatedMaterialCost;
+        BigDecimal materialCostPerSquareFoot = orderProduct.getMaterialCostPerSquareFoot();
+        return area.multiply(materialCostPerSquareFoot);
     }
 
     public void setCalculatedMaterialCost(BigDecimal calculatedMaterialCost) {
@@ -86,7 +87,8 @@ public class Order {
     }
 
     public BigDecimal getCalculatedLaborCost() {
-        return calculatedLaborCost;
+        BigDecimal laborCostPerSquareFoot = orderProduct.getLaborCostPerSquareFoot();
+        return area.multiply(laborCostPerSquareFoot);
     }
 
     public void setCalculatedLaborCost(BigDecimal calculatedLaborCost) {
@@ -94,7 +96,9 @@ public class Order {
     }
 
     public BigDecimal getCalculatedTaxAmount() {
-        return calculatedTaxAmount;
+        BigDecimal taxRate = orderTax.getTaxRate().multiply(BigDecimal.valueOf(.01));
+        BigDecimal totalCost = calculatedMaterialCost.add(calculatedLaborCost);
+        return totalCost.multiply(taxRate);
     }
 
     public void setCalculatedTaxAmount(BigDecimal calculatedTaxAmount) {
@@ -102,27 +106,11 @@ public class Order {
     }
 
     public BigDecimal getTotalOrderAmount() {
-        return totalOrderAmount;
+        return calculatedMaterialCost.add(calculatedLaborCost).add(calculatedTaxAmount);
     }
 
     public void setTotalOrderAmount(BigDecimal totalOrderAmount) {
         this.totalOrderAmount = totalOrderAmount;
-    }
-
-    public BigDecimal calculateMaterialCost(double area, Product product) {
-        return null;
-    }
-
-    public BigDecimal calculateLaborCost(double area, Product product) {
-        return null;
-    }
-
-    public BigDecimal calculateTaxAmount(Tax tax, BigDecimal materialCost, BigDecimal laborCost) {
-        return null;
-    }
-
-    public BigDecimal calculateTotalOrderAmount(BigDecimal materialCost, BigDecimal laborCost, BigDecimal tax) {
-        return null;
     }
 
     @Override

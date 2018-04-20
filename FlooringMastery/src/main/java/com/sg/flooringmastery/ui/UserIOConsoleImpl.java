@@ -95,8 +95,8 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
 
     @Override
     public LocalDate readLocalDate(String prompt) {
-        /*print(prompt);
-        LocalDate inputDate = LocalDate.parse(scanner.next());*/
-        return null;
+        print(prompt);
+        LocalDate inputDate = LocalDate.parse(scanner.next());
+        return inputDate;
     }
 }

@@ -1,6 +1,6 @@
 package com.sg.flooringmastery.service;
 
-import com.sg.flooringmastery.dao.OrderDao;
+import com.sg.flooringmastery.dao.*;
 import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
@@ -12,28 +12,25 @@ import java.util.Map;
 
 public interface FlooringMasteryServiceLayer {
 
-    public List<Order> retrieveAllOrdersByDate(LocalDate date);
+    public List<Order> retrieveAllOrdersByDate(LocalDate date) throws OrderPersistenceException;
 
-    public boolean validateOrdersExistForDate(LocalDate date);
+    public Order addOrder(Order orderToAdd) throws Exception;
 
-    public Order addOrder(Order orderToAdd);
+    public void saveCurrentWork(Map<Integer, Order> orderMap) throws OrderPersistenceException;
 
-    public void saveCurrentWork(Map<Integer, Order> orderMap);
+    public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException;
 
-    public Order updateOrder(Order orderToUpdate);
+    public void removeOrder(Order orderToRemove) throws OrderPersistenceException;
 
-    public void removeOrder(Order orderToRemove);
+    public Order retrieveOrderByDateAndId(LocalDate date, int orderId) throws OrderPersistenceException;
 
-    public Order retrieveOrderByDateAndId(LocalDate date, int orderId);
+    public Order processOrder(Order orderToProcess) throws TaxPersistenceException, ProductPersistenceException;
 
-    public String checkEnvironment();
+    public List<Tax> retrieveTaxes() throws TaxPersistenceException;
 
-    public Order processOrder(Order orderToProcess);
-
-    public List<Tax> retrieveTaxes();
-
-    public List<Product> retrieveProducts();
+    public List<Product> retrieveProducts() throws ProductPersistenceException;
 
     public void setMode(OrderDao orderDao);
+
 
 }

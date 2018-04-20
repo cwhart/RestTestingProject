@@ -14,17 +14,22 @@ public class ProductDaoFileImpl implements ProductDao {
     private Map<String, Product> productMap = new HashMap<>();
 
     @Override
-    public Product createProduct(Product productToAdd) {
-        return productMap.put(productToAdd.getProductType(), productToAdd);
+    public Product createProduct(Product productToAdd) throws ProductPersistenceException {
+        loadProductFile();
+        Product productToReturn = productMap.put(productToAdd.getProductType(), productToAdd);
+        writeProductFile();
+        return productToReturn;
     }
 
     @Override
-    public Product retrieveProduct(String productToRetrieve) {
+    public Product retrieveProduct(String productToRetrieve) throws ProductPersistenceException{
+        loadProductFile();
         return productMap.get(productToRetrieve);
     }
 
     @Override
-    public List<Product> retrieveAllProducts() {
+    public List<Product> retrieveAllProducts() throws ProductPersistenceException {
+        loadProductFile();
         List<Product> productList = new ArrayList<>();
         for (Product currentProduct : productMap.values()) {
             productList.add(currentProduct);
@@ -33,13 +38,19 @@ public class ProductDaoFileImpl implements ProductDao {
     }
 
     @Override
-    public Product updateProduct(Product productToUpdate) {
-        return productMap.put(productToUpdate.getProductType(), productToUpdate);
+    public Product updateProduct(Product productToUpdate) throws ProductPersistenceException {
+        loadProductFile();
+        Product productToReturn = productMap.replace(productToUpdate.getProductType(), productToUpdate);
+        writeProductFile();
+        return productToReturn;
     }
 
     @Override
-    public Product removeProduct(Product productToRemove) {
-        return productMap.remove(productToRemove.getProductType());
+    public Product removeProduct(Product productToRemove) throws ProductPersistenceException {
+        loadProductFile();
+        Product productToReturn = productMap.remove(productToRemove.getProductType());
+        writeProductFile();
+        return productToReturn;
     }
 
     private void loadProductFile() throws ProductPersistenceException {
