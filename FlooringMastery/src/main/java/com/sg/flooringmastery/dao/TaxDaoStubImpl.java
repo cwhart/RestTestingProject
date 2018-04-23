@@ -53,4 +53,6 @@ public class TaxDaoStubImpl implements TaxDao {
             return testTax;
         } else return null;
     }
+
+    //..
 }

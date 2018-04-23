@@ -21,7 +21,9 @@ public class OrderDaoFileImpl implements OrderDao {
 
     @Override
     public Order createOrder(Order orderToCreate) throws OrderPersistenceException  {
+        //Get the order date so we know which file to load from.
         LocalDate orderDate = orderToCreate.getOrderDate();
+        //Generate the order number sequentially from the file.
         orderToCreate.setOrderNumber(generateOrderNumber());
         loadOrdersByDate(orderDate);
         boolean dateFound = false;
@@ -47,80 +49,89 @@ public class OrderDaoFileImpl implements OrderDao {
     @Override
     public Order retrieveOrderByDateAndId(LocalDate orderDate, Integer orderId) throws OrderPersistenceException {
         loadOrdersByDate(orderDate);
-        //if(orderMap.containsKey(orderDate)) {
+            //Get the map of orders for this date.
             Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
 
-            //Since orders are stored without dates, need to set the order date when retrieved.
+            //Since orders are stored to the file without dates, need to set the order date when retrieved.
             for (Order currentOrder : mapForThisDate.values()) {
                 currentOrder.setOrderDate(orderDate);
             }
+            //Now locate the order for the ID given and return it. If it doesn't exist, throw an exception.
             Order orderToReturn = mapForThisDate.get(orderId);
             if (orderToReturn != null) {
                 return orderToReturn;
             } else throw new OrderPersistenceException("ERROR: Order not found!");
-        //} else throw new OrderPersistenceException("ERROR: Date not found!");
+
     }
 
     @Override
     public List<Order> retrieveOrdersByDate(LocalDate date) throws OrderPersistenceException  {
         loadOrdersByDate(date);
-        //if(orderMap.containsKey(date)) {
+            //Get the orders for the date given and put then in a map, then a list.
             Map<Integer, Order> ordersForDate = orderMap.get(date);
             List<Order> orderList = new ArrayList<>(ordersForDate.values());
 
+            //Populate the order dates since they are not stored in the file.
             for (Order currentOrder : orderList) {
                 currentOrder.setOrderDate(date);
             }
             return orderList;
-        //} else throw new OrderPersistenceException("ERROR: Date not found!");
+
     }
 
     @Override
     public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException {
+        //Get the date for the given order and load orders for that date from the file and put them in a map.
         LocalDate thisDate = orderToUpdate.getOrderDate();
         loadOrdersByDate(thisDate);
-        //if(orderMap.containsKey(thisDate)) {
-            Map<Integer, Order> mapForThisDate = orderMap.get(thisDate);
-            mapForThisDate.replace(orderToUpdate.getOrderNumber(), orderToUpdate);
+        Map<Integer, Order> mapForThisDate = orderMap.get(thisDate);
 
-            Order orderToReturn = mapForThisDate.get(orderToUpdate.getOrderNumber());
+        //replace the existing entry for this order ID with the new one. If not found, throw an exception.
+        mapForThisDate.replace(orderToUpdate.getOrderNumber(), orderToUpdate);
+
+        Order orderToReturn = mapForThisDate.get(orderToUpdate.getOrderNumber());
             if (orderToReturn != null) {
                 return orderToReturn;
             } else throw new OrderPersistenceException("ERROR: Order not found!");
-       // } else throw new OrderPersistenceException("ERROR: Date not found!");
-
-
 
     }
 
     @Override
     public void removeOrder(Order orderToRemove) throws OrderPersistenceException{
+        //Get the date of the order and load orders from the corresponding file.
         LocalDate thisDate = orderToRemove.getOrderDate();
         loadOrdersByDate(thisDate);
-       // if(orderMap.containsKey(thisDate)) {
+
+        //Populate to a map, and then find the correct order by ID and remove it. If not found, throw an exception.
             Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
             if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
                 throw new OrderPersistenceException("ERROR: Order not found!");
             }
-            //orderMap.put(thisDate, ordersForThisDate);
-        //} else throw new OrderPersistenceException("ERROR: Date not found!");
+
     }
 
     @Override
     public void save() throws OrderPersistenceException {
-      writeOrderFile();
+        //Save to file.
+        //TODO: implement logic around Training/Production environments so this doesn't get called if in Training.
+        writeOrderFile();
 
     }
 
     private void loadOrdersByDate(LocalDate date) throws OrderPersistenceException {
+
+        //If the order map contains the date given, execute the code.
         if(!orderMap.containsKey(date)) {
             Scanner scanner;
 
+            //Format the date as MMddyyyy to be used in the filename to retrieve.
             String formatted = date.format(DateTimeFormatter.ofPattern("MMddyyyy"));
 
+            //Generate the filename.
             orderFile = "Orders/Orders_" + formatted + ".txt";
 
 
+            //Read from the file. If file doesn't exist, create it.
             try {
 
                 scanner = new Scanner(
@@ -130,11 +141,11 @@ public class OrderDaoFileImpl implements OrderDao {
                 Map<Integer, Order> newMap = new HashMap<>();
 
                 orderMap.put(date, newMap);
-                //throw new NewFileCreatedException("");
 
                 return;
             }
 
+            //For each line in the file, split by comma delimiter and populate elements into an Order object.
             String currentLine;
             String[] currentTokens;
             Map<Integer, Order> todaysOrders = new HashMap<>();
@@ -143,10 +154,14 @@ public class OrderDaoFileImpl implements OrderDao {
                 currentLine = scanner.nextLine();
                 currentTokens = currentLine.split(DELIMITER);
 
+                //Constructor takes in first token as Order ID.
                 Order currentOrder = new Order(Integer.parseInt(currentTokens[0]));
 
                 currentOrder.setCustomerLastName(currentTokens[1]);
                 currentOrder.setState(currentTokens[2]);
+                //For Tax and Product objects, create temporary variables and populate them into
+                //objects below.
+
                 BigDecimal taxRate = new BigDecimal(currentTokens[3]);
                 String productType = currentTokens[4];
                 currentOrder.setArea(new BigDecimal(currentTokens[5]));
@@ -219,6 +234,7 @@ public class OrderDaoFileImpl implements OrderDao {
         }
     }
 
+    //Methods to generate the order ID = this loads the order ID file and increments it.
     private int loadOrderIdFromFile() throws OrderPersistenceException {
         Scanner scanner;
         try{
@@ -233,6 +249,7 @@ public class OrderDaoFileImpl implements OrderDao {
         return id;
     }
 
+    //Write the updated order ID to the file.
     private void writeOrderIdToFile(int idNumber) throws OrderPersistenceException {
         PrintWriter out;
         try {
@@ -253,4 +270,6 @@ public class OrderDaoFileImpl implements OrderDao {
 
         return nextOrderNum;
     }
+
+    //..
 }

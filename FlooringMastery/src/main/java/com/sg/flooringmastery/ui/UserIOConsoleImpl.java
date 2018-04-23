@@ -107,4 +107,6 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
         String input = scanner.nextLine();
         return new BigDecimal(input);
     }
+
+    //..
 }

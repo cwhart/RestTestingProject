@@ -72,4 +72,6 @@ public class OrderDaoStubImpl implements OrderDao{
     public void save() throws OrderPersistenceException {
 
     }
+
+    //..
 }

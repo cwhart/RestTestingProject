@@ -71,4 +71,6 @@ public class Product {
                 ", laborCostPerSquareFoot=" + laborCostPerSquareFoot +
                 '}';
     }
+
+    //..
 }

@@ -9,4 +9,6 @@ public class ProductPersistenceException extends Exception {
     public ProductPersistenceException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    //..
 }

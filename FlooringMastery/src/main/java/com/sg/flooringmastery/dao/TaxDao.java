@@ -16,4 +16,6 @@ public interface TaxDao {
 
     public Tax removeTax(Tax tax) throws TaxPersistenceException;
 
+    //..
+
 }

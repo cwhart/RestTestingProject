@@ -53,4 +53,6 @@ public class ProductDaoStubImpl implements ProductDao {
             return testProduct;
         } else return null;
     }
+
+    //..
 }

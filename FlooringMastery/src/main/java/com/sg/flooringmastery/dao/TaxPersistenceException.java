@@ -9,4 +9,6 @@ public class TaxPersistenceException extends Exception {
     public TaxPersistenceException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    //..
 }

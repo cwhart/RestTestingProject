@@ -89,4 +89,6 @@ public class TaxDaoTest {
         //assertNull(dao.retrieveTax("NJ"));
         assertEquals(0, dao.retrieveAllTaxes().size());
     }
+
+    //..
 }

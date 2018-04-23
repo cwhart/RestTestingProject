@@ -20,4 +20,6 @@ public interface OrderDao {
     public void removeOrder(Order orderToRemove) throws OrderPersistenceException;
 
     public void save() throws OrderPersistenceException;
+
+    //..
 }

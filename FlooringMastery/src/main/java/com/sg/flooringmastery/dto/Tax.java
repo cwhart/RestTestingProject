@@ -57,4 +57,6 @@ public class Tax {
                 ", taxRate=" + taxRate.setScale(2) +
                 '}';
     }
+
+    //..
 }
