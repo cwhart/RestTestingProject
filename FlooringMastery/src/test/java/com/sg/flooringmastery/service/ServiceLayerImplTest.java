@@ -12,18 +12,16 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class FlooringMasteryServiceLayerImplTest {
+public class ServiceLayerImplTest {
 
-    private FlooringMasteryServiceLayer service;
+    private ServiceLayer service;
 
-    public FlooringMasteryServiceLayerImplTest() {
+    public ServiceLayerImplTest() {
         TaxDao taxDao = new TaxDaoStubImpl();
         ProductDao productDao = new ProductDaoStubImpl();
         OrderDao orderDao = new OrderDaoStubImpl();
-        service = new FlooringMasteryServiceLayerImpl(taxDao, productDao, orderDao);
+        service = new ServiceLayerImpl(taxDao, productDao, orderDao);
     }
-
-
 
     @Test
     public void retrieveAllOrdersByDate() throws OrderPersistenceException {
@@ -49,8 +47,6 @@ public class FlooringMasteryServiceLayerImplTest {
         //Order retrievedOrder = service.retrieveOrderByDateAndId(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(addedOrder, order1);
-
-
     }
 
     @Test
@@ -78,8 +74,7 @@ public class FlooringMasteryServiceLayerImplTest {
     }
 
     @Test
-    public void processOrder() throws ProductPersistenceException, TaxPersistenceException {
-
+    public void processOrder() throws ProductPersistenceException, TaxPersistenceException, OrderPersistenceException {
 
         Order order1 = new Order(1);
         order1.setCustomerLastName("Smith1");
@@ -88,7 +83,7 @@ public class FlooringMasteryServiceLayerImplTest {
         //Commenting out setting of the fields that we want the processOrder method to set.
         //order1.setOrderTax(new Tax("NJ", BigDecimal.valueOf(4.42)));
         order1.setOrderProduct(new Product("Oak"));
-        order1.setOrderTax(new Tax("NJ"));
+        order1.setOrderTax(new Tax("NH"));
         order1.setArea(BigDecimal.valueOf(250));
         //order1.setCalculatedMaterialCost(order1.getCalculatedMaterialCost());
         //order1.setCalculatedLaborCost(order1.getCalculatedLaborCost());

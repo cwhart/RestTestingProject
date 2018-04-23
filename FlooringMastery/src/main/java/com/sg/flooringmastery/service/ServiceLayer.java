@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public interface FlooringMasteryServiceLayer {
+public interface ServiceLayer {
 
     public List<Order> retrieveAllOrdersByDate(LocalDate date) throws OrderPersistenceException;
 
     public Order addOrder(Order orderToAdd) throws Exception;
 
-    public void saveCurrentWork(Map<Integer, Order> orderMap) throws OrderPersistenceException;
+    public void saveCurrentWork() throws OrderPersistenceException;
 
     public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException;
 
@@ -24,7 +24,7 @@ public interface FlooringMasteryServiceLayer {
 
     public Order retrieveOrderByDateAndId(LocalDate date, int orderId) throws OrderPersistenceException;
 
-    public Order processOrder(Order orderToProcess) throws TaxPersistenceException, ProductPersistenceException;
+    public Order processOrder(Order orderToProcess) throws TaxPersistenceException, ProductPersistenceException, OrderPersistenceException;
 
     public List<Tax> retrieveTaxes() throws TaxPersistenceException;
 

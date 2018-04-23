@@ -1,9 +1,10 @@
 package com.sg.flooringmastery.controller;
 
 import com.sg.flooringmastery.dao.OrderPersistenceException;
+import com.sg.flooringmastery.dao.ProductPersistenceException;
+import com.sg.flooringmastery.dao.TaxPersistenceException;
 import com.sg.flooringmastery.dto.Order;
-import com.sg.flooringmastery.service.FlooringMasteryServiceLayer;
-import com.sg.flooringmastery.service.FlooringMasteryServiceLayerImpl;
+import com.sg.flooringmastery.service.ServiceLayerImpl;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
 
 import java.time.LocalDate;
@@ -11,10 +12,10 @@ import java.util.List;
 
 public class FlooringMasteryController {
 
-    FlooringMasteryServiceLayerImpl service;
+    ServiceLayerImpl service;
     FlooringMasteryView view;
 
-    public FlooringMasteryController(FlooringMasteryView view, FlooringMasteryServiceLayerImpl service) {
+    public FlooringMasteryController(FlooringMasteryView view, ServiceLayerImpl service) {
         this.service = service;
         this.view = view;
     }
@@ -68,19 +69,51 @@ public class FlooringMasteryController {
         view.displayOrders(orderList);
     }
 
-    private void addAnOrder() {
-        System.out.println("Add an order");
+    private void addAnOrder()throws OrderPersistenceException {
+        Order orderToAdd = view.promptUserForOrderInfo();
+
+        try {
+            service.processOrder(orderToAdd);
+
+        } catch (TaxPersistenceException | ProductPersistenceException | OrderPersistenceException e) {
+          view.displayErrorMessage(e.getMessage());
+        }
+        boolean confirmAddOrder = view.displayProcessedOrderAndConfirm(orderToAdd);
+        if (confirmAddOrder) {
+            service.addOrder(orderToAdd);
+        }
     }
 
-    private void editAnOrder() {
-        System.out.println("Edit an order");
+    private void editAnOrder() throws OrderPersistenceException{
+        Order orderToEdit = view.promptUserForOrderNumberAndDate();
+        orderToEdit = service.retrieveOrderByDateAndId(orderToEdit.getOrderDate(), orderToEdit.getOrderNumber());
+        Order updatedOrder = view.promptUserForUpdatedOrderInfo(orderToEdit);
+
+        try {
+            service.processOrder(updatedOrder);
+
+        } catch (TaxPersistenceException | ProductPersistenceException | OrderPersistenceException e) {
+            view.displayErrorMessage(e.getMessage());
+        }
+        boolean confirmAddOrder = view.displayProcessedOrderAndConfirm(updatedOrder);
+        if (confirmAddOrder) {
+            service.updateOrder(updatedOrder);
+        }
+
     }
 
-    private void removeAnOrder() {
-        System.out.println("Remove an order");
+    private void removeAnOrder() throws OrderPersistenceException {
+        Order orderToRemove = view.promptUserForOrderNumberAndDate();
+        orderToRemove = service.retrieveOrderByDateAndId(orderToRemove.getOrderDate(), orderToRemove.getOrderNumber());
+
+        try {
+            service.removeOrder(orderToRemove);
+        } catch (OrderPersistenceException e) {
+            view.displayErrorMessage(e.getMessage());
+        }
     }
 
-    private void saveCurrentWork() {
-        System.out.println("Save work");
+    private void saveCurrentWork() throws OrderPersistenceException{
+        service.saveCurrentWork();
     }
 }

@@ -14,12 +14,12 @@ import java.util.Map;
 public class OrderDaoStubImpl implements OrderDao{
 
     private List<Order> day1Orders = new ArrayList<>();
-    private Order testOrder;
+    private Order testOrder = new Order(1);
     private LocalDate testDate = LocalDate.parse("2018-04-17");
 
 
     public OrderDaoStubImpl() {
-        Order testOrder = new Order(1);
+        //Order testOrder = new Order(1);
         testOrder.setCustomerLastName("Smith1");
         testOrder.setOrderDate(testDate);
         testOrder.setState("NJ");
@@ -36,7 +36,7 @@ public class OrderDaoStubImpl implements OrderDao{
     }
 
     @Override
-    public Order createOrder(Order orderToCreate) throws OrderPersistenceException, Exception {
+    public Order createOrder(Order orderToCreate) throws OrderPersistenceException {
         return orderToCreate;
     }
 

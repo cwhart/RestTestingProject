@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface OrderDao {
 
-    public Order createOrder(Order orderToCreate) throws OrderPersistenceException, Exception;
+    public Order createOrder(Order orderToCreate) throws OrderPersistenceException;
 
     public Order retrieveOrderByDateAndId(LocalDate orderDate, Integer orderId) throws OrderPersistenceException;
 

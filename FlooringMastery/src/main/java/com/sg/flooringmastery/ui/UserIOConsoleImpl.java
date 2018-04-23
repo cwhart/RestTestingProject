@@ -2,6 +2,7 @@ package com.sg.flooringmastery.ui;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -96,7 +97,14 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
     @Override
     public LocalDate readLocalDate(String prompt) {
         print(prompt);
-        LocalDate inputDate = LocalDate.parse(scanner.next());
-        return inputDate;
+        String inputDateStr = scanner.nextLine();
+        return LocalDate.parse(inputDateStr);
+    }
+
+    @Override
+    public BigDecimal readBigDecimal(String prompt) {
+        print(prompt);
+        String input = scanner.nextLine();
+        return new BigDecimal(input);
     }
 }

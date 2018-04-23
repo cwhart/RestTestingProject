@@ -29,7 +29,7 @@
 
     <!--<bean id="auditDao" class="com.sg.vendingmachine.dao.VendingMachineAuditDaoImpl"/>-->
 
-    <bean id="serviceLayer" class="com.sg.flooringmastery.service.FlooringMasteryServiceLayerImpl">
+    <bean id="serviceLayer" class="com.sg.flooringmastery.service.ServiceLayerImpl">
         <constructor-arg ref="orderDao"/>
         <constructor-arg ref="productDao"/>
         <constructor-arg ref="taxDao"/>
