@@ -19,15 +19,18 @@ public class FlooringMasteryView {
         this.userIO = userIO;
     }
 
-    public int displayMenuAndGetSelection() {
+    public int displayMenuAndGetSelection(boolean mode) {
 
         userIO.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        if(mode==false) {
+            userIO.print("*****YOU ARE CURRENTLY IN TRAINING MODE*****");
+        }
         userIO.print("* 1. Display Orders");
         userIO.print("* 2. Add an Order");
         userIO.print("* 3. Edit an Order");
         userIO.print("* 4. Remove an Order");
         userIO.print("* 5. Save Current Work");
-        userIO.print("* 6. Enter Training mode");
+        userIO.print("* 6. Change mode");
         userIO.print("* 7. Quit");
         userIO.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
 
@@ -199,5 +202,24 @@ public class FlooringMasteryView {
 
     public String errorPrompt(String error) {
         return userIO.readString(error);
+    }
+
+    public boolean displaySwitchMode(boolean mode) {
+        if(mode ==true) {
+            String userInput = (userIO.readString("Current mode is Production. " +
+                    "Do you want to switch to Training? Y/N")).toUpperCase();
+            if(userInput.equals("Y")) {
+                mode = false;
+            }
+        }
+        else if(mode == false) {
+            String userInput = (userIO.readString("Current mode is Training. " +
+                    "Do you want to switch to Production? Y/N")).toUpperCase();
+            if(userInput.equals("Y")) {
+                mode = true;
+            }
+        }
+
+        return mode;
     }
 }

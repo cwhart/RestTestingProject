@@ -3,7 +3,6 @@ package com.sg.flooringmastery.dao;
 import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
-import org.aspectj.weaver.ast.Or;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class OrderDaoFileImpl implements OrderDao {
+public class OrderDaoTestFileImpl implements OrderDao{
 
     public String orderFile;
     private final String DELIMITER = ",";
@@ -20,7 +19,7 @@ public class OrderDaoFileImpl implements OrderDao {
     private Map<LocalDate, Map<Integer, Order>> orderMap = new HashMap<LocalDate, Map<Integer, Order>>();
     private static int nextOrderNum;
 
-    public OrderDaoFileImpl(String orderFile) {
+    public OrderDaoTestFileImpl(String orderFile) {
         this.orderFile = orderFile;
     }
 
@@ -62,33 +61,33 @@ public class OrderDaoFileImpl implements OrderDao {
     @Override
     public Order retrieveOrderByDateAndId(LocalDate orderDate, Integer orderId) throws OrderPersistenceException {
         loadOrdersByDate(orderDate);
-            //Get the map of orders for this date.
-            Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
+        //Get the map of orders for this date.
+        Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
 
-            //Since orders are stored to the file without dates, need to set the order date when retrieved.
-            for (Order currentOrder : mapForThisDate.values()) {
-                currentOrder.setOrderDate(orderDate);
-            }
-            //Now locate the order for the ID given and return it. If it doesn't exist, throw an exception.
-            Order orderToReturn = mapForThisDate.get(orderId);
-            if (orderToReturn != null) {
-                return orderToReturn;
-            } else throw new OrderPersistenceException("ERROR: Order not found!");
+        //Since orders are stored to the file without dates, need to set the order date when retrieved.
+        for (Order currentOrder : mapForThisDate.values()) {
+            currentOrder.setOrderDate(orderDate);
+        }
+        //Now locate the order for the ID given and return it. If it doesn't exist, throw an exception.
+        Order orderToReturn = mapForThisDate.get(orderId);
+        if (orderToReturn != null) {
+            return orderToReturn;
+        } else throw new OrderPersistenceException("ERROR: Order not found!");
 
     }
 
     @Override
     public List<Order> retrieveOrdersByDate(LocalDate date) throws OrderPersistenceException  {
         loadOrdersByDate(date);
-            //Get the orders for the date given and put then in a map, then a list.
-            Map<Integer, Order> ordersForDate = orderMap.get(date);
-            List<Order> orderList = new ArrayList<>(ordersForDate.values());
+        //Get the orders for the date given and put then in a map, then a list.
+        Map<Integer, Order> ordersForDate = orderMap.get(date);
+        List<Order> orderList = new ArrayList<>(ordersForDate.values());
 
-            //Populate the order dates since they are not stored in the file.
-            for (Order currentOrder : orderList) {
-                currentOrder.setOrderDate(date);
-            }
-            return orderList;
+        //Populate the order dates since they are not stored in the file.
+        for (Order currentOrder : orderList) {
+            currentOrder.setOrderDate(date);
+        }
+        return orderList;
 
     }
 
@@ -103,9 +102,9 @@ public class OrderDaoFileImpl implements OrderDao {
         mapForThisDate.replace(orderToUpdate.getOrderNumber(), orderToUpdate);
 
         Order orderToReturn = mapForThisDate.get(orderToUpdate.getOrderNumber());
-            if (orderToReturn != null) {
-                return orderToReturn;
-            } else throw new OrderPersistenceException("ERROR: Order not found!");
+        if (orderToReturn != null) {
+            return orderToReturn;
+        } else throw new OrderPersistenceException("ERROR: Order not found!");
 
     }
 
@@ -116,18 +115,16 @@ public class OrderDaoFileImpl implements OrderDao {
         loadOrdersByDate(thisDate);
 
         //Populate to a map, and then find the correct order by ID and remove it. If not found, throw an exception.
-            Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
-            if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
-                throw new OrderPersistenceException("ERROR: Order not found!");
-            }
+        Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
+        if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
+            throw new OrderPersistenceException("ERROR: Order not found!");
+        }
 
     }
 
     @Override
     public void save() throws OrderPersistenceException {
-        //Save to file.
-        //TODO: implement logic around Training/Production environments so this doesn't get called if in Training.
-        writeOrderFile();
+
 
     }
 
@@ -283,6 +280,4 @@ public class OrderDaoFileImpl implements OrderDao {
 
         return nextOrderNum;
     }
-
-    //..
 }

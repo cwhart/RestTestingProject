@@ -4,6 +4,8 @@ import com.sg.flooringmastery.dao.*;
 import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -100,8 +102,17 @@ public class ServiceLayerImpl implements ServiceLayer {
     }
 
     @Override
-    public void setMode(String mode) {
-        this.mode = mode;
+    public void setMode(boolean mode) {
+
+        ApplicationContext ctx =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        if (mode) {
+            this.orderDao =
+                    ctx.getBean("orderDao", OrderDaoFileImpl.class);
+        } else {
+            this.orderDao =
+                    ctx.getBean("testOrderDao", OrderDaoTestFileImpl.class);
+        }
 
     }
 

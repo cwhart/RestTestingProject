@@ -20,6 +20,7 @@ public class FlooringMasteryController {
     public FlooringMasteryController(FlooringMasteryView view, ServiceLayerImpl service) {
         this.service = service;
         this.view = view;
+
     }
 
     public void run()  {
@@ -27,10 +28,12 @@ public class FlooringMasteryController {
         try {
 
             boolean keepGoing = true;
+            boolean mode = true; //'true' is defined as Production mode.
 
             while (keepGoing) {
 
-                int userSelection = getMenuSelection();
+
+                int userSelection = getMenuSelection(mode);
 
                 switch (userSelection) {
 
@@ -50,12 +53,13 @@ public class FlooringMasteryController {
                         saveCurrentWork();
                         break;
                     case 6:
-                        enterTrainingMode();
+                        mode = switchMode(mode);
                         break;
                     case 7:
                         if (confirmBeforeExiting()) {
                             keepGoing = false;
                         }
+                        break;
                     default:
                         view.displayErrorMessage("ERROR: Invalid selection");
 
@@ -67,8 +71,8 @@ public class FlooringMasteryController {
 
     }
 
-    private int getMenuSelection() {
-        return view.displayMenuAndGetSelection();
+    private int getMenuSelection(boolean mode) {
+        return view.displayMenuAndGetSelection(mode);
     }
 
 
@@ -148,8 +152,11 @@ public class FlooringMasteryController {
 
     }
 
-    private void enterTrainingMode() {
-        service.setMode("Training");
+    private boolean switchMode (boolean mode) {
+        mode = view.displaySwitchMode(mode);
+        service.setMode(mode);
+        return mode;
     }
+
 
 }

@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class OrderDaoTest {
 
-    OrderDao dao = new OrderDaoFileImpl();
+    OrderDao dao = new OrderDaoFileImpl("Orders/testFile");
 
     @Before
     public void setUp() throws Exception {

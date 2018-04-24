@@ -23,8 +23,15 @@
     </bean>
 
 
-    <bean id="orderDao" class="com.sg.flooringmastery.dao.OrderDaoFileImpl"/>
-    <bean id="productDao" class="com.sg.flooringmastery.dao.ProductDaoFileImpl"/>
+    <bean id="orderDao"
+          class="com.sg.flooringmastery.dao.OrderDaoFileImpl">
+        <constructor-arg value="orderCount.txt"/>
+    </bean>
+    <bean id="testOrderDao"
+          class="com.sg.flooringmastery.dao.OrderDaoTestFileImpl">
+        <constructor-arg value="orderCount.txt"/>
+    </bean>
+    <bean id="productDao" class="com.sg.flooringmastery.dao.ProductDaoFileImpl" />
     <bean id="taxDao" class="com.sg.flooringmastery.dao.TaxDaoFileImpl"/>
 
     <!--<bean id="auditDao" class="com.sg.vendingmachine.dao.VendingMachineAuditDaoImpl"/>-->
