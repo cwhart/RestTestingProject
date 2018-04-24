@@ -16,5 +16,5 @@ public interface ProductDao {
 
     public Product removeProduct(Product productToRemove) throws ProductPersistenceException;
 
-    //..
+    //...
 }

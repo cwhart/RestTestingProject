@@ -6,6 +6,7 @@ import com.sg.flooringmastery.dao.TaxPersistenceException;
 import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
+import com.sg.flooringmastery.service.ServiceLayer;
 import com.sg.flooringmastery.service.ServiceLayerImpl;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
 
@@ -14,10 +15,10 @@ import java.util.List;
 
 public class FlooringMasteryController {
 
-    ServiceLayerImpl service;
+    ServiceLayer service;
     FlooringMasteryView view;
 
-    public FlooringMasteryController(FlooringMasteryView view, ServiceLayerImpl service) {
+    public FlooringMasteryController(FlooringMasteryView view, ServiceLayer service) {
         this.service = service;
         this.view = view;
 
@@ -87,7 +88,7 @@ public class FlooringMasteryController {
         List <Tax> taxes = service.retrieveTaxes();
         List <Product> products = service.retrieveProducts();
         boolean tryAgain = true;
-        Order orderToAdd = new Order(1);
+        Order orderToAdd = new Order();
 
         do {
             try {
@@ -111,10 +112,14 @@ public class FlooringMasteryController {
         }
     }
 
-    private void editAnOrder() throws OrderPersistenceException{
+    private void editAnOrder() throws OrderPersistenceException, ProductPersistenceException, TaxPersistenceException{
         Order orderToEdit = view.promptUserForOrderNumberAndDate();
+        Order updatedOrder = new Order();
+        LocalDate oldDate = orderToEdit.getOrderDate();
+        int id = orderToEdit.getOrderNumber();
         orderToEdit = service.retrieveOrderByDateAndId(orderToEdit.getOrderDate(), orderToEdit.getOrderNumber());
-        Order updatedOrder = view.promptUserForUpdatedOrderInfo(orderToEdit);
+
+        updatedOrder = view.promptUserForUpdatedOrderInfo(orderToEdit);
 
         try {
             service.processOrder(updatedOrder);
@@ -122,11 +127,22 @@ public class FlooringMasteryController {
         } catch (TaxPersistenceException | ProductPersistenceException | OrderPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
-        boolean confirmAddOrder = view.displayProcessedOrderAndConfirm(updatedOrder);
-        if (confirmAddOrder) {
-            service.updateOrder(updatedOrder);
-            view.displayEditOrderConfirmation(updatedOrder);
+        boolean confirmEditOrder = view.displayProcessedOrderAndConfirm(updatedOrder);
+
+        //Once edit is confirmed, check to see if updated date is equal to the original date.
+        //If they are equal, do the update. If not, remove the old order and add the new one.
+        if (confirmEditOrder) {
+            //processOrder method will reassign a new ID; need to set it back to the old one.
+            updatedOrder.setOrderNumber(id);
+            if(oldDate.equals(updatedOrder.getOrderDate())) {
+                service.updateOrder(updatedOrder);
+                view.displayEditOrderConfirmation(updatedOrder);
+            } else {
+                service.removeOrder(oldDate, id);
+                service.addOrder(updatedOrder);
+            }
         }
+
 
     }
 
@@ -135,7 +151,7 @@ public class FlooringMasteryController {
         orderToRemove = service.retrieveOrderByDateAndId(orderToRemove.getOrderDate(), orderToRemove.getOrderNumber());
 
         try {
-            service.removeOrder(orderToRemove);
+            service.removeOrder(orderToRemove.getOrderDate(), orderToRemove.getOrderNumber());
             view.displayRemoveOrderConfirmation(orderToRemove);
         } catch (OrderPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
@@ -157,6 +173,6 @@ public class FlooringMasteryController {
         service.setMode(mode);
         return mode;
     }
-
+    //..
 
 }

@@ -15,7 +15,7 @@
           http://www.springframework.org/schema/aop
           http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
-    <!-- Bean definitions go here -->
+    <!-- Bean definitions here -->
     <bean id="userIO" class="com.sg.flooringmastery.ui.UserIOConsoleImpl"/>
 
     <bean id="view" class="com.sg.flooringmastery.ui.FlooringMasteryView">
@@ -33,13 +33,17 @@
     </bean>
     <bean id="productDao" class="com.sg.flooringmastery.dao.ProductDaoFileImpl" />
     <bean id="taxDao" class="com.sg.flooringmastery.dao.TaxDaoFileImpl"/>
+    <bean id="auditDao" class="com.sg.flooringmastery.dao.AuditDaoFileImpl"/>
+    <bean id="orderDaoStub" class="com.sg.flooringmastery.dao.OrderDaoStubImpl"/>
+    <bean id="productDaoStub" class="com.sg.flooringmastery.dao.ProductDaoStubImpl"/>
+    <bean id="taxDaoStub" class="com.sg.flooringmastery.dao.TaxDaoStubImpl"/>
 
-    <!--<bean id="auditDao" class="com.sg.vendingmachine.dao.VendingMachineAuditDaoImpl"/>-->
 
     <bean id="serviceLayer" class="com.sg.flooringmastery.service.ServiceLayerImpl">
         <constructor-arg ref="orderDao"/>
         <constructor-arg ref="productDao"/>
         <constructor-arg ref="taxDao"/>
+        <constructor-arg ref="auditDao"/>
 
     </bean>
 
@@ -49,9 +53,51 @@
     </bean>
 
     <bean id="loggingAdvice" class="com.sg.flooringmastery.advice.loggingAdvice">
-        <!--<constructor-arg ref="auditDao"/>-->
+        <constructor-arg ref="auditDao"/>
     </bean>
 
-    <!---->
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning method="auditCreateUpdateDelete"
+                                 pointcut="execution(* com.sg.flooringmastery.service.ServiceLayerImpl.addOrder(..))"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning method="auditCreateUpdateDelete"
+                                 pointcut="execution(* com.sg.flooringmastery.service.ServiceLayerImpl.updateOrder(..))"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning method="auditCreateUpdateDelete"
+                                 pointcut="execution(* com.sg.flooringmastery.service.ServiceLayerImpl.removeOrder(..))"/>
+        </aop:aspect>
+    </aop:config>
+
+
+    <aop:config>
+
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-throwing method="auditLogException"
+                                pointcut="execution(* com.sg.flooringmastery.service.ServiceLayerImpl.retrieveOrderByDateAndId(..))"
+                                throwing="exception"/>
+
+        </aop:aspect>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-throwing method="auditLogException"
+                                pointcut="execution(* com.sg.flooringmastery.service.ServiceLayerImpl.processOrder(..))"
+                                throwing="exception"/>
+
+        </aop:aspect>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-throwing method="auditLogException"
+                                pointcut="execution(* com.sg.flooringmastery.controller.FlooringMasteryController.run(..))"
+                                throwing="exception"/>
+
+        </aop:aspect>
+
+    </aop:config>
+
 
 </beans>

@@ -14,12 +14,13 @@ import java.util.Map;
 public class OrderDaoStubImpl implements OrderDao{
 
     private List<Order> day1Orders = new ArrayList<>();
-    private Order testOrder = new Order(1);
+    private Order testOrder = new Order();
     private LocalDate testDate = LocalDate.parse("2018-04-17");
 
 
     public OrderDaoStubImpl() {
         //Order testOrder = new Order(1);
+        testOrder.setOrderNumber(1);
         testOrder.setCustomerLastName("Smith1");
         testOrder.setOrderDate(testDate);
         testOrder.setState("NJ");
@@ -62,9 +63,9 @@ public class OrderDaoStubImpl implements OrderDao{
     }
 
     @Override
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException {
-        if(orderToRemove.getOrderNumber()==1) {
-            day1Orders.remove(orderToRemove);
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException {
+        if(id==1) {
+            day1Orders.remove(0);
         }
     }
 
@@ -73,5 +74,5 @@ public class OrderDaoStubImpl implements OrderDao{
 
     }
 
-    //..
+    //...
 }

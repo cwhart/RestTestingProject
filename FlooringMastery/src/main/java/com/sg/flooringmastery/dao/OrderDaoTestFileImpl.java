@@ -109,14 +109,14 @@ public class OrderDaoTestFileImpl implements OrderDao{
     }
 
     @Override
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException{
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException{
         //Get the date of the order and load orders from the corresponding file.
-        LocalDate thisDate = orderToRemove.getOrderDate();
-        loadOrdersByDate(thisDate);
+        //LocalDate thisDate = orderToRemove.getOrderDate();
+        loadOrdersByDate(date);
 
         //Populate to a map, and then find the correct order by ID and remove it. If not found, throw an exception.
-        Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
-        if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
+        Map<Integer, Order> ordersForThisDate = orderMap.get(date);
+        if (ordersForThisDate.remove(id) == null) {
             throw new OrderPersistenceException("ERROR: Order not found!");
         }
 
@@ -165,7 +165,8 @@ public class OrderDaoTestFileImpl implements OrderDao{
                 currentTokens = currentLine.split(DELIMITER);
 
                 //Constructor takes in first token as Order ID.
-                Order currentOrder = new Order(Integer.parseInt(currentTokens[0]));
+                Order currentOrder = new Order();
+                currentOrder.setOrderNumber(Integer.parseInt(currentTokens[0]));
 
                 currentOrder.setCustomerLastName(currentTokens[1]);
                 currentOrder.setState(currentTokens[2]);
@@ -279,5 +280,5 @@ public class OrderDaoTestFileImpl implements OrderDao{
         writeOrderIdToFile(nextOrderNum);
 
         return nextOrderNum;
-    }
+    }//..
 }

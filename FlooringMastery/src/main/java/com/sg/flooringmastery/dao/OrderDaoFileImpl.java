@@ -4,6 +4,7 @@ import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.cglib.core.Local;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -37,7 +38,9 @@ public class OrderDaoFileImpl implements OrderDao {
         //Get the order date so we know which file to load from.
         LocalDate orderDate = orderToCreate.getOrderDate();
         //Generate the order number sequentially from the file.
-        orderToCreate.setOrderNumber(generateOrderNumber());
+        if(orderToCreate.getOrderNumber()==0) {
+            orderToCreate.setOrderNumber(generateOrderNumber());
+        }
         loadOrdersByDate(orderDate);
         boolean dateFound = false;
         Map <Integer,Order> thisMap = new HashMap<>();
@@ -66,9 +69,9 @@ public class OrderDaoFileImpl implements OrderDao {
             Map<Integer, Order> mapForThisDate = orderMap.get(orderDate);
 
             //Since orders are stored to the file without dates, need to set the order date when retrieved.
-            for (Order currentOrder : mapForThisDate.values()) {
-                currentOrder.setOrderDate(orderDate);
-            }
+//            for (Order currentOrder : mapForThisDate.values()) {
+//                currentOrder.setOrderDate(orderDate);
+//            }
             //Now locate the order for the ID given and return it. If it doesn't exist, throw an exception.
             Order orderToReturn = mapForThisDate.get(orderId);
             if (orderToReturn != null) {
@@ -110,14 +113,14 @@ public class OrderDaoFileImpl implements OrderDao {
     }
 
     @Override
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException{
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException{
         //Get the date of the order and load orders from the corresponding file.
-        LocalDate thisDate = orderToRemove.getOrderDate();
-        loadOrdersByDate(thisDate);
+        //LocalDate thisDate = orderToRemove.getOrderDate();
+        loadOrdersByDate(date);
 
         //Populate to a map, and then find the correct order by ID and remove it. If not found, throw an exception.
-            Map<Integer, Order> ordersForThisDate = orderMap.get(thisDate);
-            if (ordersForThisDate.remove(orderToRemove.getOrderNumber()) == null) {
+            Map<Integer, Order> ordersForThisDate = orderMap.get(date);
+            if (ordersForThisDate.remove(id) == null) {
                 throw new OrderPersistenceException("ERROR: Order not found!");
             }
 
@@ -126,7 +129,7 @@ public class OrderDaoFileImpl implements OrderDao {
     @Override
     public void save() throws OrderPersistenceException {
         //Save to file.
-        //TODO: implement logic around Training/Production environments so this doesn't get called if in Training.
+
         writeOrderFile();
 
     }
@@ -168,8 +171,8 @@ public class OrderDaoFileImpl implements OrderDao {
                 currentTokens = currentLine.split(DELIMITER);
 
                 //Constructor takes in first token as Order ID.
-                Order currentOrder = new Order(Integer.parseInt(currentTokens[0]));
-
+                Order currentOrder = new Order();
+                currentOrder.setOrderNumber(Integer.parseInt(currentTokens[0]));
                 currentOrder.setCustomerLastName(currentTokens[1]);
                 currentOrder.setState(currentTokens[2]);
                 //For Tax and Product objects, create temporary variables and populate them into
@@ -189,7 +192,7 @@ public class OrderDaoFileImpl implements OrderDao {
                 currentOrder.setOrderTax(orderTax);
                 Product orderProduct = new Product(productType, materialCostPerSquareFoot, laborCostPerSquareFoot);
                 currentOrder.setOrderProduct(orderProduct);
-
+                currentOrder.setOrderDate(date);
                 todaysOrders.put(currentOrder.getOrderNumber(), currentOrder);
 
             }
@@ -284,5 +287,5 @@ public class OrderDaoFileImpl implements OrderDao {
         return nextOrderNum;
     }
 
-    //..
+    //....
 }

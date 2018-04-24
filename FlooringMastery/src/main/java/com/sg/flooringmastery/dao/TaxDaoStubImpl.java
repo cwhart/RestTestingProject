@@ -54,5 +54,5 @@ public class TaxDaoStubImpl implements TaxDao {
         } else return null;
     }
 
-    //..
+    //...
 }

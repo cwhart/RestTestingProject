@@ -30,7 +30,7 @@ public class OrderDaoTest {
         listOfTestingDates.add(LocalDate.parse("2018-04-19"));
         for(LocalDate currentDate : listOfTestingDates) {
             for (Order currentOrder : dao.retrieveOrdersByDate(currentDate)) {
-                dao.removeOrder(currentOrder);
+                dao.removeOrder(currentDate, currentOrder.getOrderNumber());
             }
         }
     }
@@ -326,7 +326,7 @@ public class OrderDaoTest {
         assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
 
         int orderNum = order1.getOrderNumber();
-        dao.removeOrder(order1);
+        dao.removeOrder(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(0, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
     }
@@ -350,7 +350,7 @@ public class OrderDaoTest {
         assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
 
         order1.setOrderNumber(order1.getOrderNumber() + 5); //Set the order number to a different one so it won't be found.
-        dao.removeOrder(order1);
+        dao.removeOrder(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
 
@@ -375,7 +375,7 @@ public class OrderDaoTest {
         assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
 
         order1.setOrderDate(LocalDate.parse("2018-01-01")); //Change the date so the order won't be found.
-        dao.removeOrder(order1);
+        dao.removeOrder(order1.getOrderDate(), order1.getOrderNumber());
 
         assertEquals(1, dao.retrieveOrdersByDate(order1.getOrderDate()).size());
 
@@ -426,7 +426,7 @@ public class OrderDaoTest {
 
         assertEquals(1, dao.retrieveOrdersByDate(LocalDate.parse("2018-01-01")).size());
 
-        Order order2 = new Order(1);
+        Order order2 = new Order(2);
         order2.setCustomerLastName("Smith2");
         order2.setOrderDate(LocalDate.parse("2018-01-01"));
         order2.setState("NJ");
@@ -442,7 +442,7 @@ public class OrderDaoTest {
 
         assertEquals(2, dao.retrieveOrdersByDate(LocalDate.parse("2018-01-01")).size());
 
-        Order order3 = new Order(1);
+        Order order3 = new Order(3);
         order3.setCustomerLastName("Smith3");
         order3.setOrderDate(LocalDate.parse("2018-01-04"));
         order3.setState("NJ");
@@ -458,7 +458,7 @@ public class OrderDaoTest {
 
         assertEquals(1, dao.retrieveOrdersByDate(LocalDate.parse("2018-01-04")).size());
 
-        Order order4 = new Order(1);
+        Order order4 = new Order(4);
         order4.setCustomerLastName("Smith4");
         order4.setOrderDate(LocalDate.parse("2018-01-04"));
         order4.setState("NJ");
@@ -474,7 +474,7 @@ public class OrderDaoTest {
 
         assertEquals(2, dao.retrieveOrdersByDate(LocalDate.parse("2018-01-04")).size());
 
-        Order order5 = new Order(1);
+        Order order5 = new Order(5);
         order5.setCustomerLastName("Smith5");
         order5.setOrderDate(LocalDate.parse("2016-10-02"));
         order5.setState("NJ");
@@ -504,5 +504,5 @@ public class OrderDaoTest {
         assertEquals(order5, retrievedOrder5);
 
     }
-    //..
+    //...
 }

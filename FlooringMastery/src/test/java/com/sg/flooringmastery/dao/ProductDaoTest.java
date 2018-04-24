@@ -87,5 +87,5 @@ public class ProductDaoTest {
         assertEquals(0, dao.retrieveAllProducts().size());
 
     }
-    //..
+    //...
 }

@@ -14,13 +14,13 @@ public interface ServiceLayer {
 
     public List<Order> retrieveAllOrdersByDate(LocalDate date) throws OrderPersistenceException;
 
-    public Order addOrder(Order orderToAdd) throws Exception;
+    public Order addOrder(Order orderToAdd) throws OrderPersistenceException, ProductPersistenceException, TaxPersistenceException;
 
     public void saveCurrentWork() throws OrderPersistenceException;
 
     public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException;
 
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException;
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException;
 
     public Order retrieveOrderByDateAndId(LocalDate date, int orderId) throws OrderPersistenceException;
 
@@ -32,6 +32,6 @@ public interface ServiceLayer {
 
     public void setMode(boolean mode);
 
-    //..
+    //...
 
 }

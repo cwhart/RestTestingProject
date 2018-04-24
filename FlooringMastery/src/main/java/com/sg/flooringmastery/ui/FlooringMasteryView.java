@@ -73,7 +73,7 @@ public class FlooringMasteryView {
     }
 
     public Order promptUserForOrderInfo(List<Product> productList, List<Tax> taxList) {
-        Order newOrder = new Order(1);
+        Order newOrder = new Order();
         newOrder.setCustomerLastName(userIO.readString("Please enter the customer's Last Name: "));
         newOrder.setOrderDate(promptUserForDate());
         displayTaxes(taxList);
@@ -97,7 +97,7 @@ public class FlooringMasteryView {
     }
 
     public Order promptUserForOrderNumberAndDate() {
-        Order orderToUpdate = new Order(1);
+        Order orderToUpdate = new Order();
         orderToUpdate.setOrderDate(promptUserForDate());
         orderToUpdate.setOrderNumber(userIO.readInt("Please enter the order number: "));
 
@@ -159,15 +159,15 @@ public class FlooringMasteryView {
     }
 
     public void displayAddOrderConfirmation(Order addedOrder) {
-        userIO.print("Order #" + addedOrder.getOrderNumber() + " has been successfully added.");
+        userIO.print("Order #" + addedOrder.getOrderNumber() + " has been successfully added.\n");
     }
 
     public void displayEditOrderConfirmation(Order updatedOrder) {
-        userIO.print("Order #" + updatedOrder.getOrderNumber() + " has been successfully updated.");
+        userIO.print("Order #" + updatedOrder.getOrderNumber() + " has been successfully updated.\n");
     }
 
     public void displayRemoveOrderConfirmation(Order removedOrder) {
-        userIO.print("Order #" + removedOrder.getOrderNumber() + " has been successfully removed.");
+        userIO.print("Order #" + removedOrder.getOrderNumber() + " has been successfully removed.\n");
     }
 
     public boolean promptForConfirmation() {
@@ -221,5 +221,5 @@ public class FlooringMasteryView {
         }
 
         return mode;
-    }
+    }//..
 }

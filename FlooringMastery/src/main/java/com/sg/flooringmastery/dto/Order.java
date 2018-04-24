@@ -17,6 +17,10 @@ public class Order {
     private BigDecimal calculatedTaxAmount;
     private BigDecimal totalOrderAmount;
 
+    public Order() {
+
+    }
+
     public Order(int orderNumber) {
         this.orderNumber = orderNumber;
     }
@@ -170,5 +174,5 @@ public class Order {
                 '}';
     }
 
-    //..
+    //...
 }

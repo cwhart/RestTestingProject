@@ -5,6 +5,8 @@ import com.sg.flooringmastery.dto.Order;
 import com.sg.flooringmastery.dto.Product;
 import com.sg.flooringmastery.dto.Tax;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,10 +19,13 @@ public class ServiceLayerImplTest {
     private ServiceLayer service;
 
     public ServiceLayerImplTest() {
-        TaxDao taxDao = new TaxDaoStubImpl();
+        /*TaxDao taxDao = new TaxDaoStubImpl();
         ProductDao productDao = new ProductDaoStubImpl();
         OrderDao orderDao = new OrderDaoStubImpl();
-        service = new ServiceLayerImpl(taxDao, productDao, orderDao);
+        service = new ServiceLayerImpl(taxDao, productDao, orderDao);*/
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", ServiceLayer.class);
     }
 
     @Test
@@ -65,12 +70,28 @@ public class ServiceLayerImplTest {
     @Test
     public void removeOrder() throws OrderPersistenceException{
         Order testOrder = service.retrieveAllOrdersByDate(LocalDate.parse("2018-04-17")).get(0);
-        service.removeOrder(testOrder);
+        service.removeOrder(testOrder.getOrderDate(), testOrder.getOrderNumber());
         assertEquals(0,service.retrieveAllOrdersByDate(LocalDate.parse("2018-04-17")).size() );
     }
 
     @Test
-    public void retrieveOrderByDateAndId() {
+    public void retrieveOrderByDateAndId() throws OrderPersistenceException {
+        Order testOrder = service.retrieveOrderByDateAndId(LocalDate.parse("2018-04-17"), 1);
+        assertEquals(1, testOrder.getOrderNumber());
+        assertEquals("Smith1", testOrder.getCustomerLastName());
+        assertEquals("NJ", testOrder.getState());
+        assertEquals(BigDecimal.valueOf(4.42), testOrder.getOrderTax().getTaxRate());
+        assertEquals("NJ", testOrder.getOrderTax().getState());
+        assertEquals("Pine", testOrder.getOrderProduct().getProductType());
+        assertEquals(BigDecimal.valueOf(250), testOrder.getArea());
+        assertEquals(BigDecimal.valueOf(3.55), testOrder.getOrderProduct().getLaborCostPerSquareFoot());
+        assertEquals(BigDecimal.valueOf(5.25), testOrder.getOrderProduct().getMaterialCostPerSquareFoot());
+        assertEquals(BigDecimal.valueOf(887.50).setScale(2), testOrder.getCalculatedLaborCost().setScale(2));
+        assertEquals(BigDecimal.valueOf(1312.50).setScale(2), testOrder.getCalculatedMaterialCost().setScale(2));
+        assertEquals(BigDecimal.valueOf(97.24).setScale(2), testOrder.getCalculatedTaxAmount().setScale(2));
+        assertEquals(BigDecimal.valueOf(2297.24).setScale(2), testOrder.getTotalOrderAmount().setScale(2));
+
+
     }
 
     @Test
@@ -103,15 +124,21 @@ public class ServiceLayerImplTest {
     }
 
     @Test
-    public void retrieveTaxes() {
+    public void retrieveTaxes() throws TaxPersistenceException {
+        List<Tax> taxList = service.retrieveTaxes();
+        assertEquals(1, taxList.size());
+        assertEquals("NH", taxList.get(0).getState());
+        assertEquals(BigDecimal.valueOf(3.2), taxList.get(0).getTaxRate());
     }
 
     @Test
-    public void retrieveProducts() {
-    }
+    public void retrieveProducts() throws ProductPersistenceException{
+        List<Product> productList = service.retrieveProducts();
+        assertEquals(1, productList.size());
+        assertEquals("Oak", productList.get(0).getProductType());
+        assertEquals(BigDecimal.valueOf(3.8), productList.get(0).getLaborCostPerSquareFoot());
+        assertEquals(BigDecimal.valueOf(2.72), productList.get(0).getMaterialCostPerSquareFoot());
 
-    @Test
-    public void setMode() {
-    }
-    //..
+    }//..
+
 }

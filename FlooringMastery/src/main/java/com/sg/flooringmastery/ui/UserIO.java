@@ -30,5 +30,5 @@ public interface UserIO {
 
     BigDecimal readBigDecimal(String prompt);
 
-    //..
+    //...
 }

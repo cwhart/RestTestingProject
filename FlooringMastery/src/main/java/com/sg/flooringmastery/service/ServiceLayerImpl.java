@@ -16,12 +16,14 @@ public class ServiceLayerImpl implements ServiceLayer {
     private TaxDao taxDao;
     private ProductDao productDao;
     private OrderDao orderDao;
+    private AuditDao auditDao;
     private String mode = "Production";
 
-    public ServiceLayerImpl(TaxDao taxDao, ProductDao productDao, OrderDao orderDao) {
+    public ServiceLayerImpl(TaxDao taxDao, ProductDao productDao, OrderDao orderDao, AuditDao auditDao) {
         this.orderDao = orderDao;
         this.productDao = productDao;
         this.taxDao = taxDao;
+        this.auditDao = auditDao;
     }
 
     @Override
@@ -50,9 +52,9 @@ public class ServiceLayerImpl implements ServiceLayer {
     }
 
     @Override
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException {
-        if (validateOrderId(orderToRemove.getOrderDate(), orderToRemove.getOrderNumber())){
-            orderDao.removeOrder(orderToRemove);
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException {
+        if (validateOrderId(date, id)){
+            orderDao.removeOrder(date, id);
         } else throw new OrderPersistenceException("ERROR: Order does not exist.");
     }
 
@@ -70,7 +72,6 @@ public class ServiceLayerImpl implements ServiceLayer {
         //Fields that will be user entered: customer lastname, state, product type, area.
         //Fields to be populated by this method: Tax rate, material cost per square foot,
         //labor cost per square foot, plus the 4 calculated fields.
-        //TODO: implement negative tests to verify the exception conditions.
 
         if(!validateProductExists(orderToProcess)) {
             throw new ProductPersistenceException("ERROR: Product does not exist.");
@@ -137,5 +138,5 @@ public class ServiceLayerImpl implements ServiceLayer {
         } return true;
     }
 
-    //..
+    //...
 }

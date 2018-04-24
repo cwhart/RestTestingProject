@@ -17,9 +17,9 @@ public interface OrderDao {
 
     public Order updateOrder(Order orderToUpdate) throws OrderPersistenceException;
 
-    public void removeOrder(Order orderToRemove) throws OrderPersistenceException;
+    public void removeOrder(LocalDate date, int id) throws OrderPersistenceException;
 
     public void save() throws OrderPersistenceException;
 
-    //..
+    //....
 }
