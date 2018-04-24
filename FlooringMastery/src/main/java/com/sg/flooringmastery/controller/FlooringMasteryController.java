@@ -4,6 +4,8 @@ import com.sg.flooringmastery.dao.OrderPersistenceException;
 import com.sg.flooringmastery.dao.ProductPersistenceException;
 import com.sg.flooringmastery.dao.TaxPersistenceException;
 import com.sg.flooringmastery.dto.Order;
+import com.sg.flooringmastery.dto.Product;
+import com.sg.flooringmastery.dto.Tax;
 import com.sg.flooringmastery.service.ServiceLayerImpl;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
 
@@ -48,11 +50,18 @@ public class FlooringMasteryController {
                         saveCurrentWork();
                         break;
                     case 6:
-                        keepGoing = false;
+                        enterTrainingMode();
+                        break;
+                    case 7:
+                        if (confirmBeforeExiting()) {
+                            keepGoing = false;
+                        }
+                    default:
+                        view.displayErrorMessage("ERROR: Invalid selection");
 
                 }
             }
-        } catch (OrderPersistenceException e) {
+        } catch (OrderPersistenceException | TaxPersistenceException | ProductPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
 
@@ -66,21 +75,35 @@ public class FlooringMasteryController {
     private void displayOrders() throws OrderPersistenceException {
         LocalDate dateToDisplay = view.promptUserForDate();
         List<Order> orderList = service.retrieveAllOrdersByDate(dateToDisplay);
-        view.displayOrders(orderList);
+        view.displayOrders(orderList, dateToDisplay);
     }
 
-    private void addAnOrder()throws OrderPersistenceException {
-        Order orderToAdd = view.promptUserForOrderInfo();
+    private void addAnOrder()throws OrderPersistenceException, ProductPersistenceException, TaxPersistenceException {
 
-        try {
-            service.processOrder(orderToAdd);
+        List <Tax> taxes = service.retrieveTaxes();
+        List <Product> products = service.retrieveProducts();
+        boolean tryAgain = true;
+        Order orderToAdd = new Order(1);
 
-        } catch (TaxPersistenceException | ProductPersistenceException | OrderPersistenceException e) {
-          view.displayErrorMessage(e.getMessage());
-        }
+        do {
+            try {
+                orderToAdd = view.promptUserForOrderInfo(products, taxes);
+                service.processOrder(orderToAdd);
+                tryAgain = false;
+
+            } catch (OrderPersistenceException e) {
+                view.displayErrorMessage(e.getMessage());
+            } catch (ProductPersistenceException e) {
+                view.displayErrorMessage("ERROR: Invalid product selection, please try again.");
+            } catch (TaxPersistenceException e) {
+                view.displayErrorMessage("ERROR: Invalid state selection, please try again.");
+            }
+        } while (tryAgain == true);
+
         boolean confirmAddOrder = view.displayProcessedOrderAndConfirm(orderToAdd);
         if (confirmAddOrder) {
             service.addOrder(orderToAdd);
+            view.displayAddOrderConfirmation(orderToAdd);
         }
     }
 
@@ -98,6 +121,7 @@ public class FlooringMasteryController {
         boolean confirmAddOrder = view.displayProcessedOrderAndConfirm(updatedOrder);
         if (confirmAddOrder) {
             service.updateOrder(updatedOrder);
+            view.displayEditOrderConfirmation(updatedOrder);
         }
 
     }
@@ -108,6 +132,7 @@ public class FlooringMasteryController {
 
         try {
             service.removeOrder(orderToRemove);
+            view.displayRemoveOrderConfirmation(orderToRemove);
         } catch (OrderPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
@@ -115,6 +140,16 @@ public class FlooringMasteryController {
 
     private void saveCurrentWork() throws OrderPersistenceException{
         service.saveCurrentWork();
+        view.displaySaveSuccessMessage();
     }
-    //..
+
+    private boolean confirmBeforeExiting() {
+        return view.promptForConfirmation();
+
+    }
+
+    private void enterTrainingMode() {
+        service.setMode("Training");
+    }
+
 }

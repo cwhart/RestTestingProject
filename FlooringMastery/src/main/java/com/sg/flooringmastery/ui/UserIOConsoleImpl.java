@@ -3,6 +3,7 @@ package com.sg.flooringmastery.ui;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -56,6 +57,8 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
         print(prompt);
         String input = scanner.nextLine();
         return Integer.parseInt(input);
+
+
     }
 
     public int readInt(String prompt, int min, int max) {
@@ -95,10 +98,11 @@ public class UserIOConsoleImpl implements com.sg.flooringmastery.ui.UserIO {
     }
 
     @Override
-    public LocalDate readLocalDate(String prompt) {
+    public LocalDate readLocalDate(String prompt) throws DateTimeException {
         print(prompt);
         String inputDateStr = scanner.nextLine();
         return LocalDate.parse(inputDateStr);
+
     }
 
     @Override

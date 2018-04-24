@@ -30,7 +30,7 @@ public interface ServiceLayer {
 
     public List<Product> retrieveProducts() throws ProductPersistenceException;
 
-    public void setMode(OrderDao orderDao);
+    public void setMode(String mode);
 
     //..
 

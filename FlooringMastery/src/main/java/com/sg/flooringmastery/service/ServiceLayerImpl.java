@@ -14,7 +14,7 @@ public class ServiceLayerImpl implements ServiceLayer {
     private TaxDao taxDao;
     private ProductDao productDao;
     private OrderDao orderDao;
-    private String mode;
+    private String mode = "Production";
 
     public ServiceLayerImpl(TaxDao taxDao, ProductDao productDao, OrderDao orderDao) {
         this.orderDao = orderDao;
@@ -34,7 +34,9 @@ public class ServiceLayerImpl implements ServiceLayer {
 
     @Override
     public void saveCurrentWork() throws OrderPersistenceException {
-        orderDao.save();
+        if (mode.equals("Production")) {
+            orderDao.save();
+        }
     }
 
     @Override
@@ -98,8 +100,8 @@ public class ServiceLayerImpl implements ServiceLayer {
     }
 
     @Override
-    public void setMode(OrderDao orderDao) {
-
+    public void setMode(String mode) {
+        this.mode = mode;
 
     }
 

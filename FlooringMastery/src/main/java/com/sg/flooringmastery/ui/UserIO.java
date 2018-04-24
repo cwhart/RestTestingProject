@@ -1,6 +1,7 @@
 package com.sg.flooringmastery.ui;
 
 import java.math.BigDecimal;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public interface UserIO {
@@ -25,7 +26,7 @@ public interface UserIO {
 
     String readString(String prompt);
 
-    LocalDate readLocalDate(String prompt);
+    LocalDate readLocalDate(String prompt) throws DateTimeException;
 
     BigDecimal readBigDecimal(String prompt);
 

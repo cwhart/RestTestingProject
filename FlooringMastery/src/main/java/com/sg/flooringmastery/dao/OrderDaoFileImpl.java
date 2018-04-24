@@ -7,17 +7,26 @@ import org.aspectj.weaver.ast.Or;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class OrderDaoFileImpl implements OrderDao {
 
-    private String orderFile;
+    public String orderFile;
     private final String DELIMITER = ",";
     private final String ID_FILE = "id.txt";
     private Map<LocalDate, Map<Integer, Order>> orderMap = new HashMap<LocalDate, Map<Integer, Order>>();
     private static int nextOrderNum;
+
+    public String getOrderFile() {
+        return orderFile;
+    }
+
+    public void setOrderFile(String orderFile) {
+        this.orderFile = orderFile;
+    }
 
     @Override
     public Order createOrder(Order orderToCreate) throws OrderPersistenceException  {
@@ -217,15 +226,15 @@ public class OrderDaoFileImpl implements OrderDao {
                 out.println(currentOrder.getOrderNumber() + DELIMITER +
                         currentOrder.getCustomerLastName() + DELIMITER +
                         currentOrder.getState() + DELIMITER +
-                        currentOrder.getOrderTax().getTaxRate().setScale(2) + DELIMITER +
+                        currentOrder.getOrderTax().getTaxRate().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
                         currentOrder.getOrderProduct().getProductType() + DELIMITER +
-                        currentOrder.getArea().setScale(2) + DELIMITER +
-                        currentOrder.getOrderProduct().getMaterialCostPerSquareFoot().setScale(2) + DELIMITER +
-                        currentOrder.getOrderProduct().getLaborCostPerSquareFoot().setScale(2) + DELIMITER +
-                        currentOrder.getCalculatedMaterialCost().setScale(2) + DELIMITER +
-                        currentOrder.getCalculatedLaborCost().setScale(2) + DELIMITER +
-                        currentOrder.getCalculatedTaxAmount().setScale(2) + DELIMITER +
-                        currentOrder.getTotalOrderAmount().setScale(2));
+                        currentOrder.getArea().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getOrderProduct().getMaterialCostPerSquareFoot().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getOrderProduct().getLaborCostPerSquareFoot().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getCalculatedMaterialCost().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getCalculatedLaborCost().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getCalculatedTaxAmount().setScale(2, RoundingMode.HALF_UP) + DELIMITER +
+                        currentOrder.getTotalOrderAmount().setScale(2, RoundingMode.HALF_UP));
 
                 out.flush();
             }
