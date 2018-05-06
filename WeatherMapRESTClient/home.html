@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Open Weather Map</title>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+      </head>
+      <body>
+        <div class="container">
+          <h1 style="text-align: center">Weather Page</h1>
+          <hr/>
+            <ul class="list-group" id="errorMessages"></ul>
+            <div id="editFormDiv" >
+                <form class="form-inline text-center" role="form" id="get-weather">
+
+                  <div class="form-control">
+                    <label for="enter-zip" class="col-md-4 control-label">
+                      Zip Code:
+                    </label>
+
+                    <div class="col-md-4">
+                      <input type="text"
+                              pattern="[0-9]{5}"
+                              class="form-control"
+                              id="enter-zip"
+                              placeholder="Zip Code" required/>
+                    </div>
+                  </div>
+
+                  <div class="form-control">
+                    <label for="units" class="col-md-4 control-label" >
+                      Units:
+                    </label>
+
+                    <div class="col-md-8">
+                        <select id="units">
+                            <option value="imperial" selected="selected">imperial</option>
+                            <option value="metric">metric</option>
+                            </select> 
+                    </div>
+                  </div>
+
+                  <div class="form-control">
+                    <div class="col-md-4">
+                      <button type="button"
+                              id="get-weather"
+                              class="btn btn-default">
+                          Get Weather
+                        </button>
+                      </div>
+                    </div>
+
+                </form>
+
+              </div>
+
+              <br />
+              <br />
+
+              <div id="displayWeatherDiv" style="display: none">
+                  <h2 id="current-conditions">Current Conditions</h2>
+
+                  <table id="currentConditionsDescription" class="col-md-4">
+                   <tbody id="currentConditionsDescriptionRows"></tbody>
+                  </table>
+
+                  <table id="currentConditionsStats" class="col-md-4">
+                    <tbody id="currentConditionsStatsRows"></tbody>
+                  </table>
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <h2>Five Day Forecast</h2>
+                  <table id="fiveDayForecastTable">              
+                        
+                      <tbody id="fiveDayForecastRows"></tbody>
+                      <td id="day-1" class="col-md-2"></td>
+                      <td id="day-2" class="col-md-2"></td>
+                      <td id="day-3" class="col-md-2"></td>
+                      <td id="day-4" class="col-md-2"></td>
+                      <td id="day-5" class="col-md-2"></td>
+                    
+                    </table>
+                </div>
+
+            </div>
+
+
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/home.js"></script>
+
+      </body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vending Machine</title>
+
+  <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <ul class="list-group" id="errorMessages"></ul>
+    <h1>Vending Machine</h1>
+    <hr/>
+    
+
+    <div >
+      <div class="col-md-9">
+        <div class="row" style="height: 200px">
+
+          <div class="col-md-4" >
+            <div class="well" id="item1" onclick='selectItem("1")'>Item 1</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item2" onclick='selectItem("2")'>Item 2</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item3" onclick='selectItem("3")'>Item 3</div>
+
+          </div>
+
+
+        </div>
+
+        <div class="row " style="height: 200px">
+
+          <div class="col-md-4">
+            <div class="well" id="item4" onclick='selectItem("4")'>Item 4</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item5" onclick='selectItem("5")'>Item 5</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item6" onclick='selectItem("6")'>Item 6</div>
+
+          </div>
+
+
+        </div>
+
+        <div class="row " style="height: 200px">
+
+          <div class="col-md-4">
+            <div class="well" id="item7" onclick='selectItem("7")'>Item 7</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item8" onclick='selectItem("8")'>Item 8</div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="well" id="item9" onclick='selectItem("9")'>Item 9</div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+        <form>
+            <div class="form-group">
+              <label for="total-money-in">Total $ In:</label>
+              <input type="text" class="form-control" id="total-money-in" readonly>
+            </div>
+
+          
+            <div>
+                <div class="form-group text-center">
+              <button type="button" class="btn btn-outline-dark " id="add-dollar">Add Dollar</button>
+              <button type="button" class="btn btn-outline-dark " id="add-quarter">Add Quarter</button>
+            </div>
+          </div>
+            <div>
+                <div class="form-group text-center">
+              <button type="button" class="btn btn-outline-dark " id="add-dime">Add Dime</button>
+              <button type="button" class="btn btn-outline-dark " id="add-nickel">Add Nickel</button>
+            </div>
+          </div>
+
+           
+
+            <div class="form-group">
+                <label for="messages">Messages:</label>
+                <input type="text" class="form-control" id="messages" readonly>
+              </div>
+
+              <div class="form-group">
+                  <label for="item">Item:</label>
+                  <input type="text" class="form-control" id="item" readonly>
+                </div>
+
+                <div>
+                  <div class="form-group">
+                  <button type="button" class="btn btn-outline-dark" id="make-purchase">Make Purchase</button>
+                  
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="change">Change:</label>
+                  <input type="text" class="form-control " style="font-size:13px" id="change" readonly>
+                </div>
+
+                <div>
+                  <div class="row; form-group">
+                  <button type="button" class="btn btn-outline-dark" id="return-change">Change Return</button>
+                  
+                </div>
+              </div>
+            
+            <br/>
+
+
+            
+           </form>
+
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/home.js"></script>
+  </div>
+
+</body>
+
+</html>
