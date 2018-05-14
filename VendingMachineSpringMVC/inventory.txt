@@ -1,0 +1,9 @@
+1::Ice Cream Sandwich::0::0.85::
+2::Pop-Tarts::10::1.5::
+3::Snickers::6::0.95::
+4::M&Ms::10::1.10::
+5::Coke::9::1.5::
+6::Doritos::10::1.25::
+7::Sour Patch Kids::10::1.75::
+8::Milky Way::10::1.05::
+9::Fritos::10::1.10::

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="factorizerJSPServlet:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="factorizer.war">
+      <element id="artifact" artifact-name="factorizerJSPServlet:war exploded" />
+    </root>
+  </artifact>
+</component>
