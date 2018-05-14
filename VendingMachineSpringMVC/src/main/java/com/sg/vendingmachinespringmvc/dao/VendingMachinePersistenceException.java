@@ -13,4 +13,5 @@ public class VendingMachinePersistenceException extends Exception {
     }
 
     //Adding a comment for commit
+    //
 }

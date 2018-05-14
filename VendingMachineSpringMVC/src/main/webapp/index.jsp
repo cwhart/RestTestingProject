@@ -52,7 +52,7 @@
 
 <div class="col-md-3">
 
-    <form> <!-- modelAttribute="item" action="/selectItem" method="GET"> -->
+    <form>
         <div class="form-group">
             <label for="total-money-in">Total $ In:</label>
             <input type="text" class="form-control" id="total-money-in" value="${totalMoneyIn}" readonly>
@@ -60,7 +60,7 @@
 
         <div>
             <div class="form-group text-center">
-               <!-- <button type="button" class="btn btn-outline-dark " id="add-dollar">Add Dollar</button>-->
+
 
                 <a href="${pageContext.request.contextPath}/addDollar" type="button"
                    class="btn-sm btn-primary" name="adddollar-button"
