@@ -1,3 +1,4 @@
+-- drop the database if it already exists, and re-create.
 DROP DATABASE if exists HotelReservation;
 
 CREATE DATABASE HotelReservation;

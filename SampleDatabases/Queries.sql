@@ -10,7 +10,7 @@ inner join PromoRate
 on PromoType.PromoRateID=PromoRate.PromoRateID
 where ReservationID=4;
 
--- Query to see what add-ons are available for reservation 4, and what they cost.
+-- Query to see what add-ons are available for reservation 4 and what they cost.
 select Type, Price, StartDate, EndDate
 from addon
 inner join AddOnRate
