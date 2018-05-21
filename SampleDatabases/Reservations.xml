@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Table1">
+	<Table>
+		<Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Row>
+			<Cell><Data ss:Type="String">ReservationID</Data></Cell>
+			<Cell><Data ss:Type="String">PromoID</Data></Cell>
+			<Cell><Data ss:Type="String">Price</Data></Cell>
+			<Cell><Data ss:Type="String">StartDate</Data></Cell>
+			<Cell><Data ss:Type="String">EndDate</Data></Cell>
+		</Row>
+
+		<Row>
+			<Cell><Data ss:Type="Number">1</Data></Cell>
+			<Cell><Data ss:Type="Number">1</Data></Cell>
+			<Cell><Data ss:Type="Number">89.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-05-12</Data></Cell>
+			<Cell><Data ss:Type="String">2018-05-14</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number"></Data></Cell>
+			<Cell><Data ss:Type="Number">89.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-03-17</Data></Cell>
+			<Cell><Data ss:Type="String">2018-03-20</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+			<Cell><Data ss:Type="Number"></Data></Cell>
+			<Cell><Data ss:Type="Number">79.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-04-12</Data></Cell>
+			<Cell><Data ss:Type="String">2018-04-17</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+			<Cell><Data ss:Type="Number"></Data></Cell>
+			<Cell><Data ss:Type="Number">89.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-04-12</Data></Cell>
+			<Cell><Data ss:Type="String">2018-04-17</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">4</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number">79.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-10-01</Data></Cell>
+			<Cell><Data ss:Type="String">2018-10-06</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">4</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number">169.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-10-01</Data></Cell>
+			<Cell><Data ss:Type="String">2018-10-06</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">5</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+			<Cell><Data ss:Type="Number">89.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-06-14</Data></Cell>
+			<Cell><Data ss:Type="String">2018-06-21</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">7</Data></Cell>
+			<Cell><Data ss:Type="Number"></Data></Cell>
+			<Cell><Data ss:Type="Number">89.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-09-12</Data></Cell>
+			<Cell><Data ss:Type="String">2018-09-20</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">8</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+			<Cell><Data ss:Type="Number">99.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-07-23</Data></Cell>
+			<Cell><Data ss:Type="String">2018-08-01</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">8</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+			<Cell><Data ss:Type="Number">149.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-07-23</Data></Cell>
+			<Cell><Data ss:Type="String">2018-08-01</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">9</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number">99.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-01</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-05</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">9</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number">169.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-01</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-05</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">9</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+			<Cell><Data ss:Type="Number">149.00</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-01</Data></Cell>
+			<Cell><Data ss:Type="String">2018-11-05</Data></Cell>
+		</Row>	</Table>
+</Worksheet>
+</Workbook>
