@@ -32,10 +32,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="add-release-year" class="col-md-4 control-label">Release Year:</label>
+            <label for="add-release-date" class="col-md-4 control-label">Release Date:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="add-release-year"
-                       name="releaseYear" placeholder="Release Year"/>
+                <input type="text" class="form-control" id="add-release-date"
+                       name="releaseDate" placeholder="Release Date"/>
             </div>
         </div>
         <div class="form-group">

@@ -34,8 +34,8 @@
 
                 <select class="control-label" id="search-category" name="searchCategory">
                     <option value="title">Title</option>
-                    <option value="releaseYear">Release Year</option>
-                    <option value="directorName">Director Name</option>
+                    <option value="releaseDate">Release Date</option>
+                    <option value="last_name">Director Name</option>
                     <option value="rating">Rating</option>
                 </select>
 
@@ -62,10 +62,10 @@
                                 </a>
                             </td>
                             <td>
-                                <c:out value="${currentDvd.releaseYear}"/>
+                                <c:out value="${currentDvd.releaseDate}"/>
                             </td>
                             <td>
-                                <c:out value="${currentDvd.director}"/>
+                                <c:out value="${currentDvd.director.last_name}"/>
                             </td>
                             <td>
                                 <c:out value="${currentDvd.rating}"/>

@@ -7,16 +7,16 @@ import java.util.Map;
 
 public interface DvdListDao {
 
-    public Dvd addDvd(Dvd dvd);
+    public void addDvd(Dvd dvd);
 
-    public void removeDvd(long dvdId);
+    public void removeDvd(int dvdId);
 
     public void updateDvd(Dvd dvd);
 
     public List<Dvd> getAllDvds();
 
-    public Dvd getDvdById(long dvdId);
+    public Dvd getDvdById(int dvdId);
 
-    public List<Dvd> searchDvds(Map<SearchTerm, String> criteria);
+    //public List<Dvd> searchDvds(Map<SearchTerm, String> criteria);
 
 }

@@ -25,7 +25,7 @@
         Title: <c:out value="${dvd.dvdTitle}"/>
     </p>
     <p>
-        Release Year: <c:out value="${dvd.releaseYear}"/>
+        Release Date: <c:out value="${dvd.releaseDate}"/>
     </p>
     <p>
         Director: <c:out value="${dvd.director}"/>

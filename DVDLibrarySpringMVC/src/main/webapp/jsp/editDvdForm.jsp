@@ -25,7 +25,7 @@
     <div class="navbar">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a href="${pageContext.request.contextPath}/index.jsp">
+                <a href="${pageContext.request.contextPath}/jsp/index.jsp">
                     Home
                 </a>
             </li>
@@ -55,16 +55,16 @@
             <label for="add-director" class="col-md-4 control-label">Director:</label>
             <div class="col-md-8">
                 <sf:input type="text" class="form-control" id="add-director"
-                          path="director" placeholder="Director"/>
+                          path="director.last_name" placeholder="Director"/>
                 <sf:errors path="director" cssclass="error"></sf:errors>
             </div>
         </div>
         <div class="form-group">
-            <label for="add-release-year" class="col-md-4 control-label">Release Year:</label>
+            <label for="add-release-date" class="col-md-4 control-label">Release Date:</label>
             <div class="col-md-8">
-                <sf:input type="text" class="form-control" id="add-release-year"
-                          path="releaseYear" placeholder="Release Year"/>
-                <sf:errors path="releaseYear" cssclass="error"></sf:errors>
+                <sf:input type="text" class="form-control" id="add-release-date"
+                          path="releaseDate" placeholder="Release Date"/>
+                <sf:errors path="releaseDate" cssclass="error"></sf:errors>
             </div>
         </div>
         <div class="form-group">

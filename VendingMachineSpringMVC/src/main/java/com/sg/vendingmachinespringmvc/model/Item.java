@@ -9,8 +9,13 @@ public class Item {
     private int itemQuantity;
     private int itemID;
 
-    public Item(int itemId) {
-        this.itemID = itemId;
+    //public Item(int itemId) {
+    //    this.itemID = itemId;
+   // }
+
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
     public BigDecimal getItemPrice() {

@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 
 public class DvdListDaoInMemImpl implements DvdListDao{
 
-    private Map<Long, Dvd> dvdMap = new HashMap<>();
-    private static long dvdIdCounter = 0;
+    private Map<Integer, Dvd> dvdMap = new HashMap<>();
+    private static int dvdIdCounter = 0;
 
     @Override
-    public Dvd addDvd(Dvd dvd) {
+    public void addDvd(Dvd dvd) {
         dvd.setDvdId(dvdIdCounter);
         dvdIdCounter++;
         dvdMap.put(dvd.getDvdId(), dvd);
-        return dvd;
+
     }
 
     @Override
-    public void removeDvd(long dvdId) {
+    public void removeDvd(int dvdId) {
         dvdMap.remove(dvdId);
     }
 
@@ -36,11 +36,11 @@ public class DvdListDaoInMemImpl implements DvdListDao{
     }
 
     @Override
-    public Dvd getDvdById(long dvdId) {
+    public Dvd getDvdById(int dvdId) {
         return dvdMap.get(dvdId);
     }
 
-    @Override
+    /*@Override
     public List<Dvd> searchDvds(Map<SearchTerm, String> criteria) {
         String dvdTitleSearchCriteria = criteria.get(SearchTerm.DVD_TITLE);
         String dvdDirectorSearchCriteria = criteria.get(SearchTerm.DVD_DIRECTOR);
@@ -73,7 +73,7 @@ public class DvdListDaoInMemImpl implements DvdListDao{
         if(dvdReleaseYearSearchCriteria == null || dvdReleaseYearSearchCriteria.isEmpty()) {
             releaseYearMatchPredicate = truePredicate;
         } else {
-            releaseYearMatchPredicate = (c) -> c.getReleaseYear().equals(dvdReleaseYearSearchCriteria);
+            releaseYearMatchPredicate = (c) -> c.getReleaseDate().equals(dvdReleaseYearSearchCriteria);
         }
 
         if(dvdRatingSearchCriteria == null || dvdRatingSearchCriteria.isEmpty()) {
@@ -96,5 +96,5 @@ public class DvdListDaoInMemImpl implements DvdListDao{
                 .and(notesMatchPredicate))
                 .collect(Collectors.toList());
 
-    }
+    }*/
 }

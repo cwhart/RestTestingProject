@@ -22,20 +22,20 @@ public class RESTController {
 
     @RequestMapping(value = "/dvd/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Dvd getDvd(@PathVariable("id") long id) {
+    public Dvd getDvd(@PathVariable("id") int id) {
         return dao.getDvdById(id);
     }
 
     @RequestMapping(value = "/dvd", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Dvd createDvd(@Valid @RequestBody Dvd dvd) {
-        return dao.addDvd(dvd);
+    public void createDvd(@Valid @RequestBody Dvd dvd) {
+        //return dao.addDvd(dvd);
     }
 
     @RequestMapping(value = "/dvd/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDvd(@PathVariable("id") long id) {
+    public void deleteDvd(@PathVariable("id") int id) {
         dao.removeDvd(id);
     }
 

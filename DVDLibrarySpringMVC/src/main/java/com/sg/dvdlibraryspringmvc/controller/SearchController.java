@@ -29,7 +29,7 @@ public class SearchController {
         return "search";
     }*/
 
-    @RequestMapping(value = "/DVDLibrarySpringMVC/search/dvds", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/DVDLibrarySpringMVC/search/dvds", method = RequestMethod.POST)
     @ResponseBody
     public List<Dvd> searchDvds(@RequestBody Map<String, String> searchMap) {
         //Create the map of search criteria to send to the DAO
@@ -57,5 +57,5 @@ public class SearchController {
         }
 
         return dao.searchDvds(criteriaMap);
-    }
+    }*/
 }

@@ -1,9 +1,12 @@
 package com.sg.vendingmachinespringmvc.controller;
 
-import com.sg.vendingmachinespringmvc.dao.VendingMachineDao;
+import com.sg.vendingmachinespringmvc.dao.ItemDao;
 import com.sg.vendingmachinespringmvc.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachinespringmvc.model.Change;
 import com.sg.vendingmachinespringmvc.model.Item;
+import com.sg.vendingmachinespringmvc.service.InsufficientFundsException;
+import com.sg.vendingmachinespringmvc.service.InsufficientItemQuantityException;
+import com.sg.vendingmachinespringmvc.service.VendingMachineServiceLayer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,21 +20,35 @@ import java.util.List;
 @Controller
 public class VendingMachineController {
 
-    VendingMachineDao dao;
+    VendingMachineServiceLayer vendingMachineService;
+    //VendingMachineView vendingMachineView;
+
+    public VendingMachineController(VendingMachineServiceLayer vendingMachineServiceLayer) {
+        this.vendingMachineService = vendingMachineServiceLayer;
+    }
+
+    //ItemDao dao;
     int itemSelected;
-    BigDecimal moneyInMachine = new BigDecimal("0").setScale(2);
+    BigDecimal moneyInMachine = BigDecimal.valueOf(0);
     String message = "";
     String changeToReturn = "";
 
-    @Inject
-    public VendingMachineController(VendingMachineDao dao) {
-        this.dao = dao;
+    //@Inject
+    //public VendingMachineController(ItemDao dao) {
+    //    this.dao = dao;
+    //}
+
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String startPage(Model model) throws VendingMachinePersistenceException {
+
+       return "redirect:displayVendingMachine";
     }
 
     @RequestMapping(value="/displayVendingMachine", method = RequestMethod.GET)
     public String displayVendingMachine(Model model) throws VendingMachinePersistenceException {
 
-        List<Item> itemList = dao.retrieveAllItems();
+        //List<Item> itemList = dao.retrieveAllItems();
+        List<Item> itemList = vendingMachineService.retrieveListAllWithQuantityGTZero();
 
         model.addAttribute("itemList", itemList);
         model.addAttribute("item", itemSelected);
@@ -39,7 +56,7 @@ public class VendingMachineController {
         model.addAttribute("messages", message);
         model.addAttribute("change", changeToReturn);
 
-        return "../index";
+        return "index";
     }
 
     @RequestMapping(value = "/selectItem", method = RequestMethod.GET)
@@ -59,7 +76,9 @@ public class VendingMachineController {
     public String addDollar(HttpServletRequest request, Model model){
         //changeTracker.setDollars(1);
         //changeTracker.setRunningTotal(changeTracker.getRunningTotal().add(new BigDecimal("1.00").setScale(2)));
-        moneyInMachine = moneyInMachine.add(BigDecimal.valueOf(1));
+        //moneyInMachine = moneyInMachine.add(BigDecimal.valueOf(1));
+        vendingMachineService.addMoney(BigDecimal.valueOf(1));
+        moneyInMachine = vendingMachineService.getRunningTotal();
         model.addAttribute("totalMoneyIn",(moneyInMachine));
         message = "";
         changeToReturn = "";
@@ -70,7 +89,8 @@ public class VendingMachineController {
     public String addQuarter(HttpServletRequest request, Model model){
         //changeTracker.setDollars(1);
         //changeTracker.setRunningTotal(changeTracker.getRunningTotal().add(new BigDecimal("1.00").setScale(2)));
-        moneyInMachine = moneyInMachine.add(BigDecimal.valueOf(.25));
+        vendingMachineService.addMoney(BigDecimal.valueOf(.25));
+        moneyInMachine = vendingMachineService.getRunningTotal();
         model.addAttribute("totalMoneyIn",(moneyInMachine));
         message = "";
         changeToReturn = "";
@@ -81,7 +101,8 @@ public class VendingMachineController {
     public String addDime(HttpServletRequest request, Model model){
         //changeTracker.setDollars(1);
         //changeTracker.setRunningTotal(changeTracker.getRunningTotal().add(new BigDecimal("1.00").setScale(2)));
-        moneyInMachine = moneyInMachine.add(BigDecimal.valueOf(.1));
+        vendingMachineService.addMoney(BigDecimal.valueOf(.1));
+        moneyInMachine = vendingMachineService.getRunningTotal();
         model.addAttribute("totalMoneyIn",(moneyInMachine));
         message = "";
         changeToReturn = "";
@@ -92,7 +113,8 @@ public class VendingMachineController {
     public String addNickel(HttpServletRequest request, Model model){
         //changeTracker.setDollars(1);
         //changeTracker.setRunningTotal(changeTracker.getRunningTotal().add(new BigDecimal("1.00").setScale(2)));
-        moneyInMachine = moneyInMachine.add(BigDecimal.valueOf(.05));
+        vendingMachineService.addMoney(BigDecimal.valueOf(.05));
+        moneyInMachine = vendingMachineService.getRunningTotal();
         model.addAttribute("totalMoneyIn",(moneyInMachine));
         message = "";
         changeToReturn = "";
@@ -100,6 +122,21 @@ public class VendingMachineController {
     }
 
     @RequestMapping(value = "/makePurchase", method=RequestMethod.GET)
+    public String makePurchase(HttpServletRequest request) throws VendingMachinePersistenceException{
+
+        try {
+            message = vendingMachineService.purchaseItem(itemSelected);
+            moneyInMachine = vendingMachineService.getRunningTotal();
+        } catch (InsufficientItemQuantityException ex) {
+            message="SOLD OUT!!";
+        } catch (InsufficientFundsException ex) {
+            //BigDecimal amountShort = itemPrice.subtract(moneyInMachine);
+            message = ex.getMessage();
+        }
+        return "redirect:displayVendingMachine";
+    }
+
+    /*@RequestMapping(value = "/makePurchase", method=RequestMethod.GET)
     public String makePurchase(HttpServletRequest request) throws VendingMachinePersistenceException{
 
         if(itemSelected == 0) {
@@ -134,7 +171,7 @@ public class VendingMachineController {
 
             }
         }
-    }
+    }*/
 
 
 

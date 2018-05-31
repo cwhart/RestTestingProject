@@ -52,7 +52,7 @@
                 <tr>
                     <th width="40%">Title</th>
                     <th width="30%">Director</th>
-                    <th width="15%">Year Released</th>
+                    <th width="15%">Date Released</th>
                     <th width="15%">Rating</th>
                 </tr>
                 <tbody id="contentRows"/>
@@ -78,9 +78,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="search-release-year" class="col-md-4 control-label">Release Year:</label>
+                    <label for="search-release-date" class="col-md-4 control-label">Release Date:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="search-release-year" placeholder="Release Year"/>
+                        <input type="text" class="form-control" id="search-release-date" placeholder="Release Date"/>
                     </div>
                 </div>
                 <div class="form-group">

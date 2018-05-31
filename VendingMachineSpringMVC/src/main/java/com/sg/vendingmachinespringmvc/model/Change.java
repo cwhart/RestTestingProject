@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Change {
 
+    private int changeId;
     private int quarters;
     private int dimes;
     private int nickels;
@@ -22,6 +23,14 @@ public class Change {
         totalBalance = totalBalance % 10;
         nickels = totalBalance / 5;
         pennies = totalBalance % 5;
+    }
+
+    public int getChangeId() {
+        return changeId;
+    }
+
+    public void setChangeId(int changeId) {
+        this.changeId = changeId;
     }
 
     public int getDollars() {
