@@ -77,7 +77,7 @@ public class SuperSightingDaoImplTest {
         SuperSighting readSuperSighting = superSightingDao.retrieve(superSighting.getId());
 
         //Assert
-        assert (null == readSuperSighting);
+        assert (null == readSuperSighting);//
     }
 
     private void assertSuperSightingEquals(SuperSighting superSighting, SuperSighting superSighting2) {

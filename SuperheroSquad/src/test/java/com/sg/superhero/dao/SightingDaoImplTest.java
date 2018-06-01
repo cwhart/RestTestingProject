@@ -3,10 +3,7 @@ package com.sg.superhero.dao;
 import com.sg.superhero.TestHelper;
 import com.sg.superhero.dao.interfaces.OrganizationDao;
 import com.sg.superhero.dao.interfaces.SightingDao;
-import com.sg.superhero.dto.Organization;
-import com.sg.superhero.dto.Power;
-import com.sg.superhero.dto.Sighting;
-import com.sg.superhero.dto.Super;
+import com.sg.superhero.dto.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -156,6 +154,35 @@ public class SightingDaoImplTest {
 
     @Test
     public void getSightingsByLocationAndSuperAndDate() {
+
+        //Arrange
+        List<Location> locationList = testHelper.createMultipleLocations(15);
+
+        List <Super> superList = testHelper.createMultipleSupers(2);
+
+        List <SuperSighting> superSightingList = new ArrayList<>();
+
+
+        for (int i=0; i<10; i++) {
+            Sighting sighting = testHelper.createTestSighting(locationList.get(i),
+                    LocalDate.now().plusDays((long) i));
+
+            SuperSighting currentSuperSighting = testHelper.createTestSuperSighting(superList.get(0), sighting);
+            superSightingList.add(currentSuperSighting);
+        }
+        for (int i=0; i<2; i++) {
+            Sighting sighting = testHelper.createTestSighting(locationList.get(i),
+                    LocalDate.now().plusDays((long) i));
+            SuperSighting currentSuperSighting = testHelper.createTestSuperSighting(superList.get(1), sighting);
+            superSightingList.add(currentSuperSighting);
+        }
+
+        //Act
+        List<Sighting> sightingList = sightingDao.retrieveSightingsByLocationAndSuperAndDate(locationList.get(1),
+                superList.get(0), LocalDate.now().plusDays(1), Integer.MAX_VALUE, 0);
+
+        //Assert
+        assert sightingList.size() == 1;//
     }
 
     public void assertSightingsEqual(Sighting sighting1, Sighting sighting2) {

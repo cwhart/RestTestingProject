@@ -58,7 +58,7 @@ public class SuperPowerDaoImpl implements SuperPowerDao {
 
         jdbcTemplate.update(QUERY, superPower.getId());
 
-    }
+    }//
 
     private class SuperPowerMapper implements RowMapper<SuperPower> {
         @Override

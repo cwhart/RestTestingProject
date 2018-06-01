@@ -79,7 +79,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
         jdbcTemplate.update(QUERY, organization.getId());
 
-    }
+    }//
 
     @Override
     public List<Organization> retrieveAll(int limit, int offset) {

@@ -18,38 +18,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrganizationDaoImplTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/OrganizationDaoImplTest.java">
+      <file leaf-file-name="test-applicationContext.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/test-applicationContext.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="132" column="115" selection-start-line="132" selection-start-column="95" selection-end-line="132" selection-end-column="115" />
+            <state relative-caret-position="485">
+              <caret line="95" column="49" lean-forward="true" selection-start-line="95" selection-start-column="49" selection-end-line="95" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SightingDaoImplTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SightingDaoImplTest.java">
+      <file leaf-file-name="SuperSightingServiceImplTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperSightingServiceImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="131" column="34" selection-start-line="131" selection-start-column="34" selection-end-line="131" selection-end-column="34" />
+            <state relative-caret-position="196">
+              <caret line="70" column="68" selection-start-line="70" selection-start-column="68" selection-end-line="70" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowerDaoImplTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/PowerDaoImplTest.java">
+      <file leaf-file-name="SuperPowerServiceImplTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperPowerServiceImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="122" column="42" selection-start-line="122" selection-start-column="42" selection-end-line="122" selection-end-column="42" />
+            <state relative-caret-position="264">
+              <caret line="70" column="62" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowerDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/PowerDaoImpl.java">
+      <file leaf-file-name="SuperOrganizationServiceImplTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperOrganizationServiceImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="90" selection-end-column="24" />
+            <state relative-caret-position="89">
+              <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperOrganizationServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperOrganizationServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#729#730#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#889#890#0" expanded="true" />
+                <element signature="e#924#925#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperPowerServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperPowerServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#406#407#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
+                <element signature="e#298#299#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#385#386#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperSightingServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperSightingServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#436#437#0" expanded="true" />
+                <element signature="e#455#456#0" expanded="true" />
+                <element signature="e#292#293#0" expanded="true" />
+                <element signature="e#319#320#0" expanded="true" />
+                <element signature="e#382#383#0" expanded="true" />
+                <element signature="e#409#410#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#835#836#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperDaoImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,60 +122,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SightingDaoImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SightingDaoImpl.java">
+      <file leaf-file-name="SightingServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SightingServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="96" column="62" lean-forward="true" selection-start-line="96" selection-start-column="62" selection-end-line="96" selection-end-column="62" />
+            <state relative-caret-position="204">
+              <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PowerDao.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/sg/SuperheroSquadShared/1.2/SuperheroSquadShared-1.2.jar!/com/sg/superhero/dao/interfaces/PowerDao.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrganizationDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/OrganizationDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="99" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocationDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/LocationDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="110" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#655#656#0" expanded="true" />
-                <element signature="e#703#704#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/TestHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="217" column="61" lean-forward="true" selection-start-line="217" selection-start-column="61" selection-end-line="217" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#823#824#0" expanded="true" />
+                <element signature="e#867#868#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,8 +141,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -143,14 +163,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-dispatcher-servlet.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperOrganizationDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperOrganizationDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperOrganizationDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperPowerDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperPowerDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/test-applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperSightingDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperSightingDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/LocationDaoImpl.java" />
@@ -158,11 +175,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/OrganizationDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/OrganizationDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/TestHelper.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/PowerDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/PowerDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SightingDaoImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SightingDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperDaoImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/OrganizationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/LocationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/PowerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SightingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SightingDaoImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SightingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/PowerServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/OrganizationServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/LocationServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperOrganizationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperOrganizationServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperOrganizationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperPowerServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperPowerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/test-applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperSightingServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperSightingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -286,6 +324,17 @@
               <item name="SuperheroSquad" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="sg" type="462c0819:PsiDirectoryNode" />
+              <item name="superhero" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SuperheroSquad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SuperheroSquad" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -351,6 +400,17 @@
               <item name="SuperheroSquad" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="sg" type="462c0819:PsiDirectoryNode" />
+              <item name="superhero" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SuperheroSquad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SuperheroSquad" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -370,15 +430,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.sg.superhero.service" />
       <recent name="com.sg.superhero.dao" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.sg.superhero.service" />
       <recent name="com.sg.superhero.dao" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\SuperheroSquad\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sg.superhero.service" />
       <recent name="com.sg.superhero.dao" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -397,45 +460,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SightingDaoImplTest.getSightingsBySuper">
+  <component name="RunManager" selected="JUnit.com.sg.superhero in SuperheroSquad">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="OrganizationDaoImplTest.getOrganizationsBySuper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SuperOrganizationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SuperheroSquad" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.superhero.dao.*" />
+          <option name="PATTERN" value="com.sg.superhero.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.superhero.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.dao.OrganizationDaoImplTest" />
-      <option name="METHOD_NAME" value="getOrganizationsBySuper" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="PowerDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SuperheroSquad" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sg.superhero.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.superhero.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.dao.PowerDaoImplTest" />
+      <option name="PACKAGE_NAME" value="com.sg.superhero.service" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.service.SuperOrganizationServiceImplTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -447,20 +487,20 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="PowerDaoImplTest.retrievePowersBySuper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SuperPowerServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SuperheroSquad" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.superhero.dao.*" />
+          <option name="PATTERN" value="com.sg.superhero.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.superhero.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.dao.PowerDaoImplTest" />
-      <option name="METHOD_NAME" value="retrievePowersBySuper" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.sg.superhero.service" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.service.SuperPowerServiceImplTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -470,20 +510,43 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="SightingDaoImplTest.getSightingsBySuper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SuperServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SuperheroSquad" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.superhero.dao.*" />
+          <option name="PATTERN" value="com.sg.superhero.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.superhero.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.dao.SightingDaoImplTest" />
-      <option name="METHOD_NAME" value="getSightingsBySuper" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.sg.superhero.service" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.service.SuperServiceImplTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SuperSightingServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SuperheroSquad" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sg.superhero.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.sg.superhero.service" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.superhero.service.SuperSightingServiceImplTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -509,17 +572,17 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="com.sg.superhero.dao in SuperheroSquad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="com.sg.superhero in SuperheroSquad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SuperheroSquad" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.superhero.dao.*" />
+          <option name="PATTERN" value="com.sg.superhero.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.superhero.dao" />
+      <option name="PACKAGE_NAME" value="com.sg.superhero" />
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
@@ -555,19 +618,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="JUnit.com.sg.superhero.dao in SuperheroSquad" />
-      <item itemvalue="JUnit.OrganizationDaoImplTest.getOrganizationsBySuper" />
-      <item itemvalue="JUnit.PowerDaoImplTest.retrievePowersBySuper" />
-      <item itemvalue="JUnit.PowerDaoImplTest" />
-      <item itemvalue="JUnit.SightingDaoImplTest.getSightingsBySuper" />
+      <item itemvalue="JUnit.com.sg.superhero in SuperheroSquad" />
+      <item itemvalue="JUnit.SuperServiceImplTest" />
+      <item itemvalue="JUnit.SuperOrganizationServiceImplTest" />
+      <item itemvalue="JUnit.SuperPowerServiceImplTest" />
+      <item itemvalue="JUnit.SuperSightingServiceImplTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SightingDaoImplTest.getSightingsBySuper" />
-        <item itemvalue="JUnit.com.sg.superhero.dao in SuperheroSquad" />
-        <item itemvalue="JUnit.PowerDaoImplTest" />
-        <item itemvalue="JUnit.PowerDaoImplTest.retrievePowersBySuper" />
-        <item itemvalue="JUnit.OrganizationDaoImplTest.getOrganizationsBySuper" />
+        <item itemvalue="JUnit.com.sg.superhero in SuperheroSquad" />
+        <item itemvalue="JUnit.SuperSightingServiceImplTest" />
+        <item itemvalue="JUnit.SuperPowerServiceImplTest" />
+        <item itemvalue="JUnit.SuperOrganizationServiceImplTest" />
+        <item itemvalue="JUnit.SuperServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -585,44 +648,44 @@
       <workItem from="1527615041644" duration="11876000" />
       <workItem from="1527632512680" duration="4602000" />
       <workItem from="1527642869411" duration="28039000" />
-      <workItem from="1527736753422" duration="12450000" />
+      <workItem from="1527736753422" duration="28989000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 33m 28s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperServiceImplTest - 2018.05.31 at 20h 01m 29s.xml">
+      <configuration name="SuperServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 35m 08s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperServiceImplTest - 2018.05.31 at 20h 03m 42s.xml">
+      <configuration name="SuperServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 36m 17s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperOrganizationServiceImplTest - 2018.05.31 at 20h 10m 28s.xml">
+      <configuration name="SuperOrganizationServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 36m 34s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperOrganizationServiceImplTest - 2018.05.31 at 20h 10m 56s.xml">
+      <configuration name="SuperOrganizationServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 37m 37s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperOrganizationServiceImplTest - 2018.05.31 at 20h 11m 40s.xml">
+      <configuration name="SuperOrganizationServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 38m 17s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperPowerServiceImplTest - 2018.05.31 at 20h 14m 39s.xml">
+      <configuration name="SuperPowerServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 39m 22s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperPowerServiceImplTest - 2018.05.31 at 20h 15m 25s.xml">
+      <configuration name="SuperPowerServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 40m 12s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperSightingServiceImplTest - 2018.05.31 at 20h 19m 13s.xml">
+      <configuration name="SuperSightingServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 42m 44s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="SuperSightingServiceImplTest - 2018.05.31 at 20h 19m 50s.xml">
+      <configuration name="SuperSightingServiceImplTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SightingDaoImplTest_getSightingsBySuper - 2018.05.31 at 11h 42m 52s.xml">
-      <configuration name="SightingDaoImplTest.getSightingsBySuper" configurationId="JUnit" />
+    <history-entry file="com_sg_superhero_in_SuperheroSquad - 2018.05.31 at 20h 20m 02s.xml">
+      <configuration name="com.sg.superhero in SuperheroSquad" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58208000" />
+    <option name="totallyTimeSpent" value="74747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
@@ -638,7 +701,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.36115843" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5417377" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3781942" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -674,118 +737,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SightingDaoImplTest.java</url>
-          <line>137</line>
+          <line>135</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="36" />
+      <option name="time" value="44" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperOrganizationDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="81" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperPowerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperSightingDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperPowerDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperOrganizationDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="57" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test-applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="74" selection-start-line="61" selection-start-column="74" selection-end-line="61" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperSightingDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/LocationDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="99" column="78" lean-forward="true" selection-start-line="99" selection-start-column="78" selection-end-line="99" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#703#704#0" expanded="true" />
-            <element signature="e#2998#2999#0" expanded="true" />
-            <element signature="e#3025#3026#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sg/SuperheroSquadShared/1.0-SNAPSHOT/SuperheroSquadShared-1.0-SNAPSHOT.jar!/com/sg/superhero/dto/Location.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test-applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="65" lean-forward="true" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/LocationDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
@@ -886,36 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperOrganizationDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="66" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperOrganizationDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -953,13 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test-applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="876">
-          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperPowerDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -974,10 +897,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/LocationDaoImplTest.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sg/SuperheroSquadShared/1.2/SuperheroSquadShared-1.2.jar!/com/sg/superhero/dao/interfaces/PowerDao.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-379">
-          <caret line="120" column="38" lean-forward="true" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
+        <state relative-caret-position="289">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperOrganizationDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SightingDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="184" column="40" lean-forward="true" selection-start-line="184" selection-start-column="40" selection-end-line="184" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/PowerDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="122" column="42" selection-start-line="122" selection-start-column="42" selection-end-line="122" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/OrganizationDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="99" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/TestHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="217" column="61" selection-start-line="217" selection-start-column="61" selection-end-line="217" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SuperDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -986,8 +960,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/LocationDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="110" selection-end-column="24" />
+        <state relative-caret-position="1619">
+          <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="106" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#655#656#0" expanded="true" />
@@ -996,10 +970,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sg/SuperheroSquadShared/1.2/SuperheroSquadShared-1.2.jar!/com/sg/superhero/dao/interfaces/PowerDao.class">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/OrganizationDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+        <state relative-caret-position="1989">
+          <caret line="134" column="36" selection-start-line="122" selection-start-column="8" selection-end-line="134" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/LocationDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="152" column="49" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/PowerDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1010,61 +1004,247 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/OrganizationDaoImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/LocationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="132" column="115" selection-start-line="132" selection-start-column="95" selection-end-line="132" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/OrganizationDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="99" selection-end-column="24" />
+        <state relative-caret-position="242">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#960#961#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/TestHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/OrganizationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="217" column="61" lean-forward="true" selection-start-line="217" selection-start-column="61" selection-end-line="217" selection-end-column="61" />
+        <state relative-caret-position="272">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#344#345#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#714#715#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1038#1039#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/PowerDaoImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SightingDaoImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="122" column="42" selection-start-line="122" selection-start-column="42" selection-end-line="122" selection-end-column="42" />
+        <state relative-caret-position="89">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/PowerDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/PowerServiceImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="90" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="101" column="52" selection-start-line="101" selection-start-column="52" selection-end-line="101" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/dao/SightingDaoImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/OrganizationServiceImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="131" column="34" selection-start-line="131" selection-start-column="34" selection-end-line="131" selection-end-column="34" />
+        <state relative-caret-position="272">
+          <caret line="93" column="65" selection-start-line="93" selection-start-column="65" selection-end-line="93" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/LocationServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="96" column="68" selection-start-line="96" selection-start-column="68" selection-end-line="96" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SightingDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="96" column="62" lean-forward="true" selection-start-line="96" selection-start-column="62" selection-end-line="96" selection-end-column="62" />
+        <state relative-caret-position="1751">
+          <caret line="114" column="40" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/PowerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="85" selection-start-line="45" selection-start-column="85" selection-end-line="45" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#818#819#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="58" column="73" selection-start-line="58" selection-start-column="73" selection-end-line="58" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#818#819#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
+            <element signature="e#921#922#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperOrganizationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#334#335#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SightingServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperOrganizationServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperOrganizationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#729#730#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#924#925#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperPowerServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="70" column="62" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperPowerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/test-applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="95" column="49" lean-forward="true" selection-start-line="95" selection-start-column="49" selection-end-line="95" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/superhero/service/SuperSightingServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="70" column="68" selection-start-line="70" selection-start-column="68" selection-end-line="70" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/service/SuperSightingServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/superhero/dao/SuperDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -3,8 +3,7 @@ package com.sg.superhero.dao;
 import com.sg.superhero.TestHelper;
 import com.sg.superhero.dao.interfaces.LocationDao;
 import com.sg.superhero.dao.interfaces.SuperDao;
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.dto.Super;
+import com.sg.superhero.dto.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -118,14 +119,74 @@ public class SuperDaoImplTest {
 
     @Test
     public void getSupersByOrganization() {
+
+        //Arrange
+        List<Super> superList = testHelper.createMultipleSupers(15);
+
+        Organization organization = testHelper.createTestOrganization();
+        for (int i = 0; i < 10; i++) {
+            Super superPerson = testHelper.createTestSuper();
+            testHelper.createTestSuperOrganization(superPerson, organization);
+        }
+
+        //Act
+        List<Super> retrievedSuperList = superDao.retrieveSupersByOrganization(organization, Integer.MAX_VALUE, 0);
+
+        assert retrievedSuperList.size() == 10;
     }
 
     @Test
     public void getSupersByLocation() {
+
+        //Arrange
+
+        List<Location> locationList = testHelper.createMultipleLocations(3);
+
+        List <Super> superList = testHelper.createMultipleSupers(15);
+
+        List <SuperSighting> superSightingList = new ArrayList<>();
+
+
+        for (int i=0; i<10; i++) {
+            Sighting sighting = testHelper.createTestSighting(locationList.get(1),
+                    LocalDate.now().plusDays((long) i));
+
+            SuperSighting currentSuperSighting = testHelper.createTestSuperSighting(superList.get(i), sighting);
+            superSightingList.add(currentSuperSighting);//
+        }
+        for (int i=0; i<2; i++) {
+            Sighting sighting = testHelper.createTestSighting(locationList.get(2),
+                    LocalDate.now().plusDays((long) i));
+            SuperSighting currentSuperSighting = testHelper.createTestSuperSighting(superList.get(i), sighting);
+            superSightingList.add(currentSuperSighting);
+        }
+
+        //Act
+        List<Super> returnedSuperList1 = superDao.retrieveSupersByLocation(locationList.get(1), Integer.MAX_VALUE, 0);
+        List<Super> returnedSuperList2 = superDao.retrieveSupersByLocation(locationList.get(2), Integer.MAX_VALUE, 0);
+
+
+        //Assert
+        assert returnedSuperList1.size() == 10;
+        assert returnedSuperList2.size() == 2;
     }
 
     @Test
     public void getSupersBySighting() {
+
+        //Arrange
+        List<Super> superList = testHelper.createMultipleSupers(15);
+
+        Sighting sighting = testHelper.createTestSighting();
+        for (int i = 0; i < 10; i++) {
+            Super superPerson = testHelper.createTestSuper();
+            testHelper.createTestSuperSighting(superPerson, sighting);
+        }
+
+        //Act
+        List<Super> retrievedSuperList = superDao.retrieveSupersBySighting(sighting, Integer.MAX_VALUE, 0);
+
+        assert retrievedSuperList.size() == 10;
     }
 
     public void assertSuperEquals(Super super1, Super super2) {

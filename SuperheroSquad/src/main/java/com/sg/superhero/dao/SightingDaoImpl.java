@@ -86,7 +86,7 @@ public class SightingDaoImpl implements SightingDao {
         final String QUERY = "select * from sighting limit ? offset ?";
 
         return jdbcTemplate.query(QUERY, new SightingMapper(), limit, offset);
-    }
+    }//
 
     @Override
     public List<Sighting> retrieveSightingsBySuper(Super superPerson, int limit, int offset) {
@@ -101,8 +101,20 @@ public class SightingDaoImpl implements SightingDao {
     }
 
     @Override
-    public Sighting retrieveSightingsByLocationAndSuperAndDate(Location location, Super aSuper, LocalDate localDate, int i, int i1) {
-        return null;
+    public List<Sighting> retrieveSightingsByLocationAndSuperAndDate(Location location, Super superPerson,
+                                                                     LocalDate localDate, int limit, int offset) {
+        final String QUERY = "select * from sighting s " +
+                "inner join supersighting ss on s.id = ss.sighting_id " +
+                "where ss.super_id = ? " +
+                "and s.location_id = ? " +
+                "and s.date = ?" +
+                "LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(QUERY, new SightingMapper(),
+                superPerson.getId(),
+                location.getId(),
+                Date.valueOf(localDate),
+                limit,
+                offset);
     }
 
     private class SightingMapper implements RowMapper<Sighting> {

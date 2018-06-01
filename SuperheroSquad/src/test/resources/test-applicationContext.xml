@@ -35,7 +35,7 @@
     </bean>
 
 
-    <!-- JDBCTemplate Info -->
+    <!-- JDBCTemplate Info   -->
     <context:component-scan base-package="com.sg.superhero.dao"/>
 
     <tx:annotation-driven/>
@@ -62,5 +62,39 @@
     <bean id="superPowerDao" class="com.sg.superhero.dao.SuperPowerDaoImpl" />
 
     <bean id="superSightingDao" class="com.sg.superhero.dao.SuperSightingDaoImpl" />
-    
+
+    <bean id="locationService" class="com.sg.superhero.service.LocationServiceImpl">
+        <constructor-arg ref="locationDao"/>
+    </bean>
+
+
+    <bean id="organizationService" class="com.sg.superhero.service.OrganizationServiceImpl">
+        <constructor-arg ref="organizationDao"/>
+    </bean>
+
+    <bean id="powerService" class="com.sg.superhero.service.PowerServiceImpl">
+        <constructor-arg ref="powerDao"/>
+    </bean>
+
+    <bean id="sightingService" class="com.sg.superhero.service.SightingServiceImpl">
+        <constructor-arg ref="sightingDao"/>
+    </bean>
+
+    <bean id="superService" class="com.sg.superhero.service.SuperServiceImpl">
+        <constructor-arg ref="superDao"/>
+    </bean>
+
+    <bean id="superOrganizationService" class="com.sg.superhero.service.SuperOrganizationServiceImpl">
+        <constructor-arg ref="superOrganizationDao"/>
+    </bean>
+
+    <bean id="superPowerService" class="com.sg.superhero.service.SuperPowerServiceImpl">
+        <constructor-arg ref="superPowerDao"/>
+    </bean>
+
+    <bean id="superSightingService" class="com.sg.superhero.service.SuperSightingServiceImpl">
+        <constructor-arg ref="superSightingDao"/>
+    </bean>
+
+
 </beans>

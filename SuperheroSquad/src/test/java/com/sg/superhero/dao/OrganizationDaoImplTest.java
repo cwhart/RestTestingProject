@@ -114,7 +114,7 @@ public class OrganizationDaoImplTest {
 
         //Assert
         assert orgList.size() == 25;
-        assertOrganizationListEqual(readOrgList, orgList);
+        assertOrganizationListEqual(readOrgList, orgList);//
     }
 
     @Test

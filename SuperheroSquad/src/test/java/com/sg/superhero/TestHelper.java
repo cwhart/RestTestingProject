@@ -201,7 +201,7 @@ public class TestHelper {
             superOrganizationList.add(superOrg);
         }
 
-        return superOrganizationList;
+        return superOrganizationList;//
     }
 
     public SuperPower createTestSuperPower () {

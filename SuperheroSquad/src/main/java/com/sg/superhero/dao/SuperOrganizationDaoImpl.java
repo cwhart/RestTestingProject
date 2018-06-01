@@ -37,7 +37,7 @@ public class SuperOrganizationDaoImpl implements SuperOrganizationDao {
 
         //Return team with id
         return superOrganization;
-    }
+    }//
 
     @Override
     public SuperOrganization retrieve(long id) {

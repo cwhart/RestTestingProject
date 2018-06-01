@@ -83,19 +83,43 @@ public class SuperDaoImpl implements SuperDao {
     }
 
     @Override
-    public List<Super> retrieveSupersByOrganization(Organization organization, int i, int i1) {
-        return null;
+    public List<Super> retrieveSupersByOrganization(Organization organization, int limit, int offset) {
+        final String QUERY = "select * from super s " +
+                "inner join superorganization so on s.id = so.super_id " +
+                "where so.organization_id = ? " +
+                "LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(QUERY, new SuperMapper(),
+                organization.getId(),
+                limit,
+                offset);
     }
 
     @Override
-    public List<Super> retrieveSupersByLocation(Location location, int i, int i1) {
-        return null;
+    public List<Super> retrieveSupersByLocation(Location location, int limit, int offset) {
+        final String QUERY = "SELECT * from `super` s " +
+                "JOIN supersighting ss ON ss.super_id = s.id " +
+                "JOIN sighting si ON si.id = ss.sighting_id " +
+                "WHERE si.location_id = ? LIMIT ? OFFSET ?";
+
+        return jdbcTemplate.query(QUERY, new SuperMapper(),
+                location.getId(),
+                limit,
+                offset);
     }
 
     @Override
-    public List<Super> retrieveSupersBySighting(Sighting sighting, int i, int i1) {
-        return null;
-    }
+    public List<Super> retrieveSupersBySighting(Sighting sighting, int limit, int offset) {
+        final String QUERY = "select * from super s " +
+                "inner join supersighting ss on s.id = ss.super_id " +
+                "where ss.sighting_id = ? " +
+                "LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(QUERY, new SuperMapper(),
+                sighting.getId(),
+                limit,
+                offset);
+    }//
+
+    //TODO: add method for retrieveSupersByPower
 
     private class SuperMapper implements RowMapper<Super> {
         @Override

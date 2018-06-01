@@ -77,7 +77,7 @@ public class SuperPowerDaoImplTest {
         SuperPower readSuperPower = superPowerDao.retrieve(superPower.getId());
 
         //Assert
-        assert (null == readSuperPower);
+        assert (null == readSuperPower);//
     }
 
     public void assertSuperPowersEqual(SuperPower superPower1, SuperPower superPower2) {

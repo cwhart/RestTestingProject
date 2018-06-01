@@ -150,7 +150,7 @@ public class LocationDaoImplTest {
 
         //Assert
         assert returnedLocationList1.size() == 10;
-        assert returnedLocationList2.size() == 2;
+        assert returnedLocationList2.size() == 2;//
     }
 
     public void assertLocationEquals(Location loc1, Location loc2) {

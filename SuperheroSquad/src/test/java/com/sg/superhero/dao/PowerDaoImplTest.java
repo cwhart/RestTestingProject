@@ -109,7 +109,7 @@ public class PowerDaoImplTest {
         Power readPower = powerDao.retrieve(power.getId());
 
         //Assert
-        assert (null == readPower);
+        assert (null == readPower);//
     }
 
     @Test

@@ -74,7 +74,7 @@ public class SuperOrganizationDaoImplTest {
 
         //Act
         assert (superOrg.getId() != null);
-        superOrganizationDao.delete(superOrg);
+        superOrganizationDao.delete(superOrg);//
 
         SuperOrganization readSuperOrg = superOrganizationDao.retrieve(superOrg.getId());
 

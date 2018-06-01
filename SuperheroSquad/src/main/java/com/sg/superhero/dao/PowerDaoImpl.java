@@ -77,7 +77,7 @@ public class PowerDaoImpl implements PowerDao {
 
         jdbcTemplate.update(QUERY, power.getId());
 
-    }
+    }//
 
     @Override
     public List<Power> retrievePowersBySuper(Super superPerson, int limit, int offset) {

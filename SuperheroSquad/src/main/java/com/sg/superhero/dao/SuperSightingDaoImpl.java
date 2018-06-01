@@ -70,7 +70,7 @@ public class SuperSightingDaoImpl implements SuperSightingDao {
                 Super superPerson = new Super();
                 superPerson.setId(superId);
                 superSighting.setSuperPerson(superPerson);
-            }
+            }//
 
             //Lazy load sighting
             Long sightingId = resultSet.getLong("sighting_id");
