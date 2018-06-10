@@ -54,9 +54,9 @@ public class SuperPowerDaoImpl implements SuperPowerDao {
     @Override
     public void delete(SuperPower superPower) {
 
-        final String QUERY = "delete from superpower where id=?";
+        final String QUERY = "delete from superpower where super_id=? and power_id = ?";
 
-        jdbcTemplate.update(QUERY, superPower.getId());
+        jdbcTemplate.update(QUERY, superPower.getSuperPerson().getId(), superPower.getPower().getId());
 
     }//
 

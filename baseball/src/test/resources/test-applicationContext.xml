@@ -52,5 +52,7 @@
 
     <bean id="playerPositionService" class="com.sg.baseball.service.PlayerPositionServiceImpl"/>
 
+    <bean id="playerWebService" class="com.sg.baseball.webservice.PlayerWebServiceImpl"/>
+
     
 </beans>

@@ -194,4 +194,22 @@ public class SuperDaoImplTest {
         assert (super1.getDescription().equals(super2.getDescription()));
 
     }
+
+    @Test
+    public void retrieveSupersByPower() {
+
+        //Arrange
+        List<Super> superList = testHelper.createMultipleSupers(15);
+
+        Power power = testHelper.createTestPower();
+        for (int i = 0; i < 10; i++) {
+            Super superPerson = testHelper.createTestSuper();
+            testHelper.createTestSuperPower(superPerson, power);
+        }
+
+        //Act
+        List<Super> retrievedSuperList = superDao.retrieveSupersByPower(power, Integer.MAX_VALUE, 0);
+
+        assert retrievedSuperList.size() == 10;
+    }
 }

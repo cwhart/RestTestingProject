@@ -47,7 +47,7 @@ public class PlayerServiceTests {
         assert "Pat".equals(createdPlayer.getFirst()); //any time a string is compared to a constant, put
         //the constant first.
         assert "Toner".equals(createdPlayer.getLast());
-        assert createdPlayer.getTeam().getId().equals(player.getId());
+        assert createdPlayer.getTeam().getId().equals(player.getTeam().getId());
 
     }
 
@@ -82,6 +82,8 @@ public class PlayerServiceTests {
         assertPlayerEquals(createdPlayer, readPlayer);
 
     }
+
+    //Add test for if read returns null.
 
     @Test
     public void testUpdateWithTeam() {
@@ -154,7 +156,7 @@ public class PlayerServiceTests {
         List<Player> playerList = playerService.getAll(Integer.MAX_VALUE, 0);
 
         //Assert
-        assertPlayerListsEqual(playerList, createPlayers);
+       assertPlayerListsEqual(playerList, createPlayers);
 
     }
 
@@ -211,9 +213,23 @@ public class PlayerServiceTests {
         }
     }
 
+    private List<Player> createTestPlayers(int playersToCreate) {
+
+        List<Player> createdPlayers = new ArrayList<>();
+        playersToCreate = 25;
+        for (int i=0; i<playersToCreate; i++) {
+            Player player = new Player();
+            player.setFirst("Joe" + i);
+            player.setLast("Schmoe" + i);
+            createdPlayers.add(playerService.create(player));
+        }
+
+        return createdPlayers;
+    }
 
 
-    @Test
+
+    //@Test
 //    public void testGetPlayerByTeam() {
 //
 //        //Arrange
@@ -238,7 +254,7 @@ public class PlayerServiceTests {
 //    }
 
 
-    private void assertPlayerListsEqual(List<Player> list1, List<Player> list2) {
+    public void assertPlayerListsEqual(List<Player> list1, List<Player> list2) {
         assert list1.size() == list2.size();
 
         for (Player player : list1) {
@@ -276,17 +292,5 @@ public class PlayerServiceTests {
 
 
 
-    private List<Player> createTestPlayers(int playersToCreate) {
 
-        List<Player> createdPlayers = new ArrayList<>();
-        playersToCreate = 25;
-        for (int i=0; i<playersToCreate; i++) {
-            Player player = new Player();
-            player.setFirst("Joe" + i);
-            player.setLast("Schmoe" + i);
-            createdPlayers.add(playerService.create(player));
-        }
-
-        return createdPlayers;
-    }
 }

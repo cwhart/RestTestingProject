@@ -62,9 +62,9 @@ public class PlayerPositionDaoImpl implements PlayerPositionDao {
     @Override
     public void delete(PlayerPosition playerPosition) {
 
-        final String QUERY = "delete from player_position where id = ?";
+        final String QUERY = "delete from player_position where player_id = ? and position_id = ?";
 
-        jdbcTemplate.update(QUERY, playerPosition.getId());
+        jdbcTemplate.update(QUERY, playerPosition.getPlayer().getId(), playerPosition.getPosition().getId());
 
     }
 

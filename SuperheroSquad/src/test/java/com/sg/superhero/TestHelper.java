@@ -102,6 +102,17 @@ public class TestHelper {
         return organization;
     }
 
+    public Organization createTestOrganization(Location location) {
+        Organization organization = new Organization();
+        organization.setName("Justice League");
+        organization.setDescription("Superhero Organization");
+        organization.setEmail("justice@jl.com");
+        organization.setPhone("867-5309");
+        organization.setLocation(location);
+        organizationDao.create(organization);
+        return organization;
+    }
+
     public List<Organization> createMultipleOrganizations(int numToCreate) {
         List<Organization> orgList = new ArrayList<>();
 

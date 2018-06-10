@@ -9,9 +9,12 @@ import com.sg.baseball.dto.PlayerPosition;
 import com.sg.baseball.dto.Position;
 import com.sg.baseball.dto.Team;
 import com.sg.baseball.service.interfaces.PlayerService;
+import com.sg.baseball.service.interfaces.PositionService;
 import com.sg.baseball.service.interfaces.TeamService;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestHelper {
 
@@ -26,6 +29,9 @@ public class TestHelper {
 
     @Inject
     PlayerPositionDao playerPositionDao;
+
+    @Inject
+    PositionService positionService;
 
     public PlayerPosition createPlayerPosition(Player player, Position position) {
         PlayerPosition playerPosition = new PlayerPosition();
@@ -68,5 +74,31 @@ public class TestHelper {
         player.setTeam(team);
 
         return playerService.create(player);
+    }
+
+    public List<Position> createTestPositions (int n) {
+        List<Position> createdPositions = new ArrayList<>();
+        //positionsToCreate = 25;
+        for (int i=0; i<n; i++) {
+            Position position = new Position();
+            position.setName("First Base" + i);
+
+            createdPositions.add(positionService.create(position));
+        }
+
+        return createdPositions;
+    }
+
+    public List<Team> createTestTeams (int n) {
+        List<Team> createdTeams = new ArrayList<>();
+        //teamsToCreate = 25;
+        for (int i=0; i<n; i++) {
+            Team team = new Team();
+            team.setCity("Pittsburgh" + i);
+            team.setNickname("Pirates" + i);
+            createdTeams.add(teamService.create(team));
+        }
+
+        return createdTeams;
     }
 }

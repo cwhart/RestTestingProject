@@ -1,10 +1,7 @@
 package com.sg.superhero.dao;
 
 import com.sg.superhero.dao.interfaces.SuperDao;
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.dto.Organization;
-import com.sg.superhero.dto.Sighting;
-import com.sg.superhero.dto.Super;
+import com.sg.superhero.dto.*;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -119,7 +116,7 @@ public class SuperDaoImpl implements SuperDao {
                 offset);
     }//
 
-    //TODO: add method for retrieveSupersByPower
+
 
     private class SuperMapper implements RowMapper<Super> {
         @Override
@@ -132,5 +129,17 @@ public class SuperDaoImpl implements SuperDao {
             return superPerson;
 
         }
+    }
+
+    @Override
+    public List<Super> retrieveSupersByPower(Power power, int limit, int offset) {
+        final String QUERY = "select * from super s " +
+                "inner join superpower sp on s.id = sp.super_id " +
+                "where sp.power_id = ? " +
+                "LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(QUERY, new SuperMapper(),
+                power.getId(),
+                limit,
+                offset);
     }
 }

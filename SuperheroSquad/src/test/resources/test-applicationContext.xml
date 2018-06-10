@@ -96,5 +96,16 @@
         <constructor-arg ref="superSightingDao"/>
     </bean>
 
+    <bean id="locationWebService" class="com.sg.superhero.webservice.LocationWebServiceImpl" />
+
+    <bean id="organizationWebService" class="com.sg.superhero.webservice.OrganizationWebServiceImpl" />
+
+    <bean id="powerWebService" class="com.sg.superhero.webservice.PowerWebServiceImpl" />
+
+    <bean id="sightingWebService" class="com.sg.superhero.webservice.SightingWebServiceImpl" />
+
+    <bean id="superPersonWebService" class="com.sg.superhero.webservice.SuperPersonWebServiceImpl" />
+
+
 
 </beans>

@@ -1,10 +1,7 @@
 package com.sg.superhero.service;
 
 import com.sg.superhero.dao.interfaces.SuperDao;
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.dto.Organization;
-import com.sg.superhero.dto.Sighting;
-import com.sg.superhero.dto.Super;
+import com.sg.superhero.dto.*;
 import com.sg.superhero.service.interfaces.SuperService;
 
 import javax.inject.Inject;
@@ -12,9 +9,10 @@ import java.util.List;
 
 public class SuperServiceImpl implements SuperService {
 
-    @Inject
+
     SuperDao superDao;
 
+    @Inject
     private SuperServiceImpl (SuperDao superDao) {
         this.superDao = superDao;
     }
@@ -57,5 +55,10 @@ public class SuperServiceImpl implements SuperService {
     @Override
     public List<Super> retrieveSupersBySighting(Sighting sighting, int limit, int offset) {
         return superDao.retrieveSupersBySighting(sighting, limit, offset);//
+    }
+
+    @Override
+    public List<Super> retrieveSupersByPower(Power power, int limit, int offset) {
+        return superDao.retrieveSupersByPower(power, limit, offset);
     }
 }

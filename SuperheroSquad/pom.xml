@@ -108,7 +108,7 @@
         <dependency>
             <groupId>com.sg</groupId>
             <artifactId>SuperheroSquadShared</artifactId>
-            <version>1.5</version>
+            <version>1.16</version>
         </dependency>
                                 
     </dependencies>

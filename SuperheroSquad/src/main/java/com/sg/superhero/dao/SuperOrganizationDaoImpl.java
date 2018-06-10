@@ -53,9 +53,9 @@ public class SuperOrganizationDaoImpl implements SuperOrganizationDao {
     @Override
     public void delete(SuperOrganization superOrganization) {
 
-        final String QUERY = "delete from superorganization where id=?";
+        final String QUERY = "delete from superorganization where super_id = ? and organization_id = ?";
 
-        jdbcTemplate.update(QUERY, superOrganization.getId());
+        jdbcTemplate.update(QUERY, superOrganization.getSuperPerson().getId(), superOrganization.getOrganization().getId());
 
     }
 

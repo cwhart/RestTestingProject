@@ -52,9 +52,9 @@ public class SuperSightingDaoImpl implements SuperSightingDao {
     @Override
     public void delete(SuperSighting superSighting) {
 
-        final String QUERY = "delete from supersighting where id=?";
+        final String QUERY = "delete from supersighting where super_id=? and sighting_id = ?";
 
-        jdbcTemplate.update(QUERY, superSighting.getId());
+        jdbcTemplate.update(QUERY, superSighting.getSuperPerson().getId(), superSighting.getSighting().getId());
 
     }
 
