@@ -57,6 +57,7 @@ public class OrganizationWebServiceImpl implements OrganizationWebService {
         for (Organization organization: orgList) {
             OrganizationViewModel viewModel = new OrganizationViewModel();
             viewModel.setName(organization.getName());
+            viewModel.setId(organization.getId());
             viewModels.add(viewModel);
             //viewModel.setLast(player.getLast());
 

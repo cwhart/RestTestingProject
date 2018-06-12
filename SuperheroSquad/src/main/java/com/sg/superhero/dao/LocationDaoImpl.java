@@ -94,7 +94,8 @@ public class LocationDaoImpl implements LocationDao {
     public List<Location> retrieveAll(int limit, int offset) {
         final String QUERY = "select * from location limit ? offset ?";
 
-        return jdbcTemplate.query(QUERY, new LocationMapper(), limit, offset);
+        List<Location> returnList = jdbcTemplate.query(QUERY, new LocationMapper(), limit, offset);
+        return returnList;
     }
 
     @Override

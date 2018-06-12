@@ -39,7 +39,8 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<Location> retrieveAll(int limit, int offset) {
-        return locationDao.retrieveAll(limit, offset);
+        List <Location> returnList = locationDao.retrieveAll(limit, offset);
+        return returnList;
     }
 
     @Override

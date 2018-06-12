@@ -43,7 +43,7 @@ public class PowerDaoImpl implements PowerDao {
     public List<Power> retrieveAll(int limit, int offset) {
         final String QUERY = "select * from power limit ? offset ?";
 
-        return jdbcTemplate.query(QUERY, new PowerMapper(), limit, offset);
+        return jdbcTemplate.query(QUERY, new PowerDaoImpl.PowerMapper(), limit, offset);
     }
 
     @Override

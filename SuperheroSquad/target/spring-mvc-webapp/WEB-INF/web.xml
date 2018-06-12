@@ -63,11 +63,21 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
-    
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring-dispatcher-servlet.xml
+            /WEB-INF/spring-security.xml
             classpath:spring-persistence.xml
         </param-value>
     </context-param>
@@ -76,6 +86,32 @@
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+    <error-page>
+        <!-- Missing login -->
+        <error-code>401</error-code>
+        <location>/error</location>
+    </error-page>
+    <error-page>
+        <!-- Forbidden directory listing -->
+        <error-code>403</error-code>
+        <location>/error</location>
+    </error-page>
+    <error-page>
+        <!-- Missing resource -->
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Uncaught exception &ndash;&gt;-->
+        <!--<error-code>500</error-code>-->
+        <!--<location>/error</location>-->
+    <!--</error-page>-->
+    <error-page>
+        <!-- Unsupported servlet method -->
+        <error-code>503</error-code>
+        <location>/error</location>
+    </error-page>
+
   
 </web-app>
 

@@ -9,5 +9,8 @@
         <module name="SuperheroSquad" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SuperheroSquad" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

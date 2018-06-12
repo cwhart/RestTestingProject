@@ -16,7 +16,7 @@
 <table>
     <c:forEach items="${viewModel.players}" var="player">
         <tr>
-            <td><a htrf="/player/show?id=${player.playerId}">${player.first}
+            <td><a href="/player/show?id=${player.playerId}">${player.first}
                     ${player.last}
             </a></td>
             <td><a href="/player/edit?id=${player.playerId}">edit</a></td>

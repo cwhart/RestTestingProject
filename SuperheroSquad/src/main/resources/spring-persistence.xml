@@ -21,7 +21,7 @@
           class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/superhero_test"/>
+                  value="jdbc:mysql://localhost:3306/superhero"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
         <property name="initialSize" value="5"/>
@@ -46,8 +46,6 @@
     </bean>
 
     <bean id="locationDao" class="com.sg.superhero.dao.LocationDaoImpl"/>
-
-    <bean id="testHelper" class="com.sg.superhero.TestHelper" />
 
     <bean id="superDao" class="com.sg.superhero.dao.SuperDaoImpl" />
 
@@ -105,6 +103,13 @@
     <bean id="sightingWebService" class="com.sg.superhero.webservice.SightingWebServiceImpl" />
 
     <bean id="superPersonWebService" class="com.sg.superhero.webservice.SuperPersonWebServiceImpl" />
+
+    <bean id="userDao"
+          class="com.sg.superhero.dao.UserDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+
+    <bean id="PWEnc" class="com.sg.superhero.controller.PWEnc" />
 
 
 
