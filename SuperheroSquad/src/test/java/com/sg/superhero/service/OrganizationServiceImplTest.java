@@ -100,19 +100,19 @@ public class OrganizationServiceImplTest {
         assert (null == readOrganization);//
     }
 
-    @Test
-    public void retrieveAll() {
-
-        //Arrange
-        List<Organization> orgList = testHelper.createMultipleOrganizations(25);
-
-        //Act
-        List<Organization> readOrgList = organizationService.retrieveAll(Integer.MAX_VALUE, 0);
-
-        //Assert
-        assert orgList.size() == 25;
-        assertOrganizationListEqual(readOrgList, orgList);
-    }
+//    @Test
+//    public void retrieveAll() {
+//
+//        //Arrange
+//        List<Organization> orgList = testHelper.createMultipleOrganizations(25);
+//
+//        //Act
+//        List<Organization> readOrgList = organizationService.retrieveAll(Integer.MAX_VALUE, 0);
+//
+//        //Assert
+//        assert orgList.size() == 25;
+//        assertOrganizationListEqual(readOrgList, orgList);
+//    }
 
     @Test
     public void getOrganizationsBySuper() {

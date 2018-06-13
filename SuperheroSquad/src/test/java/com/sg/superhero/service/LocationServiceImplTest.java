@@ -103,18 +103,18 @@ public class LocationServiceImplTest {
         assert (null == readLocation);//
     }
 
-    @Test
-    public void retrieveAll() {
-
-        //Arrange
-        testHelper.createMultipleLocations(25);
-
-        //Act
-        List<Location> locationList = locationService.retrieveAll(Integer.MAX_VALUE, 0);
-
-        //Assert
-        assert locationList.size() == 25;
-    }
+//    @Test
+//    public void retrieveAll() {
+//
+//        //Arrange
+//        testHelper.createMultipleLocations(25);
+//
+//        //Act
+//        List<Location> locationList = locationService.retrieveAll(Integer.MAX_VALUE, 0);
+//
+//        //Assert
+//        assert locationList.size() == 25;
+//    }
 
     @Test
     public void retrieveLocationBySuper() {

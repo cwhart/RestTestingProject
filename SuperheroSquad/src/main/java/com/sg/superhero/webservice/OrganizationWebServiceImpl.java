@@ -59,6 +59,8 @@ public class OrganizationWebServiceImpl implements OrganizationWebService {
             viewModel.setName(organization.getName());
             viewModel.setId(organization.getId());
             viewModels.add(viewModel);
+
+
             //viewModel.setLast(player.getLast());
 
 //            if(player.getTeam() != null) {

@@ -109,35 +109,35 @@ public class SightingWebServiceImplTest {
         assert viewModel.getSuperList().get(1).getId().equals(supersAtSighting.get(1).getId());
     }
 
-    @Test
-    public void getCreateSightingViewModel() {
-
-        //Arrange
-        List<Super> supers = testHelper.createMultipleSupers(15);
-        List <Location> locations = testHelper.createMultipleLocations(15);
-
-        //Act
-        CreateSightingViewModel createSightingViewModel = sightingWebService.getCreateSightingViewModel();
-
-        //Assert
-        assert createSightingViewModel.getSuperPeople().size() == supers.size();
-        assert createSightingViewModel.getLocation().size() == locations.size();
-
-        for (DropdownViewModel sightingViewModel : createSightingViewModel.getSuperPeople()) {
-            assert sightingViewModel.getName() != null;
-            assert sightingViewModel.getId() != null;
-        }
-
-        for (DropdownViewModel superDropDown : createSightingViewModel.getSuperPeople()) {
-            assert superDropDown.getName() != null;
-            assert superDropDown.getId() != null;
-        }
-
-        for (DropdownViewModel locationDropDown : createSightingViewModel.getLocation()) {
-            assert locationDropDown.getName() != null;
-            assert locationDropDown.getId() != null;
-        }
-    }
+//    @Test
+//    public void getCreateSightingViewModel() {
+//
+//        //Arrange
+//        List<Super> supers = testHelper.createMultipleSupers(15);
+//        List <Location> locations = testHelper.createMultipleLocations(15);
+//
+//        //Act
+//        CreateSightingViewModel createSightingViewModel = sightingWebService.getCreateSightingViewModel();
+//
+//        //Assert
+//        assert createSightingViewModel.getSuperPeople().size() == supers.size();
+//        assert createSightingViewModel.getLocation().size() == locations.size();
+//
+//        for (DropdownViewModel sightingViewModel : createSightingViewModel.getSuperPeople()) {
+//            assert sightingViewModel.getName() != null;
+//            assert sightingViewModel.getId() != null;
+//        }
+//
+//        for (DropdownViewModel superDropDown : createSightingViewModel.getSuperPeople()) {
+//            assert superDropDown.getName() != null;
+//            assert superDropDown.getId() != null;
+//        }
+//
+//        for (DropdownViewModel locationDropDown : createSightingViewModel.getLocation()) {
+//            assert locationDropDown.getName() != null;
+//            assert locationDropDown.getId() != null;
+//        }
+//    }
 
     @Test
     public void saveCreateSightingCommandModel() {
@@ -150,7 +150,7 @@ public class SightingWebServiceImplTest {
 
         //In the web side of things spring is going to handle this part for us.
         CreateSightingCommandModel createSightingCommandModel = new CreateSightingCommandModel();
-        createSightingCommandModel.setDate(LocalDate.parse("2018-06-14"));
+        createSightingCommandModel.setDate("2018-06-14");
         createSightingCommandModel.setLocationId(location.getId());
 
         Long[] superIds = new Long[2];

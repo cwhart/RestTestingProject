@@ -33,7 +33,7 @@
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.2.1.Final" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.1.0" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
-          <element id="library" level="project" name="Maven: com.sg:SuperheroSquadShared:1.18" />
+          <element id="library" level="project" name="Maven: com.sg:SuperheroSquadShared:1.24" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.10.RELEASE" />

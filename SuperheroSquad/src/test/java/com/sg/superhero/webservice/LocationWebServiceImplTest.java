@@ -43,38 +43,38 @@ public class LocationWebServiceImplTest {
     public void setUp() throws Exception {
     }
 
-    @Test
-    public void getLocationListViewModel() {
-
-        //Arrange
-        Integer offset = 0;
-
-        List<Location> locations = new ArrayList<>();
-
-        for (int i = 0; i < 25; i++) {
-            Location location = testHelper.createTestLocation();
-            locations.add(location);
-        }
-
-        //Act
-        ListLocationViewModel viewModel = locationWebService.getLocationListViewModel(offset);
-
-        //Assert
-        assert viewModel.getSelectedPage() == 1;
-        assert viewModel.getPageNumbers().length == 5;
-        assert viewModel.getPageNumbers()[0] == 1;
-        assert viewModel.getPageNumbers()[4] == 5;
-
-        assert viewModel.getLocations() != null;
-        assert viewModel.getLocations().size() == 10;
-
-        int counter = 0;
-        for (LocationViewModel lViewModel : viewModel.getLocations()) {
-            Location location = locations.get(counter);
-            assert lViewModel.getName().equals((location.getName()));
-            counter++;
-        }
-    }
+//    @Test
+//    public void getLocationListViewModel() {
+//
+//        //Arrange
+//        Integer offset = 0;
+//
+//        List<Location> locations = new ArrayList<>();
+//
+//        for (int i = 0; i < 25; i++) {
+//            Location location = testHelper.createTestLocation();
+//            locations.add(location);
+//        }
+//
+//        //Act
+//        ListLocationViewModel viewModel = locationWebService.getLocationListViewModel(offset);
+//
+//        //Assert
+//        assert viewModel.getSelectedPage() == 1;
+//        assert viewModel.getPageNumbers().length == 5;
+//        assert viewModel.getPageNumbers()[0] == 1;
+//        assert viewModel.getPageNumbers()[4] == 5;
+//
+//        assert viewModel.getLocations() != null;
+//        assert viewModel.getLocations().size() == 10;
+//
+//        int counter = 0;
+//        for (LocationViewModel lViewModel : viewModel.getLocations()) {
+//            Location location = locations.get(counter);
+//            assert lViewModel.getName().equals((location.getName()));
+//            counter++;
+//        }
+//    }
 
         @Test
         public void getLocationProfileViewModel () {

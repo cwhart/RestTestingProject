@@ -1,15 +1,16 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%--
   Created by IntelliJ IDEA.
-  User: n0148464
-  Date: 6/8/2018
-  Time: 9:49 AM
+  User: n0268611
+  Date: 6/10/2018
+  Time: 12:16 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Create Sighting</title>
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="navbar">
@@ -22,33 +23,36 @@
         <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
     </ul>
 </div>
-<sf:form action="/sighting/create" method="post" modelAttribute="commandModel">
+<h1 class="text-center">Create Sighting</h1>
+<hr/>
 
-    <label for="locationId">Location Name:</label>
+<sf:form action="/sighting/create" method="post" modelAttribute="commandModel">
+    <label for="locationId">Location:</label>
     <sf:select path="locationId">
-        <sf:option value="" label="No location" />
-        <sf:options items="${viewModel.location}" itemValue="id" itemLabel="name" />
+        <sf:option value="" label="No Location"/>
+        <sf:options items="${viewModel.location}" itemValue="id" itemLabel="name"/>
     </sf:select>
     <sf:errors path="locationId"></sf:errors>
     <br/>
 
-    <label for="date">Sighting Date:</label>
-    <sf:input path="date"></sf:input>
+    <label for="date">Date:</label>
+    <sf:input type="text" path="date"></sf:input>
     <sf:errors path="date"></sf:errors>
     <br/>
 
-    <label for="superId">Super People Present:</label>
-    <sf:select multiple="true" path="superId" >
-        <sf:option value="" label="No supers" />
+    <label for="superId">Super People:</label>
+    <sf:select path="superId" multiple="true">
         <sf:options items="${viewModel.superPeople}" itemValue="id" itemLabel="name" />
     </sf:select>
     <sf:errors path="superId"></sf:errors>
     <br/>
 
-    <button type="submit">Save</button>
-    <!--when clicked, the app will go to the url in the action above-->
-
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <button type="submit">Create</button>
+            <%--<button><a href="${pageContext.request.contextPath}/sighting/list">Back</a></button>--%>
+        </div>
+    </div>
 </sf:form>
-
 </body>
 </html>

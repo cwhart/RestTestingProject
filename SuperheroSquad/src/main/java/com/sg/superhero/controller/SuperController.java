@@ -31,11 +31,13 @@ public class SuperController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Integer offset, Model model) {
+        if(offset ==null) {
+            offset = 0;
+        }
         ListSuperPersonViewModel viewModel = superPersonWebService.getListSuperPersonViewModel(offset);
         model.addAttribute("viewModel", viewModel);
         return "super/list";
     }
-
 
     @RequestMapping(value = "/profile")
     public String profile(@RequestParam (required = false) Long id, Model model) {

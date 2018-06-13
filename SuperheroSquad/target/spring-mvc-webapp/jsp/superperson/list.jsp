@@ -23,7 +23,7 @@
             <li role="presentation" ><a href="${pageContext.request.contextPath}/organization/list?offset=0">Organizations</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/power/list?offset=0">Powers</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/sighting/list?offset=0">Sightings</a></li>
-            <li role="presentation" class="active"<a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
+            <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
     <h2>Home Page</h2>

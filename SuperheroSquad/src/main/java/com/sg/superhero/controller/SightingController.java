@@ -6,6 +6,7 @@ import com.sg.superhero.viewmodels.sighting.create.CreateSightingViewModel;
 import com.sg.superhero.viewmodels.sighting.edit.EditSightingCommandModel;
 import com.sg.superhero.viewmodels.sighting.edit.EditSightingViewModel;
 import com.sg.superhero.viewmodels.sighting.list.ListSightingViewModel;
+import com.sg.superhero.viewmodels.sighting.profile.ProfileSightingViewModel;
 import com.sg.superhero.webservice.interfaces.SightingWebService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,10 +65,10 @@ public class SightingController {
 
         sightingWebService.saveEditSightingCommandModel(commandModel);
 
-        return "redirect:/sighting?show?id=" + commandModel.getSightingId();
+        return "redirect:/sighting?profile?id=" + commandModel.getSightingId();
     }
 
-    @RequestMapping(value= "/create")
+    @RequestMapping(value= "/create", method = RequestMethod.GET)
     public String create(Model model) {
 
         CreateSightingViewModel viewModel = sightingWebService.getCreateSightingViewModel();
@@ -93,6 +94,15 @@ public class SightingController {
 
         Sighting sighting = sightingWebService.saveCreateSightingCommandModel(commandModel);
 
-        return "redirect:/sighting?show?id=" + sighting.getId();
+        return "redirect:/sighting/profile?id=" + sighting.getId();
+    }
+
+    @RequestMapping(value = "/profile")
+    public String profile(@RequestParam Long id, Model model) {
+        ProfileSightingViewModel viewModel = sightingWebService.getProfileSightingViewModel(id);
+
+        model.addAttribute("viewModel",viewModel);
+
+        return "sighting/profile";
     }
 }

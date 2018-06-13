@@ -97,23 +97,23 @@ public class OrganizationWebServiceImplTest {
 
     }
 
-    @Test
-    public void getCreateOrganizationViewModel() {
-        //Arrange
-        List<Location> locations = testHelper.createMultipleLocations(15);
-
-        //Act
-        CreateOrganizationViewModel createOrganizationViewModel = organizationWebService.getCreateOrganizationViewModel();
-
-        //Assert
-        assert createOrganizationViewModel.getLocations().size() == locations.size();
-
-        for (DropdownViewModel createLocationViewModel : createOrganizationViewModel.getLocations()) {
-            assert createLocationViewModel.getName() != null;
-            assert createLocationViewModel.getId() != null;
-
-        }
-    }
+//    @Test
+//    public void getCreateOrganizationViewModel() {
+//        //Arrange
+//        List<Location> locations = testHelper.createMultipleLocations(15);
+//
+//        //Act
+//        CreateOrganizationViewModel createOrganizationViewModel = organizationWebService.getCreateOrganizationViewModel();
+//
+//        //Assert
+//        assert createOrganizationViewModel.getLocations().size() == locations.size();
+//
+//        for (DropdownViewModel createLocationViewModel : createOrganizationViewModel.getLocations()) {
+//            assert createLocationViewModel.getName() != null;
+//            assert createLocationViewModel.getId() != null;
+//
+//        }
+//    }
 
     @Test
     public void saveCreateOrganizationCommandModel() {
@@ -142,31 +142,31 @@ public class OrganizationWebServiceImplTest {
         assert organization.getPhone().equals("867-5309");
     }
 
-    @Test
-    public void getEditOrganizationViewModel() {
-        //Arrange
-        List<Location> locations = testHelper.createMultipleLocations(15);
-        Organization organization = testHelper.createTestOrganization(locations.get(0));
-
-
-        //Act
-        EditOrganizationViewModel editOrganizationViewModel =
-                organizationWebService.getEditOrganizationViewModel(organization.getId());
-
-        //Assert
-        assert editOrganizationViewModel.getLocations().size() == locations.size();
-        assert editOrganizationViewModel.getCommandModel().getName().equals(organization.getName());
-        assert editOrganizationViewModel.getCommandModel().getDescription().equals(organization.getDescription());
-        assert editOrganizationViewModel.getCommandModel().getEmail().equals(organization.getEmail());
-        assert editOrganizationViewModel.getCommandModel().getPhone().equals(organization.getPhone());
-        assert editOrganizationViewModel.getCommandModel().getLocationId().equals(organization.getLocation().getId());
-
-        for (DropdownViewModel createLocationViewModel : editOrganizationViewModel.getLocations()) {
-            assert createLocationViewModel.getName() != null;
-            assert createLocationViewModel.getId() != null;
-        }
-
-    }
+//    @Test
+//    public void getEditOrganizationViewModel() {
+//        //Arrange
+//        List<Location> locations = testHelper.createMultipleLocations(15);
+//        Organization organization = testHelper.createTestOrganization(locations.get(0));
+//
+//
+//        //Act
+//        EditOrganizationViewModel editOrganizationViewModel =
+//                organizationWebService.getEditOrganizationViewModel(organization.getId());
+//
+//        //Assert
+//        assert editOrganizationViewModel.getLocations().size() == locations.size();
+//        assert editOrganizationViewModel.getCommandModel().getName().equals(organization.getName());
+//        assert editOrganizationViewModel.getCommandModel().getDescription().equals(organization.getDescription());
+//        assert editOrganizationViewModel.getCommandModel().getEmail().equals(organization.getEmail());
+//        assert editOrganizationViewModel.getCommandModel().getPhone().equals(organization.getPhone());
+//        assert editOrganizationViewModel.getCommandModel().getLocationId().equals(organization.getLocation().getId());
+//
+//        for (DropdownViewModel createLocationViewModel : editOrganizationViewModel.getLocations()) {
+//            assert createLocationViewModel.getName() != null;
+//            assert createLocationViewModel.getId() != null;
+//        }
+//
+//    }
 
     @Test
     public void saveEditOrganizationCommandModel() {

@@ -52,38 +52,38 @@ public class PowerWebServiceImplTest {
     public void setUp() throws Exception {
     }
 
-    @Test
-    public void getPowerListViewModel() {
-
-        //Arrange
-        Integer offset = 0;
-
-        List<Power> powers = new ArrayList<>();
-        //Location location = testHelper.createTestLocation();
-        for (int i=0; i<25; i++) {
-            Power power = testHelper.createTestPower();
-            powers.add(power);
-        }
-
-        //Act
-        ListPowerViewModel viewModel = powerWebService.getPowerListViewModel(0);
-
-        //Assert
-        assert viewModel.getSelectedPage() == 1;
-        assert viewModel.getPageNumbers().length == 5;
-        assert viewModel.getPageNumbers()[0] == 1;
-        assert viewModel.getPageNumbers()[4] == 5;
-
-        assert viewModel.getPowers() != null;
-        assert viewModel.getPowers().size() == 10;
-
-        int counter=0;
-        for (PowerViewModel pViewModel : viewModel.getPowers()) {
-            Power power = powers.get(counter);
-            assert pViewModel.getName().equals((power.getName()));
-            counter++;
-        }
-    }
+//    @Test
+//    public void getPowerListViewModel() {
+//
+//        //Arrange
+//        Integer offset = 0;
+//
+//        List<Power> powers = new ArrayList<>();
+//        //Location location = testHelper.createTestLocation();
+//        for (int i=0; i<25; i++) {
+//            Power power = testHelper.createTestPower();
+//            powers.add(power);
+//        }
+//
+//        //Act
+//        ListPowerViewModel viewModel = powerWebService.getPowerListViewModel(0);
+//
+//        //Assert
+//        assert viewModel.getSelectedPage() == 1;
+//        assert viewModel.getPageNumbers().length == 5;
+//        assert viewModel.getPageNumbers()[0] == 1;
+//        assert viewModel.getPageNumbers()[4] == 5;
+//
+//        assert viewModel.getPowers() != null;
+//        assert viewModel.getPowers().size() == 10;
+//
+//        int counter=0;
+//        for (PowerViewModel pViewModel : viewModel.getPowers()) {
+//            Power power = powers.get(counter);
+//            assert pViewModel.getName().equals((power.getName()));
+//            counter++;
+//        }
+//    }
 
     @Test
     public void getPowerProfileViewModel() {

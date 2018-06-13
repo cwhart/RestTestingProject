@@ -23,7 +23,7 @@
             <li role="presentation" ><a href="${pageContext.request.contextPath}/organization/list?offset=0">Organizations</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/power/list?offset=0">Powers</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/sighting/list?offset=0">Sightings</a></li>
-            <li role="presentation" class="active"<a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
+            <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
     <h2>Home Page</h2>
@@ -32,9 +32,9 @@
 
     <c:forEach items="${viewModel.superPersons}" var="superPerson">
         <tr>
-            <td><a href="/super/show?id=${superPerson.id}">${superPerson.name}</a></td>
-            <td><a href="/super/edit?id=${superPerson.id}">Edit</a></td>
-            <td><a href="/super/delete?id=${superPerson.id}">Delete</a></td>
+            <td><<a href="${pageContext.request.contextPath}/super/show?id=${superPerson.id}">${superPerson.name}</a></td>
+            <td><<a href="${pageContext.request.contextPath}/super/edit?id=${superPerson.id}">Edit</a></td>
+            <td><<a href="${pageContext.request.contextPath}/super/delete?id=${superPerson.id}">Delete</a></td>
         </tr>
     </c:forEach>
 

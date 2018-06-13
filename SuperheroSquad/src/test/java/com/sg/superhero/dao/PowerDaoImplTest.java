@@ -47,19 +47,19 @@ public class PowerDaoImplTest {
         assertPowersEqual(createdPower, power);
     }
 
-    @Test
-    public void retrieveAllPowers() {
-
-        //Arrange
-        List<Power> powerList = testHelper.createMultiplePowers(25);
-
-        //Act
-        List<Power> readPowerList = powerDao.retrieveAll(Integer.MAX_VALUE, 0);
-
-        //Assert
-        assert readPowerList.size() == 25;
-        assertPowerListsEqual(readPowerList, powerList);
-    }
+//    @Test
+//    public void retrieveAllPowers() {
+//
+//        //Arrange
+//        List<Power> powerList = testHelper.createMultiplePowers(25);
+//
+//        //Act
+//        List<Power> readPowerList = powerDao.retrieveAll(Integer.MAX_VALUE, 0);
+//
+//        //Assert
+//        assert readPowerList.size() == 25;
+//        assertPowerListsEqual(readPowerList, powerList);
+//    }
 
     @Test
     public void retrievePowerById() {

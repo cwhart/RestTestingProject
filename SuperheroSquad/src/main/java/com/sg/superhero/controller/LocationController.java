@@ -6,6 +6,7 @@ import com.sg.superhero.viewmodels.location.create.CreateLocationViewModel;
 import com.sg.superhero.viewmodels.location.edit.EditLocationCommandModel;
 import com.sg.superhero.viewmodels.location.edit.EditLocationViewModel;
 import com.sg.superhero.viewmodels.location.list.ListLocationViewModel;
+import com.sg.superhero.viewmodels.location.profile.ProfileLocationViewModel;
 import com.sg.superhero.webservice.interfaces.LocationWebService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,10 @@ public class LocationController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Integer offset, Model model) {
+
+        if(offset == null) {
+            offset = 0;
+        }
         ListLocationViewModel viewModel = locationWebService.getLocationListViewModel(offset);
 
         model.addAttribute("viewModel", viewModel);
@@ -41,7 +46,7 @@ public class LocationController {
 
 
     //@RequestMapping(value = "/create", method = RequestMethod.POST)
-    @RequestMapping(value = "/create")
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create( Model model) {
     //public String create() {
         CreateLocationViewModel viewModel = locationWebService.getCreateLocationViewModel();
@@ -66,7 +71,7 @@ public class LocationController {
         }
         Location location = locationWebService.saveCreateLocationCommandModel(commandModel);
 
-        return "redirect:/location/show?id=" + location.getId();
+        return "redirect:/location/profile?id=" + location.getId();
     }
 
     @RequestMapping (value= "/edit")
@@ -77,21 +82,26 @@ public class LocationController {
         return "location/edit";
     }
 
-    public String saveEdit(@Valid @ModelAttribute("commandModel") EditLocationCommandModel commandModel, BindingResult bindingResult, Model model){
-
-        if(bindingResult.hasErrors()){
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String saveEdit(@Valid @ModelAttribute("commandModel") EditLocationCommandModel commandModel, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
             EditLocationViewModel viewModel = locationWebService.getEditLocationViewModel(commandModel.getId());
-
             model.addAttribute("viewModel", viewModel);
             model.addAttribute("commandModel", commandModel);
             return "location/edit";
         }
         locationWebService.saveEditLocationCommandModel(commandModel);
-
-        return "redirect:/location/show?id=" + commandModel.getId();
+        return "redirect:/location/profile?id=" + commandModel.getId();
     }
 
+    @RequestMapping(value = "/profile")
+    public String profile(@RequestParam Long id, Model model) {
+        ProfileLocationViewModel viewModel = locationWebService.getLocationProfileViewModel(id);
 
+        model.addAttribute("viewModel",viewModel);
+
+        return "location/profile";
+    }
 
 
 

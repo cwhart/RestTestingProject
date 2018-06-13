@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Superhero Sightings</title>
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="navbar">

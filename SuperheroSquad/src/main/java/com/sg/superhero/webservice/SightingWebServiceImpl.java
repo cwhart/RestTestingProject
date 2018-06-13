@@ -21,6 +21,7 @@ import com.sg.superhero.viewmodels.sighting.profile.ProfileSuperViewModel;
 import com.sg.superhero.webservice.interfaces.SightingWebService;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -156,7 +157,7 @@ public class SightingWebServiceImpl implements SightingWebService {
     @Override
     public Sighting saveCreateSightingCommandModel(CreateSightingCommandModel commandModel) {
         Sighting sighting = new Sighting();
-        sighting.setDate(commandModel.getDate());
+        sighting.setDate(LocalDate.parse(commandModel.getDate()));
         Location location = locationService.retrieve(commandModel.getLocationId());
         sighting.setLocation(location);
 

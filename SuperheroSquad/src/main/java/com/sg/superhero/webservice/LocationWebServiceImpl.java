@@ -55,6 +55,7 @@ public class LocationWebServiceImpl implements LocationWebService {
         for (Location location: locationList) {
             LocationViewModel viewModel = new LocationViewModel();
             viewModel.setName(location.getName());
+            viewModel.setId(location.getId());
             viewModels.add(viewModel);
         }
 
@@ -87,8 +88,10 @@ public class LocationWebServiceImpl implements LocationWebService {
 
     @Override
     public CreateLocationViewModel getCreateLocationViewModel() {
-        //No dropdowns on the screen - don't need this method.
-        return null;
+        CreateLocationViewModel viewModel = new CreateLocationViewModel();
+        viewModel.setCommandModel(new CreateLocationCommandModel());
+
+        return viewModel;
     }
 
     @Override

@@ -96,11 +96,11 @@
         <error-code>403</error-code>
         <location>/error</location>
     </error-page>
-    <error-page>
-        <!-- Missing resource -->
-        <error-code>404</error-code>
-        <location>/error</location>
-    </error-page>
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Missing resource &ndash;&gt;-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/error</location>-->
+    <!--</error-page>-->
     <!--<error-page>-->
         <!--&lt;!&ndash; Uncaught exception &ndash;&gt;-->
         <!--<error-code>500</error-code>-->
