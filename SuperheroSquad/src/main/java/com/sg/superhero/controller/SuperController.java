@@ -85,4 +85,11 @@ public class SuperController {
         Super superPerson = superPersonWebService.saveCreateSuperPersonCommandModel(commandModel);
         return "redirect:/super/profile?id=" + superPerson.getId();
     }
+
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        superPersonWebService.deleteSuperPerson(id);
+
+        return "redirect:/super/list";
+    }
 }

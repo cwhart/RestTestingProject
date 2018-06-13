@@ -54,4 +54,9 @@ public class SightingServiceImpl implements SightingService {
                     Super superPerson, LocalDate localDate, int limit, int offset) {
         return sightingDao.retrieveSightingsByLocationAndSuperAndDate(location, superPerson, localDate, limit, offset);
     }
+
+    @Override
+    public List<Sighting> retrieveSightingByLocation(Location location, int i, int i1) {
+        return null;
+    }
 }

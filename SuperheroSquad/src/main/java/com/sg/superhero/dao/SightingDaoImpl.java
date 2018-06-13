@@ -117,6 +117,11 @@ public class SightingDaoImpl implements SightingDao {
                 offset);
     }
 
+    @Override
+    public List<Sighting> retrieveSightingByLocation(Location location, int i, int i1) {
+        return null;
+    }
+
     private class SightingMapper implements RowMapper<Sighting> {
         @Override
         public Sighting mapRow(ResultSet resultSet, int i) throws SQLException {

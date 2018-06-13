@@ -98,4 +98,11 @@ public class PowerController {
 
         return "power/profile";
     }
+
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        powerWebService.deletePower(id);
+
+        return "redirect:/power/list";
+    }
 }

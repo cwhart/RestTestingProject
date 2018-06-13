@@ -18,14 +18,7 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <p>
-        This is only visible to users who are logged in.
-    </p>
-</sec:authorize>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-    <p>
-        This is only visible to users who also have the ADMIN role.
-    </p>
+
 </sec:authorize>
 <div class="container">
     <h1>H.E.R.O.</h1>
@@ -40,7 +33,6 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-    <h2>Home Page</h2>
 </div>
 <h1>Create Organization</h1>
 <sf:form action="/organization/create" method="post" modelAttribute="commandModel">

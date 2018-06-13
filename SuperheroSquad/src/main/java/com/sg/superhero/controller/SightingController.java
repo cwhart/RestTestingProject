@@ -32,6 +32,9 @@ public class SightingController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Integer offset, Model model) {
+        if (offset == null) {
+            offset = 0;
+        }
 
         ListSightingViewModel viewModel = sightingWebService.getListSightingViewModel(offset);
 
@@ -105,5 +108,12 @@ public class SightingController {
         model.addAttribute("viewModel",viewModel);
 
         return "sighting/profile";
+    }
+
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        sightingWebService.deleteSighting(id);
+
+        return "redirect:/sighting/list";
     }
 }

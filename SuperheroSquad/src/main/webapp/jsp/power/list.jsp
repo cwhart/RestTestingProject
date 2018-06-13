@@ -41,7 +41,7 @@
                 <tr>
                     <td><a href="${pageContext.request.contextPath}/power/profile?id=${power.id}">${power.name}</a></td>
                     <td><a href="${pageContext.request.contextPath}/power/edit?id=${power.id}">Edit</a></td>
-                    <td><a href="${pageContext.request.contextPath}/organization/delete?id=${power.id}">Delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/power/delete?id=${power.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>

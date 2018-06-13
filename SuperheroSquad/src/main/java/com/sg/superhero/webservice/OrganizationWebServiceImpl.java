@@ -2,8 +2,12 @@ package com.sg.superhero.webservice;
 
 import com.sg.superhero.dto.Location;
 import com.sg.superhero.dto.Organization;
+import com.sg.superhero.dto.Super;
+import com.sg.superhero.dto.SuperOrganization;
 import com.sg.superhero.service.interfaces.LocationService;
 import com.sg.superhero.service.interfaces.OrganizationService;
+import com.sg.superhero.service.interfaces.SuperOrganizationService;
+import com.sg.superhero.service.interfaces.SuperService;
 import com.sg.superhero.util.PagingUtils;
 import com.sg.superhero.viewmodels.DropdownViewModel;
 import com.sg.superhero.viewmodels.location.edit.EditLocationCommandModel;
@@ -29,6 +33,12 @@ public class OrganizationWebServiceImpl implements OrganizationWebService {
 
     @Inject
     LocationService locationService;
+
+    @Inject
+    SuperOrganizationService superOrganizationService;
+
+    @Inject
+    SuperService superService;
 
     @Override
     public ListOrganizationViewModel getListOrganizationViewModel(Integer offset) {
@@ -176,12 +186,16 @@ public class OrganizationWebServiceImpl implements OrganizationWebService {
 
     @Override
     public void deleteOrganization(Long id) {
-
-        //TODO: determine if org needs to be deleted elsewhere.
-
         Organization organization = organizationService.retrieve(id);
+        List<Super> supers = superService.retrieveSupersByOrganization(organization, Integer.MAX_VALUE, 0);
+
+        for (Super superPerson: supers) {
+            SuperOrganization superOrganization = new SuperOrganization();
+            superOrganization.setOrganization(organization);
+            superOrganization.setSuperPerson(superPerson);
+            superOrganizationService.delete(superOrganization);
+        }
 
         organizationService.delete(organization);
-
     }
 }

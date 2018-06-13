@@ -46,6 +46,9 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
     @Inject
     LocationService locationService;
 
+    @Inject
+    SuperSightingService superSightingService;
+
     @Override
     public ListSuperPersonViewModel getListSuperPersonViewModel(Integer offset) {
 
@@ -322,6 +325,14 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
             so.setSuperPerson(superPerson);
             so.setOrganization(currentOrg);
             this.superOrganizationService.delete(so);
+        }
+
+        List<Sighting> superSightings = sightingService.retrieveSightingsBySuper(superPerson, Integer.MAX_VALUE,0);
+        for (Sighting currentSighting: superSightings) {
+            SuperSighting ss = new SuperSighting();
+            ss.setSuperPerson(superPerson);
+            ss.setSighting(currentSighting);
+            this.superSightingService.delete(ss);
         }
 
         // when all foreign key are deleted, we are now allowed to delete the player

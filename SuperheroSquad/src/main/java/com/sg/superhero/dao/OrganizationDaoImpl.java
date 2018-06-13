@@ -100,6 +100,11 @@ public class OrganizationDaoImpl implements OrganizationDao {
                 offset);
     }
 
+    @Override
+    public List<Organization> retrieveOrganizationsByLocation(Location location, int i, int i1) {
+        return null;
+    }
+
     private class OrganizationMapper implements RowMapper<Organization> {
         @Override
         public Organization mapRow(ResultSet resultSet, int i) throws SQLException {

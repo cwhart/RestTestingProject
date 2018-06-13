@@ -205,7 +205,7 @@ public class PowerWebServiceImpl implements PowerWebService {
         // if the player doesn't exist, no need to continue
         if(power == null) return;
 
-        // must remove any references of player id from other tables.
+        // must remove any references of super id from other tables.
         List<Super> superPowers = superService.retrieveSupersByPower(power, Integer.MAX_VALUE,0);
         for (Super superPerson: superPowers) {
             SuperPower sp = new SuperPower();

@@ -1,6 +1,7 @@
 package com.sg.superhero.service;
 
 import com.sg.superhero.dao.interfaces.OrganizationDao;
+import com.sg.superhero.dto.Location;
 import com.sg.superhero.dto.Organization;
 import com.sg.superhero.dto.Super;
 import com.sg.superhero.service.interfaces.OrganizationService;
@@ -45,5 +46,10 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public List<Organization> retrieveOrganizationsBySuper(Super aSuper, int limit, int offset) {
         return organizationDao.retrieveOrganizationsBySuper(aSuper, limit, offset);
+    }
+
+    @Override
+    public List<Organization> retrieveOrganizationsByLocation(Location location, int i, int i1) {
+        return null;
     }
 }

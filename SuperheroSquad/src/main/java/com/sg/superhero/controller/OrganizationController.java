@@ -104,4 +104,11 @@ public class OrganizationController {
 
         return "organization/profile";
     }
+
+        @RequestMapping(value = "/delete")
+        public String delete(@RequestParam Long id, Model model) {
+        organizationWebService.deleteOrganization(id);
+
+        return "redirect:/organization/list";
+    }
 }
