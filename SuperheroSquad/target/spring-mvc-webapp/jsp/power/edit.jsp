@@ -48,17 +48,25 @@
 <sf:form action="/power/edit" method="post" modelAttribute="commandModel">
     <sf:hidden path="id"></sf:hidden>
 
-    <label for="name">Power Name:</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Power Name:</label>
+    <div class="col-md-10">
     <sf:input path="name"></sf:input>
     <sf:errors path="name"></sf:errors>
+    </div>
+</div>
     <br/>
 
     <br/>
-    <label for="superId">Super People:</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Super People:</label>
+    <div class="col-md-10">
     <sf:select path="superId" multiple="true">
         <sf:options items="${viewModel.superPeople}" itemValue="id" itemLabel="name" />
     </sf:select>
     <sf:errors path="superId"></sf:errors>
+    </div>
+</div>
     <br/>
 
     <button type="submit">Save</button>

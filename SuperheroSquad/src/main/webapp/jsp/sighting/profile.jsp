@@ -13,6 +13,9 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <h1>H.E.R.O.</h1>
+    <hr/>
 <div class="navbar">
     <ul class="nav nav-tabs">
         <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
@@ -23,31 +26,38 @@
         <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
     </ul>
 </div>
+<br/>
+<div class="container">
 
-<h1>${viewModel.location} Details</h1>
-<p>
-    Location: <c:out value="${viewModel.location}"/>
-</p>
-<p>
-    Date: <c:out value="${viewModel.date}"/>
-</p>
+    <h1 class="text-center">Sighting Details</h1>
+    <hr/>
+    <div class="col-md-12">
+        <div class="col-md-2">Location:</div>
+        <div class="col-md-10"><c:out value="${viewModel.location}"/></div>
+    </div>
 
-<div>
-    Super People:
-    <table>
-        <c:forEach items="${viewModel.superList}" var="supers">
-            <tr>
-                <td>
-                    <a href="${pageContext.request.contextPath}/super/profile?id=${supers.id}">${supers.superPersonName}</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    <div class="col-md-12">
+        <div class="col-md-2">Date:</div>
+        <div class="col-md-10"><c:out value="${viewModel.date}"/></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-2">Super People:</div>
+        <div class="col-md-10">
+            <table>
+                <c:forEach items="${viewModel.superList}" var="supers">
+                    <tr>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/super/profile?id=${supers.id}">${supers.superPersonName}</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
+
+
 </div>
-
-<div class="col-md-offset-2 col-md-8">
-    <button><a href="${pageContext.request.contextPath}/sighting/list">Back</a></button>
 </div>
-
 </body>
 </html>

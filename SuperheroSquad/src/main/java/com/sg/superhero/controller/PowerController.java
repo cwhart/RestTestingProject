@@ -63,7 +63,7 @@ public class PowerController {
         }
         powerWebService.saveEditPowerCommandModel(commandModel);
 
-        return "redirect:/power/show?id=" + commandModel.getId();
+        return "redirect:/power/profile?id=" + commandModel.getId();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -87,10 +87,10 @@ public class PowerController {
         }
         Power power = powerWebService.saveCreatePowerCommandModel(commandModel);
 
-        return "redirect:/power/show?id=" + power.getId();
+        return "redirect:/power/profile?id=" + power.getId();
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile")
     public String profile(@RequestParam Long id, Model model) {
         ProfilePowerViewModel viewModel = powerWebService.getPowerProfileViewModel(id);
 

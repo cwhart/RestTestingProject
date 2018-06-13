@@ -24,8 +24,24 @@
                     <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
                 </ul>    
             </div>
-            <h2>Home Page</h2>
+
         </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1 col1">
+                    <h1>About Us</h1>
+                    <td >
+                        Superhero Squad allows you to see the latest superhero
+                        and supervillain sightings. We allow our users to update
+                        superheros & villain, add sightings and locations of
+                        spotted superheros and villains. We also allow our users
+                        to see all superhero and supervillain organizations.
+                    </td>
+                </div>
+            </div>
+        </div>
+
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

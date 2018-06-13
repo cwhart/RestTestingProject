@@ -13,6 +13,21 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <h1>H.E.R.O.</h1>
+    <hr/>
+    <div class="navbar">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+            <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/location/list?offset=0">Locations</a></li>
+            <li role="presentation" ><a href="${pageContext.request.contextPath}/organization/list?offset=0">Organizations</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/power/list?offset=0">Powers</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/sighting/list?offset=0">Sightings</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
+        </ul>
+    </div>
+
+</div>
 <h1 class="text-center">Edit Location</h1>
 <hr/>
 

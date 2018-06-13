@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: N0160024
@@ -32,37 +33,55 @@
 <sf:form action="/super/edit" method="post" modelAttribute="commandModel">
 <sf:hidden path="id"></sf:hidden>
 
-<label for="name">Name:</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Name:</label>
+    <div class="col-md-10">
 <sf:input path="name"></sf:input>
 <sf:errors path="name"></sf:errors>
+    </div>
+</div>
 
 <br/>
 
-<label for="description">Description:</label>
+<div class="form-group">
+    <label class="col-md-2" for="description">Description:</label>
+    <div class="col-md-10">
 <sf:input path="description"></sf:input>
 <sf:errors path="description"></sf:errors>
+    </div>
+</div>
 
 <br/>
 
-<label for="organizationId">Organizations:</label>
+<div class="form-group">
+    <label class="col-md-2" for="organizationId">Organizations:</label>
+    <div class="col-md-10">
 <sf:select path="organizationId">
     <sf:option value="" label="Choose an Organization"/>
     <sf:options items="${viewModel.organizations}" itemValue="id" itemLabel="name"/>
 </sf:select>
 <sf:errors path="organizationId"></sf:errors>
+    </div>
+</div>
 
 <br/>
 
-<label for="powerId">Powers:</label>
+<div class="form-group">
+    <label class="col-md-2" for="powerId">Powers:</label>
+    <div class="col-md-10">
 <sf:select path="powerId">
     <sf:option value="" label="Choose a Power"/>
     <sf:options items="${viewModel.powers}" itemValue="id" itemLabel="name"/>
 </sf:select>
 <sf:errors path="powerId"></sf:errors>
+    </div>
+</div>
 
 <br/>
 
-<button type="submit">Create</button>
+<button type="submit">Save</button>
 <button type="submit">Cancel</button>
+</sf:form>
 </body>
+
 </html>

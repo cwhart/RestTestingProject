@@ -22,6 +22,7 @@ import com.sg.superhero.webservice.interfaces.SightingWebService;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,6 +68,7 @@ public class SightingWebServiceImpl implements SightingWebService {
         for (Sighting sighting: sightingList) {
             SightingViewModel viewModel = new SightingViewModel();
             viewModel.setDate(sighting.getDate());
+            viewModel.setSightingId(sighting.getId());
             //viewModel.setLocation(sighting.getLocation().getName());
             viewModel.setLocationId(sighting.getLocation().getId());
 
@@ -194,8 +196,18 @@ public class SightingWebServiceImpl implements SightingWebService {
                 .map(x -> x.getId())
                 .collect(Collectors.toList());
 
+        List<Location> locations = this.locationService.retrieveAll(Integer.MAX_VALUE,0);
+        List<DropdownViewModel> dropdownLocations = new ArrayList<>();
+        for(Location location: locations){
+            DropdownViewModel ddi = new DropdownViewModel();
+            ddi.setId(location.getId());
+            ddi.setName(location.getName());
+            dropdownLocations.add(ddi);
+        }
+        model.setLocation(dropdownLocations);
+
         commandModel.setSightingId(sighting.getId());
-        commandModel.setDate(sighting.getDate());
+        commandModel.setDate((sighting.getDate().toString()));
         commandModel.setLocationId(sighting.getLocation().getId());
         commandModel.setSuperIds(superIds.toArray(new Long[superIds.size()]));
         model.setCommandModel(commandModel);
@@ -208,7 +220,7 @@ public class SightingWebServiceImpl implements SightingWebService {
         Sighting sighting = sightingService.retrieve(commandModel.getSightingId());
         if(sighting == null) return;
         sighting.setLocation(this.locationService.retrieve(commandModel.getLocationId()));
-        sighting.setDate(commandModel.getDate());
+        sighting.setDate(LocalDate.parse(commandModel.getDate()));
 
         sightingService.update(sighting);
         //update the positions

@@ -25,7 +25,6 @@ public class LocationController {
 
     LocationWebService locationWebService;
 
-
     @Inject
     public LocationController(LocationWebService locationWebService) {
         this.locationWebService = locationWebService;
@@ -33,7 +32,6 @@ public class LocationController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam(required = false) Integer offset, Model model) {
-
         if(offset == null) {
             offset = 0;
         }
@@ -58,9 +56,7 @@ public class LocationController {
     }
 
     @RequestMapping(value = "/create", method= RequestMethod.POST)
-    public String saveCreate(@Valid @ModelAttribute("commandModel")
-                                     CreateLocationCommandModel commandModel,
-                             BindingResult bindingResult, Model model){
+    public String saveCreate(@Valid @ModelAttribute("commandModel") CreateLocationCommandModel commandModel, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             CreateLocationViewModel viewModel =
                     locationWebService.getCreateLocationViewModel();
@@ -103,6 +99,12 @@ public class LocationController {
         return "location/profile";
     }
 
+//    @RequestMapping(value = "/delete")
+//    public String delete(@RequestParam Long id, Model model) {
+//        locationWebService.deleteLocation(id);
+//
+//        return "redirect:/location/list";
+//    }
 
 
 }

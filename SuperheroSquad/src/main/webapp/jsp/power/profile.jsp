@@ -30,19 +30,28 @@
     </div>
     <h2>Home Page</h2>
 </div>
+
+<div class="col-md-12">
 <p>
-    Name: <c:out value="${power.name}"/>
+    Name: <c:out value="${viewModel.name}"/>
 </p>
 <p>
-    Super People:
-<table>
-    <c:forEach items="${viewModel.powers}" var="power">
-        <tr>
-            <td>${power.superPeople}</td>
-        </tr>
-    </c:forEach>
-</table>
-</p>
+</div>
+
+<div class="col-md-12">
+    <div class="col-md-2">Super People with this Power:</div>
+    <div class="col-md-10">
+        <table>
+            <c:forEach items="${viewModel.supers}" var="supers">
+                <tr>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/super/profile?id=${supers.id}">${supers.superPersonName}</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

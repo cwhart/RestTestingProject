@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/superPerson")
+@RequestMapping(value = "/super")
 public class SuperController {
     private SuperPersonWebService superPersonWebService;
 

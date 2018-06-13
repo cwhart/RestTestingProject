@@ -44,28 +44,51 @@
 </div>
 <h1>Create Organization</h1>
 <sf:form action="/organization/create" method="post" modelAttribute="commandModel">
-    <label for="name">Organization Name:</label>
+
+<div class="form-group">
+    <label class="col-md-2" for="name">Organization Name:</label>
+    <div class="col-md-10">
     <sf:input path="name"></sf:input>
     <sf:errors path="name"></sf:errors>
+    </div>
+</div>
     <br/>
-    <label for="description">Description:</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Description:</label>
+    <div class="col-md-10">
     <sf:input path="description"></sf:input>
     <sf:errors path="description"></sf:errors>
+    </div>
+</div>
     <br/>
-    <label for="locationId">Location:</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Location:</label>
+    <div class="col-md-10">
     <sf:select path="locationId">
         <sf:option value="" label="No Location"/>
         <sf:options items="${viewModel.locations}" itemValue="id" itemLabel="name"/>
     </sf:select>
     <sf:errors path="locationId"></sf:errors>
+    </div>
+</div>
     <br/>
-    <label for="phone">Phone:</label>
+
+<div class="form-group">
+    <label class="col-md-2" for="name">Phone:</label>
+    <div class="col-md-10">
     <sf:input path="phone"></sf:input>
     <sf:errors path="phone"></sf:errors>
+    </div>
+</div>
     <br/>
-    <label for="email">Email:</label>
+
+<div class="form-group">
+    <label class="col-md-2" for="name">Email:</label>
+    <div class="col-md-10">
     <sf:input path="email"></sf:input>
     <sf:errors path="email"></sf:errors>
+    </div>
+</div>
     <br/>
 
     <button type="submit">Create</button>

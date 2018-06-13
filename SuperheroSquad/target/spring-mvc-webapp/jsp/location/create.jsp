@@ -28,41 +28,76 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-    <h2>Home Page</h2>
+
 </div>
 <sf:form action="/location/create" method="post" modelAttribute="commandModel" >
 
-    <label for="name">Name</label>
+<div class="form-group">
+    <label class="col-md-2" for="name">Name:</label>
+    <div class="col-md-10">
     <sf:input path="name"></sf:input>
     <sf:errors path="name"></sf:errors>
+    </div>
+</div>
 
-    <label for="description">Description</label>
+
+    <div class="form-group">
+        <label class="col-md-2" for="name">Description:</label>
+        <div class="col-md-10">
     <sf:input path="description"></sf:input>
     <sf:errors path="description"></sf:errors>
+        </div>
+    </div>
 
-    <label for="street">Street</label>
-    <sf:input path="street"></sf:input>
+    <div class="form-group">
+        <label class="col-md-2" for="name">Street:</label>
+        <div class="col-md-10">
+      <sf:input path="street"></sf:input>
     <sf:errors path="street"></sf:errors>
+        </div>
+    </div>
 
-    <label for="city">City</label>
-    <sf:input path="city"></sf:input>
+    <div class="form-group">
+        <label class="col-md-2" for="name">City:</label>
+        <div class="col-md-10">
+       <sf:input path="city"></sf:input>
     <sf:errors path="city"></sf:errors>
+        </div>
+    </div>
 
-    <label for="state">State</label>
-    <sf:input path="state"></sf:input>
+    <div class="form-group">
+        <label class="col-md-2" for="name">State:</label>
+        <div class="col-md-10">
+       <sf:input path="state"></sf:input>
     <sf:errors path="state"></sf:errors>
+        </div>
+    </div>
 
-    <label for="zip">Zip</label>
-    <sf:input path="zip"></sf:input>
+    <div class="form-group">
+        <label class="col-md-2" for="name">Zip:</label>
+        <div class="col-md-10">
+      <sf:input path="zip"></sf:input>
     <sf:errors path="zip"></sf:errors>
+        </div>
+    </div>
 
-    <label for="latitude">Latitude</label>
-    <sf:input path="latitude"></sf:input>
+    <div class="form-group">
+        <label class="col-md-2" for="name">Latitude:</label>
+        <div class="col-md-10">
+       <sf:input path="latitude"></sf:input>
     <sf:errors path="latitude"></sf:errors>
+        </div>
+    </div>
 
-    <label for="longitude">Longitude</label>
-    <sf:input path="longitude"></sf:input>
+
+    <div class="form-group">
+        <label class="col-md-2" for="name">Longitude:</label>
+        <div class="col-md-10">
+      <sf:input path="longitude"></sf:input>
     <sf:errors path="longitude"></sf:errors>
+        </div>
+    </div>
+    </div>
 
     <button type="submit">Create</button>
     <button type="cancel">Cancel</button>

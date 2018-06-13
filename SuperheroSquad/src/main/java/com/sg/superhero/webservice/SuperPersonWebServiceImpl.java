@@ -43,6 +43,9 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
     @Inject
     SuperPowerService superPowerService;
 
+    @Inject
+    LocationService locationService;
+
     @Override
     public ListSuperPersonViewModel getListSuperPersonViewModel(Integer offset) {
 
@@ -72,6 +75,7 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
             SuperPersonViewModel viewModel = new SuperPersonViewModel();
             viewModel.setName(superPerson.getName());
             viewModel.setDescription(superPerson.getDescription());
+            viewModel.setId(superPerson.getId());
 
             viewModels.add(viewModel);
         }
@@ -136,7 +140,9 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
         for (Sighting sighting : sightings) {
             ProfileSightingViewModel vm = new ProfileSightingViewModel();
             vm.setId(sighting.getId());
-            vm.setName(sighting.getLocation().getName());
+            Location location = locationService.retrieve(sighting.getId());
+            vm.setName(location.getName());
+            //vm.setName(sighting.getLocation().getName());
             sightingViewModels.add(vm);
         }
 

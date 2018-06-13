@@ -27,8 +27,6 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-    <h2>Home Page</h2>
-</div>
 
 <div class="row">
     <div class="col-md-6">
@@ -43,7 +41,7 @@
                 <tr>
                     <td><a href="${pageContext.request.contextPath}/power/profile?id=${power.id}">${power.name}</a></td>
                     <td><a href="${pageContext.request.contextPath}/power/edit?id=${power.id}">Edit</a></td>
-                        <%--<td><a href="/organization/delete?id=${organization.id}">Delete</a></td>--%>
+                    <td><a href="${pageContext.request.contextPath}/organization/delete?id=${power.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -56,6 +54,7 @@
         <a href="${pageContext.request.contextPath}/power/create">Create New Power</a>
 
     </div>
+</div>
 </div>
 
 <%--<table>

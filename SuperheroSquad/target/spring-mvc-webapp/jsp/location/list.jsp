@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Location List</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -26,25 +26,34 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-    <h2>Home Page</h2>
-</div>
 
-<h1>Locations</h1>
-<table>
-    <c:forEach items="${viewModel.locations}" var="location">
-        <tr>
-            <td><a href="${pageContext.request.contextPath}/location/profile?id=${location.id}">${location.name}</a></td>
-            <td><a href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a></td>
-            <td><a href="${pageContext.request.contextPath}/location/delete?id=${location.id}">Delete</a></td>
-        </tr>
-    </c:forEach>
-</table>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Locations</h2>
+            <table id="locations" class="table table-hover">
+                <tr>
+                    <th width="50%">Location Name</th>
+                    <th width="25%"></th>
+                    <th width="25%"></th>
+                </tr>
+                <c:forEach items="${viewModel.locations}" var="location">
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/location/profile?id=${location.id}">${location.name}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a></td>
+                        <td><a href="${pageContext.request.contextPath}/location/delete?id=${location.id}">Delete</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
 <c:forEach items="${viewModel.pageNumbers}" var="pageNumber">
     <a href="/location/list?offset=${(pageNumber -1)* 5}">${pageNumber}</a>
 </c:forEach>
 <br />
+
 <a href="/location/create">Create</a>
 <!-- <a href="/location/cancel">Cancel</a> -->
 
 </body>
+</div>
 </html>

@@ -51,6 +51,7 @@ public class SightingController {
         return "sighting/edit";
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String saveEdit(@Valid @ModelAttribute("commandModel") EditSightingCommandModel commandModel,
                            BindingResult bindingResult, Model model) { //Take in model in case we need to return
         //to the edit page - i.e. if the user typed in an invalid value, this will save
@@ -65,7 +66,7 @@ public class SightingController {
 
         sightingWebService.saveEditSightingCommandModel(commandModel);
 
-        return "redirect:/sighting?profile?id=" + commandModel.getSightingId();
+        return "redirect:/sighting/profile?id=" + commandModel.getSightingId();
     }
 
     @RequestMapping(value= "/create", method = RequestMethod.GET)

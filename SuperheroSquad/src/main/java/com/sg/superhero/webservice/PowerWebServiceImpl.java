@@ -61,6 +61,7 @@ public class PowerWebServiceImpl implements PowerWebService {
         for (Power power: powerList) {
             PowerViewModel viewModel = new PowerViewModel();
             viewModel.setName(power.getName());
+            viewModel.setId(power.getId());
             viewModels.add(viewModel);
         }
 

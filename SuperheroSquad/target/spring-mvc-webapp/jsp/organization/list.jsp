@@ -12,7 +12,7 @@
     <title>Organizations</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="text-center">
+<body >
 <div class="container">
 
     <div><h1>H.E.R.O.</h1></div>
@@ -40,7 +40,7 @@
                     <tr>
                         <td><a href="${pageContext.request.contextPath}/organization/profile?id=${organization.id}">${organization.name}</a></td>
                         <td><a href="${pageContext.request.contextPath}/organization/edit?id=${organization.id}">Edit</a></td>
-                        <%--<td><a href="/organization/delete?id=${organization.id}">Delete</a></td>--%>
+                        <td><a href="${pageContext.request.contextPath}/organization/delete?id=${organization.id}">Delete</a></td>
                     </tr>
                 </c:forEach>
             </table>

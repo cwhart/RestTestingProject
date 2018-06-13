@@ -13,6 +13,9 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <h1>H.E.R.O.</h1>
+    <hr/>
 <div class="navbar">
     <ul class="nav nav-tabs">
         <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
@@ -23,14 +26,19 @@
         <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
     </ul>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Sightings</h2>
+        <table id="sightings" class="table table-hover">
 
-<table>
+
     <c:forEach items="${viewModel.locations}" var="sighting">
         <tr>
-            <td><a href="/sighting/show?id=${sighting.sightingId}">${sighting.location}
+            <td><a href="/sighting/profile?id=${sighting.sightingId}">${sighting.location}
             </a></td>
             <td>${sighting.date}</td>
-            <td><a href="/sighting/edit?id=${sighting.sightingId}">edit</a></td>
+            <td><a href="${pageContext.request.contextPath}/sighting/edit?id=${sighting.sightingId}">Edit</a></td>
+            <td><a href="${pageContext.request.contextPath}/sighting/delete?id=${sighting.sightingId}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
@@ -41,6 +49,8 @@
 
 <br />
 <a href="/sighting/create">Create New Sighting</a>
-
+    </div>
+</div>
+</div>
 </body>
 </html>

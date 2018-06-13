@@ -282,7 +282,7 @@ public class SightingWebServiceImplTest {
         EditSightingCommandModel commandModel = viewModel.getCommandModel();
 
         // Change the items on the form (commandModel) to what we want
-        commandModel.setDate(LocalDate.parse("2018-06-14"));
+        commandModel.setDate(("2018-06-14"));
         commandModel.setLocationId(newLocation.getId());
         //testHelper.createTestSuperSighting(supers.get(2), sighting);
 
