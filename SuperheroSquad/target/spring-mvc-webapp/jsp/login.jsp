@@ -5,20 +5,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Company Contacts: Login</title>
+    <title>H.E.R.O: Login</title>
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>Company Contacts</h1>
+    <h1>H.E.R.O.</h1>
     <hr/>
     <h2>Login Page</h2>
 
     <c:if test="${param.login_error == 1}">
         <h3>Wrong id or password!</h3>
     </c:if>
-    <form class="form-horizontal"
+    <form class="form-horizontal col-md-6"
           role="form"
           method="post"
           action="j_spring_security_check">

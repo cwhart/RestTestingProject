@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -19,7 +20,7 @@
     <hr/>
     <div class="navbar">
         <ul class="nav nav-tabs">
-            <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/">Home</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/location/list?offset=0">Locations</a></li>
             <li role="presentation" ><a href="${pageContext.request.contextPath}/organization/list?offset=0">Organizations</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/power/list?offset=0">Powers</a></li>
@@ -41,8 +42,11 @@
     <c:forEach items="${viewModel.superPersons}" var="superPerson">
         <tr>
             <td><a href="${pageContext.request.contextPath}/super/profile?id=${superPerson.id}">${superPerson.name}</a></td>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+
             <td><a href="${pageContext.request.contextPath}/super/edit?id=${superPerson.id}">Edit</a></td>
             <td><a href="${pageContext.request.contextPath}/super/delete?id=${superPerson.id}">Delete</a></td>
+            </sec:authorize>
         </tr>
     </c:forEach>
 
@@ -53,8 +57,10 @@
 </c:forEach>
 
 <br />
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
 
 <a href="/super/create">Create</a>
+            </sec:authorize>
 </div>
     </div>
 </div>

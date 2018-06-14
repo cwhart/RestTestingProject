@@ -2,6 +2,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +15,12 @@
 </head>
 <body>
 <div class="logout pull-right">
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <div>Hello : <b>${pageContext.request.userPrincipal.name}</b>
+    <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+        <div>You are logged in as: <b>${pageContext.request.userPrincipal.name}</b>
             | <button><a href="<c:url value="/login" />" > Login</a></button>
             <button><a href="<c:url value="/j_spring_security_logout" />" > Logout</a></button>
         </div>
-    </c:if>
+    <%--</c:if>--%>
 </div>
 <<br>
 <br>
@@ -37,7 +39,7 @@
             <li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
             <li role="presentation">
-                <a href="${pageContext.request.contextPath}/jsp/displayUserList?offset=0">User Admin</a></li>
+                <a href="/displayUserList">User Admin</a></li>
             </sec:authorize>
             </li>
         </ul>

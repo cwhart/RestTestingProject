@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: n0239947
@@ -18,7 +20,7 @@
     <hr/>
     <div class="navbar">
         <ul class="nav nav-tabs">
-            <li role="presentation"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/">Home</a></li>
             <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/location/list?offset=0">Locations</a></li>
             <li role="presentation" ><a href="${pageContext.request.contextPath}/organization/list?offset=0">Organizations</a></li>
             <li role="presentation"><a href="${pageContext.request.contextPath}/power/list?offset=0">Powers</a></li>
@@ -26,8 +28,6 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-
-
 
 <div class="row">
     <div class="col-md-6">
@@ -41,8 +41,10 @@
                 <c:forEach items="${viewModel.locations}" var="location">
                     <tr>
                         <td><a href="${pageContext.request.contextPath}/location/profile?id=${location.id}">${location.name}</a></td>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <td><a href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a></td>
                         <td><a href="${pageContext.request.contextPath}/location/delete?id=${location.id}">Delete</a></td>
+                        </sec:authorize>
                     </tr>
                 </c:forEach>
             </table>
@@ -50,8 +52,10 @@
     <a href="/location/list?offset=${(pageNumber -1)* 5}">${pageNumber}</a>
 </c:forEach>
 <br />
+        <sec:authorize access="hasRole('ROLE_USER')">
 
 <a href="/location/create">Create</a>
+        </sec:authorize>
 <!-- <a href="/location/cancel">Cancel</a> -->
 
 </body>

@@ -7,13 +7,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Company Contacts</title>
+    <title>H.E.R.O.</title>
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>Company Contacts</h1>
+    <h1>H.E.R.O.</h1>
     <hr/>
     <div class="navbar">
         <ul class="nav nav-tabs">
@@ -22,16 +22,7 @@
                     Home
                 </a>
             </li>
-            <li role="presentation">
-                <a href="${pageContext.request.contextPath}/displayContactsPage">
-                    Contacts
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="${pageContext.request.contextPath}/displaySearchPage">
-                    Search
-                </a>
-            </li>
+
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <li role="presentation">
                     <a href="${pageContext.request.contextPath}/displayUserList">
@@ -48,7 +39,7 @@
         </p>
     </c:if>
     <h1>Users</h1>
-    <a href="displayUserForm">Add a User</a><br/>
+    <a href="/displayUserForm">Add a User</a><br/>
     <hr/>
     <c:forEach var="user" items="${users}">
         <c:out value="${user.username}"/> |
