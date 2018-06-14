@@ -48,9 +48,11 @@
 
     <div class="row">
         <div class="column col-md-4"><article><h2><b>About Us</b></h2>
-            <p class="text-justify"> Welcome to the world's first Super Person tracking website.
-                We allow our users to update superheros and supervillians, sightings, locations and organizations.
-                If there are super metas on the loose be sure we will track them so you can avoid any unnecessary sightings.
+            <p class="text-justify">
+                Superhero Squad allows you to see the latest superhero and supervillian sightings.
+                We allow our users to update superheros & villians, add sightings and locations of
+                spotted superheros and villians. We also allow our users to see all superhero and
+                supervillian organizations.
             </p>
             <p class="text-justify">Be sure to visit regularly or sign up for our alert APP coming soon to your favorite APP store.</p>
         </article></div>

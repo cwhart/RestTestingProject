@@ -25,29 +25,39 @@ import java.util.stream.Collectors;
 
 public class SuperPersonWebServiceImpl implements SuperPersonWebService {
 
-    @Inject
     SuperService superService;
 
-    @Inject
     OrganizationService organizationService;
 
-    @Inject
     PowerService powerService;
 
-    @Inject
     SightingService sightingService;
 
-    @Inject
     SuperOrganizationService superOrganizationService;
 
-    @Inject
     SuperPowerService superPowerService;
 
-    @Inject
     LocationService locationService;
 
-    @Inject
     SuperSightingService superSightingService;
+
+    @Inject
+    public SuperPersonWebServiceImpl(SuperService superService, OrganizationService organizationService,
+                                     PowerService powerService, SightingService sightingService,
+                                     SuperOrganizationService superOrganizationService,
+                                     SuperPowerService superPowerService, LocationService locationService,
+                                     SuperSightingService superSightingService) {
+        this.superService = superService;
+        this.organizationService = organizationService;
+        this.powerService = powerService;
+        this.sightingService = sightingService;
+        this.superOrganizationService = superOrganizationService;
+        this.superPowerService = superPowerService;
+        this.locationService = locationService;
+        this.superSightingService = superSightingService;
+    }
+
+
 
     @Override
     public ListSuperPersonViewModel getListSuperPersonViewModel(Integer offset) {
@@ -143,7 +153,7 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
         for (Sighting sighting : sightings) {
             ProfileSightingViewModel vm = new ProfileSightingViewModel();
             vm.setId(sighting.getId());
-            Location location = locationService.retrieve(sighting.getId());
+            Location location = locationService.retrieve(sighting.getLocation().getId());
             vm.setName(location.getName());
             //vm.setName(sighting.getLocation().getName());
             sightingViewModels.add(vm);
@@ -209,6 +219,14 @@ public class SuperPersonWebServiceImpl implements SuperPersonWebService {
             superOrganization.setOrganization(org);
             superOrganization = superOrganizationService.create(superOrganization);
             //playerPositions.add(playerPosition);
+        }
+
+        for (Long powerId : commandModel.getPowerId()) {
+            SuperPower superPower = new SuperPower();
+            superPower.setSuperPerson(superPerson);
+            Power power = powerService.retrieve(powerId);
+            superPower.setPower(power);
+            superPower = superPowerService.create(superPower);
         }
 
         return superPerson;

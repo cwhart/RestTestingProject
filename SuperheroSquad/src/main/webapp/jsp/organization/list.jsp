@@ -44,7 +44,7 @@
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                         <td><a href="${pageContext.request.contextPath}/organization/edit?id=${organization.id}">Edit</a></td>
-                        <td><a href="${pageContext.request.contextPath}/organization/delete?id=${organization.id}">Delete</a></td>
+                        <td><a href="${pageContext.request.contextPath}/organization/delete?id=${organization.id}" class="delete">Delete</a></td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>
@@ -66,5 +66,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/delete.js"></script>
+
 </body>
 </html>

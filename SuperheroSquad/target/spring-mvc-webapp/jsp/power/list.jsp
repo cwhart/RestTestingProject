@@ -44,7 +44,8 @@
                     <td><a href="${pageContext.request.contextPath}/power/profile?id=${power.id}">${power.name}</a></td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <td><a href="${pageContext.request.contextPath}/power/edit?id=${power.id}">Edit</a></td>
-                    <td><a href="${pageContext.request.contextPath}/power/delete?id=${power.id}">Delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/power/delete?id=${power.id}" class="delete">
+                        Delete</a></td>
                     </sec:authorize>
                 </tr>
             </c:forEach>
@@ -63,22 +64,11 @@
     </div>
 </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/delete.js"></script>
 
-<%--<table>
-    <c:forEach items="${viewModel.powers}" var="power">
-        <tr>
-            <td><a href="/power/show?id=${power.id}">${power.name}</a></td>
-            <td><a href="/power/edit?id=${power.id}">Edit</a> </td>
-        </tr>
-    </c:forEach>
-</table>
 
-<c:forEach items="${viewModel.pageNumbers}" var="pageNumber">
-    <a href="/power/list?offset=${(pageNumber-1) *5}">${pageNumber}</a>  <!--saying we have 5 per page-->
-</c:forEach>
-
-<br/>
-<a href="power/create">Create New Player</a>--%>
 
 </body>
 </html>

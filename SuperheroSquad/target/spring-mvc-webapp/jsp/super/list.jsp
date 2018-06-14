@@ -45,7 +45,7 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
 
             <td><a href="${pageContext.request.contextPath}/super/edit?id=${superPerson.id}">Edit</a></td>
-            <td><a href="${pageContext.request.contextPath}/super/delete?id=${superPerson.id}">Delete</a></td>
+            <td><a href="${pageContext.request.contextPath}/super/delete?id=${superPerson.id}" class="delete">Delete</a></td>
             </sec:authorize>
         </tr>
     </c:forEach>
@@ -64,5 +64,9 @@
 </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/delete.js"></script>
 </body>
 </html>

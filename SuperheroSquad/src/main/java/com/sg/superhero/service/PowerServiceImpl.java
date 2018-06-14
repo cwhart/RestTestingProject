@@ -10,9 +10,10 @@ import java.util.List;
 
 public class PowerServiceImpl implements PowerService {
 
-    @Inject
+
     PowerDao powerDao;
 
+    @Inject
     private PowerServiceImpl (PowerDao powerDao) {
         this.powerDao = powerDao;
     }

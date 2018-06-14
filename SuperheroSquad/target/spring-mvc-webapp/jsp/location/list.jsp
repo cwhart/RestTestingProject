@@ -43,7 +43,7 @@
                         <td><a href="${pageContext.request.contextPath}/location/profile?id=${location.id}">${location.name}</a></td>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <td><a href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a></td>
-                        <td><a href="${pageContext.request.contextPath}/location/delete?id=${location.id}">Delete</a></td>
+                        <td><a href="${pageContext.request.contextPath}/location/delete?id=${location.id}" class="delete">Delete</a></td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>
@@ -57,6 +57,9 @@
 <a href="/location/create">Create</a>
         </sec:authorize>
 <!-- <a href="/location/cancel">Cancel</a> -->
+        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/delete.js"></script>
 
 </body>
 </div>

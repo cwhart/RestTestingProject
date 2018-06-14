@@ -42,7 +42,7 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
 
             <td><a href="${pageContext.request.contextPath}/sighting/edit?id=${sighting.sightingId}">Edit</a></td>
-            <td><a href="${pageContext.request.contextPath}/sighting/delete?id=${sighting.sightingId}">Delete</a></td>
+            <td><a href="${pageContext.request.contextPath}/sighting/delete?id=${sighting.sightingId}" class="delete">Delete</a></td>
             </sec:authorize>
         </tr>
     </c:forEach>
@@ -60,5 +60,9 @@
     </div>
 </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/delete.js"></script>
 </body>
 </html>

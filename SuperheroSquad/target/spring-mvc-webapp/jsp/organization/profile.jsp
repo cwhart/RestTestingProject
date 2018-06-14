@@ -27,7 +27,6 @@
             <li role="presentation"><a href="${pageContext.request.contextPath}/super/list?offset=0">Super People</a></li>
         </ul>
     </div>
-    <h2>Home Page</h2>
 </div>
 
 <h1>Organization Details</h1>
