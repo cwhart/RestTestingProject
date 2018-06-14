@@ -99,12 +99,12 @@ public class LocationController {
         return "location/profile";
     }
 
-//    @RequestMapping(value = "/delete")
-//    public String delete(@RequestParam Long id, Model model) {
-//        locationWebService.deleteLocation(id);
-//
-//        return "redirect:/location/list";
-//    }
+    @RequestMapping(value = "/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        locationWebService.deleteLocation(id);
+
+        return "redirect:/location/list";
+    }
 
 
 }

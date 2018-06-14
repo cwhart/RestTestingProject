@@ -49,7 +49,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public List<Organization> retrieveOrganizationsByLocation(Location location, int i, int i1) {
-        return null;
+    public List<Organization> retrieveOrganizationsByLocation(Location location, int limit, int offset) {
+        return organizationDao.retrieveOrganizationsByLocation(location, limit, offset);
     }
 }

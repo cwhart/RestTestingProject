@@ -56,7 +56,7 @@ public class SightingServiceImpl implements SightingService {
     }
 
     @Override
-    public List<Sighting> retrieveSightingByLocation(Location location, int i, int i1) {
-        return null;
+    public List<Sighting> retrieveSightingByLocation(Location location, int limit, int offset) {
+        return sightingDao.retrieveSightingByLocation(location, limit, offset);
     }
 }

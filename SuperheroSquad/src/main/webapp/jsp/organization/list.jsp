@@ -15,7 +15,7 @@
 <body >
 <div class="container">
 
-    <div><h1>H.E.R.O.</h1></div>
+    <div><h1>Hero Education and Relationship Organization (H.E.R.O.)</h1></div>
     <div class="navbar">
         <ul class="nav nav-tabs">
             <li role="presentation" ><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>

@@ -101,8 +101,17 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> retrieveOrganizationsByLocation(Location location, int i, int i1) {
-        return null;
+    public List<Organization> retrieveOrganizationsByLocation(Location location, int limit, int offset) {
+
+
+            final String QUERY = "select * from organization o " +
+                    "where location_id = ? " +
+                    "LIMIT ? OFFSET ?";
+            return jdbcTemplate.query(QUERY, new OrganizationMapper(),
+                    location.getId(),
+                    limit,
+                    offset);
+
     }
 
     private class OrganizationMapper implements RowMapper<Organization> {

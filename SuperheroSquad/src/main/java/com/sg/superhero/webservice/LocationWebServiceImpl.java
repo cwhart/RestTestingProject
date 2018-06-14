@@ -1,7 +1,7 @@
 package com.sg.superhero.webservice;
 
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.service.interfaces.LocationService;
+import com.sg.superhero.dto.*;
+import com.sg.superhero.service.interfaces.*;
 import com.sg.superhero.util.PagingUtils;
 import com.sg.superhero.viewmodels.location.create.CreateLocationCommandModel;
 import com.sg.superhero.viewmodels.location.create.CreateLocationViewModel;
@@ -23,10 +23,30 @@ public class LocationWebServiceImpl implements LocationWebService {
 
     LocationService locationService;
 
+    OrganizationService organizationService;
+
+    SuperOrganizationService superOrganizationService;
+
+    SuperService superService;
+
+    SightingService sightingService;
+
+    SuperSightingService superSightingService;
+
     @Inject
-    public LocationWebServiceImpl(LocationService locationService) {
+    public LocationWebServiceImpl(LocationService locationService, OrganizationService organizationService,
+                                  SuperOrganizationService superOrganizationService, SuperService superService,
+                                  SightingService sightingService, SuperSightingService superSightingService) {
         this.locationService = locationService;
+        this.organizationService = organizationService;
+        this.superOrganizationService = superOrganizationService;
+        this.superService = superService;
+        this.sightingService = sightingService;
+        this.superSightingService = superSightingService;
     }
+
+
+
 
     @Override
     public ListLocationViewModel getLocationListViewModel(Integer offset) {
@@ -155,12 +175,42 @@ public class LocationWebServiceImpl implements LocationWebService {
 
     @Override
     public void deleteLocation(Long id) {
-
-        //TODO: determine if location needs to be deleted elsewhere.
-
         Location location = locationService.retrieve(id);
+        if(location == null) return;
+        List<Organization> organizations = organizationService.retrieveOrganizationsByLocation(location, Integer.MAX_VALUE, 0);
+        List<Sighting> sightings = sightingService.retrieveSightingByLocation(location, Integer.MAX_VALUE, 0);
 
-        locationService.delete(location);
+        if(organizations != null) {
+            for (Organization organization : organizations) {
+                List<Super> supers = superService.retrieveSupersByOrganization(organization, Integer.MAX_VALUE, 0);
+                if(supers != null) {
+                    for (Super superPerson : supers) {
+
+                        SuperOrganization superOrganization = new SuperOrganization();
+                        superOrganization.setSuperPerson(superPerson);
+                        superOrganization.setOrganization(organization);
+                        superOrganizationService.delete(superOrganization);
+                    }
+                }
+                organizationService.delete(organization);
+            }
+        }
+
+        if (sightings != null) {
+            for (Sighting sighting : sightings) {
+                List<Super> supers = superService.retrieveSupersBySighting(sighting, Integer.MAX_VALUE, 0);
+                for (Super superPerson : supers) {
+                    SuperSighting superSighting = new SuperSighting();
+                    superSighting.setSuperPerson(superPerson);
+                    superSighting.setSighting(sighting);
+                    superSightingService.delete(superSighting);
+                }
+
+                sightingService.delete(sighting);
+            }
+        }
+
+        locationService.delete(locationService.retrieve(id));
 
     }
 }

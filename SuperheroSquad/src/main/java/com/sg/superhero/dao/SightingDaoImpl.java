@@ -118,9 +118,13 @@ public class SightingDaoImpl implements SightingDao {
     }
 
     @Override
-    public List<Sighting> retrieveSightingByLocation(Location location, int i, int i1) {
-        return null;
-    }
+    public List<Sighting> retrieveSightingByLocation(Location location, int limit, int offset) {
+
+            final String QUERY = "select * from sighting s " +
+                    "where s.location_id = ? LIMIT ? OFFSET ?";
+            return jdbcTemplate.query(QUERY, new SightingMapper(), location.getId(), limit, offset);
+        }
+
 
     private class SightingMapper implements RowMapper<Sighting> {
         @Override

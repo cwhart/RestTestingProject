@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>H.E.R.O.</h1>
+    <h1>Hero Education and Relationship Organization (H.E.R.O.)</h1>
     <hr/>
 <div class="navbar">
     <ul class="nav nav-tabs">
