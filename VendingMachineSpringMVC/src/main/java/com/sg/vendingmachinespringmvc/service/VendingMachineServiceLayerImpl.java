@@ -5,6 +5,7 @@ import com.sg.vendingmachinespringmvc.dao.ItemDao;
 import com.sg.vendingmachinespringmvc.model.Item;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,19 +23,19 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     @Override
     public List<Item> retrieveListAllWithQuantityGTZero()  {
         List<Item> items = itemDao.retrieveAllItems();
-        //List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
+        List<Item> itemsWithQuantityMoreThanZero = new ArrayList<>();
 
 
 
         //Create a new ArrayList, check the quantity and populate into the new list only
         //items that have a quantity>0. Return the new list.
 
-        /*for (Item currentItem : items) {
+        for (Item currentItem : items) {
             if (currentItem.getItemQuantity() >0) {
                 itemsWithQuantityMoreThanZero.add(currentItem);
             }
-        }*/
-        return items.stream()
+        }
+        return itemsWithQuantityMoreThanZero.stream()
                 .filter(s -> s.getItemQuantity() > 0)
                 .collect(Collectors.toList());
     }

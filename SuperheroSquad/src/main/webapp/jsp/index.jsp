@@ -49,10 +49,10 @@
     <div class="row">
         <div class="column col-md-4"><article><h2><b>About Us</b></h2>
             <p class="text-justify">
-                Superhero Squad allows you to see the latest superhero and supervillian sightings.
-                We allow our users to update superheros & villians, add sightings and locations of
-                spotted superheros and villians. We also allow our users to see all superhero and
-                supervillian organizations.
+                Superhero Squad allows you to see the latest superhero and supervillain sightings.
+                We allow our users to add sightings and locations of
+                spotted superheroes and villains. We also allow our users to see all superhero and
+                supervillain organizations.
             </p>
             <p class="text-justify">Be sure to visit regularly or sign up for our alert APP coming soon to your favorite APP store.</p>
         </article></div>

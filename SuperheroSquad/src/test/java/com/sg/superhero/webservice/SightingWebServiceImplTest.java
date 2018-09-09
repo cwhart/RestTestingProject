@@ -8,7 +8,6 @@ import com.sg.superhero.service.interfaces.SightingService;
 import com.sg.superhero.service.interfaces.SuperService;
 import com.sg.superhero.viewmodels.DropdownViewModel;
 import com.sg.superhero.viewmodels.sighting.create.CreateSightingCommandModel;
-import com.sg.superhero.viewmodels.sighting.create.CreateSightingViewModel;
 import com.sg.superhero.viewmodels.sighting.edit.EditSightingCommandModel;
 import com.sg.superhero.viewmodels.sighting.edit.EditSightingViewModel;
 import com.sg.superhero.viewmodels.sighting.list.ListSightingViewModel;
@@ -25,12 +24,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)  //says Spring in charge of running unit tests.
 @ContextConfiguration(locations = {"/test-applicationContext.xml"}) //indicates the xml file to use
@@ -203,7 +199,7 @@ public class SightingWebServiceImplTest {
         // check list for ids
 
         assert sighting.getLocation().getId().equals(vm.getCommandModel().getLocationId());
-        assert sighting.getDate().equals(vm.getCommandModel().getDate());
+        assert sighting.getDate().toString().equals(vm.getCommandModel().getDate());
 
         int counter = 0;
         List<DropdownViewModel> vmList = vm.getSuperPeople();
