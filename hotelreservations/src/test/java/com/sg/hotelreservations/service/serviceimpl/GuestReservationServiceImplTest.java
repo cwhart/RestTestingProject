@@ -1,13 +1,16 @@
 package com.sg.hotelreservations.service.serviceimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.GuestReservationDAO;
+import com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl;
 import com.sg.hotelreservations.dto.GuestReservation;
 import com.sg.hotelreservations.service.serviceinterface.GuestReservationService;
 import com.sg.hotelreservations.service.serviceinterface.GuestService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,9 +22,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {GuestReservationServiceImpl.class, TestHelper.class})
 public class GuestReservationServiceImplTest {
 
     @Inject
@@ -72,7 +76,7 @@ public class GuestReservationServiceImplTest {
         GuestReservation guestReservation3 = testHelper.createTestGuestReservationSpecifyReservation(guestReservation1.getReservation().getId());
 
         //Act
-        List<GuestReservation> createdGuestReservations = guestReservationService.retrieveByReservationId(guestReservation1.getReservation().getId(), Integer.MAX_VALUE, 0);
+        List<GuestReservation> createdGuestReservations = guestReservationService.retrieveByReservationId(guestReservation1.getReservation().getId());
 
         //Assert
         assertEquals(2, createdGuestReservations.size());

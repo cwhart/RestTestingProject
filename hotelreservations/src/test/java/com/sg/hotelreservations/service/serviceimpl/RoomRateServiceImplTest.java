@@ -1,12 +1,17 @@
 package com.sg.hotelreservations.service.serviceimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.RoomRateDAO;
+import com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl;
+import com.sg.hotelreservations.dto.Room;
 import com.sg.hotelreservations.dto.RoomRate;
 import com.sg.hotelreservations.service.serviceinterface.RoomRateService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.core.Local;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,9 +25,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {RoomRateServiceImpl.class, TestHelper.class})
 public class RoomRateServiceImplTest {
 
     @Inject
@@ -120,5 +126,44 @@ public class RoomRateServiceImplTest {
 
         //Assert
         assert roomRateList.size() == 25;
+    }
+
+    @Test
+    public void retrieveDefaultRate() {
+
+        Room room = testHelper.createTestRoom();
+        Long roomId = room.getId();
+        RoomRate roomRate1 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("D", roomId, null, null);
+        RoomRate roomRate2 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId, null, null);
+        RoomRate roomRate3 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId, null, null);
+        RoomRate roomRate4 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId, null, null);
+        Long defaultRateId = roomRate1.getId();
+
+        RoomRate defaultRate = roomRateService.retrieveDefaultRate(roomId);
+
+        assertEquals(roomRate1.getId(), defaultRate.getId());
+
+    }
+
+    @Test
+    public void retrieveCurrentRate() {
+
+        Room room = testHelper.createTestRoom();
+        Long roomId = room.getId();
+        RoomRate roomRate1 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("D", roomId
+                , LocalDate.parse("2018-01-01"), LocalDate.parse("2018-12-31"));
+        RoomRate roomRate2 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId
+                , LocalDate.parse("2018-09-01"), LocalDate.parse("2018-09-30"));
+        RoomRate roomRate3 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId
+                ,LocalDate.parse("2018-10-01"), LocalDate.parse("2018-10-31"));
+        RoomRate roomRate4 = testHelper.createTestRoomRateSpecifyDefaultFlagRoomAndDates("S", roomId
+                , LocalDate.parse("2018-12-01"), LocalDate.parse("2018-12-31"));
+        Long defaultRateId = roomRate1.getId();
+
+        RoomRate currentRate = roomRateService.retrieveCurrentRate(roomId, LocalDate.parse("2018-12-02"),
+                LocalDate.parse("2018-12-11"));
+
+        assertEquals(roomRate4.getId(), currentRate.getId());
+
     }
 }

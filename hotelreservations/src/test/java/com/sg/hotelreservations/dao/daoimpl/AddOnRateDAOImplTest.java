@@ -1,13 +1,16 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.AddOnRateDAO;
 import com.sg.hotelreservations.dao.daoInterface.RoomRateDAO;
+import com.sg.hotelreservations.dto.AddOn;
 import com.sg.hotelreservations.dto.AddOnRate;
 import com.sg.hotelreservations.dto.RoomRate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,9 +24,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {AddOnRateDAOImpl.class, TestHelper.class})
 public class AddOnRateDAOImplTest {
 
     @Inject
@@ -117,9 +121,24 @@ public class AddOnRateDAOImplTest {
         testHelper.createMultipleAddOnRates(25);
 
         //Act
-        List<AddOnRate> roomRateList = addOnRateDAO.retrieveAll(Integer.MAX_VALUE, 0);
+        List<AddOnRate> addOnRateList = addOnRateDAO.retrieveAll(Integer.MAX_VALUE, 0);
 
         //Assert
-        assert roomRateList.size() == 25;
+        assertEquals(25, addOnRateList.size());
+    }
+
+    @Test
+    public void retrieveByAddOnId() {
+
+        AddOn addOn1 = testHelper.createTestAddOn();
+        AddOn addOn2 = testHelper.createTestAddOn();
+        AddOnRate addOnRate1 = testHelper.createTestAddOnRateSpecifyAddOn(addOn1.getId());
+        AddOnRate addOnRate2 = testHelper.createTestAddOnRateSpecifyAddOn(addOn2.getId());
+        AddOnRate addOnRate3 = testHelper.createTestAddOnRateSpecifyAddOn(addOn2.getId());
+
+        List<AddOnRate> addOnRateList = addOnRateDAO.retrieveByAddOnId(addOn2.getId());
+
+        assertEquals(2, addOnRateList.size());
+
     }
 }

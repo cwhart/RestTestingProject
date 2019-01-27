@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.Promo;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.PromoService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class PromoServiceImpl implements PromoService {
 
     @Inject
@@ -38,5 +40,10 @@ public class PromoServiceImpl implements PromoService {
     @Override
     public List<Promo> retrieveAll(int limit, int offset) {
         return promoDAO.retrieveAll(limit, offset);
+    }
+
+    @Override
+    public List<Promo> retrieveByPromoTypeId(Long id) {
+        return promoDAO.retrieveByPromoTypeId(id);
     }
 }

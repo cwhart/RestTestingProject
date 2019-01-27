@@ -12,4 +12,6 @@ public interface TaxService {
     public void update(Tax tax);
     public void delete(Tax tax);
     public List<Tax> retrieveAll(int limit, int offset);
+    public List<Tax> retrieveByState(String state);
+    public List<Tax> retrieveByType(String type);
 }

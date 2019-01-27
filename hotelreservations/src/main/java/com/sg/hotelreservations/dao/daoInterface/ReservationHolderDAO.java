@@ -11,4 +11,6 @@ public interface ReservationHolderDAO {
     public void update(ReservationHolder reservationHolder);
     public void delete(ReservationHolder reservationHolder);
     public List<ReservationHolder> retrieveAll(int limit, int offset);
+
+    public ReservationHolder retrieveByPersonId(Long personId);
 }

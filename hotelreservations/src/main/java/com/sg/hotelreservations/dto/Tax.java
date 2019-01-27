@@ -9,12 +9,21 @@ public class Tax {
 
     Long id;
     String type;
+    String state;
     LocalDate startDate;
     LocalDate endDate;
     BigDecimal rate;
 
     public Long getId() {
         return id;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void setId(Long id) {
@@ -58,8 +67,9 @@ public class Tax {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tax tax = (Tax) o;
-        return id == tax.id &&
+        return Objects.equals(id, tax.id) &&
                 Objects.equals(type, tax.type) &&
+                Objects.equals(state, tax.state) &&
                 Objects.equals(startDate, tax.startDate) &&
                 Objects.equals(endDate, tax.endDate) &&
                 Objects.equals(rate, tax.rate);
@@ -68,6 +78,6 @@ public class Tax {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, type, startDate, endDate, rate);
+        return Objects.hash(id, type, state, startDate, endDate, rate);
     }
 }

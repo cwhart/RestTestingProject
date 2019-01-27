@@ -6,14 +6,17 @@ import com.sg.hotelreservations.dto.*;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class RoomBillDetailDAOImpl implements RoomBillDetailDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -27,11 +30,12 @@ public class RoomBillDetailDAOImpl implements RoomBillDetailDAO {
     @Transactional
     public RoomBillDetail create(RoomBillDetail roomBillDetail) {
 
-        final String QUERY = "insert into roombilldetail (taxid, promoid, roomrateid, billingid, taxamount, price, transactiondate ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        final String QUERY = "insert into roombilldetail (taxid, promoid, roomrateid, billid, taxamount, price, transactiondate ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 roomBillDetail.getTax().getId(),
-                roomBillDetail.getPromo().getId(),
+                //roomBillDetail.getPromo().getId(),
+                null,
                 roomBillDetail.getRoomRate().getId(),
                 roomBillDetail.getBill().getId(),
                 roomBillDetail.getTaxAmount(),
@@ -62,7 +66,12 @@ public class RoomBillDetailDAOImpl implements RoomBillDetailDAO {
     @Override
     public void update(RoomBillDetail roomBillDetail) {
 
-        final String QUERY = "update roombilldetail set taxid = ?, promoid = ?, roomrateid = ?, billingid = ?, " +
+        if(roomBillDetail.getPromo() == null) {
+            Promo promo = new Promo();
+            roomBillDetail.setPromo(promo);
+        }
+
+        final String QUERY = "update roombilldetail set taxid = ?, promoid = ?, roomrateid = ?, billid = ?, " +
                 "taxamount = ?, price = ?, transactiondate = ? where id=?";
 
         jdbcTemplate.update(QUERY,
@@ -87,6 +96,15 @@ public class RoomBillDetailDAOImpl implements RoomBillDetailDAO {
     }
 
     @Override
+    public List<RoomBillDetail> retrieveByBillId(Long id) {
+        final String QUERY = "select * from roombilldetail where billid = ?";
+        List<RoomBillDetail> roomBillDetails = new ArrayList<>();
+
+        roomBillDetails = jdbcTemplate.query(QUERY, new RoomBillDetailMapper(), id);
+        return roomBillDetails;
+    }
+
+    @Override
     public List<RoomBillDetail> retrieveAll(int limit, int offset) {
 
         final String QUERY = "select * from roombilldetail limit ? offset ?";
@@ -108,7 +126,7 @@ public class RoomBillDetailDAOImpl implements RoomBillDetailDAO {
             RoomRate roomRate = new RoomRate();
             roomRate.setId(resultSet.getLong("roomrateid"));
             Bill bill = new Bill();
-            bill.setId(resultSet.getLong("billingid"));
+            bill.setId(resultSet.getLong("billid"));
             roomBillDetail.setTaxAmount(resultSet.getBigDecimal("taxamount"));
             roomBillDetail.setPrice(resultSet.getBigDecimal("price"));
             roomBillDetail.setTransactionDate(LocalDate.parse(resultSet.getString("transactiondate")));

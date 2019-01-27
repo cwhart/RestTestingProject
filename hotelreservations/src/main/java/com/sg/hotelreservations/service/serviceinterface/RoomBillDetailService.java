@@ -12,4 +12,6 @@ public interface RoomBillDetailService {
     public void update(RoomBillDetail roomBillDetail);
     public void delete(RoomBillDetail roomBillDetail);
     public List<RoomBillDetail> retrieveAll(int limit, int offset);
+
+    List<RoomBillDetail> retrieveByBillId(Long billId);
 }

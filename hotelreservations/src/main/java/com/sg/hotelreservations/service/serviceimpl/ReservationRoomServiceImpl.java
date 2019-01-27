@@ -10,6 +10,7 @@ import com.sg.hotelreservations.dto.ReservationRoom;
 import com.sg.hotelreservations.dto.Room;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.ReservationRoomService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service(value = "ReservationRoomServiceImpl")
 public class ReservationRoomServiceImpl implements ReservationRoomService {
 
     @Inject
@@ -35,8 +37,8 @@ public class ReservationRoomServiceImpl implements ReservationRoomService {
     }
 
     @Override
-    public List<ReservationRoom> retrieveByReservationId(Long reservationId, int limit, int offset) {
-        return reservationRoomDAO.retrieveByReservationId(reservationId, limit, offset);
+    public List<ReservationRoom> retrieveByReservationId(Reservation reservation) {
+        return reservationRoomDAO.retrieveByReservationId(reservation.getId());
     }
 
     @Override
@@ -57,15 +59,17 @@ public class ReservationRoomServiceImpl implements ReservationRoomService {
 
     @Override
     public Boolean isBooked(Long roomId, LocalDate date) {
+
         return reservationRoomDAO.isBooked(roomId, date);
     }
 
     @Override
-    public Boolean isBookedForDateRange (Long roomId, LocalDate start, LocalDate end) {
+    public Boolean isBookedForDateRange (int roomNum, LocalDate start, LocalDate end) {
         Boolean returnValue = false;
+        Room room = roomDAO.retrieveByRoomNum(roomNum);
 
         for (LocalDate thisDate = start; thisDate.isBefore(end); thisDate = thisDate.plusDays(1)) {
-            if (isBooked(roomId, thisDate)) returnValue = true;
+            if (isBooked(room.getId(), thisDate)) returnValue = true;
         }
         return returnValue;
     }

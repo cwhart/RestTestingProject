@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.Guest;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.GuestService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class GuestServiceImpl implements GuestService {
 
     @Inject

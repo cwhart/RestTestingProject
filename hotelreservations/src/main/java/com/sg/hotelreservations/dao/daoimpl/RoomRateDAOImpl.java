@@ -7,14 +7,17 @@ import com.sg.hotelreservations.dto.RoomRate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class RoomRateDAOImpl implements RoomRateDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -28,10 +31,11 @@ public class RoomRateDAOImpl implements RoomRateDAO {
     @Transactional
     public RoomRate create(RoomRate roomRate) {
 
-        final String QUERY = "insert into roomrate (roomid, startdate, enddate, price ) VALUES (?, ?, ?, ?)";
+        final String QUERY = "insert into roomrate (roomid, defaultFlag, startdate, enddate, price ) VALUES (?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 roomRate.getRoom().getId(),
+                roomRate.getDefaultFlag(),
                 roomRate.getStartDate().toString(),
                 roomRate.getEndDate().toString(),
                 roomRate.getPrice()
@@ -60,10 +64,11 @@ public class RoomRateDAOImpl implements RoomRateDAO {
     @Override
     public void update(RoomRate roomRate) {
 
-        final String QUERY = "update roomrate set roomid = ?, startdate = ?, enddate = ?, price = ? where id=?";
+        final String QUERY = "update roomrate set roomid = ?, defaultFlag = ?, startdate = ?, enddate = ?, price = ? where id=?";
 
         jdbcTemplate.update(QUERY,
                 roomRate.getRoom().getId(),
+                roomRate.getDefaultFlag(),
                 roomRate.getStartDate().toString(),
                 roomRate.getEndDate().toString(),
                 roomRate.getPrice(),
@@ -82,6 +87,18 @@ public class RoomRateDAOImpl implements RoomRateDAO {
     }
 
     @Override
+    public List<RoomRate> retrieveByRoomId(Long roomId ) {
+
+        final String QUERY = "select * from roomrate where roomid = ? ";
+
+
+        return jdbcTemplate.query(QUERY, new RoomMapper(), roomId);
+
+
+
+    }
+
+    @Override
     public List<RoomRate> retrieveAll(int limit, int offset) {
 
         final String QUERY = "select * from roomrate limit ? offset ?";
@@ -96,11 +113,14 @@ public class RoomRateDAOImpl implements RoomRateDAO {
 
             RoomRate roomRate = new RoomRate();
             roomRate.setId(resultSet.getLong("id"));
+            roomRate.setDefaultFlag(resultSet.getString("defaultFlag"));
             Room room = new Room();
             room.setId(resultSet.getLong("roomid"));
             roomRate.setRoom(room);
             roomRate.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
-            roomRate.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            if (resultSet.getString("enddate") != null) {
+                roomRate.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            }
             roomRate.setPrice(resultSet.getBigDecimal("price"));
             return roomRate;
 

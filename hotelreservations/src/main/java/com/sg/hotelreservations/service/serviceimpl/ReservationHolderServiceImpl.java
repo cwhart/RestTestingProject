@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.ReservationHolder;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.ReservationHolderService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class ReservationHolderServiceImpl implements ReservationHolderService {
 
     @Inject
@@ -38,5 +40,10 @@ public class ReservationHolderServiceImpl implements ReservationHolderService {
     @Override
     public List<ReservationHolder> retrieveAll(int limit, int offset) {
         return reservationHolderDAO.retrieveAll(limit, offset);
+    }
+
+    @Override
+    public ReservationHolder retrieveByPersonId(Long personId) {
+        return reservationHolderDAO.retrieveByPersonId(personId);
     }
 }

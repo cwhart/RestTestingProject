@@ -8,6 +8,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class PromoTypeDAOImpl implements PromoTypeDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -85,6 +87,17 @@ public class PromoTypeDAOImpl implements PromoTypeDAO {
 
         List<PromoType> returnList = jdbcTemplate.query(QUERY, new PromoTypeMapper(), limit, offset);
         return returnList;
+    }
+
+    @Override
+    public PromoType retrieveByPromoCode(String promoCode) {
+        final String QUERY = "select * from promotype where promocode = ?";
+
+        try{
+            return jdbcTemplate.queryForObject(QUERY, new PromoTypeMapper(), promoCode);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
     }
 
     private class PromoTypeMapper implements RowMapper<PromoType> {

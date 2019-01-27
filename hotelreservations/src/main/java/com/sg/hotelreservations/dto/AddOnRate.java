@@ -10,8 +10,17 @@ public class AddOnRate {
     Long id;
     AddOn addOn;
     LocalDate startDate;
+    String defaultFlag;
     LocalDate endDate;
     BigDecimal price;
+
+    public String getDefaultFlag() {
+        return defaultFlag;
+    }
+
+    public void setDefaultFlag(String defaultFlag) {
+        this.defaultFlag = defaultFlag;
+    }
 
     public Long getId() {
         return id;

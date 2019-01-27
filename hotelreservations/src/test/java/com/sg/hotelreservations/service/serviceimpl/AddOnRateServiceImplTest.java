@@ -1,11 +1,15 @@
 package com.sg.hotelreservations.service.serviceimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
+import com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl;
+import com.sg.hotelreservations.dto.AddOn;
 import com.sg.hotelreservations.dto.AddOnRate;
 import com.sg.hotelreservations.service.serviceinterface.AddOnRateService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,9 +23,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {AddOnRateServiceImpl.class, TestHelper.class})
 public class AddOnRateServiceImplTest {
 
     @Inject
@@ -119,5 +124,62 @@ public class AddOnRateServiceImplTest {
 
         //Assert
         assert roomRateList.size() == 25;
+    }
+
+    @Test
+    public void retrieveByAddOnId() {
+
+        AddOn addOn1 = testHelper.createTestAddOn();
+        AddOn addOn2 = testHelper.createTestAddOn();
+        AddOnRate addOnRate1 = testHelper.createTestAddOnRateSpecifyAddOn(addOn1.getId());
+        AddOnRate addOnRate2 = testHelper.createTestAddOnRateSpecifyAddOn(addOn2.getId());
+        AddOnRate addOnRate3 = testHelper.createTestAddOnRateSpecifyAddOn(addOn2.getId());
+
+        List<AddOnRate> addOnRateList = addOnRateService.retrieveByAddOnId(addOn2.getId());
+
+        assertEquals(2, addOnRateList.size());
+
+    }
+
+    @Test
+    public void retrieveCurrentRate() {
+
+        AddOn addOn = testHelper.createTestAddOn();
+        Long addOnId = addOn.getId();
+        AddOnRate addOnRate1 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("D", addOnId
+                , LocalDate.parse("2018-01-01"), LocalDate.parse("2018-12-31"));
+        AddOnRate addOnRate2 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                , LocalDate.parse("2018-09-01"), LocalDate.parse("2018-09-30"));
+        AddOnRate addOnRate3 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                ,LocalDate.parse("2018-10-01"), LocalDate.parse("2018-10-31"));
+        AddOnRate addOnRate4 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                , LocalDate.parse("2018-12-01"), LocalDate.parse("2018-12-31"));
+        Long defaultRateId = addOnRate1.getId();
+
+        AddOnRate currentRate = addOnRateService.retrieveCurrentRate(addOnId, LocalDate.parse("2018-12-02"));
+
+        assertEquals(addOnRate4.getId(), currentRate.getId());
+
+    }
+
+    @Test
+    public void retrieveDefaultRate() {
+
+        AddOn addOn = testHelper.createTestAddOn();
+        Long addOnId = addOn.getId();
+        AddOnRate addOnRate1 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("D", addOnId
+                , LocalDate.parse("2018-01-01"), LocalDate.parse("2018-12-31"));
+        AddOnRate addOnRate2 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                , LocalDate.parse("2018-09-01"), LocalDate.parse("2018-09-30"));
+        AddOnRate addOnRate3 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                ,LocalDate.parse("2018-10-01"), LocalDate.parse("2018-10-31"));
+        AddOnRate addOnRate4 = testHelper.createTestAddOnRateSpecifyDefaultFlagRoomAndDates("S", addOnId
+                , LocalDate.parse("2018-12-01"), LocalDate.parse("2018-12-31"));
+        Long defaultRateId = addOnRate1.getId();
+
+        AddOnRate currentRate = addOnRateService.retrieveDefaultRate(addOnId);
+
+        assertEquals(addOnRate1.getId(), currentRate.getId());
+
     }
 }

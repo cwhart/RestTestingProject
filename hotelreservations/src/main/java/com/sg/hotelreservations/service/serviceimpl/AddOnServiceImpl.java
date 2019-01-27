@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOn;
 import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.AddOnService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service(value = "AddOnServiceImpl")
 public class AddOnServiceImpl implements AddOnService {
 
     @Inject

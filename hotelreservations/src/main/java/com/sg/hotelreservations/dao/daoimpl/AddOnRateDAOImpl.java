@@ -9,6 +9,7 @@ import com.sg.hotelreservations.dto.RoomRate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 public class AddOnRateDAOImpl implements AddOnRateDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -30,10 +32,11 @@ public class AddOnRateDAOImpl implements AddOnRateDAO {
     @Transactional
     public AddOnRate create(AddOnRate addOnRate) {
 
-        final String QUERY = "insert into addonrate (addonid, startdate, enddate, price ) VALUES (?, ?, ?, ?)";
+        final String QUERY = "insert into addonrate (addonid, defaultflag, startdate, enddate, price ) VALUES (?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 addOnRate.getAddOn().getId(),
+                addOnRate.getDefaultFlag(),
                 addOnRate.getStartDate().toString(),
                 addOnRate.getEndDate().toString(),
                 addOnRate.getPrice()
@@ -62,10 +65,12 @@ public class AddOnRateDAOImpl implements AddOnRateDAO {
     @Override
     public void update(AddOnRate addOnRate) {
 
-        final String QUERY = "update addonrate set addonid = ?, startdate = ?, enddate = ?, price = ? where id=?";
+        final String QUERY = "update addonrate set addonid = ?, defaultflag = ?, " +
+                "startdate = ?, enddate = ?, price = ? where id=?";
 
         jdbcTemplate.update(QUERY,
                 addOnRate.getAddOn().getId(),
+                addOnRate.getDefaultFlag(),
                 addOnRate.getStartDate().toString(),
                 addOnRate.getEndDate().toString(),
                 addOnRate.getPrice(),
@@ -92,17 +97,30 @@ public class AddOnRateDAOImpl implements AddOnRateDAO {
         return returnList;
     }
 
+    @Override
+    public List<AddOnRate> retrieveByAddOnId(Long addOnId) {
+
+        final String QUERY = "SELECT * FROM addonrate where addonid = ?";
+
+        List<AddOnRate> returnList = jdbcTemplate.query(QUERY, new AddOnRateMapper(), addOnId);
+        return returnList;
+
+    }
+
     private class AddOnRateMapper implements RowMapper<AddOnRate> {
         @Override
         public AddOnRate mapRow(ResultSet resultSet, int i) throws SQLException {
 
             AddOnRate addOnRate = new AddOnRate();
             addOnRate.setId(resultSet.getLong("id"));
+            addOnRate.setDefaultFlag(resultSet.getString("defaultflag"));
             AddOn addOn = new AddOn();
             addOn.setId(resultSet.getLong("addonid"));
             addOnRate.setAddOn(addOn);
             addOnRate.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
-            addOnRate.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            if(resultSet.getString("enddate") != null) {
+                addOnRate.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            }
             addOnRate.setPrice(resultSet.getBigDecimal("price"));
             return addOnRate;
 

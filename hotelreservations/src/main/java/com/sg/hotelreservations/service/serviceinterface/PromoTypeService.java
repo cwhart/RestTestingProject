@@ -9,6 +9,7 @@ public interface PromoTypeService {
 
     public PromoType create(PromoType promoType);
     public PromoType retrieve(Long id);
+    public PromoType retrieveByPromoCode(String promoCode);
     public void update(PromoType promoType);
     public void delete(PromoType promoType);
     public List<PromoType> retrieveAll(int limit, int offset);

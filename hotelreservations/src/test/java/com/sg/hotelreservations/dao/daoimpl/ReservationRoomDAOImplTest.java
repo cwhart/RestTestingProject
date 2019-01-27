@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.GuestReservationDAO;
 import com.sg.hotelreservations.dao.daoInterface.ReservationRoomDAO;
 import com.sg.hotelreservations.dto.GuestReservation;
@@ -10,6 +11,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,9 +24,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {ReservationRoomDAOImpl.class, TestHelper.class})
 public class ReservationRoomDAOImplTest {
 
     @Inject
@@ -75,7 +78,7 @@ public class ReservationRoomDAOImplTest {
         ReservationRoom reservationRoom3 = testHelper.createTestReservationRoomSpecifyReservation(reservationRoom1.getReservation().getId());
 
         //Act
-        List<ReservationRoom> createdReservationRooms = reservationRoomDAO.retrieveByReservationId(reservationRoom1.getReservation().getId(), Integer.MAX_VALUE, 0);
+        List<ReservationRoom> createdReservationRooms = reservationRoomDAO.retrieveByReservationId(reservationRoom1.getReservation().getId());
 
         //Assert
         assertEquals(2, createdReservationRooms.size());
@@ -123,6 +126,48 @@ public class ReservationRoomDAOImplTest {
 
         //Assert
         assertEquals (0, readReservationRoom.size());
+    }
+
+    @Test
+    public void retrieveByDates() {
+
+        Reservation res1 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-07-01"),
+                LocalDate.parse("2018-07-10"));
+        Reservation res2 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-06-01"),
+                LocalDate.parse("2018-06-10"));
+        Reservation res3 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-07-01"),
+                LocalDate.parse("2018-07-05"));
+        Reservation res4 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-07-02"),
+                LocalDate.parse("2018-07-09"));
+        Reservation res5 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-08-01"),
+                LocalDate.parse("2018-08-10"));
+        testHelper.createTestReservationRoomSpecifyReservation(res1.getId());
+        testHelper.createTestReservationRoomSpecifyReservation(res2.getId());
+        testHelper.createTestReservationRoomSpecifyReservation(res3.getId());
+        testHelper.createTestReservationRoomSpecifyReservation(res4.getId());
+        testHelper.createTestReservationRoomSpecifyReservation(res5.getId());
+
+        List<ReservationRoom> reservationRoomList = reservationRoomDAO.retrieveByDates(LocalDate.parse("2018-07-02"),
+                LocalDate.parse("2018-07-07"));
+
+        assertEquals(3, reservationRoomList.size());
+
+    }
+
+    @Test
+    public void isBooked() {
+
+        Reservation reservation = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-10-01"),
+                LocalDate.parse("2018-10-15"));
+        ReservationRoom reservationRoom = testHelper.createTestReservationRoomSpecifyReservation(reservation.getId());
+        Room room = reservationRoom.getRoom();
+
+        Boolean booked = reservationRoomDAO.isBooked(room.getId(), LocalDate.parse("2018-10-02"));
+        Boolean notBooked = reservationRoomDAO.isBooked(room.getId(), LocalDate.parse("2018-11-02"));
+
+        assertEquals(true, booked);
+        assertEquals(false, notBooked);
+
     }
 
 }

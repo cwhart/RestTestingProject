@@ -7,6 +7,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 public class PersonDAOImpl implements PersonDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -28,14 +30,29 @@ public class PersonDAOImpl implements PersonDAO {
     @Transactional
     public Person create(Person person) {
 
+        String dateOfBirth = null;
+        String phone = null;
+        String email = null;
+
+        if(person.getDateOfBirth() != null) {
+            dateOfBirth = person.getDateOfBirth().toString();
+        }
+        if(person.getPhoneNo() != null) {
+            phone = person.getPhoneNo();
+        }
+
+        if(person.getEmail() != null) {
+            email = person.getEmail();
+        }
+
         final String QUERY = "insert into person (firstname, lastname, dateofbirth, phone, email ) VALUES (?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 person.getFirstName(),
                 person.getLastName(),
-                person.getDateOfBirth().toString(),
-                person.getPhoneNo(),
-                person.getEmail()
+                dateOfBirth,
+                phone,
+                email
 
         );
 
@@ -92,6 +109,15 @@ public class PersonDAOImpl implements PersonDAO {
         return returnList;
     }
 
+    @Override
+    public List<Person> retrieveByName(String firstName, String lastName) {
+        final String QUERY = "select * from person where firstname = ? and lastname = ?";
+
+        List<Person> returnList = jdbcTemplate.query(QUERY, new PersonMapper(), firstName, lastName);
+        return returnList;
+
+    }
+
     private class PersonMapper implements RowMapper<Person> {
         @Override
         public Person mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -100,9 +126,15 @@ public class PersonDAOImpl implements PersonDAO {
             person.setId(resultSet.getLong("id"));
             person.setFirstName(resultSet.getString("firstname"));
             person.setLastName(resultSet.getString("lastname"));
-            person.setDateOfBirth(LocalDate.parse(resultSet.getString("dateofbirth")));
-            person.setPhoneNo(resultSet.getString("phone"));
-            person.setEmail(resultSet.getString("email"));
+            if(resultSet.getString("dateofbirth") != null) {
+                person.setDateOfBirth(LocalDate.parse(resultSet.getString("dateofbirth")));
+            }
+            if (resultSet.getString("phone") != null) {
+                person.setPhoneNo(resultSet.getString("phone"));
+            }
+            if (resultSet.getString("email") != null) {
+                person.setEmail(resultSet.getString("email"));
+            }
             return person;
 
         }

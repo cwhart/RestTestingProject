@@ -9,6 +9,6 @@ public interface GuestReservationService {
 
     public GuestReservation create(GuestReservation guestReservation);
     public List<GuestReservation> retrieveByGuestId(Long guestId, int limit, int offset);
-    public List<GuestReservation> retrieveByReservationId(Long reservationId, int limit, int offset);
+    public List<GuestReservation> retrieveByReservationId(Long reservationId);
     public void delete(GuestReservation guestReservation);
 }

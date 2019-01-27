@@ -11,4 +11,6 @@ public interface AddOnBillDetailService {
     public void update(AddOnBillDetail addOnBillDetail);
     public void delete(AddOnBillDetail addOnBillDetail);
     public List<AddOnBillDetail> retrieveAll(int limit, int offset);
+
+    List<AddOnBillDetail> retrieveByBillId(Long billId);
 }

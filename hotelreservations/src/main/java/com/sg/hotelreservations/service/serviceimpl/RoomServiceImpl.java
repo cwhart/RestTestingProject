@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.Room;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.RoomService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service(value = "RoomServiceImpl")
 public class RoomServiceImpl implements RoomService {
 
     @Inject
@@ -38,5 +40,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> retrieveAll(int limit, int offset) {
         return roomDAO.retrieveAll(limit, offset);
+    }
+
+    @Override
+    public Room retrieveByRoomNumber(int roomNumber) {
+        return roomDAO.retrieveByRoomNum(roomNumber);
     }
 }

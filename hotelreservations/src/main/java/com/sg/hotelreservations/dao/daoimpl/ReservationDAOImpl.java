@@ -1,34 +1,56 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
+import com.sg.hotelreservations.constants.HotelReservationConstants;
 import com.sg.hotelreservations.dao.daoInterface.PersonDAO;
 import com.sg.hotelreservations.dao.daoInterface.ReservationDAO;
 import com.sg.hotelreservations.dto.Person;
 import com.sg.hotelreservations.dto.Promo;
 import com.sg.hotelreservations.dto.Reservation;
 import com.sg.hotelreservations.dto.ReservationHolder;
+import com.sg.hotelreservations.service.serviceinterface.PersonService;
+import com.sg.hotelreservations.service.serviceinterface.PromoService;
+import com.sg.hotelreservations.service.serviceinterface.ReservationHolderService;
+import com.sg.hotelreservations.service.serviceinterface.ReservationService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+@Repository
 public class ReservationDAOImpl implements ReservationDAO {
 
     private JdbcTemplate jdbcTemplate;
+    private PromoService promoService;
+    private ReservationHolderService reservationHolderService;
+    private PersonService personService;
 
     @Inject
-    public ReservationDAOImpl(JdbcTemplate jdbcTemplate) {
+    public ReservationDAOImpl(JdbcTemplate jdbcTemplate, PromoService promoService, ReservationHolderService reservationHolderService,
+                              PersonService personService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.promoService = promoService;
+        this.reservationHolderService = reservationHolderService;
+        this.personService = personService;
     }
 
     @Override
     @Transactional
     public Reservation create(Reservation reservation) {
+
+        if(reservation.getPromo() == null) {
+            Promo promo = new Promo();
+            reservation.setPromo(promo);
+        }
 
         final String QUERY = "insert into reservation (promoid, reservationholderid, startdate, enddate ) VALUES (?, ?, ?, ?)";
 
@@ -60,7 +82,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public void update(Reservation reservation) {
+    public Reservation update(Reservation reservation) {
 
         final String QUERY = "update reservation set promoid = ?, reservationholderid = ?, startdate = ?, enddate = ? where id=?";
 
@@ -72,6 +94,7 @@ public class ReservationDAOImpl implements ReservationDAO {
                 reservation.getId()
                 );
 
+        return reservation;
     }
 
     @Override
@@ -92,15 +115,7 @@ public class ReservationDAOImpl implements ReservationDAO {
         return returnList;
     }
 
-//    @Override
-//    public List<Reservation> retrieveAllInRange(LocalDate start, LocalDate end) {
-//        //Retrieves all reservations that have at least one day overlapping with the specified dates.
-//
-//        final String QUERY = "SELECT * FROM reservation where startdate <= ? and enddate >= ?";
-//
-//        List<Reservation> returnList = jdbcTemplate.query(QUERY, new ReservationMapper(), end.toString(), start.toString());
-//        return returnList;
-//    }
+
 
     private class ReservationMapper implements RowMapper<Reservation> {
         @Override
@@ -108,14 +123,30 @@ public class ReservationDAOImpl implements ReservationDAO {
 
             Reservation reservation = new Reservation();
             reservation.setId(resultSet.getLong("id"));
-            Promo promo = new Promo();
-            promo.setId(resultSet.getLong("promoid"));
-            reservation.setPromo(promo);
-            ReservationHolder reservationHolder = new ReservationHolder();
-            reservationHolder.setId(resultSet.getLong("reservationholderid"));
-            reservation.setReservationHolder(reservationHolder);
+
             reservation.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
             reservation.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+
+            Long reservationHolderId = resultSet.getLong("reservationHolderId");
+
+            if(reservationHolderId >0) {
+                ReservationHolder reservationHolder = reservationHolderService.retrieve(reservationHolderId);
+
+                reservation.setReservationHolder(reservationHolder);
+                Long personId = reservationHolder.getPerson().getId();
+                Person person = personService.retrieve(personId);
+                reservationHolder.setPerson(person);
+            }
+
+            Long promoId = resultSet.getLong("promoId");
+
+            if(promoId >0) {
+                Promo promo = promoService.retrieve(promoId);
+
+                reservation.setPromo(promo);
+            }
+
+
             return reservation;
 
         }

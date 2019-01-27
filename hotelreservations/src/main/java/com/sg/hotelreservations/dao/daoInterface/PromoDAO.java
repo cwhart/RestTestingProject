@@ -11,4 +11,5 @@ public interface PromoDAO {
     public void update(Promo promo);
     public void delete(Promo promo);
     public List<Promo> retrieveAll(int limit, int offset);
+    public List<Promo> retrieveByPromoTypeId(Long id);
 }

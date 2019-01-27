@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.PromoRate;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.PromoRateService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class PromoRateServiceImpl implements PromoRateService {
 
     @Inject

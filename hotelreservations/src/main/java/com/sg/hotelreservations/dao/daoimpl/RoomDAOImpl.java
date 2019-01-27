@@ -7,6 +7,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class RoomDAOImpl implements RoomDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -51,6 +53,21 @@ public class RoomDAOImpl implements RoomDAO {
 
         try{
             return jdbcTemplate.queryForObject(QUERY, new RoomMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public Room retrieveByRoomNum(int roomNum) {
+
+        final String QUERY = "select * from room where roomnumber = ?";
+        final String otherQuery = "select * from room ";
+
+        try{
+
+            List<Room> room = jdbcTemplate.query(otherQuery, new RoomMapper());
+            return jdbcTemplate.queryForObject(QUERY, new RoomMapper(), roomNum);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }

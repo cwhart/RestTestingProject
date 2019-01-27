@@ -1,12 +1,14 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.hotelreservations.dao.daoInterface.BillDAO;
+import com.sg.hotelreservations.dao.daoInterface.ReservationDAO;
 import com.sg.hotelreservations.dto.Bill;
 import com.sg.hotelreservations.dto.Reservation;
 import com.sg.hotelreservations.dto.Room;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -14,13 +16,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class BillDAOImpl implements BillDAO {
 
     private JdbcTemplate jdbcTemplate;
 
+    private ReservationDAO reservationDAO;
+
     @Inject
-    public BillDAOImpl(JdbcTemplate jdbcTemplate) {
+    public BillDAOImpl(JdbcTemplate jdbcTemplate, ReservationDAO reservationDAO) {
         this.jdbcTemplate = jdbcTemplate;
+        this.reservationDAO = reservationDAO;
     }
 
     @Override
@@ -49,6 +55,17 @@ public class BillDAOImpl implements BillDAO {
 
         try{
             return jdbcTemplate.queryForObject(QUERY, new BillMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public Bill retrieveByReservationId(Long reservationId) {
+        final String QUERY = "select * from bill where reservationId = ?";
+
+        try{
+            return jdbcTemplate.queryForObject(QUERY, new BillMapper(), reservationId);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -92,7 +109,10 @@ public class BillDAOImpl implements BillDAO {
             Bill bill = new Bill();
             bill.setId(resultSet.getLong("id"));
             Reservation reservation = new Reservation();
-            reservation.setId(resultSet.getLong("reservationid"));
+            if((resultSet.getLong("reservationid")) != 0 ) {
+                reservation = reservationDAO.retrieve(resultSet.getLong("reservationid"));
+
+            }
             bill.setReservation(reservation);
             bill.setTotal(resultSet.getBigDecimal("total"));
             return bill;

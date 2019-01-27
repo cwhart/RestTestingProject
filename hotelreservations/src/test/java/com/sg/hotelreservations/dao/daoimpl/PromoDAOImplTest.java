@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.AddOnDAO;
 import com.sg.hotelreservations.dao.daoInterface.PromoDAO;
 import com.sg.hotelreservations.dto.AddOn;
@@ -8,6 +9,7 @@ import com.sg.hotelreservations.dto.Promo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,9 +23,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {PromoDAOImpl.class, TestHelper.class})
 public class PromoDAOImplTest {
 
     @Inject
@@ -69,25 +72,42 @@ public class PromoDAOImplTest {
         assertEquals(promo.getEndDate(), promo.getEndDate());
     }
 
-//    @Test
-//    public void update() {
-//
-//        //Arrange
-//        Promo promo = testHelper.createTestPromo();
-//        promoDAO.search(promo);
-//
-//        //Change some stuff
-//        promo.setStartDate(LocalDate.parse("2018-07-01"));
-//        promo.setEndDate(new Date(18, 9, 30));
-//
-//        //Act
-//        promoDAO.update(promo);
-//
-//        //Assert
-//        Promo readPromo = promoDAO.retrieve(promo.getId());
-//        assert "2018-07-31".equals(readPromo.getStartDate().toString());
-//        assert "2018-09-30".equals(readPromo.getEndDate().toString());
-//    }
+    @Test
+    public void retrieveByPromoTypeId() {
+
+        //Arrange
+        Promo promo = testHelper.createTestPromo();
+        //promoDAO.create(promo);
+
+        //Act
+        List<Promo> readPromos = promoDAO.retrieveByPromoTypeId(promo.getPromoType().getId());
+        Promo readPromo = readPromos.get(0);
+
+        //Assert
+        assert (readPromo.getId() != null);
+        assertEquals(promo.getPromoType().getId(), readPromo.getPromoType().getId());
+        assertEquals(promo.getStartDate(), readPromo.getStartDate());
+        assertEquals(promo.getEndDate(), promo.getEndDate());
+    }
+
+    @Test
+    public void update() {
+
+        //Arrange
+        Promo promo = testHelper.createTestPromo();
+
+        //Change some stuff
+        promo.setStartDate(LocalDate.parse("2018-07-01"));
+        promo.setEndDate(LocalDate.parse("2018-12-31"));
+
+        //Act
+        promoDAO.update(promo);
+
+        //Assert
+        Promo readPromo = promoDAO.retrieve(promo.getId());
+        assert "2018-07-01".equals(readPromo.getStartDate().toString());
+        assert "2018-12-31".equals(readPromo.getEndDate().toString());
+    }
 
     @Test
     public void delete() {

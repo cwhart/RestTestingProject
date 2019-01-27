@@ -3,31 +3,39 @@ package com.sg.hotelreservations.webservice.impl;
 import com.sg.hotelreservations.dto.Amenity;
 import com.sg.hotelreservations.dto.Room;
 import com.sg.hotelreservations.service.serviceinterface.AmenityService;
+import com.sg.hotelreservations.service.serviceinterface.ReservationRoomService;
+import com.sg.hotelreservations.service.serviceinterface.RoomRateService;
 import com.sg.hotelreservations.service.serviceinterface.RoomService;
 import com.sg.hotelreservations.util.PagingUtils;
-import com.sg.hotelreservations.viewmodels.amenity.AmenityViewModel;
-import com.sg.hotelreservations.viewmodels.room.create.CreateRoomCommandModel;
-import com.sg.hotelreservations.viewmodels.room.create.CreateRoomViewModel;
-import com.sg.hotelreservations.viewmodels.room.edit.EditRoomCommandModel;
-import com.sg.hotelreservations.viewmodels.room.edit.EditRoomViewModel;
-import com.sg.hotelreservations.viewmodels.room.list.ListRoomViewModel;
-import com.sg.hotelreservations.viewmodels.room.list.RoomViewModel;
-import com.sg.hotelreservations.viewmodels.room.profile.ProfileRoomViewModel;
+import com.sg.hotelreservations.viewmodels.reservation.SearchAvailableRoomsCommandModel;
+import com.sg.hotelreservations.viewmodels.reservation.SearchAvailableRoomsViewModel;
+import com.sg.hotelreservations.viewmodels.room.AmenityViewModel;
+import com.sg.hotelreservations.viewmodels.room.ListRoomViewModel;
+import com.sg.hotelreservations.viewmodels.room.RoomViewModel;
+import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
 import com.sg.hotelreservations.webservice.webinterface.RoomWebService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class RoomWebServiceImpl implements RoomWebService {
 
     RoomService roomService;
     AmenityService amenityService;
+    ReservationRoomService reservationRoomService;
+    RoomRateService roomRateService;
 
     @Inject
-    public void RoomServiceWebImpl (RoomService roomService, AmenityService amenityService) {
+    public void RoomWebServiceImpl (RoomService roomService, AmenityService amenityService,
+                                    ReservationRoomService reservationRoomService, RoomRateService roomRateService) {
         this.roomService = roomService;
         this.amenityService = amenityService;
+        this.reservationRoomService = reservationRoomService;
+        this.roomRateService = roomRateService;
     }
 
     @Override
@@ -40,7 +48,7 @@ public class RoomWebServiceImpl implements RoomWebService {
 
         //Translate from domain to view models
         List<Room> roomList = roomService.retrieveAll(limit, offset);
-        List<RoomViewModel> rooms = translate(roomList);
+        List<RoomViewModel> rooms = translate(roomList, null, null);
 
         viewModel.setSelectedPage(selectedPage);
         viewModel.setPageNumbers(pageNumbers);
@@ -49,19 +57,84 @@ public class RoomWebServiceImpl implements RoomWebService {
         return viewModel;
     }
 
-    private List<RoomViewModel> translate(List<Room> roomList) {
+    @Override
+    public ListRoomViewModel getReservationRoomListViewModel(Integer offset, Integer numPersons,
+                                           LocalDate start, LocalDate end) throws InvalidDatesException {
+
+        Integer limit = 10;
+        ListRoomViewModel viewModel = new ListRoomViewModel();
+
+        int selectedPage = PagingUtils.getSelectedPage(offset, limit);
+        int[] pageNumbers = PagingUtils.getPageNumbers(5, selectedPage);
+        SearchAvailableRoomsCommandModel commandModel = new SearchAvailableRoomsCommandModel();
+        if (start.isBefore(LocalDate.now())) {
+            throw new InvalidDatesException("Start date cannot be before today, please try again.") ;
+//            viewModel.setMessage("Start date cannot be before today, please try again.");
+//            return viewModel;
+        }
+
+        if(end.isBefore(start)) {
+            //viewModel.setMessage("Start date cannot be after end date, please try again.");
+            throw new InvalidDatesException("Start date cannot be after end date, please try again.") ;
+
+        }
+
+        commandModel.setStartDate(start.toString());
+        commandModel.setEndDate(end.toString());
+        commandModel.setNumInParty(numPersons);
+        SearchAvailableRoomsViewModel searchAvailableRoomsViewModel = new SearchAvailableRoomsViewModel();
+        searchAvailableRoomsViewModel.setCommandModel(commandModel);
+
+
+        //Get the list of Rooms that are not booked for the specified date range.
+
+        List<Room> roomList = roomService.retrieveAll(Integer.MAX_VALUE, 0);
+        List<Room> toRemove = new ArrayList<>();
+        for (Room thisRoom : roomList) {
+            if (reservationRoomService.isBookedForDateRange(thisRoom.getRoomNumber(), start, end) ||
+                    numPersons > thisRoom.getOccupancy()) {
+                toRemove.add(thisRoom);
+            }
+
+        }
+
+        roomList.removeAll(toRemove);
+
+        List<RoomViewModel> rooms = translate(roomList, start, end);
+
+        viewModel.setSelectedPage(selectedPage);
+        viewModel.setPageNumbers(pageNumbers);
+        viewModel.setRooms(rooms);
+
+        if (rooms.size()==0) viewModel.setMessage("Sorry, there are no rooms available for those dates.");
+
+        return viewModel;
+
+    }
+
+    private List<RoomViewModel> translate(List<Room> roomList, LocalDate start, LocalDate end) {
 
         List<RoomViewModel> viewModels = new ArrayList<>();
 
         for (Room room: roomList) {
             RoomViewModel viewModel = new RoomViewModel();
-            viewModel.setFloornumber(room.getFloorNumber());
-            viewModel.setRoomnumber(room.getRoomNumber());
+            viewModel.setRoomNumber(room.getRoomNumber());
             viewModel.setOccupancy(room.getOccupancy());
             viewModel.setType(room.getType());
             viewModel.setId(room.getId());
             List<Amenity> amenityList = amenityService.retrieveAmenityByRoom(room.getId());
-            viewModel.setAmenities(amenityList);
+            viewModel.setAmenityList(amenityList);
+            //if start and end are null, then get the default date.
+            //if start and end are not null, then check the current rate. If null, then set the default rate.
+            if (start == null) {
+                viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice());
+            } else {
+                if (roomRateService.retrieveCurrentRate(room.getId(), start, end).getRoom() != null) {
+                    viewModel.setRate(roomRateService.retrieveCurrentRate(room.getId(), start, end).getPrice());
+                } else viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice());
+            }
+
+
             viewModels.add(viewModel);
         }
 
@@ -69,104 +142,22 @@ public class RoomWebServiceImpl implements RoomWebService {
 
     }
 
-    private List<AmenityViewModel> translateAmenities(List<Amenity> amenities) {
-        List<AmenityViewModel> amenityViewModels = new ArrayList<>();
-
-        for (Amenity amenity : amenities) {
-            AmenityViewModel vm = new AmenityViewModel();
-            vm.setType(amenity.getType());
-        }
-
-        return amenityViewModels;
-    }
-
-    @Override
-    public ProfileRoomViewModel getRoomProfileViewModel(Long id) {
-        //Instantiate stuff
-        ProfileRoomViewModel viewModel = new ProfileRoomViewModel();
-
-        //Look up stuff
-        if (roomService.retrieve(id) == null) return null;
-        Room room = roomService.retrieve(id);
-        List<Amenity> amenityList = amenityService.retrieveAmenityByRoom(room.getId());
-
-        //Set stuff
-        viewModel.setFloorNumber(room.getFloorNumber());
-        viewModel.setRoomNumber(room.getRoomNumber());
-        viewModel.setOccupancy(room.getOccupancy());
-        viewModel.setType(room.getType());
-
-        if (amenityList != null && amenityList.size() > 0) {
-            List <AmenityViewModel> amenityViewModels = translateAmenities(amenityList);
-            viewModel.setAmenityList(amenityViewModels);
-        }
-
-//        //Return stuff
-        return viewModel;
-    }
-
-    @Override
-    public CreateRoomViewModel getCreateRoomViewModel() {
-        CreateRoomViewModel viewModel = new CreateRoomViewModel();
-        viewModel.setCommandModel(new CreateRoomCommandModel());
-
-        return viewModel;
-    }
-
-    @Override
-    public Room saveCreateRoomCommandModel(CreateRoomCommandModel commandModel) {
-        Room room = new Room();
-        room.setFloorNumber(commandModel.getFloorNumber());
-        room.setRoomNumber(commandModel.getRoomNumber());
-        room.setOccupancy(commandModel.getOccupancy());
-        room.setType(commandModel.getType());
-
-
-        room = roomService.create(room);
-        return room;
-    }
-
-    @Override
-    public EditRoomViewModel getEditRoomViewModel(Long id) {
-        EditRoomViewModel model = new EditRoomViewModel();
-        Room room = this.roomService.retrieve(id);
-
-        EditRoomCommandModel commandModel = new EditRoomCommandModel();
-
-        commandModel.setId(room.getId());
-        commandModel.setFloorNumber(room.getFloorNumber());
-        commandModel.setRoomNumber(room.getRoomNumber());
-        commandModel.setOccupancy(room.getOccupancy());
-        commandModel.setType(room.getType());
+//    private List<AmenityViewModel> translateAmenities(List<Amenity> amenities) {
+//        List<AmenityViewModel> amenityViewModels = new ArrayList<>();
 //
-        model.setCommandModel(commandModel);
-        return model;
-    }
+//        for (Amenity amenity : amenities) {
+//            AmenityViewModel vm = new AmenityViewModel();
+//            vm.setType(amenity.getType());
+//        }
+//
+//        return amenityViewModels;
+//    }
 
-    @Override
-    public void saveEditRoomCommandModel(EditRoomCommandModel commandModel) {
-
-        Room room = roomService.retrieve(commandModel.getId());
-        if(room == null) return;
-
-        room.setFloorNumber(commandModel.getFloorNumber());
-        room.setRoomNumber(commandModel.getRoomNumber());
-        room.setOccupancy(commandModel.getOccupancy());
-        room.setType(commandModel.getType());
-
-        roomService.update(room);
-
-    }
 
     @Override
     public void deleteRoom(Long id) {
 
-        Room room = roomService.retrieve(id);
-        // if the player doesn't exist, no need to continue
-        if(room == null) return;
 
-        // when all foreign key are deleted, we are now allowed to delete the player
-        roomService.delete(room);
 
     }
 }

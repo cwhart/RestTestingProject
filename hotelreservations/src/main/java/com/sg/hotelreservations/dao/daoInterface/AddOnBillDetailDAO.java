@@ -2,6 +2,7 @@ package com.sg.hotelreservations.dao.daoInterface;
 
 import com.sg.hotelreservations.dto.AddOn;
 import com.sg.hotelreservations.dto.AddOnBillDetail;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface AddOnBillDetailDAO {
     public void update(AddOnBillDetail addOnBillDetail);
     public void delete(AddOnBillDetail addOnBillDetail);
     public List<AddOnBillDetail> retrieveAll(int limit, int offset);
+
+    public List<AddOnBillDetail> retrieveByBillId(Long id);
 }

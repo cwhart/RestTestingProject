@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.PromoTypeDAO;
 import com.sg.hotelreservations.dao.daoInterface.RoomDAO;
 import com.sg.hotelreservations.dto.PromoType;
@@ -8,6 +9,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,9 +21,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {PromoTypeDAOImpl.class, TestHelper.class})
 public class PromoTypeDAOImplTest {
 
     @Inject
@@ -57,6 +60,25 @@ public class PromoTypeDAOImplTest {
 
         //Act
         PromoType readPromoType = promoTypeDAO.retrieve(promoType.getId());
+
+        //Assert
+        assert (readPromoType.getId() != null);
+        assertEquals(promoType.getId(), readPromoType.getId());
+        assertEquals(promoType.getPromoRate().getId(), readPromoType.getPromoRate().getId());
+        assertEquals(promoType.getPromoCode(), readPromoType.getPromoCode());
+        assertEquals(promoType.getDescription(), readPromoType.getDescription());
+
+    }
+
+    @Test
+    public void retrieveByPromoCode() {
+
+        //Arrange
+        PromoType promoType = testHelper.createTestPromoType();
+        //promoTypeDAO.create(promoType);
+
+        //Act
+        PromoType readPromoType = promoTypeDAO.retrieveByPromoCode(promoType.getPromoCode());
 
         //Assert
         assert (readPromoType.getId() != null);

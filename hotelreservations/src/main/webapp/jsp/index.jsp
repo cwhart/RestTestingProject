@@ -17,12 +17,14 @@
             <div class="navbar">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/room/list?offset=0">Rooms</a></li>
-                    <li role="presentation" ><a href="${pageContext.request.contextPath}/reservationRoom/search">Reservations</a></li>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/reservation/displayRooms">Rooms</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/reservation/searchReservation">Search</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/promo/list">Promotions</a></li>
+                <%--<li role="presentation" ><a href="${pageContext.request.contextPath}/reservationRoom/search">Reservations</a></li>--%>
+                        <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
                     <%--<li role="presentation">--%>
                         <%--<a href="/displayUserList">User Admin</a></li>--%>
-                    </sec:authorize>
+                    <%--</sec:authorize>--%>
                     </li>
                 </ul>
             </div>

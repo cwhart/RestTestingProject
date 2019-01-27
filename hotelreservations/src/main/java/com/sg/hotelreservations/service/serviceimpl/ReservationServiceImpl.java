@@ -6,11 +6,13 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.Reservation;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.ReservationService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 
     @Inject
@@ -21,14 +23,14 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationDAO.create(reservation);
     }
 
-    @Override
+   @Override
     public Reservation retrieve(Long id) {
         return reservationDAO.retrieve(id);
     }
 
     @Override
-    public void update(Reservation reservation) {
-        reservationDAO.update(reservation);
+    public Reservation update(Reservation reservation) {
+        return reservationDAO.update(reservation);
     }
 
     @Override

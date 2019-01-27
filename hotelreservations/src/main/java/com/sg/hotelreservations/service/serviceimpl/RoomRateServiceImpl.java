@@ -6,10 +6,13 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.RoomRate;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.RoomRateService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.List;
 
+@Service(value = "RoomRateServiceImpl")
 public class RoomRateServiceImpl implements RoomRateService {
 
     @Inject
@@ -33,6 +36,34 @@ public class RoomRateServiceImpl implements RoomRateService {
     @Override
     public void delete(RoomRate roomRate) {
         roomRateDAO.delete(roomRate);
+    }
+
+        @Override
+    public RoomRate retrieveDefaultRate(Long roomId) {
+        List <RoomRate> roomRateList = roomRateDAO.retrieveByRoomId(roomId);
+        RoomRate roomRate = new RoomRate();
+
+        for (RoomRate currentRoomRate : roomRateList) {
+            if (currentRoomRate.getDefaultFlag().equals("D")) {
+                roomRate = currentRoomRate;
+            }
+        }
+        return roomRate;
+    }
+
+    @Override
+    public RoomRate retrieveCurrentRate(Long roomId, LocalDate start, LocalDate end) {
+        List <RoomRate> roomRateList = roomRateDAO.retrieveByRoomId(roomId);
+        RoomRate roomRate = new RoomRate();
+
+        for (RoomRate currentRoomRate : roomRateList) {
+            if(currentRoomRate.getEndDate() != null && currentRoomRate.getDefaultFlag().equals("S") &&
+                    (start.isBefore(currentRoomRate.getEndDate()) && end.isAfter(currentRoomRate.getStartDate()))) {
+               roomRate =  currentRoomRate;
+               break;
+            }
+        }
+        return roomRate;
     }
 
     @Override

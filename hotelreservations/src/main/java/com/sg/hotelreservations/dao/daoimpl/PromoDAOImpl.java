@@ -5,24 +5,30 @@ import com.sg.hotelreservations.dao.daoInterface.PromoDAO;
 import com.sg.hotelreservations.dto.AddOn;
 import com.sg.hotelreservations.dto.Promo;
 import com.sg.hotelreservations.dto.PromoType;
+import com.sg.hotelreservations.service.serviceinterface.PromoTypeService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PromoDAOImpl implements PromoDAO {
 
     private JdbcTemplate jdbcTemplate;
+    PromoTypeService promoTypeService;
 
     @Inject
-    public PromoDAOImpl(JdbcTemplate jdbcTemplate) {
+    public PromoDAOImpl(JdbcTemplate jdbcTemplate, PromoTypeService promoTypeService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.promoTypeService = promoTypeService;
     }
 
     @Override
@@ -50,7 +56,8 @@ public class PromoDAOImpl implements PromoDAO {
         final String QUERY = "select * from promo where id = ?";
 
         try{
-            return jdbcTemplate.queryForObject(QUERY, new PromoMapper(), id);
+            Promo returnedPromo =  jdbcTemplate.queryForObject(QUERY, new PromoMapper(), id);
+            return returnedPromo;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -88,6 +95,21 @@ public class PromoDAOImpl implements PromoDAO {
         return returnList;
     }
 
+    @Override
+    public List<Promo> retrieveByPromoTypeId(Long id) {
+
+        List<Promo> returnList = new ArrayList<>();
+        final String QUERY = "select * from promo where promotypeid = ?";
+
+        try{
+            returnList = jdbcTemplate.query(QUERY, new PromoMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+
+        }
+
+        return returnList;
+    }
+
     private class PromoMapper implements RowMapper<Promo> {
         @Override
         public Promo mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -95,7 +117,7 @@ public class PromoDAOImpl implements PromoDAO {
             Promo promo = new Promo();
             promo.setId(resultSet.getLong("id"));
             PromoType promoType = new PromoType();
-            promoType.setId(resultSet.getLong("promotypeid"));
+            promoType = promoTypeService.retrieve(resultSet.getLong("promotypeid"));
             promo.setPromoType(promoType);
             promo.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
             promo.setEndDate(LocalDate.parse(resultSet.getString("enddate")));

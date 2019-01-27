@@ -11,4 +11,5 @@ public interface PersonDAO {
     public void update(Person person);
     public void delete(Person person);
     public List<Person> retrieveAll(int limit, int offset);
+    public List<Person> retrieveByName(String firstName, String lastName);
 }

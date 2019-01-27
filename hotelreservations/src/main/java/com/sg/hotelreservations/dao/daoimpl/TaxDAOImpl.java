@@ -7,6 +7,7 @@ import com.sg.hotelreservations.dto.Tax;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 public class TaxDAOImpl implements TaxDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -28,12 +30,19 @@ public class TaxDAOImpl implements TaxDAO {
     @Transactional
     public Tax create(Tax tax) {
 
-        final String QUERY = "insert into tax (type, startdate, enddate, rate ) VALUES (?, ?, ?, ?)";
+        String taxEndDateAsString = null;
+
+        if (tax.getEndDate() != null) {
+            taxEndDateAsString = tax.getEndDate().toString();
+        }
+
+        final String QUERY = "insert into tax (type, state, startdate, enddate, rate ) VALUES (?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 tax.getType(),
+                tax.getState(),
                 tax.getStartDate().toString(),
-                tax.getEndDate().toString(),
+                taxEndDateAsString,
                 tax.getRate()
 
         );
@@ -60,10 +69,11 @@ public class TaxDAOImpl implements TaxDAO {
     @Override
     public void update(Tax tax) {
 
-        final String QUERY = "update tax set type = ?, startdate = ?, enddate = ?, rate = ? where id=?";
+        final String QUERY = "update tax set type = ?, state = ?, startdate = ?, enddate = ?, rate = ? where id=?";
 
         jdbcTemplate.update(QUERY,
                 tax.getType(),
+                tax.getState(),
                 tax.getStartDate().toString(),
                 tax.getEndDate().toString(),
                 tax.getRate(),
@@ -90,6 +100,22 @@ public class TaxDAOImpl implements TaxDAO {
         return returnList;
     }
 
+    @Override
+    public List<Tax> retrieveByState(String state) {
+        final String QUERY = "select * from tax where state = ?";
+
+        List<Tax> returnList = jdbcTemplate.query(QUERY, new TaxMapper(), state);
+        return returnList;
+    }
+
+    @Override
+    public List<Tax> retrieveByType(String taxType) {
+        final String QUERY = "select * from tax where type = ?";
+
+        List<Tax> returnList = jdbcTemplate.query(QUERY, new TaxMapper(), taxType);
+        return returnList;
+    }
+
     private class TaxMapper implements RowMapper<Tax> {
         @Override
         public Tax mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -98,7 +124,10 @@ public class TaxDAOImpl implements TaxDAO {
             tax.setId(resultSet.getLong("id"));
             tax.setType(resultSet.getString("type"));
             tax.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
-            tax.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            tax.setState(resultSet.getString("State"));
+            if(resultSet.getString("enddate") != null) {
+                tax.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            }
             tax.setRate(resultSet.getBigDecimal("rate"));
             return tax;
 

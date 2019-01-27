@@ -6,10 +6,12 @@ import com.sg.hotelreservations.dto.AddOnBillDetail;
 import com.sg.hotelreservations.dto.Person;
 import com.sg.hotelreservations.service.serviceinterface.AddOnBillDetailService;
 import com.sg.hotelreservations.service.serviceinterface.PersonService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Service
 public class PersonServiceImpl implements PersonService {
 
     @Inject
@@ -38,5 +40,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> retrieveAll(int limit, int offset) {
         return personDAO.retrieveAll(limit, offset);
+    }
+
+    @Override
+    public List<Person> retrieveByName(String firstName, String lastName) {
+        return personDAO.retrieveByName(firstName, lastName);
     }
 }

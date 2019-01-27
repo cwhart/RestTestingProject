@@ -11,4 +11,6 @@ public interface BillDAO {
     public void update(Bill bill);
     public void delete(Bill bill);
     public List<Bill> retrieveAll(int limit, int offset);
+
+    Bill retrieveByReservationId(Long reservationId);
 }

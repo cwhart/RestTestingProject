@@ -1,26 +1,19 @@
 package com.sg.hotelreservations.webservice.webinterface;
 
 import com.sg.hotelreservations.dto.Reservation;
-import com.sg.hotelreservations.viewmodels.reservationroom.search.InputReservationDatesCommandModel;
-import com.sg.hotelreservations.viewmodels.reservation.list.ListReservationViewModel;
-import com.sg.hotelreservations.viewmodels.reservationroom.search.InputReservationDatesViewModel;
+import com.sg.hotelreservations.viewmodels.reservation.*;
+import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
+import com.sg.hotelreservations.webservice.exception.InvalidPromoException;
 
 public interface ReservationWebService {
 
-    public ListReservationViewModel getReservationListViewModel(Integer offset);
-    public InputReservationDatesViewModel getReservationDatesViewModel();
-    public Reservation searchInputDatesCommandModel(InputReservationDatesCommandModel var1);
-
-    //    public ProfileReservationViewModel getReservationProfileViewModel(Long id); //takes in ID since that's what is sent to the
-//    //page via URL so it can load.
-//
-//    //These two are input/output for search room
-//    public CreateReservationViewModel getCreateReservationViewModel();
-//    public Reservation saveCreateReservationCommandModel(CreateReservationCommandModel commandModel);
-//
-//    //do not re-use search for edit. Make models for edit. Same pattern.
-//    public EditReservationViewModel getEditReservationViewModel(Long id);
-//    public void saveEditReservationCommandModel(EditReservationCommandModel commandModel);
-//
-    public void deleteReservation(Long id);
+    public Reservation saveCreate  (SaveReservationCommandModel saveReservationCommandModel)
+            throws InvalidDatesException, InvalidPromoException;
+    public SearchAvailableRoomsViewModel getSearchAvailableRoomsViewModel();
+    public InputPersonDetailsViewModel getInputPersonDetailsViewModel();
+    public ProfileReservationViewModel getReservationProfileViewModel(Long id);
+    public SearchReservationCommandModel getSearchReservationCommandModel();
+    public void cancelReservation(Long reservationId);
+    EditReservationViewModel getEditReservationViewModel(Long id);
+    public Reservation saveEditReservationCommandModel(EditReservationCommandModel commandModel) throws InvalidPromoException;
 }

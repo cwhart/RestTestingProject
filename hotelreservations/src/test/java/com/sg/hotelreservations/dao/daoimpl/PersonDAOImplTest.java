@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.PersonDAO;
 import com.sg.hotelreservations.dao.daoInterface.RoomDAO;
 import com.sg.hotelreservations.dto.Person;
@@ -8,6 +9,7 @@ import com.sg.hotelreservations.dto.Room;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,9 +21,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {PersonDAOImpl.class, TestHelper.class})
 public class PersonDAOImplTest {
 
     @Inject
@@ -119,5 +122,28 @@ public class PersonDAOImplTest {
 
         //Assert
         assert personList.size() == 25;
+    }
+
+    @Test
+    public void retrieveByName() {
+
+        //Arrange
+        for(int i=0; i<5; i++) {
+            testHelper.createTestPerson();
+        }
+        for(int i=0; i<3; i++) {
+            Person person = testHelper.createTestPerson();
+            person.setFirstName("Jane");
+            person.setLastName("Doe");
+            personDAO.update(person);
+        }
+
+        //Act
+        List<Person> retrievedList = personDAO.retrieveByName("Jane", "Doe");
+
+        assertEquals(3, retrievedList.size());
+        assertEquals("Jane", retrievedList.get(0).getFirstName());
+        assertEquals("Doe", retrievedList.get(0).getLastName());
+
     }
 }

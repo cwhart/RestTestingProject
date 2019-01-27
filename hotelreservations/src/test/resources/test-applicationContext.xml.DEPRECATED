@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+              xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/tx 
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <!-- Bean definitions go here -->
+
+    <!--<bean id="dataSource"-->
+          <!--class="org.apache.commons.dbcp2.BasicDataSource">-->
+        <!--<property name="driverClassName" value="org.h2.Driver"/>-->
+        <!--<property name="url"-->
+                  <!--value="jdbc:h2:mem:hotelreservation;INIT=RUNSCRIPT FROM 'classpath:schema.sql'"/>-->
+        <!--<property name="username" value="sa"/>-->
+        <!--<property name="password" value=""/>-->
+        <!--<property name="initialSize" value="5"/>-->
+        <!--<property name="maxTotal" value="10"/>-->
+
+    <!--</bean>-->
+
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url"
+                  value="jdbc:h2:mem:hotelreservation;INIT=RUNSCRIPT FROM 'classpath:schema.sql'"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+        <property name="initialSize" value="5"/>
+        <property name="maxTotal" value="10"/>
+
+    </bean>
+
+    <bean id="h2Server" class="org.h2.tools.Server" factory-method="createTcpServer" init-method="start" destroy-method="stop" depends-on="h2WebServer">
+        <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,9092"/>
+    </bean>
+    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+        <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="AddOnDAO" class="com.sg.hotelreservations.dao.daoimpl.AddOnDAOImpl"/>
+    <bean id="AddOnService" class="com.sg.hotelreservations.service.serviceimpl.AddOnServiceImpl"/>
+
+
+    <bean id="AddOnBillDetailDAO" class="com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl"/>
+    <bean id="AddOnBillDetailService" class="com.sg.hotelreservations.service.serviceimpl.AddOnBillDetailServiceImpl"/>
+
+
+    <bean id="RoomDAO" class="com.sg.hotelreservations.dao.daoimpl.RoomDAOImpl"/>
+    <bean id="RoomService" class="com.sg.hotelreservations.service.serviceimpl.RoomServiceImpl"/>
+    <!--<bean id="RoomServiceStub" class="com.sg.hotelreservations.webservice.stub.RoomServiceStub"/>-->
+
+
+    <bean id="RoomRateDAO" class="com.sg.hotelreservations.dao.daoimpl.RoomRateDAOImpl"/>
+    <bean id="RoomRateService" class="com.sg.hotelreservations.service.serviceimpl.RoomRateServiceImpl"/>
+    <!--<bean id="RoomRateServiceStub" class="com.sg.hotelreservations.webservice.stub.RoomRateServiceStub"/>-->
+
+
+    <bean id="AmenityDAO" class="com.sg.hotelreservations.dao.daoimpl.AmenityDAOImpl"/>
+    <bean id="AmenityService" class="com.sg.hotelreservations.service.serviceimpl.AmenityServiceImpl"/>
+
+    <bean id="RoomAmenityDAO" class="com.sg.hotelreservations.dao.daoimpl.RoomAmenityDAOImpl"/>
+    <bean id="RoomAmenityService" class="com.sg.hotelreservations.service.serviceimpl.RoomAmenityServiceImpl"/>
+
+
+    <bean id="PromoRateDAO" class="com.sg.hotelreservations.dao.daoimpl.PromoRateDAOImpl"/>
+    <bean id="PromoRateService" class="com.sg.hotelreservations.service.serviceimpl.PromoRateServiceImpl"/>
+
+
+    <bean id="PromoTypeDAO" class="com.sg.hotelreservations.dao.daoimpl.PromoTypeDAOImpl"/>
+    <bean id="PromoTypeService" class="com.sg.hotelreservations.service.serviceimpl.PromoTypeServiceImpl"/>
+
+
+    <bean id="PromoDAO" class="com.sg.hotelreservations.dao.daoimpl.PromoDAOImpl"/>
+    <bean id="PromoService" class="com.sg.hotelreservations.service.serviceimpl.PromoServiceImpl"/>
+
+
+    <bean id="AddOnRateDAO" class="com.sg.hotelreservations.dao.daoimpl.AddOnRateDAOImpl"/>
+    <bean id="AddOnRateService" class="com.sg.hotelreservations.service.serviceimpl.AddOnRateServiceImpl"/>
+
+
+    <bean id="TaxDAO" class="com.sg.hotelreservations.dao.daoimpl.TaxDAOImpl"/>
+    <bean id="TaxService" class="com.sg.hotelreservations.service.serviceimpl.TaxServiceImpl"/>
+    <!--<bean id="TaxServiceStub" class="com.sg.hotelreservations.webservice.stub.TaxServiceStub"/>-->
+
+
+
+    <bean id="PersonDAO" class="com.sg.hotelreservations.dao.daoimpl.PersonDAOImpl"/>
+    <bean id="PersonService" class="com.sg.hotelreservations.service.serviceimpl.PersonServiceImpl"/>
+
+
+    <bean id="GuestDAO" class="com.sg.hotelreservations.dao.daoimpl.GuestDAOImpl"/>
+    <bean id="GuestService" class="com.sg.hotelreservations.service.serviceimpl.GuestServiceImpl"/>
+
+
+    <bean id="ReservationHolderDAO" class="com.sg.hotelreservations.dao.daoimpl.ReservationHolderDAOImpl"/>
+    <bean id="ReservationHolderService" class="com.sg.hotelreservations.service.serviceimpl.ReservationHolderServiceImpl"/>
+
+
+    <bean id="ReservationDAO" class="com.sg.hotelreservations.dao.daoimpl.ReservationDAOImpl"/>
+    <bean id="ReservationService" class="com.sg.hotelreservations.service.serviceimpl.ReservationServiceImpl"/>
+    <bean id="ReservationWebService" class="com.sg.hotelreservations.webservice.impl.ReservationWebServiceImpl"/>
+
+
+
+    <bean id="GuestReservationDAO" class="com.sg.hotelreservations.dao.daoimpl.GuestReservationDAOImpl"/>
+    <bean id="GuestReservationService" class="com.sg.hotelreservations.service.serviceimpl.GuestReservationServiceImpl"/>
+
+
+    <bean id="ReservationRoomDAO" class="com.sg.hotelreservations.dao.daoimpl.ReservationRoomDAOImpl"/>
+    <bean id="ReservationRoomService" class="com.sg.hotelreservations.service.serviceimpl.ReservationRoomServiceImpl"/>
+
+
+    <bean id="BillDAO" class="com.sg.hotelreservations.dao.daoimpl.BillDAOImpl"/>
+    <bean id="BillService" class="com.sg.hotelreservations.service.serviceimpl.BillServiceImpl"/>
+    <bean id="BillWebService" class="com.sg.hotelreservations.webservice.impl.BillWebServiceImpl"/>
+
+
+
+    <bean id="RoomBillDetailDAO" class="com.sg.hotelreservations.dao.daoimpl.RoomBillDetailDAOImpl"/>
+    <bean id="RoomBillDetailService" class="com.sg.hotelreservations.service.serviceimpl.RoomBillDetailServiceImpl"/>
+
+
+    <bean id="testHelper" class="com.sg.TestHelper" />
+    
+</beans>

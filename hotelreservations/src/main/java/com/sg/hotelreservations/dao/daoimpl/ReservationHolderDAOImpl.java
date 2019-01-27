@@ -6,6 +6,7 @@ import com.sg.hotelreservations.dto.ReservationHolder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class ReservationHolderDAOImpl implements ReservationHolderDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -81,6 +83,17 @@ public class ReservationHolderDAOImpl implements ReservationHolderDAO {
 
         List<ReservationHolder> returnList = jdbcTemplate.query(QUERY, new ReservationHolderMapper(), limit, offset);
         return returnList;
+    }
+
+    @Override
+    public ReservationHolder retrieveByPersonId(Long personId) {
+        final String QUERY = "select * from reservationholder where personId = ?";
+
+        try{
+            return jdbcTemplate.queryForObject(QUERY, new ReservationHolderMapper(), personId);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
     }
 
     private class ReservationHolderMapper implements RowMapper<ReservationHolder> {

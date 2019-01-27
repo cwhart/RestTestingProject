@@ -12,4 +12,5 @@ public interface RoomService {
     public void update(Room room);
     public void delete(Room room);
     public List<Room> retrieveAll(int limit, int offset);
+    public Room retrieveByRoomNumber(int roomNumber);
 }

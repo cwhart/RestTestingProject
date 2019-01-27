@@ -7,6 +7,7 @@ import com.sg.hotelreservations.dao.daoInterface.RoomDAO;
 import com.sg.hotelreservations.dto.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ReservationRoomDAOImpl implements ReservationRoomDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -49,10 +51,10 @@ public class ReservationRoomDAOImpl implements ReservationRoomDAO {
     }
 
     @Override
-    public List<ReservationRoom> retrieveByReservationId(Long reservationId, int limit, int offset) {
-        final String QUERY = "select * from reservationroom where reservationid = ? limit ? offset ?";
+    public List<ReservationRoom> retrieveByReservationId(Long reservationId) {
+        final String QUERY = "select * from reservationroom where reservationid = ? ";
 
-        List<ReservationRoom> returnList = jdbcTemplate.query(QUERY, new ReservationRoomMapper(), reservationId, limit, offset);
+        List<ReservationRoom> returnList = jdbcTemplate.query(QUERY, new ReservationRoomMapper(), reservationId);
         return returnList;
     }
 
@@ -90,10 +92,11 @@ public class ReservationRoomDAOImpl implements ReservationRoomDAO {
     @Override
     public Boolean isBooked(Long roomId, LocalDate date) {
 
-        final String QUERY = "select * from reservationroom rr join reservation re on re.id = rr.reservationid join room r on r.id = rr.RoomID\n" +
-                "where r.id = ? and re.StartDate <= ? and re.EndDate >= ?";
+        final String QUERY = "select * from reservationroom rr join reservation re on re.id = rr.reservationid join room r on r.id = rr.RoomID" +
+                " where r.id = ? and re.StartDate <= ? and re.EndDate > ?";
 
-        List<ReservationRoom> returnList = jdbcTemplate.query(QUERY, new ReservationRoomMapper(), roomId, date, date);
+        List<ReservationRoom> returnList = jdbcTemplate.query(QUERY, new ReservationRoomMapper(), roomId.toString(),
+                date.toString(), date.toString());
         if (returnList.size()==0) return false;
         else return true;
 

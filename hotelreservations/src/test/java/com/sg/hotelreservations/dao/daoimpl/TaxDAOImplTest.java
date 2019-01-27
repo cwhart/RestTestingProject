@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.AddOnDAO;
 import com.sg.hotelreservations.dao.daoInterface.TaxDAO;
 import com.sg.hotelreservations.dto.AddOn;
@@ -8,6 +9,7 @@ import com.sg.hotelreservations.dto.Tax;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,9 +22,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {TaxDAOImpl.class, TestHelper.class})
 public class TaxDAOImplTest {
 
     @Inject
@@ -113,5 +116,37 @@ public class TaxDAOImplTest {
 
         //Assert
         assert taxList.size() == 25;
+    }
+
+    @Test
+    public void retrieveByState() {
+        //Arrange
+        testHelper.createMultipleTaxes(5);
+        testHelper.createTestTaxSpecifyState("MA");
+        testHelper.createTestTaxSpecifyState("MA");
+        testHelper.createTestTaxSpecifyState("VT");
+
+        //Act
+        List<Tax> taxList = taxDAO.retrieveByState("NH");
+        //List<Tax> taxList = taxDAO.retrieveAll(Integer.MAX_VALUE, 0);
+
+        //Assert
+        assert (taxList.size() == 5);
+    }
+
+    @Test
+    public void retrieveByType() {
+        //Arrange
+        testHelper.createMultipleTaxes(5);
+        testHelper.createTestTaxSpecifyType("Meals");
+        testHelper.createTestTaxSpecifyType("Rooms");
+        testHelper.createTestTaxSpecifyType("Meals");
+
+        //Act
+        List<Tax> taxList = taxDAO.retrieveByType("Meals");
+        //List<Tax> taxList = taxDAO.retrieveAll(Integer.MAX_VALUE, 0);
+
+        //Assert
+        assert (taxList.size() == 2);
     }
 }

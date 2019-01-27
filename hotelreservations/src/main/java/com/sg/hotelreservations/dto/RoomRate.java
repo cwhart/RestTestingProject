@@ -9,9 +9,18 @@ public class RoomRate {
 
     Long id;
     Room room;
+    String defaultFlag;
     LocalDate startDate;
     LocalDate endDate;
     BigDecimal price;
+
+    public String getDefaultFlag() {
+        return defaultFlag;
+    }
+
+    public void setDefaultFlag(String defaultFlag) {
+        this.defaultFlag = defaultFlag;
+    }
 
     public Long getId() {
         return id;

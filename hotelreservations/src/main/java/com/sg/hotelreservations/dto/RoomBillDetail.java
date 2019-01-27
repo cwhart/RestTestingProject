@@ -1,6 +1,7 @@
 package com.sg.hotelreservations.dto;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -64,7 +65,7 @@ public class RoomBillDetail {
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return price.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setPrice(BigDecimal price) {

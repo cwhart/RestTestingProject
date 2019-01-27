@@ -1,12 +1,15 @@
 package com.sg.hotelreservations.service.serviceimpl;
 
 import com.sg.TestHelper;
+import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoInterface.ReservationDAO;
+import com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl;
 import com.sg.hotelreservations.dto.Reservation;
 import com.sg.hotelreservations.service.serviceinterface.ReservationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,9 +22,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/test-applicationContext.xml"})
+@ContextConfiguration(classes = {UnitTestConfiguration.class})
 @Rollback
 @Transactional
+@SpringBootTest(classes = {ReservationServiceImpl.class, TestHelper.class})
 public class ReservationServiceImplTest {
 
     @Inject

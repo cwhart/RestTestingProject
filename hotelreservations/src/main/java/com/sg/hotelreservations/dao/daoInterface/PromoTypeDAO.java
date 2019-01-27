@@ -11,4 +11,5 @@ public interface PromoTypeDAO {
     public void update(PromoType promoType);
     public void delete(PromoType promoType);
     public List<PromoType> retrieveAll(int limit, int offset);
+    public PromoType retrieveByPromoCode(String promoCode);
 }

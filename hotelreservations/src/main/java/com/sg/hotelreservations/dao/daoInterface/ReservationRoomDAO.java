@@ -8,7 +8,7 @@ import java.util.List;
 public interface ReservationRoomDAO {
 
     public ReservationRoom create(ReservationRoom reservationRoom);
-    public List<ReservationRoom> retrieveByReservationId(Long reservationId, int limit, int offset);
+    public List<ReservationRoom> retrieveByReservationId(Long reservationId);
     public List<ReservationRoom> retrieveByRoomId(Long roomId, int limit, int offset);
     public List<ReservationRoom> retrieveByDates(LocalDate start, LocalDate end);
     public Boolean isBooked(Long roomId, LocalDate date);

@@ -2,22 +2,28 @@ package com.sg.hotelreservations.dao.daoimpl;
 
 import com.sg.hotelreservations.dao.daoInterface.AddOnBillDetailDAO;
 import com.sg.hotelreservations.dto.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@Repository(value="AddOnBillDetailDAOImpl")
 public class AddOnBillDetailDAOImpl implements AddOnBillDetailDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
+    @Autowired
     public AddOnBillDetailDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -26,7 +32,12 @@ public class AddOnBillDetailDAOImpl implements AddOnBillDetailDAO {
     @Transactional
     public AddOnBillDetail create(AddOnBillDetail addOnBillDetail) {
 
-        final String QUERY = "insert into addonbilldetail (taxid, promoid, addonrateid, billingid, taxamount, price, transactiondate ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        if(addOnBillDetail.getPromo() == null) {
+            Promo promo = new Promo();
+            addOnBillDetail.setPromo(promo);
+        }
+
+        final String QUERY = "insert into addonbilldetail (taxid, promoid, addonrateid, billid, taxamount, price, transactiondate ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(QUERY,
                 addOnBillDetail.getTax().getId(),
@@ -47,6 +58,22 @@ public class AddOnBillDetailDAOImpl implements AddOnBillDetailDAO {
     }
 
     @Override
+    public List<AddOnBillDetail> retrieveByBillId(Long id) {
+
+        final String QUERY = "select * from addonbilldetail where billid = ?";
+        List<AddOnBillDetail> addOnBillDetails = new ArrayList<>();
+
+        addOnBillDetails = jdbcTemplate.query(QUERY, new AddOnBillDetailMapper(), id);
+        return addOnBillDetails;
+
+//        try{
+//            addOnBillDetails = jdbcTemplate.queryForList(QUERY, new AddOnBillDetailMapper(), id);
+//        } catch (EmptyResultDataAccessException ex) {
+//            return null;
+//        }
+    }
+
+    @Override
     public AddOnBillDetail retrieve(Long id) {
 
         final String QUERY = "select * from addonbilldetail where id = ?";
@@ -61,7 +88,7 @@ public class AddOnBillDetailDAOImpl implements AddOnBillDetailDAO {
     @Override
     public void update(AddOnBillDetail addOnBillDetail) {
 
-        final String QUERY = "update addonbilldetail set taxid = ?, promoid = ?, addonrateid = ?, billingid = ?, " +
+        final String QUERY = "update addonbilldetail set taxid = ?, promoid = ?, addonrateid = ?, billid = ?, " +
                 "taxamount = ?, price = ?, transactiondate = ? where id=?";
 
         jdbcTemplate.update(QUERY,
@@ -107,7 +134,7 @@ public class AddOnBillDetailDAOImpl implements AddOnBillDetailDAO {
             AddOnRate addOnRate = new AddOnRate();
             addOnRate.setId(resultSet.getLong("addonrateid"));
             Bill bill = new Bill();
-            bill.setId(resultSet.getLong("billingid"));
+            bill.setId(resultSet.getLong("billid"));
             addOnBillDetail.setTaxAmount(resultSet.getBigDecimal("taxamount"));
             addOnBillDetail.setPrice(resultSet.getBigDecimal("price"));
             addOnBillDetail.setTransactionDate(LocalDate.parse(resultSet.getString("transactiondate")));
