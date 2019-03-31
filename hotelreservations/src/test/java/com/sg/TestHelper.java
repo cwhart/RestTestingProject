@@ -385,7 +385,7 @@ public class TestHelper {
         Person person = new Person();
         person.setFirstName("Joe");
         person.setLastName("Schmoe");
-        person.setDateOfBirth(LocalDate.parse("1970-10-04"));
+        person.setDateOfBirth(("1970-10-04"));
         person.setPhoneNo("555-333-6666");
         person.setEmail("me@nospam.com");
         personDAO.create(person);
@@ -440,8 +440,8 @@ public class TestHelper {
         Reservation reservation = new Reservation();
         reservation.setPromo(createTestPromo());
         reservation.setReservationHolder(createTestReservationHolder());
-        reservation.setStartDate(LocalDate.parse("2018-08-10"));
-        reservation.setEndDate(LocalDate.parse("2018-08-12"));
+        reservation.setStartDate(("2018-08-10"));
+        reservation.setEndDate(("2018-08-12"));
         reservationDAO.create(reservation);
         return reservation;
 
@@ -451,8 +451,8 @@ public class TestHelper {
         Reservation reservation = new Reservation();
         reservation.setPromo(createTestPromo());
         reservation.setReservationHolder(createTestReservationHolder());
-        reservation.setStartDate(start);
-        reservation.setEndDate(end);
+        reservation.setStartDate(start.toString());
+        reservation.setEndDate(end.toString());
         reservationDAO.create(reservation);
         return reservation;
     }
@@ -674,7 +674,7 @@ public class TestHelper {
     public SearchAvailableRoomsCommandModel createTestRoomCommandModel(int roomNum) {
 
         SearchAvailableRoomsCommandModel commandModel = new SearchAvailableRoomsCommandModel();
-        commandModel.setRoomNum(roomNum);
+        commandModel.setRoomNumber(roomNum);
         commandModel.setStartDate("2018-11-01");
         commandModel.setEndDate("2018-11-10");
         commandModel.setNumInParty(4);

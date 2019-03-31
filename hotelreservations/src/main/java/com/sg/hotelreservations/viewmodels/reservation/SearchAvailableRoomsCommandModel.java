@@ -5,14 +5,14 @@ public class SearchAvailableRoomsCommandModel {
     String startDate;
     String endDate;
     int numInParty;
-    int roomNum;
+    int roomNumber;
 
-    public int getRoomNum() {
-        return roomNum;
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setRoomNum(int roomNum) {
-        this.roomNum = roomNum;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getStartDate() {

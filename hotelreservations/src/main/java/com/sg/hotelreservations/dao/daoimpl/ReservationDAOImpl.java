@@ -124,8 +124,8 @@ public class ReservationDAOImpl implements ReservationDAO {
             Reservation reservation = new Reservation();
             reservation.setId(resultSet.getLong("id"));
 
-            reservation.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
-            reservation.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
+            reservation.setStartDate(resultSet.getString("startdate"));
+            reservation.setEndDate(resultSet.getString("enddate"));
 
             Long reservationHolderId = resultSet.getLong("reservationHolderId");
 

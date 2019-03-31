@@ -9,7 +9,7 @@ public class Person {
     Long id;
     String firstName;
     String lastName;
-    LocalDate dateOfBirth;
+    String dateOfBirth;
     String phoneNo;
     String email;
 
@@ -37,11 +37,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

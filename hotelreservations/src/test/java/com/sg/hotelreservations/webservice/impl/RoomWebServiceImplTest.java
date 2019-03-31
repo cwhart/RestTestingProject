@@ -8,6 +8,7 @@ import com.sg.hotelreservations.service.serviceinterface.ReservationRoomService;
 import com.sg.hotelreservations.service.serviceinterface.RoomRateService;
 import com.sg.hotelreservations.service.serviceinterface.RoomService;
 import com.sg.hotelreservations.viewmodels.room.ListRoomViewModel;
+import com.sg.hotelreservations.viewmodels.room.RoomViewModel;
 import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
 import com.sg.hotelreservations.webservice.webinterface.RoomWebService;
 import org.junit.Test;
@@ -90,10 +91,10 @@ public class RoomWebServiceImplTest {
         //start date and end date filter out results. Verify edge conditions. Test no rooms available for dates.
         //Test start date after end date, test start date before today.
 
-        ListRoomViewModel listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 1,
+        List<RoomViewModel> listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 1,
                 LocalDate.now(), LocalDate.now().plusDays(2));
 
-        assertEquals(10, listRoomViewModel.getRooms().size());
+        assertEquals(10, listRoomViewModel.size());
     }
 
     @Test
@@ -114,10 +115,10 @@ public class RoomWebServiceImplTest {
         when(reservationRoomService.isBookedForDateRange(anyInt(), any(), any())).thenReturn(false);
         when(roomRateService.retrieveCurrentRate(anyLong(), any(), any())).thenReturn(testHelper.createTestRoomRate());
 
-        ListRoomViewModel listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
+        List<RoomViewModel> listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
                 LocalDate.now(), LocalDate.now().plusDays(2));
 
-        assertEquals(5, listRoomViewModel.getRooms().size());
+        assertEquals(5, listRoomViewModel.size());
     }
 
     @Test(expected = InvalidDatesException.class)
@@ -134,7 +135,7 @@ public class RoomWebServiceImplTest {
         when(reservationRoomService.isBookedForDateRange(anyInt(), any(), any())).thenReturn(false);
         when(roomRateService.retrieveCurrentRate(anyLong(), any(), any())).thenReturn(testHelper.createTestRoomRate());
 
-        ListRoomViewModel listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
+        List<RoomViewModel> listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
                 LocalDate.now().minusDays(2), LocalDate.now());
 
     }
@@ -153,7 +154,7 @@ public class RoomWebServiceImplTest {
         when(reservationRoomService.isBookedForDateRange(anyInt(), any(), any())).thenReturn(false);
         when(roomRateService.retrieveCurrentRate(anyLong(), any(), any())).thenReturn(testHelper.createTestRoomRate());
 
-        ListRoomViewModel listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
+        List<RoomViewModel> listRoomViewModel = roomWebService.getReservationRoomListViewModel(0, 3,
                 LocalDate.now().plusDays(2), LocalDate.now());
 
     }

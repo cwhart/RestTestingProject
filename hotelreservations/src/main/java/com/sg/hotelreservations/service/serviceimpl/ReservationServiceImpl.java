@@ -38,14 +38,6 @@ public class ReservationServiceImpl implements ReservationService {
         reservationDAO.delete(reservation);
     }
 
-//    @Override
-//    public List<Reservation> retrieveAllInRange(LocalDate start, LocalDate end) {
-//        //User inputs a date range; we want to display an additional 10 days before and after.
-//        start = start.minusDays(10);
-//        end = end.plusDays(10);
-//        return reservationDAO.retrieveAllInRange(start, end);
-//    }
-
     @Override
     public List<Reservation> retrieveAll(int limit, int offset) {
         return reservationDAO.retrieveAll(limit, offset);

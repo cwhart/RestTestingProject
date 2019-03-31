@@ -2,7 +2,7 @@ package com.sg.hotelreservations.viewmodels.reservation;
 
 import java.util.List;
 
-public class ProfileReservationViewModel {
+public class ProfileReservationViewModelDEPRECATED {
 
     Long billId;
     Long reservationId;

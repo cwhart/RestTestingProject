@@ -127,7 +127,7 @@ public class PersonDAOImpl implements PersonDAO {
             person.setFirstName(resultSet.getString("firstname"));
             person.setLastName(resultSet.getString("lastname"));
             if(resultSet.getString("dateofbirth") != null) {
-                person.setDateOfBirth(LocalDate.parse(resultSet.getString("dateofbirth")));
+                person.setDateOfBirth((resultSet.getString("dateofbirth")));
             }
             if (resultSet.getString("phone") != null) {
                 person.setPhoneNo(resultSet.getString("phone"));

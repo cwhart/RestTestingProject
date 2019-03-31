@@ -92,7 +92,7 @@ public class ReservationWebServiceImplTest {
         //Assert
         assert (viewModel.getCommandModel().getStartDate() == null);
         assert (viewModel.getCommandModel().getEndDate() == null);
-        assert (viewModel.getCommandModel().getRoomNum() == 0);
+        assert (viewModel.getCommandModel().getRoomNumber() == 0);
         assert (viewModel.getCommandModel().getNumInParty() == 0);
 
     }
@@ -120,10 +120,25 @@ public class ReservationWebServiceImplTest {
         //Arrange
         Bill bill = testHelper.createTestBill();
         Reservation reservation = bill.getReservation();
+        List<Guest> guestList = testHelper.createMultipleGuests(2);
+        List<Person> persons = new ArrayList<>();
+        List<GuestReservation> guestReservations = new ArrayList<>();
+        for(Guest guest : guestList) {
+            GuestReservation guestReservation = new GuestReservation();
+            guestReservation.setGuest(guest);
+            guestReservation.setReservation(reservation);
+            guestReservations.add(guestReservation);
+            persons.add(guest.getPerson());
+        }
+        ReservationHolder reservationHolder = new ReservationHolder();
+        reservationHolder.setPerson(persons.get(0));
 
         when(reservationService.retrieve(anyLong())).thenReturn(reservation);
-        when(reservationHolderService.retrieve(anyLong())).thenReturn(testHelper.createTestReservationHolder());
-        when(personService.retrieve(anyLong())).thenReturn(testHelper.createTestPerson());
+        when(guestReservationService.retrieveByReservationId(reservation.getId())).thenReturn(guestReservations);
+        when(personService.retrieve(any())).thenReturn(persons.get(0));
+        when(reservationHolderService.retrieve(anyLong())).thenReturn(reservationHolder);
+        //when(personService.retrieve(anyLong())).thenReturn(person);
+        //when(guestReservationService.retrieveByReservationId(any())).thenReturn((List<GuestReservation>) guestReservation);
         when(reservationRoomService.retrieveByReservationId(any()))
                 .thenReturn(testHelper.createMultipleReservationRooms(1));
         when(billService.retrieveByReservationId(anyLong())).thenReturn(bill);
@@ -131,32 +146,33 @@ public class ReservationWebServiceImplTest {
 
 
         //Act
-        ProfileReservationViewModel viewModel = reservationWebService.getReservationProfileViewModel(reservation.getId());
+        ReservationModel model = reservationWebService.getReservationModel(reservation.getId());
+        Person retrieveReservationHolder = model.getGuestDetails().get(0);
 
         //Assert
-        assert (viewModel.getEmail().equals("me@nospam.com"));
-        assert(viewModel.getStartDate().equals("2018-08-10"));
-        assert(viewModel.getEndDate().equals("2018-08-12"));
-        assert(viewModel.getRoomNumber().equals("201"));
-        assert(viewModel.getFirstName().equals("Joe"));
-        assert(viewModel.getLastName().equals("Schmoe"));
-        assert(viewModel.getPhone().equals("555-333-6666"));
+        assert (retrieveReservationHolder.getEmail().equals("me@nospam.com"));
+        assert(model.getReservationDetails().getStartDate().equals("2018-08-10"));
+        assert(model.getReservationDetails().getEndDate().equals("2018-08-12"));
+        assert(model.getReservationDetails().getRoomNumber() == 201);
+        assert(retrieveReservationHolder.getFirstName().equals("Joe"));
+        assert(retrieveReservationHolder.getLastName().equals("Schmoe"));
+        assert(retrieveReservationHolder.getPhoneNo().equals("555-333-6666"));
 
     }
 
     @Test
     public void saveCreateCurrentRate() throws InvalidDatesException, InvalidPromoException {
 
-        SaveReservationCommandModel commandModel = new SaveReservationCommandModel();
+        ReservationModel commandModel = new ReservationModel();
         //commandModel.setPersonCommandModel(testHelper.createTestInputPersonDetailsCommandModel());
-        List<InputPersonDetailsViewModel> personDetailsViewModels = new ArrayList<>();
+        List<Person> guests = new ArrayList<>();
 
         for (int i=0; i<5; i++) {
-            InputPersonDetailsViewModel personDetailsViewModel = testHelper.createTestInputPersonDetailsViewModel();
-            personDetailsViewModels.add(personDetailsViewModel);
+            Person person= testHelper.createTestPerson();
+            guests.add(person);
         }
-        commandModel.setPersonDetailsViewModels(personDetailsViewModels);
-        commandModel.setRoomsViewModel(testHelper.createTestRoomViewModel(201));
+        commandModel.setGuestDetails(guests);
+        commandModel.setReservationDetails(testHelper.createTestRoomCommandModel(201));
 
         when(roomRateService.retrieveCurrentRate(anyLong(), anyObject(), anyObject())).thenReturn(testHelper.createTestRoomRate());
         when(roomService.retrieveByRoomNumber(anyInt())).thenReturn(testHelper.createTestRoom());
@@ -170,36 +186,36 @@ public class ReservationWebServiceImplTest {
         when(promoService.retrieveByPromoTypeId(anyLong())).thenReturn(testHelper.createMultiplePromos(2));
 
         //Act
-        Reservation reservation = reservationWebService.saveCreate(commandModel);
+        ReservationModel reservation = reservationWebService.saveCreate(commandModel);
 
         //Assert
         //assert (reservation.getId() != null);
         //assert (reservation.getPromo() != null);
-        assert (reservation.getStartDate().equals(LocalDate.parse("2018-11-01")));
-        assert (reservation.getEndDate().equals(LocalDate.parse("2018-11-10")));
-        assert (reservation.getReservationHolder().getPerson().getFirstName().equals("Joe"));
-        assert (reservation.getReservationHolder().getPerson().getLastName().equals("Schmoe"));
+        assert (reservation.getReservationDetails().getStartDate().equals("2018-11-01"));
+        assert (reservation.getReservationDetails().getEndDate().equals("2018-11-10"));
+        assert (reservation.getGuestDetails().get(0).getFirstName().equals("Joe"));
+        assert (reservation.getGuestDetails().get(0).getLastName().equals("Schmoe"));
 
     }
 
     @Test
     public void saveCreateDefaultRate() throws InvalidDatesException, InvalidPromoException {
 
-        SaveReservationCommandModel commandModel = new SaveReservationCommandModel();
-        List<InputPersonDetailsViewModel> personDetailsViewModels = new ArrayList<>();
+        ReservationModel commandModel = new ReservationModel();
+        List<Person> guests = new ArrayList<>();
 
         for (int i=0; i<5; i++) {
-            InputPersonDetailsViewModel personDetailsViewModel = testHelper.createTestInputPersonDetailsViewModel();
-            personDetailsViewModels.add(personDetailsViewModel);
+            Person person= testHelper.createTestPerson();
+            guests.add(person);
         }
-        commandModel.setPersonDetailsViewModels(personDetailsViewModels);
+        commandModel.setGuestDetails(guests);
 
         SearchAvailableRoomsCommandModel searchAvailableRoomsCommandModel = testHelper.createTestRoomCommandModel(201);
         searchAvailableRoomsCommandModel.setStartDate("2018-06-01");
         searchAvailableRoomsCommandModel.setEndDate("2018-06-14");
-        SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
-        roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
-        commandModel.setRoomsViewModel(roomsViewModel);
+        //SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
+        //roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
+        commandModel.setReservationDetails(searchAvailableRoomsCommandModel);
 
         when(roomRateService.retrieveCurrentRate(anyLong(), anyObject(), anyObject())).thenReturn(testHelper.createTestRoomRate());
         when(roomService.retrieveByRoomNumber(anyInt())).thenReturn(testHelper.createTestRoom());
@@ -213,36 +229,37 @@ public class ReservationWebServiceImplTest {
         when(promoService.retrieveByPromoTypeId(anyLong())).thenReturn(testHelper.createMultiplePromos(2));
 
         //Act
-        Reservation reservation = reservationWebService.saveCreate(commandModel);
+        ReservationModel reservation = reservationWebService.saveCreate(commandModel);
 
         //Assert
         //assert (reservation.getId() != null);
         //assert (reservation.getPromo() != null);
-        assert (reservation.getStartDate().equals(LocalDate.parse("2018-06-01")));
-        assert (reservation.getEndDate().equals(LocalDate.parse("2018-06-14")));
-        assert (reservation.getReservationHolder().getPerson().getFirstName().equals("Joe"));
-        assert (reservation.getReservationHolder().getPerson().getLastName().equals("Schmoe"));
+        assert (reservation.getReservationDetails().getStartDate().equals("2018-06-01"));
+        assert (reservation.getReservationDetails().getEndDate().equals("2018-06-14"));
+        assert (reservation.getGuestDetails().get(0).getFirstName().equals("Joe"));
+        assert (reservation.getGuestDetails().get(0).getLastName().equals("Schmoe"));
 
     }
 
     @Test(expected = InvalidPromoException.class)
     public void saveCreateInvalidPromo() throws InvalidDatesException, InvalidPromoException {
 
-        SaveReservationCommandModel commandModel = new SaveReservationCommandModel();
-        List<InputPersonDetailsViewModel> personDetailsViewModels = new ArrayList<>();
+        ReservationModel commandModel = new ReservationModel();
+        List<Person> guests = new ArrayList<>();
 
         for (int i=0; i<5; i++) {
-            InputPersonDetailsViewModel personDetailsViewModel = testHelper.createTestInputPersonDetailsViewModel();
-            personDetailsViewModels.add(personDetailsViewModel);
+            Person person= testHelper.createTestPerson();
+            guests.add(person);
         }
-        commandModel.setPersonDetailsViewModels(personDetailsViewModels);
+        commandModel.setGuestDetails(guests);
 
         SearchAvailableRoomsCommandModel searchAvailableRoomsCommandModel = testHelper.createTestRoomCommandModel(201);
         searchAvailableRoomsCommandModel.setStartDate("2018-06-01");
         searchAvailableRoomsCommandModel.setEndDate("2018-06-14");
-        SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
-        roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
-        commandModel.setRoomsViewModel(roomsViewModel);
+        //SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
+        //roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
+        commandModel.setReservationDetails(searchAvailableRoomsCommandModel);
+        commandModel.setPromoCode("XXX");
 
         when(roomRateService.retrieveCurrentRate(anyLong(), anyObject(), anyObject())).thenReturn(testHelper.createTestRoomRate());
         when(roomService.retrieveByRoomNumber(anyInt())).thenReturn(testHelper.createTestRoom());
@@ -254,27 +271,27 @@ public class ReservationWebServiceImplTest {
         when(promoService.retrieveByPromoTypeId(anyLong())).thenReturn(testHelper.createMultiplePromos(2));
 
         //Act
-        Reservation reservation = reservationWebService.saveCreate(commandModel);
+        ReservationModel reservation = reservationWebService.saveCreate(commandModel);
     }
 
     @Test(expected = InvalidPromoException.class)
     public void saveCreateInvalidPromoDate() throws InvalidDatesException, InvalidPromoException {
 
-        SaveReservationCommandModel commandModel = new SaveReservationCommandModel();
-        List<InputPersonDetailsViewModel> personDetailsViewModels = new ArrayList<>();
+        ReservationModel commandModel = new ReservationModel();
+        List<Person> guests = new ArrayList<>();
 
         for (int i=0; i<5; i++) {
-            InputPersonDetailsViewModel personDetailsViewModel = testHelper.createTestInputPersonDetailsViewModel();
-            personDetailsViewModels.add(personDetailsViewModel);
+            Person person= testHelper.createTestPerson();
+            guests.add(person);
         }
-        commandModel.setPersonDetailsViewModels(personDetailsViewModels);
+        commandModel.setGuestDetails(guests);
 
         SearchAvailableRoomsCommandModel searchAvailableRoomsCommandModel = testHelper.createTestRoomCommandModel(201);
         searchAvailableRoomsCommandModel.setStartDate("2018-06-01");
         searchAvailableRoomsCommandModel.setEndDate("2018-06-14");
-        SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
-        roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
-        commandModel.setRoomsViewModel(roomsViewModel);
+        //SearchAvailableRoomsViewModel roomsViewModel = new SearchAvailableRoomsViewModel();
+        //roomsViewModel.setCommandModel(searchAvailableRoomsCommandModel);
+        commandModel.setReservationDetails(searchAvailableRoomsCommandModel);
 
         List<Promo> promos = new ArrayList<>();
         for (int i=0; i<3; i++) {
@@ -283,6 +300,7 @@ public class ReservationWebServiceImplTest {
             promo.setEndDate(LocalDate.parse("2017-01-02"));
             promos.add(promo);
         }
+        commandModel.setPromoCode(promos.get(0).getPromoType().getPromoCode());
 
         when(roomRateService.retrieveCurrentRate(anyLong(), anyObject(), anyObject())).thenReturn(testHelper.createTestRoomRate());
         when(roomService.retrieveByRoomNumber(anyInt())).thenReturn(testHelper.createTestRoom());
@@ -294,7 +312,7 @@ public class ReservationWebServiceImplTest {
         when(promoService.retrieveByPromoTypeId(anyLong())).thenReturn(promos);
 
         //Act
-        Reservation reservation = reservationWebService.saveCreate(commandModel);
+        ReservationModel reservation = reservationWebService.saveCreate(commandModel);
     }
 
 

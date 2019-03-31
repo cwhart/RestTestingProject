@@ -80,8 +80,8 @@ public class ReservationServiceImplTest {
         reservationService.create(reservation);
 
         //Change some stuff
-        reservation.setStartDate(LocalDate.parse("2018-09-27"));
-        reservation.setEndDate(LocalDate.parse("2018-10-02"));
+        reservation.setStartDate(("2018-09-27"));
+        reservation.setEndDate(("2018-10-02"));
 
         //Act
         reservationService.update(reservation);

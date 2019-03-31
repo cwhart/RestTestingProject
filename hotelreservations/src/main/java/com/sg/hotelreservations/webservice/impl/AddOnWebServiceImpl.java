@@ -6,6 +6,7 @@ import com.sg.hotelreservations.util.PagingUtils;
 import com.sg.hotelreservations.viewmodels.addon.AddOnViewModel;
 import com.sg.hotelreservations.viewmodels.addon.ListAddOnViewModel;
 import com.sg.hotelreservations.webservice.webinterface.AddOnWebService;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -66,7 +67,7 @@ public class AddOnWebServiceImpl implements AddOnWebService {
     public AddOnBillDetail addAddOnToBill(Long addOnId, Long billId) {
 
         Bill bill = billService.retrieve(billId);
-        LocalDate date = bill.getReservation().getStartDate();
+        LocalDate date = LocalDate.parse(bill.getReservation().getStartDate());
         AddOnRate addOnRate = addOnRateService.retrieveDefaultRate(addOnId);
 
         if (addOnRateService.retrieveCurrentRate(addOnId, date).getId() != null) {

@@ -3,12 +3,15 @@ package com.sg.hotelreservations.controller;
 import com.sg.hotelreservations.dto.Reservation;
 import com.sg.hotelreservations.viewmodels.reservation.*;
 import com.sg.hotelreservations.viewmodels.room.ListRoomViewModel;
+import com.sg.hotelreservations.viewmodels.room.RoomViewModel;
 import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
 import com.sg.hotelreservations.webservice.exception.InvalidPromoException;
 import com.sg.hotelreservations.webservice.webinterface.ReservationWebService;
 import com.sg.hotelreservations.webservice.webinterface.RoomWebService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.h2.util.StringUtils;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +22,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
+//@Controller
 @RequestMapping(value = "/reservation")
 public class ReservationController {
 
@@ -36,9 +40,9 @@ public class ReservationController {
 
 
     //Method to list rooms based on search criteria. If no criteria entered, list all rooms.
-    @RequestMapping(value = "/displayRooms", method = RequestMethod.GET)
+    @GetMapping(value = "/displayRooms")
     //@ApiOperation(value = "Find all data by createDts range (limit to 1000 results)", notes = "Example date/time value:  2017-11-28T12:40:00.000Z")
-    public String display(@RequestParam(required = false) Integer offset, Model model, String message) {
+    public @ResponseBody SearchAvailableRoomsViewModel display(@RequestParam(required = false) Integer offset, Model model, String message) {
 
         if (offset == null) {
             offset = 0;
@@ -58,173 +62,157 @@ public class ReservationController {
 
 
 
-        return "/reservation/searchRooms";
+        return viewModel;
 
     }
 
-    @RequestMapping(value = "/searchRooms", method = RequestMethod.GET)
-    public String search(SearchAvailableRoomsCommandModel commandModel, Model model) throws InvalidDatesException{
+    @GetMapping(value = "/searchRooms/{startDate}/{endDate}/{numInParty}")
+    public @ResponseBody List<RoomViewModel> search(@PathVariable(value = "startDate", required = true) String startDate,
+                        @PathVariable(value = "endDate", required = true) String endDate,
+                        @PathVariable(value = "numInParty", required = true) int numInParty, Model model) throws InvalidDatesException{
 
         //Get startdate, enddate and numpersons from commandModel and input into this method:
-        LocalDate startDate = LocalDate.parse(commandModel.getStartDate());
-        LocalDate endDate = LocalDate.parse(commandModel.getEndDate());
-        int numInParty = commandModel.getNumInParty();
-        ListRoomViewModel viewModel = new ListRoomViewModel();
+
+        List<RoomViewModel> roomViewModels = new ArrayList<>();
 
         try {
-            viewModel = roomWebService.getReservationRoomListViewModel(0, numInParty,
-                    startDate, endDate);
+            roomViewModels = roomWebService.getReservationRoomListViewModel(0, numInParty,
+                    LocalDate.parse(startDate), LocalDate.parse(endDate));
         } catch (InvalidDatesException e) {
-            viewModel.setMessage(e.getMessage());
+            //roomViewModels.setMessage(e.getMessage());
         }
-
-        model.addAttribute("commandModel", commandModel);
-        model.addAttribute("viewModel", viewModel);
-
-        return "/reservation/searchRooms";
+        return roomViewModels;
 
     }
 
-    @RequestMapping(value = "/searchResults", method = RequestMethod.GET)
-    public String searchResults(String roomNum, String startDate, String endDate, String numInParty, Model model) {
+    @GetMapping(value = "/searchResults")
+    public @ResponseBody
+    ReservationModel searchResults(String roomNum, String startDate, String endDate, String numInParty, Model model) {
 
         if(startDate == null || startDate.equals("") || endDate == null || endDate.equals("")) {
             String errorMsg = "Please enter start date, end date and number in party.";
-            return "redirect: /reservation/displayRooms?message=" + errorMsg;
+            //return "redirect: /reservation/displayRooms?message=" + errorMsg;
         }
 
         Integer numPersons = Integer.valueOf(numInParty);
-        List<InputPersonDetailsViewModel> inputPersonDetailsViewModels = new ArrayList<>();
-
-        for (int i=0; i<numPersons; i++) {
-            InputPersonDetailsViewModel personDetailsViewModel = reservationWebService.getInputPersonDetailsViewModel();
-            inputPersonDetailsViewModels.add(personDetailsViewModel);
-        }
+        List<InputPersonDetailsCommandModel> inputPersonDetailsCommandModels = new ArrayList<>();
 
         SearchAvailableRoomsCommandModel searchCommandModel = new SearchAvailableRoomsCommandModel();
         searchCommandModel.setNumInParty(numPersons);
-        searchCommandModel.setRoomNum(Integer.parseInt(roomNum.trim()));
+        searchCommandModel.setRoomNumber(Integer.parseInt(roomNum.trim()));
         searchCommandModel.setStartDate(startDate);
         searchCommandModel.setEndDate(endDate);
-        SearchAvailableRoomsViewModel searchAvailableRoomsViewModel = new SearchAvailableRoomsViewModel();
-        searchAvailableRoomsViewModel.setCommandModel(searchCommandModel);
 
 
-//        model.addAttribute("commandModel", personDetailsViewModel.getCommandModel());
-//        model.addAttribute("searchCommandModel", searchCommandModel);
+        ReservationModel reservationModel = new ReservationModel();
+        reservationModel.setReservationDetails(searchCommandModel);
+        model.addAttribute("commandModel", reservationModel);
 
-        SaveReservationCommandModel saveReservationCommandModel = new SaveReservationCommandModel();
-        saveReservationCommandModel.setRoomsViewModel(searchAvailableRoomsViewModel);
-        saveReservationCommandModel.setPersonDetailsViewModels(inputPersonDetailsViewModels);
-        //model.addAttribute("personCommandModels", saveReservationCommandModel.getPersonDetailsCommandModels());
-        model.addAttribute("commandModel", saveReservationCommandModel);
-
-        return "/reservation/personDetails";
+        return reservationModel;
 
     }
 
-    @RequestMapping(value = "/personDetails", method = RequestMethod.POST)
-    public String saveCreate(@Valid @ModelAttribute("commandModel") SaveReservationCommandModel commandModel,
-                                 BindingResult bindingResult, Model model) {
+    @ApiOperation(value = "Save a reservation.", response = Reservation.class)
+    @PostMapping(value = "/saveCreate", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public @ResponseBody ReservationModel saveCreate(@ApiParam(name="saveReservation", required=true, value="Data required to save a reservation.")
+                                 @Valid @RequestBody ReservationModel commandModel,
+                                 BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
             InputPersonDetailsViewModel viewModel =
                     reservationWebService.getInputPersonDetailsViewModel();
 
-            model.addAttribute("viewModel",viewModel);
-            model.addAttribute("commandModel",viewModel.getCommandModel());
-            return "/reservation/personDetails";
         }
 
 
-        Reservation reservation = new Reservation();
+        ReservationModel reservationModel = new ReservationModel();
 
         try {
-            reservation = reservationWebService.saveCreate(commandModel);
-        } catch(InvalidDatesException | InvalidPromoException e) {
-            InputPersonDetailsViewModel viewModel =
-                    reservationWebService.getInputPersonDetailsViewModel();
-            viewModel.setCommandModel(commandModel.getPersonDetailsViewModels().get(0).getCommandModel());
-            viewModel.setMessage(e.getMessage());
+            reservationModel = reservationWebService.saveCreate(commandModel);
+        } catch(InvalidDatesException | InvalidPromoException | NullPointerException e) {
 
-            model.addAttribute("viewModel",viewModel);
-            model.addAttribute("commandModel", commandModel);
-
-            return "reservation/personDetails";
         }
-
-        return "redirect:/reservation/profile?id=" + reservation.getId().toString();
+        return reservationModel;
 
 
     }
 
-    @RequestMapping(value = "/profile")
-    public String profile(@RequestParam Long id, Model model) {
-        ProfileReservationViewModel viewModel = reservationWebService.getReservationProfileViewModel(id);
+//    @GetMapping(value = "/profile")
+//    public @ResponseBody ProfileReservationViewModelDEPRECATED profile(@RequestParam Long id, Model model) {
+//        ProfileReservationViewModelDEPRECATED viewModel = reservationWebService.getReservationProfileViewModel(id);
+//
+//        model.addAttribute("viewModel",viewModel);
+//
+//        return viewModel;
+//    }
 
-        model.addAttribute("viewModel",viewModel);
-
-        return "/reservation/profile";
+    @GetMapping(value = "retrieveAll")
+    public @ResponseBody List<Reservation> retrieveAllReservations() {
+        return reservationWebService.retrieveAllReservations();
     }
 
-    @RequestMapping(value = "/searchReservation")
-    public String searchReservation(Model model, String reservationNumber) {
+    @GetMapping(value = "/searchReservation/{id}")
+    public @ResponseBody
+    ReservationModel searchReservation(Model model,
+                                       @PathVariable(value = "id", required = true)String id) {
         SearchReservationCommandModel commandModel = reservationWebService.getSearchReservationCommandModel();
+        ReservationModel reservationModel = new ReservationModel();
 
-        if (reservationNumber != null) {
-            if(!StringUtils.isNumber(reservationNumber)) {
+            if (id != null) {
+            if(!StringUtils.isNumber(id)) {
                 commandModel.setMessage("Invalid reservation number, please try again.");
             } else {
 
-                Long reservationId = Long.valueOf(reservationNumber);
-                ProfileReservationViewModel reservationViewModel =
-                        reservationWebService.getReservationProfileViewModel(reservationId);
-                if (reservationViewModel == null) {
+                Long reservationId = Long.valueOf(id);
+                reservationModel =
+                        reservationWebService.getReservationModel(reservationId);
+                if (reservationModel == null) {
                     commandModel.setMessage("Reservation not found.");
 
                 } else {
-                    model.addAttribute("viewModel", reservationViewModel);
+                    model.addAttribute("viewModel", reservationModel);
                 }
             }
         }
 
         model.addAttribute("commandModel",commandModel);
 
-        return "/reservation/searchReservation";
+        return reservationModel;
     }
 
-    @RequestMapping(value = "/cancelReservation")
-    public String cancelReservation(Model model, String reservationNumber) {
+    @DeleteMapping(value = "/cancelReservation")
+    public void cancelReservation(Model model, String reservationNumber) {
 
         Long reservationId = Long.valueOf(reservationNumber);
         reservationWebService.cancelReservation(reservationId);
 
-        return "/reservation/cancelSuccessful";
+        return ;
 
     }
 
-    @RequestMapping (value= "/edit")
-    public String edit(@RequestParam Long id, Model model){
+    @GetMapping (value= "/edit")
+    public @ResponseBody EditReservationViewModel edit(@RequestParam Long id, Model model){
 
         EditReservationViewModel viewModel = reservationWebService.getEditReservationViewModel(id);
         model.addAttribute("viewModel", viewModel);
-        return "/reservation/edit";
+        return viewModel;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public  String saveEdit(@ModelAttribute("viewModel") EditReservationViewModel viewModel, BindingResult bindingResult, Model model) {
+    @PostMapping(value = "/edit")
+    public  @ResponseBody Reservation saveEdit(@ModelAttribute("viewModel") EditReservationViewModel viewModel, BindingResult bindingResult, Model model) {
 
         EditReservationCommandModel commandModel = viewModel.getCommandModel();
+        Reservation updatedRes = new Reservation();
 
         try {
-            reservationWebService.saveEditReservationCommandModel(commandModel);
+            updatedRes = reservationWebService.saveEditReservationCommandModel(commandModel);
         } catch (InvalidPromoException ex) {
             viewModel = reservationWebService.getEditReservationViewModel(commandModel.getReservationId());
             viewModel.setMessage(ex.getMessage());
             model.addAttribute("viewModel", viewModel);
-            return "reservation/edit";
         }
-        return "redirect:reservation/profile?id=" + commandModel.getReservationId();
+        return updatedRes;
 
     }
 

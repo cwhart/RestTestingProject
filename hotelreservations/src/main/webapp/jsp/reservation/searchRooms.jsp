@@ -77,7 +77,7 @@
             <c:forEach items="${viewModel.rooms}" var="room">
                 <tr>
                     <td>${room.type}
-                        <button><a href="${pageContext.request.contextPath}/reservation/searchResults?roomNum=${room.roomNumber}
+                        <button><a href="${pageContext.request.contextPath}/reservation/searchResults?roomNumber=${room.roomNumber}
                             &startDate=${commandModel.startDate}&endDate=${commandModel.endDate}&numInParty=${commandModel.numInParty}">
                             Reserve Room</a></button>
                     </td>

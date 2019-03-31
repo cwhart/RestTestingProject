@@ -47,10 +47,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2" for="${commandModel.roomsViewModel.commandModel.roomNum}">Room Number:</label>
+        <label class="col-md-2" for="${commandModel.roomsViewModel.commandModel.roomNumber}">Room Number:</label>
         <div class="col-md-10">
-            <sf:input path="roomsViewModel.commandModel.roomNum"></sf:input>
-            <sf:errors path="roomsViewModel.commandModel.roomNum"></sf:errors>
+            <sf:input path="roomsViewModel.commandModel.roomNumber"></sf:input>
+            <sf:errors path="roomsViewModel.commandModel.roomNumber"></sf:errors>
         </div>
     </div>
     <div class="form-group">

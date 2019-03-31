@@ -39,6 +39,21 @@ public class RoomWebServiceImpl implements RoomWebService {
     }
 
     @Override
+    public List<RoomViewModel> getListOfRooms() {
+        List<Room> roomList = roomService.retrieveAll(Integer.MAX_VALUE, 0);
+
+        return translate(roomList, null, null);
+    }
+
+    @Override
+    public RoomViewModel retrieveRoom(int roomNumber) {
+        Room room = roomService.retrieveByRoomNumber(roomNumber);
+        List<Room> roomList = new ArrayList<>();
+        roomList.add(room);
+        return translate(roomList, null, null).get(0);
+    }
+
+    @Override
     public ListRoomViewModel getRoomListViewModel(Integer offset) {
         Integer limit = 10;
         ListRoomViewModel viewModel = new ListRoomViewModel();
@@ -58,23 +73,20 @@ public class RoomWebServiceImpl implements RoomWebService {
     }
 
     @Override
-    public ListRoomViewModel getReservationRoomListViewModel(Integer offset, Integer numPersons,
+    public List<RoomViewModel> getReservationRoomListViewModel(Integer offset, Integer numPersons,
                                            LocalDate start, LocalDate end) throws InvalidDatesException {
 
         Integer limit = 10;
-        ListRoomViewModel viewModel = new ListRoomViewModel();
 
         int selectedPage = PagingUtils.getSelectedPage(offset, limit);
         int[] pageNumbers = PagingUtils.getPageNumbers(5, selectedPage);
         SearchAvailableRoomsCommandModel commandModel = new SearchAvailableRoomsCommandModel();
         if (start.isBefore(LocalDate.now())) {
             throw new InvalidDatesException("Start date cannot be before today, please try again.") ;
-//            viewModel.setMessage("Start date cannot be before today, please try again.");
-//            return viewModel;
+
         }
 
         if(end.isBefore(start)) {
-            //viewModel.setMessage("Start date cannot be after end date, please try again.");
             throw new InvalidDatesException("Start date cannot be after end date, please try again.") ;
 
         }
@@ -102,13 +114,7 @@ public class RoomWebServiceImpl implements RoomWebService {
 
         List<RoomViewModel> rooms = translate(roomList, start, end);
 
-        viewModel.setSelectedPage(selectedPage);
-        viewModel.setPageNumbers(pageNumbers);
-        viewModel.setRooms(rooms);
-
-        if (rooms.size()==0) viewModel.setMessage("Sorry, there are no rooms available for those dates.");
-
-        return viewModel;
+        return rooms;
 
     }
 
@@ -156,8 +162,6 @@ public class RoomWebServiceImpl implements RoomWebService {
 
     @Override
     public void deleteRoom(Long id) {
-
-
 
     }
 }

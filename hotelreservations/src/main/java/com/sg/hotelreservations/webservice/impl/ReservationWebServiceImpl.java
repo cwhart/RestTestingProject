@@ -68,6 +68,12 @@ public class ReservationWebServiceImpl implements ReservationWebService {
     }
 
     @Override
+    public List<Reservation> retrieveAllReservations() {
+        return reservationService.retrieveAll(Integer.MAX_VALUE, 0);
+    }
+
+
+    @Override
     public InputPersonDetailsViewModel getInputPersonDetailsViewModel() {
 
         InputPersonDetailsViewModel viewModel = new InputPersonDetailsViewModel();
@@ -76,11 +82,10 @@ public class ReservationWebServiceImpl implements ReservationWebService {
     }
 
     @Override
-    public ProfileReservationViewModel getReservationProfileViewModel(Long id) {
+    public ReservationModel getReservationModel(Long id) {
         //Instantiate stuff
-        ProfileReservationViewModel viewModel = new ProfileReservationViewModel();
+        ReservationModel model = new ReservationModel();
 
-        //Look up stuff
         if (reservationService.retrieve(id) == null) return null;
         Reservation reservation = reservationService.retrieve(id);
 
@@ -95,37 +100,29 @@ public class ReservationWebServiceImpl implements ReservationWebService {
             personList.add(person);
         }
 
-        List<String> guestNames = new ArrayList<>();
-        for (int i=0; i<personList.size(); i++) {
-            Person person = personList.get(i);
-            String personName = person.getFirstName() + " " + person.getLastName();
-            guestNames.add(personName);
-        }
-
-        viewModel.setGuests(guestNames);
+        model.setGuestDetails(personList);
 
         List<ReservationRoom> reservationRoomList =
                     reservationRoomService.retrieveByReservationId(reservation);
 
-        viewModel.setEmail(reservation.getReservationHolder().getPerson().getEmail());
-        viewModel.setEndDate(reservation.getEndDate().toString());
-        viewModel.setFirstName(reservation.getReservationHolder().getPerson().getFirstName());
-        viewModel.setLastName(reservation.getReservationHolder().getPerson().getLastName());
-        viewModel.setPhone(reservation.getReservationHolder().getPerson().getPhoneNo());
-        viewModel.setReservationId(id);
+        SearchAvailableRoomsCommandModel reservationDetails = new SearchAvailableRoomsCommandModel();
+        reservationDetails.setStartDate(reservation.getStartDate().toString());
+        reservationDetails.setEndDate(reservation.getEndDate().toString());
+
+        model.setReservationId(id);
         if(reservation.getPromo() != null) {
-            viewModel.setPromoCode(reservation.getPromo().getPromoType().getPromoCode());
+            model.setPromoCode(reservation.getPromo().getPromoType().getPromoCode());
         }
         List<ReservationRoom> rooms = new ArrayList<>();
         //for now, we're only implementing 1 room per reservation, so just set the first one.
         int roomNumber = reservationRoomList.get(0).getRoom().getRoomNumber();
-        viewModel.setRoomNumber(String.valueOf(roomNumber));
-        viewModel.setStartDate(reservation.getStartDate().toString());
+        reservationDetails.setRoomNumber(roomNumber);
+        model.setReservationDetails(reservationDetails);
         Bill bill = billService.retrieveByReservationId(id);
-        viewModel.setBillId(bill.getId());
+        model.setBillId(bill.getId());
 
 //        //Return stuff
-        return viewModel;
+        return model;
     }
 
     @Override
@@ -134,40 +131,37 @@ public class ReservationWebServiceImpl implements ReservationWebService {
     }
 
     @Override
-    public Reservation saveCreate(SaveReservationCommandModel saveReservationCommandModel) throws InvalidDatesException,
+    public ReservationModel saveCreate(ReservationModel reservationModel) throws InvalidDatesException,
             InvalidPromoException {
 
         Reservation reservation = new Reservation();
         List<Person> persons = new ArrayList<>();
-        int numPersons = saveReservationCommandModel.getPersonDetailsViewModels().size();
+        int numPersons = reservationModel.getGuestDetails().size();
         ReservationHolder reservationHolder = new ReservationHolder();
         ReservationRoom reservationRoom = new ReservationRoom();
         Promo promo = new Promo();
         List<Promo> promos = new ArrayList<>();
-        String promoCode = saveReservationCommandModel.getPromoCode();
+        String promoCode = reservationModel.getPromoCode();
         Bill bill = new Bill();
 
-        int roomNum = saveReservationCommandModel.getRoomsViewModel().getCommandModel().getRoomNum();
-        LocalDate startDate = LocalDate.parse(saveReservationCommandModel.getRoomsViewModel().getCommandModel().getStartDate());
-        LocalDate endDate = LocalDate.parse(saveReservationCommandModel.getRoomsViewModel().getCommandModel().getEndDate());
+        int roomNum = reservationModel.getReservationDetails().getRoomNumber();
+        LocalDate startDate = LocalDate.parse(reservationModel.getReservationDetails().getStartDate());
+        LocalDate endDate = LocalDate.parse(reservationModel.getReservationDetails().getEndDate());
         if (reservationRoomService.isBookedForDateRange(roomNum, startDate, endDate)) {
             throw new InvalidDatesException("Sorry, this room is already booked. Room #: " + String.valueOf(roomNum));
         }
 
-        for (InputPersonDetailsViewModel viewModel : saveReservationCommandModel.getPersonDetailsViewModels()) {
-            InputPersonDetailsCommandModel commandModel = viewModel.getCommandModel();
-            Person person = translatePersonFromCommandModel(commandModel);
-            //person = personService.create(person);
+        for (Person person : reservationModel.getGuestDetails()) {
+            person = personService.create(person);
             persons.add(person);
         }
 
         //Reservation Holder will always be the first in the list
         reservationHolder.setPerson(persons.get(0));
         reservationHolderService.create(reservationHolder);
+        reservationModel.getGuestDetails().get(0).setId(reservationHolder.getPerson().getId());
 
-
-
-        if(promoCode != "") {
+        if(promoCode != "" && promoCode != null) {
             PromoType promoType = promoTypeService.retrieveByPromoCode(promoCode);
             if (promoType == null) {
                 throw new InvalidPromoException("Promotion not found: " + String.valueOf(promoCode));
@@ -186,9 +180,10 @@ public class ReservationWebServiceImpl implements ReservationWebService {
         }
 
         reservation.setReservationHolder(reservationHolder);
-        reservation.setStartDate(LocalDate.parse(saveReservationCommandModel.getRoomsViewModel().getCommandModel().getStartDate()));
-        reservation.setEndDate(LocalDate.parse(saveReservationCommandModel.getRoomsViewModel().getCommandModel().getEndDate()));
+        reservation.setStartDate(reservationModel.getReservationDetails().getStartDate());
+        reservation.setEndDate(reservationModel.getReservationDetails().getEndDate());
         reservation = reservationService.create(reservation);
+        reservationModel.setReservationId(reservation.getId());
 
         for (int i=0; i<numPersons; i++) {
             Guest guest = new Guest();
@@ -206,10 +201,10 @@ public class ReservationWebServiceImpl implements ReservationWebService {
         reservationRoom.setReservation(reservation);
         reservationRoomService.create(reservationRoom);
 
-
         bill.setReservation(reservation);
         bill.setTotal(BigDecimal.valueOf(0));
         billService.create(bill);
+        reservationModel.setBillId(bill.getId());
 
         //Iterate over the days in the reservation and create a RoomBillDetail object with the day's
         //room charges
@@ -250,7 +245,7 @@ public class ReservationWebServiceImpl implements ReservationWebService {
             roomBillDetailService.create(roomBillDetail);
         }
 
-        return reservation;
+        return reservationModel;
 
     }
 
@@ -259,7 +254,7 @@ public class ReservationWebServiceImpl implements ReservationWebService {
         person.setFirstName(commandModel.getFirstName());
         person.setLastName(commandModel.getLastName());
         if(commandModel.getDateOfBirth() != null && !commandModel.getDateOfBirth().equals("")) {
-            person.setDateOfBirth(LocalDate.parse(commandModel.getDateOfBirth()));
+            person.setDateOfBirth((commandModel.getDateOfBirth()));
         }
         if(commandModel.getPhone() != null && !commandModel.getPhone().equals("")) {
             person.setPhoneNo(commandModel.getPhone());
@@ -412,10 +407,6 @@ public class ReservationWebServiceImpl implements ReservationWebService {
                 reservation.setPromo(promo);
             }
         }
-
-        //PromoType promoType = promoTypeService.retrieveByPromoCode(commandModel.getPromoCode());
-        //List<Promo> promos = promoService.retrieveByPromoTypeId(promoType.getId());
-        //reservation.setPromo(promos.get(0));
         reservation.setReservationHolder(reservationHolder);
 
         return reservationService.update(reservation);

@@ -68,8 +68,10 @@ public class ReservationRoomServiceImpl implements ReservationRoomService {
         Boolean returnValue = false;
         Room room = roomDAO.retrieveByRoomNum(roomNum);
 
-        for (LocalDate thisDate = start; thisDate.isBefore(end); thisDate = thisDate.plusDays(1)) {
-            if (isBooked(room.getId(), thisDate)) returnValue = true;
+        if(room != null) {
+            for (LocalDate thisDate = start; thisDate.isBefore(end); thisDate = thisDate.plusDays(1)) {
+                if (isBooked(room.getId(), thisDate)) returnValue = true;
+            }
         }
         return returnValue;
     }

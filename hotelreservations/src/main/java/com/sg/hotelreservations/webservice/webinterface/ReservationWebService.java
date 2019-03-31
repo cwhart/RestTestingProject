@@ -5,15 +5,20 @@ import com.sg.hotelreservations.viewmodels.reservation.*;
 import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
 import com.sg.hotelreservations.webservice.exception.InvalidPromoException;
 
+import java.util.List;
+
 public interface ReservationWebService {
 
-    public Reservation saveCreate  (SaveReservationCommandModel saveReservationCommandModel)
+    public ReservationModel saveCreate  (ReservationModel reservationModel)
             throws InvalidDatesException, InvalidPromoException;
     public SearchAvailableRoomsViewModel getSearchAvailableRoomsViewModel();
     public InputPersonDetailsViewModel getInputPersonDetailsViewModel();
-    public ProfileReservationViewModel getReservationProfileViewModel(Long id);
+    //public ProfileReservationViewModelDEPRECATED getReservationProfileViewModel(Long id);
+    public ReservationModel getReservationModel(Long id);
     public SearchReservationCommandModel getSearchReservationCommandModel();
     public void cancelReservation(Long reservationId);
     EditReservationViewModel getEditReservationViewModel(Long id);
     public Reservation saveEditReservationCommandModel(EditReservationCommandModel commandModel) throws InvalidPromoException;
+    public List<Reservation> retrieveAllReservations();
+
 }
