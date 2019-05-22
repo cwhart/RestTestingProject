@@ -4,7 +4,6 @@ import com.sg.hotelreservations.dto.*;
 import com.sg.hotelreservations.service.serviceinterface.*;
 import com.sg.hotelreservations.util.PagingUtils;
 import com.sg.hotelreservations.viewmodels.addon.AddOnViewModel;
-import com.sg.hotelreservations.viewmodels.addon.ListAddOnViewModel;
 import com.sg.hotelreservations.webservice.webinterface.AddOnWebService;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
@@ -39,9 +38,9 @@ public class AddOnWebServiceImpl implements AddOnWebService {
     }
 
     @Override
-    public ListAddOnViewModel getListAddOnViewModel(Integer offset, Long billId) {
+    public List<AddOnViewModel> getListAddOnViewModel(Integer offset) {
         Integer limit = 10;
-        ListAddOnViewModel viewModel = new ListAddOnViewModel();
+        List<AddOnViewModel> viewModels = new ArrayList<>();
 
         int selectedPage = PagingUtils.getSelectedPage(offset, limit);
         int[] pageNumbers = PagingUtils.getPageNumbers(5, selectedPage);
@@ -50,12 +49,7 @@ public class AddOnWebServiceImpl implements AddOnWebService {
         List<AddOn> addOns = addOnService.retrieveAll(limit, offset);
         List<AddOnViewModel> addOnViewModels = translate(addOns);
 
-        viewModel.setSelectedPage(selectedPage);
-        viewModel.setPageNumbers(pageNumbers);
-        viewModel.setAddOns(addOnViewModels);
-        viewModel.setBillId(billId);
-
-        return viewModel;
+        return addOnViewModels;
     }
 
     @Override

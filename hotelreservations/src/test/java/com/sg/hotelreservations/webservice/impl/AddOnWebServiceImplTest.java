@@ -5,7 +5,7 @@ import com.sg.hotelreservations.config.UnitTestConfiguration;
 import com.sg.hotelreservations.dao.daoimpl.AddOnBillDetailDAOImpl;
 import com.sg.hotelreservations.dto.*;
 import com.sg.hotelreservations.service.serviceinterface.*;
-import com.sg.hotelreservations.viewmodels.addon.ListAddOnViewModel;
+import com.sg.hotelreservations.viewmodels.addon.AddOnViewModel;
 import com.sg.hotelreservations.webservice.webinterface.AddOnWebService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,15 +76,10 @@ public class AddOnWebServiceImplTest {
         when(addOnRateService.retrieveByAddOnId(anyLong())).thenReturn(addOnRateList);
         when(addOnService.retrieveAll(anyInt(), anyInt())).thenReturn(addOns);
 
-        Long billId = testHelper.createTestBill().getId();
+        List<AddOnViewModel> addOnList = addOnWebService.getListAddOnViewModel(0);
 
-        ListAddOnViewModel listAddOnViewModel = addOnWebService.getListAddOnViewModel(0, billId);
-
-        assertEquals(8, listAddOnViewModel.getAddOns().size());
-        assertEquals(billId, listAddOnViewModel.getBillId());
-        assertEquals(1, listAddOnViewModel.getPageNumbers()[0]);
-        assertEquals(5, listAddOnViewModel.getPageNumbers().length);
-        assertEquals(1, listAddOnViewModel.getSelectedPage());
+        assertEquals(8, addOnList.size());
+        assertEquals("Pedicure", addOnList.get(0).getType());
     }
 
 

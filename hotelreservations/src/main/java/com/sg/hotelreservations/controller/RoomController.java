@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Controller
+@CrossOrigin
 @RequestMapping(value = "/room")
 public class RoomController {
 

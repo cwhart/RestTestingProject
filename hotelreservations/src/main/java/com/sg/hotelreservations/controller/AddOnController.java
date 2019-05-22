@@ -1,14 +1,18 @@
 package com.sg.hotelreservations.controller;
 
-import com.sg.hotelreservations.viewmodels.addon.ListAddOnViewModel;
+import com.sg.hotelreservations.dto.AddOnBillDetail;
+import com.sg.hotelreservations.viewmodels.addon.AddOnViewModel;
 import com.sg.hotelreservations.webservice.webinterface.AddOnWebService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
+@CrossOrigin
 @RequestMapping(value = "/addon")
 public class AddOnController {
 
@@ -19,28 +23,27 @@ public class AddOnController {
     }
 
     @RequestMapping(value = "/listAddOns", method = RequestMethod.GET)
-    public String display(@RequestParam(required = false) Integer offset, Long billId, Model model) {
+    public @ResponseBody List<AddOnViewModel> display(@RequestParam(required = false) Integer offset) {
 
         if(offset == null) {
             offset = 0;
         }
 
-        ListAddOnViewModel addOnViewModel = addOnWebService.getListAddOnViewModel(offset, billId);
+        List<AddOnViewModel> addOnViewModels = addOnWebService.getListAddOnViewModel(offset);
 
-        model.addAttribute("viewModel", addOnViewModel);
-        model.addAttribute("billId", billId);
-
-        return "addon/listAddOns";
+        return addOnViewModels;
 
     }
 
-    @RequestMapping(value = "/selectAddOn", method = RequestMethod.GET)
-    public String selectAddOn(Long addOnId, Long billId, Model model) {
+    @RequestMapping(value = "/selectAddOn/{addOnId}/{billId}", method = RequestMethod.GET)
+    public @ResponseBody
+    AddOnBillDetail selectAddOn(@PathVariable(value = "addOnId", required = true) Long addOnId,
+                                @PathVariable(value = "billId", required = true) Long billId) {
 
-        addOnWebService.addAddOnToBill(addOnId, billId);
+        AddOnBillDetail addOnBillDetail = addOnWebService.addAddOnToBill(addOnId, billId);
 
         //return "addon/listAddOns";
-        return "redirect:/addon/listAddOns?billId=" + billId;
+        return addOnBillDetail;
 
     }
 

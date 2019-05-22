@@ -92,7 +92,10 @@ public class BillWebServiceImpl implements BillWebService {
         if(getAddOnBillDetailViewModels(billId) != null && getAddOnBillDetailViewModels(billId).size() != 0) {
             billViewModel.setAddOnBillDetailViewModels(getAddOnBillDetailViewModels(billId));
         }
-        billViewModel.setReservationHolderName("placeholder");
+        String reservationHolderFirstName = bill.getReservation().getReservationHolder().getPerson().getFirstName();
+        String reservationHolderLastName = bill.getReservation().getReservationHolder().getPerson().getLastName();
+
+        billViewModel.setReservationHolderName(reservationHolderFirstName + " " + reservationHolderLastName);
         billViewModel.setTotal(bill.getTotal().toString());
 
         return billViewModel;

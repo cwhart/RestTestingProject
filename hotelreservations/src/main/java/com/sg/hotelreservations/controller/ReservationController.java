@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 //@Controller
 @RequestMapping(value = "/reservation")
 public class ReservationController {
@@ -114,7 +115,6 @@ public class ReservationController {
 
     @ApiOperation(value = "Save a reservation.", response = Reservation.class)
     @PostMapping(value = "/saveCreate", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin
     public @ResponseBody ReservationModel saveCreate(@ApiParam(name="saveReservation", required=true, value="Data required to save a reservation.")
                                  @Valid @RequestBody ReservationModel commandModel,
                                  BindingResult bindingResult) {
