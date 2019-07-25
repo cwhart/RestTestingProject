@@ -2,6 +2,7 @@ package com.sg.hotelreservations.webservice.impl;
 
 import com.sg.hotelreservations.dto.Amenity;
 import com.sg.hotelreservations.dto.Room;
+import com.sg.hotelreservations.webservice.exception.RoomNotFoundException;
 import com.sg.hotelreservations.service.serviceinterface.AmenityService;
 import com.sg.hotelreservations.service.serviceinterface.ReservationRoomService;
 import com.sg.hotelreservations.service.serviceinterface.RoomRateService;
@@ -9,7 +10,6 @@ import com.sg.hotelreservations.service.serviceinterface.RoomService;
 import com.sg.hotelreservations.util.PagingUtils;
 import com.sg.hotelreservations.viewmodels.reservation.SearchAvailableRoomsCommandModel;
 import com.sg.hotelreservations.viewmodels.reservation.SearchAvailableRoomsViewModel;
-import com.sg.hotelreservations.viewmodels.room.AmenityViewModel;
 import com.sg.hotelreservations.viewmodels.room.ListRoomViewModel;
 import com.sg.hotelreservations.viewmodels.room.RoomViewModel;
 import com.sg.hotelreservations.webservice.exception.InvalidDatesException;
@@ -46,11 +46,17 @@ public class RoomWebServiceImpl implements RoomWebService {
     }
 
     @Override
-    public RoomViewModel retrieveRoom(int roomNumber) {
+    public RoomViewModel retrieveRoom(int roomNumber) throws RoomNotFoundException {
+        RoomViewModel roomViewModel = new RoomViewModel();
         Room room = roomService.retrieveByRoomNumber(roomNumber);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(room);
-        return translate(roomList, null, null).get(0);
+        if (room == null) {
+            throw new RoomNotFoundException("Error: Room not found");
+        }
+            List<Room> roomList = new ArrayList<>();
+            roomList.add(room);
+            roomViewModel = translate(roomList, null, null).get(0);
+
+        return roomViewModel;
     }
 
     @Override
@@ -133,11 +139,11 @@ public class RoomWebServiceImpl implements RoomWebService {
             //if start and end are null, then get the default date.
             //if start and end are not null, then check the current rate. If null, then set the default rate.
             if (start == null) {
-                viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice());
+                viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice().toString());
             } else {
                 if (roomRateService.retrieveCurrentRate(room.getId(), start, end).getRoom() != null) {
-                    viewModel.setRate(roomRateService.retrieveCurrentRate(room.getId(), start, end).getPrice());
-                } else viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice());
+                    viewModel.setRate(roomRateService.retrieveCurrentRate(room.getId(), start, end).getPrice().toString());
+                } else viewModel.setRate(roomRateService.retrieveDefaultRate(room.getId()).getPrice().toString());
             }
 
 

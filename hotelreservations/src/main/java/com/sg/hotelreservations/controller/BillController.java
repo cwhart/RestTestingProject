@@ -27,4 +27,10 @@ public class BillController {
 
     }
 
+    @GetMapping(value="/getBillId/{reservationId}")
+    public @ResponseBody Long getBillIdFromReservationId(@PathVariable(value = "reservationId") Long reservationId) {
+
+        return billWebService.getBillIdFromReservationId(reservationId);
+    }
+
 }

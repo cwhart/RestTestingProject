@@ -18,7 +18,7 @@ public interface ReservationWebService {
     public SearchReservationCommandModel getSearchReservationCommandModel();
     public void cancelReservation(Long reservationId);
     EditReservationViewModel getEditReservationViewModel(Long id);
-    public Reservation saveEditReservationCommandModel(EditReservationCommandModel commandModel) throws InvalidPromoException;
+    public ReservationModel saveEditReservation(ReservationModel reservationModel) throws InvalidPromoException;
     public List<Reservation> retrieveAllReservations();
 
 }

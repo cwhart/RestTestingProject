@@ -24,8 +24,15 @@ public class RoomController {
     }
 
     @GetMapping(value = "retrieve/{roomNumber}")
-    public @ResponseBody RoomViewModel retrieveRoom(@PathVariable(value = "roomNumber", required = true) int roomNumber) {
-        return roomWebService.retrieveRoom(roomNumber);
+    public @ResponseBody RoomViewModel retrieveRoom(@PathVariable(value = "roomNumber", required = true) int roomNumber) throws Exception {
+        RoomViewModel roomViewModel = new RoomViewModel();
+//        try {
+//            roomViewModel = roomWebService.retrieveRoom(roomNumber);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        roomViewModel = roomWebService.retrieveRoom(roomNumber);
+        return roomViewModel;
     }
 
 

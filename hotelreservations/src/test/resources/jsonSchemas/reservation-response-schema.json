@@ -1,0 +1,173 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "reservationId",
+    "guestDetails",
+    "reservationDetails",
+    "promoCode",
+    "billId"
+  ],
+  "properties": {
+    "reservationId": {
+      "$id": "#/properties/reservationId",
+      "type": "integer",
+      "title": "The Reservationid Schema",
+      "default": 0,
+      "examples": [
+        11
+      ]
+    },
+    "guestDetails": {
+      "$id": "#/properties/guestDetails",
+      "type": "array",
+      "title": "The Guestdetails Schema",
+      "items": {
+        "$id": "#/properties/guestDetails/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "dateOfBirth",
+          "phoneNo",
+          "email"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/guestDetails/items/properties/id",
+            "type": "integer",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              9
+            ]
+          },
+          "firstName": {
+            "$id": "#/properties/guestDetails/items/properties/firstName",
+            "type": "string",
+            "title": "The Firstname Schema",
+            "default": "",
+            "examples": [
+              "Cersei"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "lastName": {
+            "$id": "#/properties/guestDetails/items/properties/lastName",
+            "type": "string",
+            "title": "The Lastname Schema",
+            "default": "",
+            "examples": [
+              "Lannister"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "dateOfBirth": {
+            "$id": "#/properties/guestDetails/items/properties/dateOfBirth",
+            "type": "string",
+            "title": "The Dateofbirth Schema",
+            "default": "",
+            "examples": [
+              "1999-10-02"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "phoneNo": {
+            "$id": "#/properties/guestDetails/items/properties/phoneNo",
+            "type": "string",
+            "title": "The Phoneno Schema",
+            "default": "",
+            "examples": [
+              "6473847656"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "email": {
+            "$id": "#/properties/guestDetails/items/properties/email",
+            "type": "string",
+            "title": "The Email Schema",
+            "default": "",
+            "examples": [
+              "me@nospam.com"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "reservationDetails": {
+      "$id": "#/properties/reservationDetails",
+      "type": "object",
+      "title": "The Reservationdetails Schema",
+      "required": [
+        "startDate",
+        "endDate",
+        "numInParty",
+        "roomNumber"
+      ],
+      "properties": {
+        "startDate": {
+          "$id": "#/properties/reservationDetails/properties/startDate",
+          "type": "string",
+          "title": "The Startdate Schema",
+          "default": "",
+          "examples": [
+            "2019-09-29"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "endDate": {
+          "$id": "#/properties/reservationDetails/properties/endDate",
+          "type": "string",
+          "title": "The Enddate Schema",
+          "default": "",
+          "examples": [
+            "2019-10-01"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "numInParty": {
+          "$id": "#/properties/reservationDetails/properties/numInParty",
+          "type": "integer",
+          "title": "The Numinparty Schema",
+          "default": 0,
+          "examples": [
+            5
+          ]
+        },
+        "roomNumber": {
+          "$id": "#/properties/reservationDetails/properties/roomNumber",
+          "type": "integer",
+          "title": "The Roomnumber Schema",
+          "default": 0,
+          "examples": [
+            101
+          ]
+        }
+      }
+    },
+    "promoCode": {
+      "$id": "#/properties/promoCode",
+      "type": "null",
+      "title": "The Promocode Schema",
+      "default": null,
+      "examples": [
+        null
+      ]
+    },
+    "billId": {
+      "$id": "#/properties/billId",
+      "type": "integer",
+      "title": "The Billid Schema",
+      "default": 0,
+      "examples": [
+        11
+      ]
+    }
+  }
+}

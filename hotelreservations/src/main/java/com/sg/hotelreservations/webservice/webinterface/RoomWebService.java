@@ -19,5 +19,5 @@ public interface RoomWebService {
 
     public List<RoomViewModel> getListOfRooms();
 
-    public RoomViewModel retrieveRoom(int id);
+    public RoomViewModel retrieveRoom(int id) throws Exception;
 }

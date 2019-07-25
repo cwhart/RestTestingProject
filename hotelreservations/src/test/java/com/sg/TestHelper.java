@@ -194,7 +194,7 @@ public class TestHelper {
 
     public RoomAmenity createTestRoomAmenity(Long roomid) {
         Amenity amenity = createTestAmenity();
-        //Room room = createTestRoom();
+        //RoomApi room = createTestRoom();
         Room room = new Room();
         room.setId(roomid);
         RoomAmenity roomAmenity = new RoomAmenity();
@@ -480,7 +480,7 @@ public class TestHelper {
 
     public ReservationRoom createTestReservationRoom(Long roomId) {
         Reservation reservation = createTestReservation();
-        //Room room = createTestRoom();
+        //RoomApi room = createTestRoom();
         Room room = new Room();
         room.setId(roomId);
         ReservationRoom reservationRoom = new ReservationRoom();
@@ -534,7 +534,7 @@ public class TestHelper {
 
     public GuestReservation createTestGuestReservation(Long guestId) {
         Reservation reservation = createTestReservation();
-        //Room room = createTestRoom();
+        //RoomApi room = createTestRoom();
         Guest guest = new Guest();
         guest.setId(guestId);
         GuestReservation guestReservation = new GuestReservation();

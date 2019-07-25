@@ -12,13 +12,13 @@ public class RoomViewModel {
     private String type;
     private int occupancy;
     private List<Amenity> amenityList;
-    private BigDecimal rate;
+    private String rate;
 
-    public BigDecimal getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(BigDecimal rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 

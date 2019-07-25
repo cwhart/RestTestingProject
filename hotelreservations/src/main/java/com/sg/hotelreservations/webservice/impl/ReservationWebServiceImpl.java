@@ -357,7 +357,7 @@ public class ReservationWebServiceImpl implements ReservationWebService {
     }
 
     @Override
-    public Reservation saveEditReservationCommandModel(EditReservationCommandModel commandModel) throws InvalidPromoException {
+    public ReservationModel saveEditReservation(ReservationModel reservationModel) throws InvalidPromoException {
 
         //User should not be able to edit rooms or dates - in that case they should cancel and rebook.
         //User should be able to edit:
@@ -367,13 +367,14 @@ public class ReservationWebServiceImpl implements ReservationWebService {
         //TODO: implement ability to add rooms to a reservation. (Can add, but can't remove.)
 
 
-        Reservation reservation = reservationService.retrieve(commandModel.getReservationId());
-        if(reservation == null) return reservation;
+        Reservation reservation = reservationService.retrieve(reservationModel.getReservationId());
+        //TODO: refactor so there aren't multiple return statements.
+        if(reservation == null) return null;
 
         //Need to take reservationholder's name and find the person/guest associated.
-        String[] name = commandModel.getReservationHolder().split("\\s+");
-        String firstName = name[0];
-        String lastName = name[1];
+        //String[] names = reservationModel.getGuestDetails().split("\\s+");
+        String firstName = reservationModel.getGuestDetails().get(0).getFirstName();
+        String lastName = reservationModel.getGuestDetails().get(0).getLastName();
         List<Person> persons = personService.retrieveByName(firstName, lastName);
         Person person = persons.get(0);
         ReservationHolder reservationHolder = new ReservationHolder();
@@ -387,7 +388,7 @@ public class ReservationWebServiceImpl implements ReservationWebService {
             reservationHolder = reservationHolderService.create(reservationHolder);
         }
 
-        String promoCode = commandModel.getPromoCode();
+        String promoCode = reservationModel.getPromoCode();
         List<Promo> promos = new ArrayList<>();
 
         if(promoCode != "") {
@@ -409,7 +410,8 @@ public class ReservationWebServiceImpl implements ReservationWebService {
         }
         reservation.setReservationHolder(reservationHolder);
 
-        return reservationService.update(reservation);
+        reservationService.update(reservation);
+        return reservationModel;
 
 
     }

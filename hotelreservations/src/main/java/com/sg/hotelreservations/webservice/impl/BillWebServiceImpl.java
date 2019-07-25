@@ -22,6 +22,12 @@ public class BillWebServiceImpl implements BillWebService {
     AddOnRateService addOnRateService;
     AddOnService addOnService;
 
+    @Override
+    public Long getBillIdFromReservationId(Long reservationId) {
+        Bill bill = billService.retrieveByReservationId(reservationId);
+        return bill.getId();
+    }
+
     public BillWebServiceImpl(AddOnBillDetailService addOnBillDetailService, RoomBillDetailService roomBillDetailService, BillService billService, RoomService roomService,
                               RoomRateService roomRateService, AddOnRateService addOnRateService, AddOnService addOnService) {
         this.addOnBillDetailService = addOnBillDetailService;
@@ -82,9 +88,9 @@ public class BillWebServiceImpl implements BillWebService {
     }
 
     @Override
-    public BillViewModel getBillViewModel(Long reservationId) {
-        Bill bill = billService.retrieveByReservationId(reservationId);
-        Long billId = bill.getId();
+    public BillViewModel getBillViewModel(Long billId) {
+        Bill bill = billService.retrieve(billId);
+        //Long billId = bill.getId();
         BillViewModel billViewModel = new BillViewModel();
         if (getRoomBillDetailViewModels(billId) != null && getRoomBillDetailViewModels(billId).size() != 0) {
             billViewModel.setRoomBillDetailViewModels(getRoomBillDetailViewModels(billId));

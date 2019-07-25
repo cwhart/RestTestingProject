@@ -89,7 +89,7 @@ public class ReservationRoomDAOImplTest {
 //    public void retrieveByDates() {
 //
 //        //Arrange
-//        Room room = testHelper.createTestRoom();
+//        RoomApi room = testHelper.createTestRoom();
 //        Reservation res1 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-09-01"),
 //                LocalDate.parse("2018-09-10"));
 //        Reservation res2 = testHelper.createTestReservationSpecifyDates(LocalDate.parse("2018-09-04"),

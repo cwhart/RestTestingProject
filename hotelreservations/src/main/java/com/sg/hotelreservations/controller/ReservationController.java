@@ -117,22 +117,18 @@ public class ReservationController {
     @PostMapping(value = "/saveCreate", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ReservationModel saveCreate(@ApiParam(name="saveReservation", required=true, value="Data required to save a reservation.")
                                  @Valid @RequestBody ReservationModel commandModel,
-                                 BindingResult bindingResult) {
+                                 BindingResult bindingResult) throws Exception {
 
         if(bindingResult.hasErrors()){
             InputPersonDetailsViewModel viewModel =
                     reservationWebService.getInputPersonDetailsViewModel();
-
         }
-
 
         ReservationModel reservationModel = new ReservationModel();
 
-        try {
-            reservationModel = reservationWebService.saveCreate(commandModel);
-        } catch(InvalidDatesException | InvalidPromoException | NullPointerException e) {
+        reservationModel = reservationWebService.saveCreate(commandModel);
 
-        }
+
         return reservationModel;
 
 
@@ -181,36 +177,39 @@ public class ReservationController {
         return reservationModel;
     }
 
-    @DeleteMapping(value = "/cancelReservation")
-    public void cancelReservation(Model model, String reservationNumber) {
+    @DeleteMapping(value = "/cancelReservation/{reservationId}")
+    public void cancelReservation(Model model, @PathVariable(value = "reservationId", required = true)
+            Long reservationId) {
 
-        Long reservationId = Long.valueOf(reservationNumber);
+        //Long reservationId = Long.valueOf(reservationNumber);
         reservationWebService.cancelReservation(reservationId);
 
         return ;
 
     }
 
-    @GetMapping (value= "/edit")
-    public @ResponseBody EditReservationViewModel edit(@RequestParam Long id, Model model){
+//    @GetMapping (value= "/edit")
+//    public @ResponseBody EditReservationViewModel edit(@RequestParam Long id, Model model){
+//
+//        EditReservationViewModel viewModel = reservationWebService.getEditReservationViewModel(id);
+//        model.addAttribute("viewModel", viewModel);
+//        return viewModel;
+//    }
 
-        EditReservationViewModel viewModel = reservationWebService.getEditReservationViewModel(id);
-        model.addAttribute("viewModel", viewModel);
-        return viewModel;
-    }
+    @ApiOperation(value = "Edit a reservation.", response = Reservation.class)
+    @PutMapping(value = "/edit", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public  @ResponseBody ReservationModel saveEdit(@ModelAttribute("viewModel") ReservationModel reservation) {
 
-    @PostMapping(value = "/edit")
-    public  @ResponseBody Reservation saveEdit(@ModelAttribute("viewModel") EditReservationViewModel viewModel, BindingResult bindingResult, Model model) {
-
-        EditReservationCommandModel commandModel = viewModel.getCommandModel();
-        Reservation updatedRes = new Reservation();
+       // EditReservationCommandModel commandModel = viewModel.getCommandModel();
+        ReservationModel updatedRes = new ReservationModel();
 
         try {
-            updatedRes = reservationWebService.saveEditReservationCommandModel(commandModel);
+            updatedRes = reservationWebService.saveEditReservation(reservation);
         } catch (InvalidPromoException ex) {
-            viewModel = reservationWebService.getEditReservationViewModel(commandModel.getReservationId());
-            viewModel.setMessage(ex.getMessage());
-            model.addAttribute("viewModel", viewModel);
+//            viewModel = reservationWebService.getEditReservationViewModel(commandModel.getReservationId());
+//            viewModel.setMessage(ex.getMessage());
+//            model.addAttribute("viewModel", viewModel);
+
         }
         return updatedRes;
 

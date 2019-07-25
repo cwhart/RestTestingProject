@@ -147,7 +147,8 @@ public class BillWebServiceImplTest {
         AddOnBillDetail addOnBillDetail1 = testHelper.createTestAddOnBillDetailSpecifyBill(bill.getId());
 
         when(addOnBillDetailService.retrieveByBillId(anyLong())).thenReturn(addOnBillDetails);
-        when(billService.retrieveByReservationId(anyLong())).thenReturn(bill);
+        //when(billService.retrieveByReservationId(anyLong())).thenReturn(bill);
+        when(billService.retrieve(any())).thenReturn(bill);
         when(addOnService.retrieve(anyLong())).thenReturn(testHelper.createTestAddOn());
         when(addOnRateService.retrieve(anyLong())).thenReturn(testHelper.createTestAddOnRate());
         when(roomBillDetailService.retrieveByBillId(anyLong())).thenReturn(roomBillDetails);
@@ -155,12 +156,12 @@ public class BillWebServiceImplTest {
         when(roomRateService.retrieve(anyLong())).thenReturn(testHelper.createTestRoomRate());
 
         //Act
-        BillViewModel billViewModel = billWebService.getBillViewModel(bill.getReservation().getId());
+        BillViewModel billViewModel = billWebService.getBillViewModel(bill.getId());
 
         //Assert
         assertEquals(billViewModel.getAddOnBillDetailViewModels().size(), 4);
         assertEquals(billViewModel.getRoomBillDetailViewModels().size(), 4);
-        assertEquals(billViewModel.getReservationHolderName(), "placeholder");
+        assertEquals(billViewModel.getReservationHolderName(), "Joe Schmoe");
         BigDecimal roomTotal = roomBillDetail1.getPrice().add(roomBillDetail1.getTaxAmount());
         BigDecimal addOnTotal = addOnBillDetail1.getPrice().add(addOnBillDetail1.getTaxAmount());
         //assertEquals(billViewModel.getTotal(), (roomTotal.add(addOnTotal).multiply(BigDecimal.valueOf(4))).toString());

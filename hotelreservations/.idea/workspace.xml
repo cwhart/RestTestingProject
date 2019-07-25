@@ -2,11 +2,31 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="HotelReservations:war exploded" />
+      <artifact name="hotelreservations:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c41dff76-125c-42b4-b792-aae6f1bc09fa" name="Default" comment="Basic working version.">
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/.idea/HotelReservationRESTTesting.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/Amenity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/Promo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/PromoRate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/PromoType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/ReservationHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/RoomViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/main/java/com/lmig/model/SearchAvailableRoomsCommandModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/test/java/com/lmig/jsonSchemas/reservation-response-schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HotelReservationRESTTesting/src/test/java/com/lmig/jsonSchemas/room-list-schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/exception/RoomNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/sg/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/sg/FunctionalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/sg/RoomRestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/restApi/RoomApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/jsonSchemas/reservation-response-schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/jsonSchemas/room-list-schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/jsonSchemas/room-schema.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AddressBookSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AddressBookSpringMVC/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ContactListRESTClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ContactListRESTClient/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ContactListSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ContactListSpringMVC/.idea/workspace.xml" afterDir="false" />
@@ -35,30 +55,51 @@
       <change beforePath="$PROJECT_DIR$/../holidayrequest/target/classes/org/flowable/DoNothingDelegate1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../holidayrequest/target/classes/org/flowable/DoNothingDelegate2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../holidayrequest/target/classes/org/flowable/HolidayRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/addon/ListAddOnViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/addon/ListAddOnViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/room/RoomViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/room/RoomViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/exception/InvalidDatesException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/exception/InvalidDatesException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/AddOnWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/AddOnWebService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/BillWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/BillWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/RoomWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/RoomWebService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/dao/daoimpl/ReservationRoomDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/dao/daoimpl/ReservationRoomDAOImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/controller/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/controller/ReservationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/webinterface/RoomWebService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sg/hotelreservations/webservice/webinterface/RoomWebService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/controller/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/controller/ReservationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/webinterface/RoomWebService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/classes/com/sg/hotelreservations/webservice/webinterface/RoomWebService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/hibernate-validator-5.2.2.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/jstl-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-aop-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-beans-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-context-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-core-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-expression-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-jdbc-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-test-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-tx-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-web-4.3.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-webapp/WEB-INF/lib/spring-webmvc-4.3.6.RELEASE.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sg-maven-archetype" beforeDir="false" afterPath="$PROJECT_DIR$/../sg-maven-archetype" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,116 +136,14 @@
   <component name="FavoritesManager">
     <favorites_list name="HotelReservations" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddOnController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BillController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/bill/list.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="75" column="20" selection-end-line="78" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReservationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>roombilldetailview</find>
-      <find>getInputPerson</find>
-      <find>personDetailsComm</find>
-      <find>personDetailsCommandModel</find>
-      <find>billId</find>
-      <find>createTestReservationRoom</find>
-      <find>limit</find>
-      <find>ListRoom</find>
-      <find>message</find>
-      <find>getreservationprof</find>
-      <find>reservationHolder</find>
-      <find>editReservation</find>
-      <find>/editReservation</find>
-      <find>catch</find>
-      <find>enablewebmvc</find>
-      <find>data.sql</find>
-      <find>h2</find>
-      <find>player</find>
-      <find>promoTypeId</find>
-      <find>rateId</find>
-      <find>id</find>
-      <find>searchRooms</find>
-      <find>reservation/profile</find>
-      <find>search</find>
-      <find>true</find>
-      <find>jackson</find>
-      <find>swagger</find>
-      <find>Access-Control-Allow-Origin</find>
-      <find>searchRes</find>
-      <find>searchReser</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>ReservationHolder</replace>
-      <replace>Room</replace>
-      <replace>room</replace>
-      <replace>-</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test\java\com\sg\hotelreservations\service</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test\java\com\sg\hotelreservations</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\webservice\impl</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main</dir>
-      <dir>C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -214,69 +153,6 @@
       </map>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/config/SwaggerConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/service/serviceimpl/ReservationRoomServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/reservation/SearchAvailableRoomsCommandModel.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/reservation/Sandbox.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/viewmodels/reservation/SandboxTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/reservation/SaveReservationCommandModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/reservation/ReservationModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/Reservation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dao/daoimpl/ReservationDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/dao/daoimpl/ReservationDAOImplTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/Person.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dao/daoimpl/PersonDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/ReservationWebService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/service/serviceimpl/ReservationServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/ReservationWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/RoomWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/RoomController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/addon/ListAddOnViewModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/webinterface/AddOnWebService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -284,138 +160,28 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="HotelReservations Spring MVC Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="HotelReservations Spring MVC Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="HotelReservations Spring MVC Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2513" />
-    <option name="y" value="-317" />
-    <option name="width" value="648" />
-    <option name="height" value="356" />
-  </component>
+  <component name="ProjectId" id="1OT5z8a6yRqJ8ummp1rXX5nOINh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <hideEmptyPackages ProjectPane="true" />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sg" type="462c0819:PsiDirectoryNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HotelReservations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hotelreservations" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="bill" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="H2" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DogGenetics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/com/sg" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -426,18 +192,18 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\tempReservation" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\reservation\search" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\room" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\images" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.sg.hotelreservations.config" />
       <recent name="com.sg" />
+      <recent name="com.sg.hotelreservations.config" />
       <recent name="com.sg.hotelreservations" />
       <recent name="com.sg.dao" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test\java\com\sg" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\promo" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\promo\PromoType" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\promo" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.sg.hotelreservations.viewmodels.reservation" />
@@ -446,12 +212,12 @@
       <recent name="com.sg.hotelreservations.webservice.exception" />
       <recent name="com.sg.hotelreservations.webservice.webinterface" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\promo" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\promo\PromoType" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\promo" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels" />
-      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\reservation" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test\resources\jsonSchemas" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\test\resources" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\tempReservation" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\java\com\sg\hotelreservations\viewmodels\reservation\search" />
+      <recent name="C:\Users\N0148464\Documents\bitbucket\cynthia-hartnett-individual-work\hotelreservations\src\main\webapp\jsp\room" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -466,182 +232,127 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Run on tomcat">
+  <component name="RunManager" selected="JUnit.RoomRestTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="ReservationWebServiceImplTest.saveCreateCurrentRate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HotelReservations" />
+    <configuration name="RoomRestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hotelreservations" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.hotelreservations.webservice.impl.*" />
+          <option name="PATTERN" value="com.sg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.hotelreservations.webservice.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.hotelreservations.webservice.impl.ReservationWebServiceImplTest" />
-      <option name="METHOD_NAME" value="saveCreateCurrentRate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
+      <option name="PACKAGE_NAME" value="com.sg" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.RoomRestTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="ReservationWebServiceImplTest.saveCreateDefaultRate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HotelReservations" />
+    <configuration name="RoomRestTest.invalidRoomNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hotelreservations" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.hotelreservations.webservice.impl.*" />
+          <option name="PATTERN" value="com.sg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.hotelreservations.webservice.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.hotelreservations.webservice.impl.ReservationWebServiceImplTest" />
-      <option name="METHOD_NAME" value="saveCreateDefaultRate" />
+      <option name="PACKAGE_NAME" value="com.sg" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.RoomRestTest" />
+      <option name="METHOD_NAME" value="invalidRoomNumber" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HotelReservations" />
+    <configuration name="RoomRestTest.testSaveCreateCancelReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hotelreservations" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.hotelreservations.webservice.impl.*" />
+          <option name="PATTERN" value="com.sg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.hotelreservations.webservice.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.hotelreservations.webservice.impl.ReservationWebServiceImplTest" />
-      <option name="METHOD_NAME" value="saveCreateInvalidPromo" />
+      <option name="PACKAGE_NAME" value="com.sg" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.RoomRestTest" />
+      <option name="METHOD_NAME" value="testSaveCreateCancelReservation" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromoDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HotelReservations" />
+    <configuration name="RoomRestTest.validRoomNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hotelreservations" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sg.hotelreservations.webservice.impl.*" />
+          <option name="PATTERN" value="com.sg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.hotelreservations.webservice.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.sg.hotelreservations.webservice.impl.ReservationWebServiceImplTest" />
-      <option name="METHOD_NAME" value="saveCreateInvalidPromoDate" />
+      <option name="PACKAGE_NAME" value="com.sg" />
+      <option name="MAIN_CLASS_NAME" value="com.sg.RoomRestTest" />
+      <option name="METHOD_NAME" value="validRoomNumber" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="com.sg.hotelreservations in HotelReservations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HotelReservations" />
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="hotelreservations" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.sg.hotelreservations.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sg.hotelreservations" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sg.hotelreservations.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Run on tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Run on Tomcat" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER" value="false" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
-        <artifact name="HotelReservations:war exploded">
+        <artifact name="hotelreservations:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/" />
+            <option name="CONTEXT_PATH" value="/hotelreservations_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_HotelReservations" />
       </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="56423" />
       </RunnerSettings>
@@ -690,27 +401,28 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method>
+      <method v="2">
+        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="HotelReservations:war exploded" />
+          <artifact name="hotelreservations:war exploded" />
         </option>
       </method>
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.Run on tomcat" />
-      <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateCurrentRate" />
-      <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateDefaultRate" />
-      <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateInvalidPromo" />
-      <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateInvalidPromoDate" />
-      <item itemvalue="JUnit.com.sg.hotelreservations in HotelReservations" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="JUnit.RoomRestTest.invalidRoomNumber" />
+      <item itemvalue="JUnit.RoomRestTest.validRoomNumber" />
+      <item itemvalue="JUnit.RoomRestTest.testSaveCreateCancelReservation" />
+      <item itemvalue="JUnit.RoomRestTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.com.sg.hotelreservations in HotelReservations" />
-        <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateInvalidPromoDate" />
-        <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateInvalidPromo" />
-        <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateDefaultRate" />
-        <item itemvalue="JUnit.ReservationWebServiceImplTest.saveCreateCurrentRate" />
+        <item itemvalue="JUnit.RoomRestTest" />
+        <item itemvalue="JUnit.RoomRestTest.validRoomNumber" />
+        <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="JUnit.RoomRestTest.testSaveCreateCancelReservation" />
+        <item itemvalue="JUnit.RoomRestTest.invalidRoomNumber" />
       </list>
     </recent_temporary>
   </component>
@@ -842,7 +554,41 @@
       <workItem from="1557942651304" duration="50000" />
       <workItem from="1557942924159" duration="11000" />
       <workItem from="1558200118962" duration="4074000" />
-      <workItem from="1558546607406" duration="876000" />
+      <workItem from="1558546607406" duration="1660000" />
+      <workItem from="1558548340463" duration="54000" />
+      <workItem from="1558551323363" duration="8000" />
+      <workItem from="1558636532955" duration="965000" />
+      <workItem from="1558704825719" duration="7000" />
+      <workItem from="1558726039567" duration="1328000" />
+      <workItem from="1558896742161" duration="1914000" />
+      <workItem from="1559072430281" duration="680000" />
+      <workItem from="1559076292558" duration="636000" />
+      <workItem from="1559226691241" duration="251000" />
+      <workItem from="1559923300842" duration="912000" />
+      <workItem from="1560016231065" duration="4166000" />
+      <workItem from="1560614762553" duration="3110000" />
+      <workItem from="1561309424409" duration="756000" />
+      <workItem from="1561915862105" duration="950000" />
+      <workItem from="1562181541784" duration="4230000" />
+      <workItem from="1562434099997" duration="12165000" />
+      <workItem from="1563034448001" duration="9717000" />
+      <workItem from="1563302656171" duration="650000" />
+      <workItem from="1563475172620" duration="618000" />
+      <workItem from="1563641876630" duration="1091000" />
+      <workItem from="1563643486442" duration="641000" />
+      <workItem from="1563644344060" duration="1112000" />
+      <workItem from="1563647161023" duration="313000" />
+      <workItem from="1563648070622" duration="4596000" />
+      <workItem from="1563664344626" duration="1422000" />
+      <workItem from="1563666658464" duration="351000" />
+      <workItem from="1563668809809" duration="2645000" />
+      <workItem from="1563729728803" duration="69000" />
+      <workItem from="1563730539083" duration="2248000" />
+      <workItem from="1563802177184" duration="657000" />
+      <workItem from="1563982098037" duration="644000" />
+      <workItem from="1563988206584" duration="305000" />
+      <workItem from="1563989217528" duration="779000" />
+      <workItem from="1563990796950" duration="11313000" />
     </task>
     <task id="LOCAL-00001" summary="Basic working version.">
       <created>1548609609794</created>
@@ -858,43 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1554072547130</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="5/22/19">
+      <created>1558547546865</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558547546865</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="ReservationWebServiceImplTest_getReservationProfileViewModel - 2019.03.30 at 13h 23m 53s.xml">
-      <configuration name="ReservationWebServiceImplTest.getReservationProfileViewModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateCurrentRate - 2019.03.30 at 13h 28m 20s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateCurrentRate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateCurrentRate - 2019.03.30 at 13h 29m 22s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateCurrentRate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateCurrentRate - 2019.03.30 at 13h 29m 52s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateCurrentRate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateDefaultRate - 2019.03.30 at 13h 30m 33s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateDefaultRate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateInvalidPromo - 2019.03.30 at 13h 30m 52s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateInvalidPromo - 2019.03.30 at 13h 34m 21s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateInvalidPromo - 2019.03.30 at 13h 35m 19s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ReservationWebServiceImplTest_saveCreateInvalidPromoDate - 2019.03.30 at 13h 37m 30s.xml">
-      <configuration name="ReservationWebServiceImplTest.saveCreateInvalidPromoDate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="com_sg_hotelreservations_in_HotelReservations - 2019.03.30 at 13h 40m 31s.xml">
-      <configuration name="com.sg.hotelreservations in HotelReservations" configurationId="JUnit" />
-    </history-entry>
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="860548000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -905,56 +623,27 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1912" y="-309" width="1936" height="1216" extended-state="6" />
-    <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3280142" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.24413647" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info id="Structure" order="1" sideWeight="0.50108224" side_tool="true" weight="0.12526652" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.27813852" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32792208" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="3" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32978722" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.46631205" />
-      <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32933578" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49891776" visible="true" weight="0.21215352" />
-      <window_info anchor="right" id="Bean Validation" order="8" />
-      <window_info id="Web" order="6" sideWeight="0.50108224" side_tool="true" weight="0.12526652" />
-      <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info id="Favorites" order="5" sideWeight="0.50108224" side_tool="true" weight="0.12526652" />
-      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32874495" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32269505" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.37943262" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32978722" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Basic working version." />
     <MESSAGE value="Changes to webservices in order to implement basic Angular app." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes to webservices in order to implement basic Angular app." />
+    <MESSAGE value="5/22/19" />
+    <option name="LAST_COMMIT_MESSAGE" value="5/22/19" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -962,390 +651,14 @@
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/service/serviceimpl/ReservationRoomServiceImpl.java</url>
           <line>66</line>
-          <properties />
           <option name="timeStamp" value="421" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="426" />
+        </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <option name="time" value="673" />
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/bill/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="20" selection-end-line="78" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/RoomBillDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="70" column="103" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/config/HotelReservationConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/RoomBillDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="103" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/config/HotelReservationConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/RoomBillDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="103" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/RoomBillDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="103" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/sg/TestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/dto/RoomBillDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/config/HotelReservationConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/AddOnWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/bill/AddOnBillDetailViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/viewmodels/bill/BillViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/webservice/impl/BillWebServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/bill/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="20" selection-end-line="78" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/AddOnController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/ReservationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sg/hotelreservations/controller/BillController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>HotelReservations:war</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Spring</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>HotelReservations</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.0</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

@@ -11,5 +11,6 @@ public interface BillWebService {
     public List<AddOnBillDetailViewModel> getAddOnBillDetailViewModels(Long billId);
     public List<RoomBillDetailViewModel> getRoomBillDetailViewModels (Long billId);
     public BillViewModel getBillViewModel(Long billId);
+    public Long getBillIdFromReservationId(Long reservationId);
 
 }
