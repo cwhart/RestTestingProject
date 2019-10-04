@@ -1,0 +1,99 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "roomNumber",
+    "type",
+    "occupancy",
+    "rate"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The Id Schema",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "roomNumber": {
+      "$id": "#/properties/roomNumber",
+      "type": "integer",
+      "title": "The Roomnumber Schema",
+      "default": 0,
+      "examples": [
+        101
+      ]
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "The Type Schema",
+      "default": "",
+      "examples": [
+        "Double"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "occupancy": {
+      "$id": "#/properties/occupancy",
+      "type": "integer",
+      "title": "The Occupancy Schema",
+      "default": 0,
+      "examples": [
+        4
+      ]
+    },
+    "amenityList": {
+      "$id": "#/properties/amenityList",
+      "type": "array",
+      "title": "The Amenitylist Schema",
+      "default": null,
+      "items": {
+        "$id": "#/properties/amenityList/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/amenityList/items/properties/id",
+            "type": "integer",
+            "title": "The Id Schema",
+            "default": 0,
+            "examples": [
+              3
+            ]
+          },
+          "type": {
+            "$id": "#/properties/amenityList/items/properties/type",
+            "type": "string",
+            "title": "The Type Schema",
+            "default": "",
+            "examples": [
+              "Minibar"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "rate": {
+      "$id": "#/properties/rate",
+      "type": "string",
+      "title": "The Rate Schema",
+      "default": "",
+      "examples": [
+        "99.00"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

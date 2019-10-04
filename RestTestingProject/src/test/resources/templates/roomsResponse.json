@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "roomNumber": 101,
+    "type": "Double",
+    "occupancy": 4,
+    "amenityList": [
+      {
+        "id": 3,
+        "type": "Minibar"
+      },
+      {
+        "id": 2,
+        "type": "Ocean View"
+      }
+    ],
+    "rate": "99.00"
+  },
+  {
+    "id": 2,
+    "roomNumber": 102,
+    "type": "King",
+    "occupancy": 2,
+    "amenityList": [
+      {
+        "id": 3,
+        "type": "Minibar"
+      }
+    ],
+    "rate": "139.00"
+  },
+  {
+    "id": 3,
+    "roomNumber": 201,
+    "type": "Double",
+    "occupancy": 4,
+    "amenityList": [
+      {
+        "id": 2,
+        "type": "Ocean View"
+      }
+    ],
+    "rate": "99.00"
+  },
+  {
+    "id": 4,
+    "roomNumber": 202,
+    "type": "Double",
+    "occupancy": 4,
+    "amenityList": [
+      {
+        "id": 3,
+        "type": "Minibar"
+      }
+    ],
+    "rate": "99.00"
+  },
+  {
+    "id": 5,
+    "roomNumber": 301,
+    "type": "Suite",
+    "occupancy": 5,
+    "amenityList": [
+      {
+        "id": 4,
+        "type": "Kitchen"
+      },
+      {
+        "id": 5,
+        "type": "Living Room"
+      },
+      {
+        "id": 6,
+        "type": "Fireplace"
+      }
+    ],
+    "rate": "199.00"
+  }
+]
